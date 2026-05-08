@@ -1,3 +1,4 @@
+
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
@@ -46,9 +47,9 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <DialogDescription>{product.description}</DialogDescription>
           </DialogHeader>
           
-          {/* Custom Premium Minimalist Close Button */}
-          <DialogClose className="absolute -top-3 -right-3 md:-top-4 md:-right-4 z-50 w-8 h-8 md:w-10 md:h-10 rounded-full glass-button bg-black/60 backdrop-blur-2xl border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/60 hover:text-white glass-reflective-button-edge shadow-[0_0_20px_rgba(0,0,0,0.6)] focus:ring-0 focus:outline-none group">
-            <X size={16} strokeWidth={1.5} className="md:w-5 md:h-5 transition-transform duration-500 group-hover:rotate-90" />
+          {/* Custom Premium Minimalist Close Button - Repositioned and Visible */}
+          <DialogClose className="absolute top-4 right-4 z-[60] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-accent/30 text-white/90 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/60 hover:text-white shadow-[0_0_15px_rgba(142,255,127,0.2)] hover:shadow-[0_0_25px_rgba(142,255,127,0.4)] focus:ring-0 focus:outline-none group">
+            <X size={18} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-90" />
             <span className="sr-only">Close</span>
           </DialogClose>
 
