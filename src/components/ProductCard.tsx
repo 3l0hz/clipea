@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +7,7 @@ import { Product } from '@/types/store';
 import { WHATSAPP_NUMBER } from '@/constants/data';
 import { ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProductCardProps {
   product: Product;
@@ -26,6 +28,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export const ProductCard = ({ product, onViewDetails, isExperimental, isExperimentalDesktop }: ProductCardProps) => {
+  const isMobile = useIsMobile();
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
   const handleCardClick = () => {
@@ -123,10 +126,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // Unified Mobile/Standard Style (based on the Prueba Card)
+  // Unified Mobile/Standard Style
+  // Compact logic for Desktop Non-Promo
+  const isCompactDesktop = !isMobile && !isExperimentalDesktop;
+
   return (
     <div 
-      className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit"
+      className={cn(
+        "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit transition-all duration-300",
+        isCompactDesktop ? "md:hover:-translate-y-1" : ""
+      )}
       onClick={handleCardClick}
     >
       <div className="absolute top-2 left-2 z-20 flex flex-col gap-1">
@@ -138,7 +147,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         )}
       </div>
 
-      <div className="relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
+      <div className={cn(
+        "relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center transition-all",
+        isCompactDesktop ? "m-2 rounded-[12px]" : ""
+      )}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
         <Image
           src={product.image}
@@ -149,32 +161,57 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         />
       </div>
 
-      <div className="px-3 pb-3 pt-0 flex flex-col gap-1">
+      <div className={cn(
+        "px-3 pb-3 pt-0 flex flex-col gap-1",
+        isCompactDesktop ? "px-4 pb-4 pt-1 gap-0.5" : ""
+      )}>
         <div className="space-y-0">
-          <h3 className="font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1">
+          <span className="text-[8px] md:text-[9px] font-bold text-accent/60 uppercase tracking-widest block mb-0.5">{product.category}</span>
+          <h3 className={cn(
+            "font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1",
+            isCompactDesktop ? "text-base md:text-sm" : ""
+          )}>
             {product.name}
           </h3>
-          <p className="text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70">
+          <p className={cn(
+            "text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70",
+            isCompactDesktop ? "text-[11px] mb-1" : ""
+          )}>
             {product.description}
           </p>
         </div>
         
-        <div className="flex flex-col gap-1.5 mt-1">
-          <div className="text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none">
+        <div className={cn(
+          "flex flex-col gap-1.5 mt-1",
+          isCompactDesktop ? "mt-0.5 gap-2" : ""
+        )}>
+          <div className={cn(
+            "text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none",
+            isCompactDesktop ? "text-xl md:text-lg mb-0.5" : ""
+          )}>
             {product.price}
           </div>
           
-          <div className="flex flex-col gap-1.5">
+          <div className={cn(
+            "flex flex-col gap-1.5",
+            isCompactDesktop ? "gap-1" : ""
+          )}>
             <Button
               variant="default"
-              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500"
+              className={cn(
+                "w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500",
+                isCompactDesktop ? "h-8 md:h-7 rounded-md" : ""
+              )}
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
               }}
             >
-              <ShoppingCart size={14} />
-              <span className="uppercase tracking-tighter text-[10px]">AGREGAR</span>
+              <ShoppingCart size={isCompactDesktop ? 12 : 14} />
+              <span className={cn(
+                "uppercase tracking-tighter text-[10px]",
+                isCompactDesktop ? "text-[9px]" : ""
+              )}>AGREGAR</span>
             </Button>
             
             <a 
@@ -184,8 +221,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               className="flex items-center justify-center gap-1.5 text-[#B3B3B3] hover:text-accent transition-colors py-0.5 group/wsap"
               onClick={(e) => e.stopPropagation()}
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform" />
-              <span className="text-[8px] font-bold uppercase tracking-wider">CONSULTA</span>
+              <WhatsAppIcon className={cn("w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform", isCompactDesktop ? "w-3 h-3" : "")} />
+              <span className={cn("text-[8px] font-bold uppercase tracking-wider", isCompactDesktop ? "text-[7px]" : "")}>CONSULTA</span>
             </a>
           </div>
         </div>

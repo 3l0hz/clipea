@@ -1,6 +1,6 @@
 
 'use client';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
@@ -11,25 +11,19 @@ import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const CATEGORIES: Category[] = [
-  'Promos Moto',
-  'Trípodes',
-  'Bastones Selfie',
-  'Soportes Moto / Vehículo',
-  'Accesorios Cámara',
-  'Accesorios Corporales'
+const CATEGORY_ORDER: { label: string; value: Category }[] = [
+  { label: 'Bastones Selfie', value: 'Bastones Selfie' },
+  { label: 'Trípodes', value: 'Trípodes' },
+  { label: 'Promos Moto', value: 'Promos Moto' },
+  { label: 'Soportes Moto / Vehículo', value: 'Soportes Moto / Vehículo' },
+  { label: 'Accesorios Corporales', value: 'Accesorios Corporales' },
+  { label: 'Accesorios Cámara', value: 'Accesorios Cámara' },
 ];
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All');
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
-
-  const filteredProducts = useMemo(() => {
-    if (selectedCategory === 'All') return PRODUCTS;
-    return PRODUCTS.filter(p => p.category === selectedCategory);
-  }, [selectedCategory]);
 
   const handleViewDetails = (product: any) => {
     setSelectedProduct(product);
@@ -108,63 +102,60 @@ export default function Home() {
       </section>
 
       {/* Catalog Section */}
-      <section id="catalog" className="py-20 bg-[#0B0B0B]">
+      <section id="catalog" className="py-20 bg-[#0B0B0B] space-y-24">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-            <div>
-              <h2 className="text-4xl font-headline font-bold text-white mb-2">Equípate para la acción</h2>
-              <p className="text-muted-foreground">Selecciona una categoría para filtrar nuestro catálogo.</p>
-            </div>
-            
-            <div className="flex flex-wrap gap-2">
-              <Button
-                variant={selectedCategory === 'All' ? 'default' : 'outline'}
-                className={`rounded-full ${selectedCategory === 'All' ? 'bg-accent text-black' : ''}`}
-                onClick={() => setSelectedCategory('All')}
-              >
-                Todos
-              </Button>
-              {CATEGORIES.map((cat) => (
-                <Button
-                  key={cat}
-                  variant={selectedCategory === cat ? 'default' : 'outline'}
-                  className={`rounded-full ${selectedCategory === cat ? 'bg-accent text-black' : ''}`}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </Button>
-              ))}
-            </div>
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-headline font-bold text-white mb-2 tracking-tight">Equípate para la acción</h2>
+            <p className="text-muted-foreground">Explora nuestra selección premium organizada por categorías.</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-            {/* LAB MOBILE: Solo visible en Mobile */}
-            <div className="md:hidden">
-              <ProductCard
-                product={EXPERIMENTAL_PRODUCT}
-                onViewDetails={handleViewDetails}
-                isExperimental={true}
-              />
-            </div>
+          {CATEGORY_ORDER.map((cat) => {
+            const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
+            if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
 
-            {/* LAB DESKTOP: Solo visible en Desktop */}
-            <div className="hidden md:block">
-              <ProductCard
-                product={EXPERIMENTAL_DESKTOP_PRODUCT}
-                onViewDetails={handleViewDetails}
-                isExperimentalDesktop={true}
-              />
-            </div>
+            return (
+              <div key={cat.value} className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  <h3 className="text-2xl md:text-3xl font-headline font-bold text-white uppercase tracking-wider px-4">
+                    {cat.value === 'Accesorios Corporales' ? 'Soportes Corporales' : cat.label}
+                  </h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                </div>
 
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onViewDetails={handleViewDetails}
-                isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
-              />
-            ))}
-          </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                  {/* PRUEBA Experimental handling within categories or at the top */}
+                  {cat.value === 'Accesorios Cámara' && (
+                    <>
+                      <div className="md:hidden">
+                        <ProductCard
+                          product={EXPERIMENTAL_PRODUCT}
+                          onViewDetails={handleViewDetails}
+                          isExperimental={true}
+                        />
+                      </div>
+                      <div className="hidden md:block">
+                        <ProductCard
+                          product={EXPERIMENTAL_DESKTOP_PRODUCT}
+                          onViewDetails={handleViewDetails}
+                          isExperimentalDesktop={true}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {categoryProducts.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      onViewDetails={handleViewDetails}
+                      isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
