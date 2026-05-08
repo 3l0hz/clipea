@@ -4,6 +4,19 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getImg = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://picsum.photos/seed/elohz-fallback/600/600';
 
+export const EXPERIMENTAL_PRODUCT: Product = {
+  id: 'PRUEBA',
+  name: 'TARJETA PRUEBA',
+  category: 'Accesorios Cámara',
+  price: '$0.000',
+  image: 'https://picsum.photos/seed/experimental/600/600',
+  description: 'Tarjeta experimental para pruebas visuales en mobile. Este producto es solo para desarrollo.',
+  compatibility: 'Sandbox',
+  recommendedUse: 'Laboratorio Visual',
+  brand: 'Experimental',
+  bestSeller: true
+};
+
 export const PRODUCTS: Product[] = [
   {
     id: 'selfie1.20',

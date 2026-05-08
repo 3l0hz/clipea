@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -10,15 +11,18 @@ import { cn } from '@/lib/utils';
 interface ProductCardProps {
   product: Product;
   onViewDetails: (product: Product) => void;
+  isExperimental?: boolean;
 }
 
-export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
+export const ProductCard = ({ product, onViewDetails, isExperimental }: ProductCardProps) => {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
   return (
     <div className={cn(
       "group relative flex flex-col h-full",
-      "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
+      isExperimental 
+        ? "experimental-card" 
+        : "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
     )}>
       
       {/* Image Section - Cinematic Format in Mobile */}

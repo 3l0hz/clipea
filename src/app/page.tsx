@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
@@ -5,7 +6,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { FAQ } from '@/components/FAQ';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, Category, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, EXPERIMENTAL_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
 
@@ -50,9 +51,7 @@ export default function Home() {
           >
             <source src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/HeroSection/2%20slide/0506%20(2).mp4" type="video/mp4" />
           </video>
-          {/* Sutil overlay para legibilidad (25%) sin arruinar el color del video */}
           <div className="absolute inset-0 bg-black/25" />
-          {/* Degradado inferior para suavizar la transición al catálogo */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
         </div>
         
@@ -137,6 +136,15 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+            {/* LAB: PRUEBA CARD - Solo Mobile */}
+            <div className="md:hidden">
+              <ProductCard
+                product={EXPERIMENTAL_PRODUCT}
+                onViewDetails={handleViewDetails}
+                isExperimental={true}
+              />
+            </div>
+
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
