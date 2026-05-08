@@ -56,15 +56,15 @@
 }
 
 @keyframes borderGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 @keyframes lightSweep {
   0% { --sweep-x: 0%; --sweep-y: 0%; }
-  25% { --sweep-x: 100%; --sweep-y: 0%; }
+  25% { --sweep-x: 0%; --sweep-y: 100%; }
   50% { --sweep-x: 100%; --sweep-y: 100%; }
-  75% { --sweep-x: 0%; --sweep-y: 100%; }
+  75% { --sweep-x: 100%; --sweep-y: 0%; }
   100% { --sweep-x: 0%; --sweep-y: 0%; }
 }
 
