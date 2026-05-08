@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,6 +46,45 @@
 
 .premium-card {
   @apply bg-card border border-border transition-all duration-300 hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,255,156,0.05)];
+}
+
+/* Mobile Premium Card Effects */
+@keyframes rotate-glow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.mobile-glow-card {
+  @apply relative overflow-hidden bg-black;
+  border-radius: 2.25rem;
+  box-shadow: 0 0 30px rgba(0, 255, 156, 0.08);
+}
+
+@media (max-width: 767px) {
+  .mobile-glow-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 35%,
+      #00FF9C 50%,
+      transparent 65%,
+      transparent 100%
+    );
+    animation: rotate-glow 4s linear infinite;
+    z-index: 0;
+  }
+}
+
+.mobile-glow-card-inner {
+  @apply relative m-[1.2px] bg-black flex flex-col h-[calc(100%-2.4px)];
+  border-radius: calc(2.25rem - 1.2px);
+  z-index: 1;
 }
 
 .text-gradient {
