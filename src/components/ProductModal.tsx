@@ -66,37 +66,40 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           </DialogHeader>
           
           <div className={cn(
-            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-4 md:p-6 gap-2 md:gap-4 rounded-[24px] md:rounded-[28px] w-full"
+            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-4 md:p-6 gap-3 md:gap-5 rounded-[24px] md:rounded-[28px] w-full"
           )}>
             <div className="shine-layer" />
             
             <PremiumCloseButton />
             
-            <div className="relative w-full mb-1 md:mb-2 z-10">
-              <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
+            {/* Header Capsule */}
+            <div className="relative w-full mb-1 z-10">
+              <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2 md:py-3 px-6 md:px-10 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
                 <span className="text-[7px] md:text-[8px] font-bold text-accent tracking-[0.4em] uppercase opacity-90 leading-none">PROMO EXCLUSIVA</span>
                 <h2 className="text-lg md:text-xl font-headline font-bold text-white tracking-tighter uppercase leading-tight">{product.name}</h2>
               </div>
             </div>
 
-            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[16px] md:rounded-[20px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-2 md:p-3">
+            {/* Product Image */}
+            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[16px] md:rounded-[24px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-2 md:p-4">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_60%)] animate-pulse" />
               <div className="relative w-full h-full">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_15px_rgba(255,255,255,0.04)]"
+                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                   priority
                 />
               </div>
             </div>
 
-            <div className="w-full space-y-2 md:space-y-3 z-10">
+            {/* Product Info */}
+            <div className="w-full space-y-3 md:space-y-4 z-10">
               <div className="space-y-1">
-                <div className="text-2xl md:text-3xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-2">
+                <div className="text-3xl md:text-4xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-2">
                   {product.price}
-                  <span className="text-[8px] font-bold text-accent/50 line-through tracking-widest block opacity-50">CLP</span>
+                  <span className="text-[9px] font-bold text-accent/50 tracking-widest block opacity-50">CLP</span>
                 </div>
                 <p className="text-white/60 text-[10px] md:text-xs leading-relaxed max-w-sm mx-auto font-medium line-clamp-2">
                   {product.description}
@@ -104,34 +107,36 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </div>
 
               {product.highlights && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1.5 py-2 border-y border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 py-3 border-y border-white/10">
                   {product.highlights.map((highlight, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-left">
-                      <CheckCircle2 size={10} className="text-accent shrink-0" />
-                      <span className="text-white/80 text-[9px] md:text-[10px] font-medium tracking-tight line-clamp-1">{highlight}</span>
+                      <CheckCircle2 size={12} className="text-accent shrink-0" />
+                      <span className="text-white/80 text-[10px] md:text-[11px] font-medium tracking-tight line-clamp-1">{highlight}</span>
                     </div>
                   ))}
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4 py-1">
+              {/* Technical Details */}
+              <div className="grid grid-cols-2 gap-6 py-1">
                 <div className="text-left space-y-0.5">
-                  <h4 className="text-[7px] font-bold text-white/30 uppercase tracking-[0.2em]">Compatibilidad</h4>
-                  <p className="text-white text-[9px] md:text-[10px] font-bold tracking-tight">{product.compatibility}</p>
+                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">Compatibilidad</h4>
+                  <p className="text-white text-[10px] md:text-xs font-bold tracking-tight">{product.compatibility}</p>
                 </div>
                 <div className="text-right space-y-0.5">
-                  <h4 className="text-[7px] font-bold text-white/30 uppercase tracking-[0.2em]">Uso Pro</h4>
-                  <p className="text-white text-[9px] md:text-[10px] font-bold tracking-tight">{product.recommendedUse}</p>
+                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">Uso Pro</h4>
+                  <p className="text-white text-[10px] md:text-xs font-bold tracking-tight">{product.recommendedUse}</p>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              {/* Action Button */}
+              <div className="pt-2">
                 <Button 
                   asChild 
-                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-10 md:h-11 rounded-xl text-sm md:text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)]"
+                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-11 md:h-14 rounded-xl md:rounded-2xl text-base md:text-lg font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.15)] hover:shadow-[0_0_30px_rgba(142,255,127,0.25)]"
                 >
                   <a href={waLink} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
+                    <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" />
                     SOLICITAR AHORA
                   </a>
                 </Button>
