@@ -101,40 +101,42 @@
   animation: lightSweep 12s linear infinite;
 }
 
-/* EXPERIMENTAL SANDBOX CARD */
+/* EXPERIMENTAL SANDBOX CARD - LAB */
 .experimental-card {
-  @apply relative overflow-hidden flex flex-col;
-  background: radial-gradient(120% 120% at 50% 0%, #111111 0%, #0D0D0D 60%, #0A0A0A 100%);
-  border-radius: 24px;
+  @apply relative overflow-hidden flex flex-col transition-all duration-500 ease-out;
+  background: #0B0B0B;
+  border-radius: 20px;
   isolation: isolate;
-  box-shadow: 0 20px 20px rgba(0, 255, 204, 0.08), 0 40px 40px rgba(0, 255, 144, 0.06);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 194, 0.15), 
+    0 0 40px rgba(0, 229, 255, 0.1);
 }
 
 .experimental-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  padding: 1.5px;
-  border-radius: 24px;
-  background: conic-gradient(from 0deg, #00FFC2, #00E5FF, #7B61FF, #00FFC2);
+  padding: 1px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #00FFC2, #00E5FF, #7B61FF, #00FFC2);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: borderGlow 12s linear infinite;
   z-index: -1;
 }
 
-.experimental-card::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 24px;
-  background: radial-gradient(180px 10px at var(--sweep-x) var(--sweep-y), rgba(0, 255, 255, 0.35), transparent 70%);
-  opacity: 0.6;
-  pointer-events: none;
-  filter: blur(8px);
-  z-index: -1;
-  animation: lightSweep 12s linear infinite;
+.experimental-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 194, 0.3), 
+    0 0 60px rgba(0, 229, 255, 0.2);
+}
+
+.experimental-card:active {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 194, 0.4), 
+    0 0 80px rgba(0, 229, 255, 0.3);
 }
 
 .text-gradient {

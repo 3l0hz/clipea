@@ -17,12 +17,81 @@ interface ProductCardProps {
 export const ProductCard = ({ product, onViewDetails, isExperimental }: ProductCardProps) => {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
+  if (isExperimental) {
+    return (
+      <div className="group experimental-card p-0 h-full flex flex-col">
+        {/* Badges Layout */}
+        <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+          {product.bestSeller && (
+            <div className="flex items-center gap-1.5 bg-[#111111] border border-white/10 px-3 py-1.5 rounded-full">
+              <span className="text-xs">🔥</span>
+              <span className="text-[10px] font-bold text-white tracking-widest uppercase">RECOMENDADO</span>
+            </div>
+          )}
+          <div className="bg-[#111111] border border-white/10 px-3 py-1.5 rounded-full w-fit">
+            <span className="text-[10px] font-bold text-white tracking-widest uppercase">{product.category}</span>
+          </div>
+        </div>
+
+        {/* Image Container with Spotlight */}
+        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[20px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
+          {/* Spotlight Effect */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain transition-transform duration-500 group-hover:scale-105 p-6"
+            sizes="(max-width: 768px) 80vw, 33vw"
+          />
+        </div>
+
+        {/* Content Section */}
+        <div className="px-5 pb-6 pt-4 flex flex-col flex-1 gap-2">
+          <div className="space-y-1">
+            <h3 className="font-headline font-bold text-white text-lg leading-tight tracking-tight uppercase">
+              {product.name}
+            </h3>
+            <p className="text-[14px] text-[#B3B3B3] line-clamp-2 leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+          
+          <div className="mt-auto pt-4 flex flex-col gap-5">
+            <div className="text-3xl font-headline font-extrabold text-white tracking-tighter">
+              {product.price}
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <Button
+                variant="default"
+                className="w-full bg-white text-black hover:bg-white/90 font-bold h-12 rounded-2xl flex items-center justify-center gap-2"
+                onClick={() => onViewDetails(product)}
+              >
+                <ShoppingCart size={20} />
+                <span className="uppercase tracking-tighter">AGREGAR</span>
+              </Button>
+              
+              <a 
+                href={waLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 text-[#B3B3B3] hover:text-white transition-colors py-2 group/wsap"
+              >
+                <MessageCircle size={18} className="group-hover/wsap:scale-110 transition-transform" />
+                <span className="text-xs font-bold uppercase tracking-widest">CONSULTAR</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cn(
       "group relative flex flex-col h-full",
-      isExperimental 
-        ? "experimental-card" 
-        : "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
+      "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
     )}>
       
       {/* Image Section - Cinematic Format in Mobile */}
@@ -39,9 +108,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental }: ProductC
         {product.bestSeller && (
           <Badge className={cn(
             "absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-none",
-            // Mobile Styles (Glassmorphism)
             "bg-black/40 backdrop-blur-md border border-accent/20 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5",
-            // Desktop Overrides (Clean, Flat & Minimalist)
             "md:bg-secondary md:backdrop-blur-none md:border-white/10 md:text-white/90 md:shadow-none md:border-t-0 md:border-l-0 md:tracking-widest"
           )}>
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
