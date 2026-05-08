@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader } f
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -30,15 +30,15 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   if (!product) return null;
 
-  const isExperimentalDesktop = product.id === 'PRUEBA_DESKTOP';
+  const isPremiumPromo = product.category === 'Promos Moto' || product.id === 'PRUEBA_DESKTOP';
   const images = product.images || [product.image];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // EXPERIMENTAL DESKTOP MODAL STYLE
-  if (isExperimentalDesktop) {
+  // PREMIUM PROMO MODAL STYLE (Hero Product Experience)
+  if (isPremiumPromo) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="max-w-2xl p-0 bg-transparent border-none overflow-visible rounded-[40px] shadow-none">
@@ -48,68 +48,86 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           </DialogHeader>
           
           <div className={cn(
-            "premium-mobile-card promo-glass-card relative overflow-hidden flex flex-col items-center text-center p-8 md:p-12 gap-8 rounded-[40px] w-full"
+            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-8 md:p-14 gap-8 rounded-[40px] w-full"
           )}>
             <div className="shine-layer" />
             
             {/* Header / Badges */}
             <div className="flex flex-col items-center gap-4 z-10">
-              <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase">
-                PROMO EXPERIMENTAL
+              <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase">
+                PROMO EXCLUSIVA ELOHZ
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-headline font-bold text-white tracking-tighter uppercase leading-[0.9]">
+              <h2 className="text-4xl md:text-6xl font-headline font-bold text-white tracking-tighter uppercase leading-[0.85]">
                 {product.name}
               </h2>
             </div>
 
-            {/* Premium Product Container */}
+            {/* Immersive Product Hero Container */}
             <div className="relative w-full aspect-video rounded-[32px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(142,255,127,0.08),transparent_70%)]" />
+              {/* Premium Glow Effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.15),transparent_60%)] animate-pulse" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.08),transparent_50%)]" />
+              
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-contain p-10 transition-transform duration-700 group-hover/img:scale-105"
+                className="object-contain p-8 md:p-12 transition-transform duration-1000 group-hover/img:scale-110 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 priority
               />
             </div>
 
-            {/* Info Grid */}
+            {/* Info Grid & Features */}
             <div className="w-full space-y-8 z-10">
               <div className="space-y-4">
-                <div className="text-5xl font-headline font-extrabold text-white tracking-tighter">
+                <div className="text-5xl md:text-6xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-3">
                   {product.price}
+                  <span className="text-xs font-bold text-accent/50 line-through tracking-widest block opacity-50">CLP</span>
                 </div>
-                <p className="text-white/60 text-lg leading-relaxed max-w-md mx-auto">
+                <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-lg mx-auto font-medium">
                   {product.description}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+              {/* Highlights/Features Grid */}
+              {product.highlights && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 py-6 border-y border-white/10">
+                  {product.highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-center gap-3 text-left">
+                      <CheckCircle2 size={16} className="text-accent shrink-0" />
+                      <span className="text-white/80 text-xs md:text-sm font-medium tracking-tight">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="text-left space-y-1">
-                  <h4 className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Compatibilidad</h4>
-                  <p className="text-white text-sm font-medium">{product.compatibility}</p>
+                  <h4 className="text-[10px] font-bold text-white/30 uppercase tracking-[0.25em]">Compatibilidad</h4>
+                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
                 </div>
                 <div className="text-right space-y-1">
-                  <h4 className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Uso Recomendado</h4>
-                  <p className="text-white text-sm font-medium">{product.recommendedUse}</p>
+                  <h4 className="text-[10px] font-bold text-white/30 uppercase tracking-[0.25em]">Uso Pro</h4>
+                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.recommendedUse}</p>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-4 pt-4">
+              <div className="flex flex-col gap-4 pt-6">
                 <Button 
                   asChild 
-                  className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 h-16 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 transition-all duration-500"
+                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-16 rounded-2xl text-xl font-extrabold flex items-center justify-center gap-3 transition-all duration-500 glass-reflective-button-edge"
                 >
                   <a href={waLink} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="w-6 h-6" />
-                    CONSULTAR AHORA
+                    SOLICITAR AHORA
                   </a>
                 </Button>
-                <p className="text-[10px] text-white/20 font-bold uppercase tracking-[0.3em]">
-                  ELOHZ PREMIUM GEAR · ENVÍO A TODO CHILE
-                </p>
+                <div className="flex items-center justify-center gap-6 opacity-30">
+                   <p className="text-[9px] text-white font-bold uppercase tracking-[0.4em]">ENVÍO GRATUITO</p>
+                   <div className="w-1 h-1 rounded-full bg-white" />
+                   <p className="text-[9px] text-white font-bold uppercase tracking-[0.4em]">STOCKS LIMITADOS</p>
+                </div>
               </div>
             </div>
           </div>
@@ -118,7 +136,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
     );
   }
 
-  // STANDARD MODAL STYLE
+  // STANDARD MODAL STYLE (For regular products)
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95">
