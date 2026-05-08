@@ -32,7 +32,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     onViewDetails(product);
   };
 
-  // LAB: Mobile Experimental Style (Compact Version)
   if (isExperimental) {
     return (
       <div 
@@ -104,7 +103,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // PROMO GLASS DESIGN: FOR PRUEBA DESKTOP AND PROMOS MOTO
   if (isExperimentalDesktop) {
     const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
 
@@ -117,7 +115,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
       >
         <div className="shine-layer" />
         
-        {/* Badges Layout */}
         <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
           <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
             PROMO PREMIUM
@@ -129,44 +126,30 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           )}
         </div>
 
-        {/* Image Section with Mirror Spotlight */}
-        <div className="relative aspect-square overflow-hidden m-4 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505] flex items-center justify-center border border-white/5">
+        <div className="relative aspect-square overflow-hidden m-2 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505] flex items-center justify-center border border-white/5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" />
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain transition-transform duration-700 group-hover:scale-110 p-10"
+            className="object-contain transition-transform duration-700 group-hover:scale-110 p-2"
             sizes="33vw"
           />
         </div>
 
-        {/* Content Section */}
-        <div className="px-8 pb-8 pt-2 flex flex-col flex-1 gap-5">
-          <div className="space-y-2">
+        <div className="px-5 pb-5 pt-1 flex flex-col flex-1 gap-2">
+          <div className="space-y-1">
             <h3 className="font-headline font-bold text-white text-xl leading-tight tracking-tight uppercase bg-clip-text">
               {product.name}
             </h3>
             {!isPruebaDesktop && (
-              <p className="text-[13px] text-white/40 line-clamp-2 leading-relaxed font-medium">
+              <p className="text-[13px] text-white/40 line-clamp-1 leading-relaxed font-medium">
                 {product.description}
               </p>
             )}
           </div>
 
-          {/* Highlights Premium */}
-          {!isPruebaDesktop && product.highlights && (
-            <div className="flex flex-col gap-2 pt-1">
-              {product.highlights.map((h, i) => (
-                <div key={i} className="flex items-center gap-2.5">
-                  <div className="w-1 h-1 rounded-full bg-accent/50" />
-                  <span className="text-[10px] text-white/60 font-medium uppercase tracking-widest">{h}</span>
-                </div>
-              ))}
-            </div>
-          )}
-          
-          <div className="mt-auto pt-4 flex flex-col gap-6">
+          <div className="mt-auto pt-2 flex flex-col gap-3">
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-headline font-extrabold text-white tracking-tighter">
                 {product.price}
@@ -180,15 +163,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               </span>
             </div>
             
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <Button
-                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge"
+                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-12 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge"
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
               >
-                <ShoppingCart size={20} className="relative z-20" />
+                <ShoppingCart size={18} className="relative z-20" />
                 <span className="uppercase tracking-widest text-xs relative z-20">
                   AGREGAR
                 </span>
@@ -198,11 +181,11 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 href={waLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center justify-center gap-3 text-white/40 hover:text-white transition-all py-2 group/wsap tracking-[2px]"
+                className="flex items-center justify-center gap-2 text-white/40 hover:text-white transition-all py-1 group/wsap tracking-[2px]"
                 onClick={(e) => e.stopPropagation()}
               >
-                <WhatsAppIcon className="w-4 h-4 opacity-40 group-hover/wsap:opacity-100 transition-opacity" />
-                <span className="text-[10px] font-bold uppercase">CONSULTA DIRECTA</span>
+                <WhatsAppIcon className="w-3.5 h-3.5 opacity-40 group-hover/wsap:opacity-100 transition-opacity" />
+                <span className="text-[9px] font-bold uppercase">CONSULTA DIRECTA</span>
               </a>
             </div>
           </div>
@@ -211,7 +194,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // ALL OTHER CARDS
   return (
     <div 
       className="group relative overflow-hidden flex flex-col h-full cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
