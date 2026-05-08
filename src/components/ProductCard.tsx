@@ -46,24 +46,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         onClick={handleCardClick}
       >
         <div className="shine-layer" />
-        
-        <div className={cn(
-          "absolute z-20 flex flex-col gap-2",
-          isMobile ? "top-4 left-4" : "top-6 left-6"
-        )}>
-          <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
-            PROMO PREMIUM
-          </Badge>
-          {!isPruebaDesktop && product.brand && (
-            <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
-              {product.brand}
-            </div>
-          )}
-        </div>
 
         <div className={cn(
           "relative overflow-hidden flex items-center justify-center border border-white/5",
-          isMobile ? "aspect-square m-2 rounded-[28px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A]" : "aspect-square m-2 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505]"
+          isMobile ? "aspect-square m-1 rounded-[24px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A]" : "aspect-square m-1 rounded-[32px] bg-gradient-to-br from-[#1A1A1A] to-[#050505]"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
           <Image
@@ -72,7 +58,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             fill
             className={cn(
               "object-contain transition-transform duration-700 group-hover:scale-110",
-              isMobile ? "p-4" : "p-2"
+              isMobile ? "p-2" : "p-1"
             )}
             sizes={isMobile ? "80vw" : "33vw"}
           />
@@ -200,7 +186,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              className="w-full glass-button bg-black/20 text-white border-white/30 hover:bg-white/10 hover:border-white/50 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] shadow-sm"
+              className="w-full bg-black/20 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] shadow-sm backdrop-blur-md"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
