@@ -11,13 +11,37 @@ import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const CATEGORY_ORDER: { label: string; value: Category }[] = [
-  { label: 'Bastones Selfie', value: 'Bastones Selfie' },
-  { label: 'Trípodes', value: 'Trípodes' },
-  { label: 'Promos Moto', value: 'Promos Moto' },
-  { label: 'Soportes Moto / Vehículo', value: 'Soportes Moto / Vehículo' },
-  { label: 'Accesorios Corporales', value: 'Accesorios Corporales' },
-  { label: 'Accesorios Cámara', value: 'Accesorios Cámara' },
+const CATEGORY_ORDER: { label: string; value: Category; description: string }[] = [
+  { 
+    label: 'Bastones Selfie', 
+    value: 'Bastones Selfie',
+    description: 'Captura ángulos increíbles y tomas tipo drone con nuestra selección de bastones invisibles y de carbono.'
+  },
+  { 
+    label: 'Trípodes', 
+    value: 'Trípodes',
+    description: 'Estabilidad total para tus grabaciones estáticas, time-lapses y vlogs profesionales.'
+  },
+  { 
+    label: 'Promos Moto', 
+    value: 'Promos Moto',
+    description: 'Packs exclusivos diseñados para motovloggers y aventureros que buscan el setup perfecto con el mejor ahorro.'
+  },
+  { 
+    label: 'Soportes Moto / Vehículo', 
+    value: 'Soportes Moto / Vehículo',
+    description: 'Fijaciones de alta resistencia para manillares, espejos y superficies curvas en cualquier terreno.'
+  },
+  { 
+    label: 'Soportes Corporales', 
+    value: 'Accesorios Corporales',
+    description: 'La mejor perspectiva POV para tus deportes de acción con pecheras y soportes de alta sujeción.'
+  },
+  { 
+    label: 'Accesorios Cámara', 
+    value: 'Accesorios Cámara',
+    description: 'Protección y complementos esenciales para mantener tu equipo siempre listo para la acción.'
+  },
 ];
 
 export default function Home() {
@@ -102,11 +126,11 @@ export default function Home() {
       </section>
 
       {/* Catalog Section */}
-      <section id="catalog" className="py-20 bg-[#0B0B0B] space-y-24">
+      <section id="catalog" className="py-20 bg-[#0B0B0B] space-y-32">
         <div className="container mx-auto px-4">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-6xl font-headline font-bold text-white mb-2 tracking-tight">Equípate para la acción</h2>
-            <p className="text-muted-foreground">Explora nuestra selección premium organizada por categorías.</p>
+          <div className="mb-24">
+            <h2 className="text-5xl md:text-7xl font-headline font-bold text-white mb-4 tracking-tighter">Equípate para la acción</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección premium de accesorios diseñada para resistir las condiciones más extremas.</p>
           </div>
 
           {CATEGORY_ORDER.map((cat) => {
@@ -114,17 +138,20 @@ export default function Home() {
             if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
 
             return (
-              <div key={cat.value} className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                  <h3 className="text-2xl md:text-3xl font-headline font-bold text-white uppercase tracking-wider px-4">
-                    {cat.value === 'Accesorios Corporales' ? 'Soportes Corporales' : cat.label}
-                  </h3>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div key={cat.value} className="space-y-12">
+                <div className="space-y-4 max-w-3xl">
+                  <div className="flex items-center gap-4">
+                    <div className="h-[2px] w-12 bg-accent" />
+                    <h3 className="text-3xl md:text-5xl font-headline font-bold text-white uppercase tracking-tight">
+                      {cat.label}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-16">
+                    {cat.description}
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-                  {/* PRUEBA Experimental handling within categories or at the top */}
                   {cat.value === 'Accesorios Cámara' && (
                     <>
                       <div className="md:hidden">
