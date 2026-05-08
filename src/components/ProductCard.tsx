@@ -200,7 +200,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              className="w-full glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]"
+              className="w-full glass-button bg-black/20 text-white border-white/30 hover:bg-white/10 hover:border-white/50 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] shadow-sm"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
