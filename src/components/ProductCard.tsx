@@ -67,7 +67,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             <div className="flex flex-col gap-3">
               <Button
                 variant="default"
-                className="w-full bg-white text-black hover:bg-white/90 font-bold h-12 rounded-2xl flex items-center justify-center gap-2"
+                className="w-full glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
                 onClick={() => onViewDetails(product)}
               >
                 <ShoppingCart size={20} />
@@ -78,10 +78,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 href={waLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center justify-center gap-2 text-[#B3B3B3] hover:text-white transition-colors py-2 group/wsap"
+                className="flex items-center justify-center gap-2 text-accent hover:text-accent/80 transition-colors py-2 group/wsap"
               >
                 <MessageCircle size={18} className="group-hover/wsap:scale-110 transition-transform" />
-                <span className="text-xs font-bold uppercase tracking-widest">CONSULTAR</span>
+                <span className="text-xs font-bold uppercase tracking-widest">CONSULTA</span>
               </a>
             </div>
           </div>
@@ -168,7 +168,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               variant="default"
               size="lg"
               className={cn(
-                "w-full glass-button bg-white text-black hover:bg-white/90 font-bold rounded-2xl transition-all",
+                "w-full glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500",
                 !isExperimentalDesktop && "md:h-10 md:text-xs"
               )}
               onClick={() => onViewDetails(product)}
@@ -181,7 +181,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               variant="outline"
               size="lg"
               className={cn(
-                "w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all",
+                "w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all duration-500",
                 !isExperimentalDesktop && "md:h-10 md:text-xs"
               )}
             >
