@@ -126,63 +126,65 @@ export default function Home() {
       </section>
 
       {/* Catalog Section */}
-      <section id="catalog" className="py-20 bg-[#0B0B0B] space-y-32">
+      <section id="catalog" className="py-20 md:py-32 bg-[#0B0B0B]">
         <div className="container mx-auto px-4">
-          <div className="mb-24">
+          <div className="mb-24 md:mb-32">
             <h2 className="text-5xl md:text-7xl font-headline font-bold text-white mb-4 tracking-tighter">Equípate para la acción</h2>
             <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección premium de accesorios diseñada para resistir las condiciones más extremas.</p>
           </div>
 
-          {CATEGORY_ORDER.map((cat) => {
-            const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
-            if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
+          <div className="flex flex-col gap-24 md:gap-48 pb-20">
+            {CATEGORY_ORDER.map((cat) => {
+              const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
+              if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
 
-            return (
-              <div key={cat.value} className="space-y-12">
-                <div className="space-y-4 max-w-3xl">
-                  <div className="flex items-center gap-4">
-                    <div className="h-[2px] w-12 bg-accent" />
-                    <h3 className="text-3xl md:text-5xl font-headline font-bold text-white uppercase tracking-tight">
-                      {cat.label}
-                    </h3>
+              return (
+                <div key={cat.value} className="space-y-12 md:space-y-16">
+                  <div className="space-y-4 max-w-3xl">
+                    <div className="flex items-center gap-4">
+                      <div className="h-[2px] w-12 bg-accent" />
+                      <h3 className="text-3xl md:text-5xl font-headline font-bold text-white uppercase tracking-tight">
+                        {cat.label}
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-16">
+                      {cat.description}
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-16">
-                    {cat.description}
-                  </p>
-                </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-                  {cat.value === 'Accesorios Cámara' && (
-                    <>
-                      <div className="md:hidden">
-                        <ProductCard
-                          product={EXPERIMENTAL_PRODUCT}
-                          onViewDetails={handleViewDetails}
-                          isExperimental={true}
-                        />
-                      </div>
-                      <div className="hidden md:block">
-                        <ProductCard
-                          product={EXPERIMENTAL_DESKTOP_PRODUCT}
-                          onViewDetails={handleViewDetails}
-                          isExperimentalDesktop={true}
-                        />
-                      </div>
-                    </>
-                  )}
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                    {cat.value === 'Accesorios Cámara' && (
+                      <>
+                        <div className="md:hidden">
+                          <ProductCard
+                            product={EXPERIMENTAL_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isExperimental={true}
+                          />
+                        </div>
+                        <div className="hidden md:block">
+                          <ProductCard
+                            product={EXPERIMENTAL_DESKTOP_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isExperimentalDesktop={true}
+                          />
+                        </div>
+                      </>
+                    )}
 
-                  {categoryProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onViewDetails={handleViewDetails}
-                      isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
-                    />
-                  ))}
+                    {categoryProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onViewDetails={handleViewDetails}
+                        isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
