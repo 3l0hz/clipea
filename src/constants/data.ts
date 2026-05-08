@@ -1,8 +1,7 @@
-
 import { Product, FAQItem } from '@/types/store';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const getImg = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://placehold.co/600x600/111/fff?text=Product';
+const getImg = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://picsum.photos/seed/elohz-fallback/600/600';
 
 export const PRODUCTS: Product[] = [
   {
