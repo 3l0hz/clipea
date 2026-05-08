@@ -1,4 +1,3 @@
-
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
@@ -52,16 +51,14 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           )}>
             <div className="shine-layer" />
             
-            {/* NEW PREMIUM CLOSE BUTTON - Fixed & Visible */}
             <DialogClose asChild>
-              <button className="absolute top-4 right-4 z-[70] w-10 h-10 rounded-full bg-black/40 backdrop-blur-xl border border-accent/30 text-white/90 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/60 hover:text-white shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:shadow-[0_0_30px_rgba(142,255,127,0.5)] focus:outline-none group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <X size={20} strokeWidth={2} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
+              <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/40 hover:text-white shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)] focus:outline-none group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
                 <span className="sr-only">Cerrar</span>
               </button>
             </DialogClose>
             
-            {/* New Premium Header Capsule */}
             <div className="relative w-full mb-1 md:mb-2 z-10">
               <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
                 <span className="text-[7px] md:text-[8px] font-bold text-accent tracking-[0.4em] uppercase opacity-90 leading-none">PROMO EXCLUSIVA</span>
