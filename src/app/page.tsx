@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
@@ -9,7 +8,6 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { PRODUCTS, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
-import Image from 'next/image';
 
 const CATEGORIES: Category[] = [
   'Promos Moto',
@@ -52,29 +50,30 @@ export default function Home() {
           >
             <source src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/HeroSection/2%20slide/0506%20(2).mp4" type="video/mp4" />
           </video>
-          {/* Subtle overlay for legibility (approx 20%) */}
-          <div className="absolute inset-0 bg-black/20" />
-          {/* Gradient at the bottom to blend with the dark page layout */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-70" />
+          {/* Sutil overlay para legibilidad (25%) sin arruinar el color del video */}
+          <div className="absolute inset-0 bg-black/25" />
+          {/* Degradado inferior para suavizar la transición al catálogo */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
-          <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1 rounded-full text-xs font-bold">
-            PREMIUM GEAR FOR ADVENTURE
+          <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+            Premium Gear for Adventure
           </Badge>
           <h1 className="text-5xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
             Accesorios para <br/>
             <span className="text-gradient">cámaras deportivas</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-muted-foreground md:text-xl leading-relaxed">
+          <p className="max-w-2xl mx-auto text-white/80 md:text-xl leading-relaxed font-medium">
             Selfie sticks, soportes de moto, trípodes y accesorios para grabar rutas, viajes y contenido con la mejor estabilidad.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-white text-black hover:bg-white/90 font-bold px-10 h-14 text-lg rounded-xl" asChild>
-              <a href="#catalog">Ver productos</a>
-            </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black font-bold px-10 h-14 text-lg rounded-xl" asChild>
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+          <div className="flex justify-center items-center pt-4">
+            <Button 
+              size="lg" 
+              className="glass-button px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]" 
+              asChild
+            >
+              <a href="#catalog">Explorar Catálogo</a>
             </Button>
           </div>
         </div>
