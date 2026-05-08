@@ -21,8 +21,8 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
       "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
     )}>
       
-      {/* Image Section - Maximized in Mobile */}
-      <div className="relative aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent">
+      {/* Image Section - Cinematic Format in Mobile */}
+      <div className="relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[32px] md:rounded-none">
         <Image
           src={product.image}
           alt={product.name}
