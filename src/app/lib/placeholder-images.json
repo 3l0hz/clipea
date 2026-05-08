@@ -1,0 +1,71 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Dark technological abstract background for sports cameras",
+      "imageUrl": "https://picsum.photos/seed/elohz-hero/1920/1080",
+      "imageHint": "action camera mountain"
+    },
+    {
+      "id": "selfie1.20",
+      "description": "Premium 1.2m Selfie Stick",
+      "imageUrl": "https://picsum.photos/seed/selfie1/600/600",
+      "imageHint": "selfie stick"
+    },
+    {
+      "id": "Selfie2m",
+      "description": "Extended 2m Carbon Fiber Selfie Stick",
+      "imageUrl": "https://picsum.photos/seed/selfie2/600/600",
+      "imageHint": "carbon selfie"
+    },
+    {
+      "id": "selfie3m",
+      "description": "Super Long 3m Selfie Stick",
+      "imageUrl": "https://picsum.photos/seed/selfie3/600/600",
+      "imageHint": "extra long pole"
+    },
+    {
+      "id": "MinitripodeGoPro",
+      "description": "Mini Tripod for GoPro",
+      "imageUrl": "https://picsum.photos/seed/tripod1/600/600",
+      "imageHint": "mini tripod"
+    },
+    {
+      "id": "Minitripodeinsta",
+      "description": "Mini Tripod for Insta360",
+      "imageUrl": "https://picsum.photos/seed/tripod2/600/600",
+      "imageHint": "camera tripod"
+    },
+    {
+      "id": "soportemotomanillar",
+      "description": "Motorcycle Handlebar Mount",
+      "imageUrl": "https://picsum.photos/seed/moto1/600/600",
+      "imageHint": "motorcycle mount"
+    },
+    {
+      "id": "soporteparab",
+      "description": "Suction Cup Windshield Mount",
+      "imageUrl": "https://picsum.photos/seed/moto2/600/600",
+      "imageHint": "suction mount"
+    },
+    {
+      "id": "Bullet",
+      "description": "Bullet Time Handle",
+      "imageUrl": "https://picsum.photos/seed/acc1/600/600",
+      "imageHint": "bullet time"
+    },
+    {
+      "id": "lente-rep-gopro9.13",
+      "description": "Replacement Lens for GoPro 9-13",
+      "imageUrl": "https://picsum.photos/seed/acc2/600/600",
+      "imageHint": "camera lens"
+    },
+    {
+      "id": "PecheraTelesin",
+      "description": "Telesin Chest Strap Mount",
+      "imageUrl": "https://picsum.photos/seed/acc3/600/600",
+      "imageHint": "chest mount"
+    }
+  ]
+}
