@@ -11,7 +11,14 @@ import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
 import Image from 'next/image';
 
-const CATEGORIES: Category[] = ['Selfie Sticks', 'Soportes Moto', 'Trípodes', 'Accesorios Cámara'];
+const CATEGORIES: Category[] = [
+  'Promos Moto',
+  'Trípodes',
+  'Bastones Selfie',
+  'Soportes Moto / Vehículo',
+  'Accesorios Cámara',
+  'Accesorios Corporales'
+];
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All');

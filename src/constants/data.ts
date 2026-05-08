@@ -1,3 +1,4 @@
+
 import { Product, FAQItem } from '@/types/store';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -7,7 +8,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'selfie1.20',
     name: 'Selfie Stick Telesin 1.2m',
-    category: 'Selfie Sticks',
+    category: 'Bastones Selfie',
     price: '$18.990',
     image: getImg('selfie1.20'),
     images: [getImg('selfie1.20'), getImg('Bullet')],
@@ -20,7 +21,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'Selfie2m',
     name: 'Selfie Stick Carbono 2m',
-    category: 'Selfie Sticks',
+    category: 'Bastones Selfie',
     price: '$34.990',
     image: getImg('Selfie2m'),
     description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
@@ -31,7 +32,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'selfie3m',
     name: 'Selfie Stick Carbono 3m',
-    category: 'Selfie Sticks',
+    category: 'Bastones Selfie',
     price: '$49.990',
     image: getImg('selfie3m'),
     description: 'El stick más largo del mercado para perspectivas aéreas increíbles.',
@@ -65,7 +66,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'soportemotomanillar',
     name: 'Soporte Moto Manillar CNC',
-    category: 'Soportes Moto',
+    category: 'Soportes Moto / Vehículo',
     price: '$19.990',
     image: getImg('soportemotomanillar'),
     description: 'Construcción en aluminio CNC para máxima resistencia a vibraciones.',
@@ -76,7 +77,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'soporteparab',
     name: 'Soporte Ventosa Parabrisas',
-    category: 'Soportes Moto',
+    category: 'Soportes Moto / Vehículo',
     price: '$15.990',
     image: getImg('soporteparab'),
     description: 'Ventosa de grado industrial para fijación en superficies lisas.',
@@ -107,7 +108,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'PecheraTelesin',
     name: 'Pechera Ajustable Telesin',
-    category: 'Accesorios Cámara',
+    category: 'Accesorios Corporales',
     price: '$16.990',
     image: getImg('PecheraTelesin'),
     description: 'Correas elásticas de alta calidad para tomas en primera persona.',

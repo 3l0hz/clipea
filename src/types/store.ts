@@ -1,5 +1,5 @@
 
-export type Category = 'Selfie Sticks' | 'Soportes Moto' | 'Trípodes' | 'Accesorios Cámara';
+export type Category = 'Promos Moto' | 'Trípodes' | 'Bastones Selfie' | 'Soportes Moto / Vehículo' | 'Accesorios Cámara' | 'Accesorios Corporales';
 
 export interface Product {
   id: string;
