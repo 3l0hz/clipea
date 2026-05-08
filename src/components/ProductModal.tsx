@@ -40,6 +40,15 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   const PremiumCloseButton = () => (
     <DialogClose asChild>
+      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border-none flex items-center justify-center transition-all duration-300 hover:scale-110 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:outline-none group">
+        <X size={18} strokeWidth={2} className="relative z-10 text-accent transition-transform duration-500 group-hover:rotate-90" />
+        <span className="sr-only">Cerrar</span>
+      </button>
+    </DialogClose>
+  );
+
+  const StandardCloseButton = () => (
+    <DialogClose asChild>
       <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/20 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.05)] hover:shadow-[0_0_18px_rgba(255,255,255,0.1)] focus:outline-none group">
         <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
         <span className="sr-only">Cerrar</span>
@@ -143,7 +152,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
         </DialogHeader>
         
         <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative">
-          <PremiumCloseButton />
+          <StandardCloseButton />
 
           <div className="w-full md:w-1/2 relative bg-[#0F0F0F] flex flex-col">
             <div className="relative aspect-square w-full">
