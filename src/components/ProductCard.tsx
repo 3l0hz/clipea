@@ -21,7 +21,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
   // LAB: Mobile Experimental Style
   if (isExperimental) {
     return (
-      <div className="group experimental-card p-0 h-full flex flex-col">
+      <div 
+        className="group experimental-card p-0 h-full flex flex-col cursor-pointer"
+        onClick={() => onViewDetails(product)}
+      >
         {/* Badges Layout */}
         <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
           {product.bestSeller && (
@@ -67,8 +70,11 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             <div className="flex flex-col gap-3">
               <Button
                 variant="default"
-                className="w-full glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
-                onClick={() => onViewDetails(product)}
+                className="w-full glass-button bg-white text-black border-white/20 hover:bg-white/90 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDetails(product);
+                }}
               >
                 <ShoppingCart size={20} />
                 <span className="uppercase tracking-tighter">AGREGAR</span>
@@ -78,10 +84,11 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 href={waLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center justify-center gap-2 text-accent hover:text-accent/80 transition-colors py-2 group/wsap"
+                className="flex items-center justify-center gap-2 text-[#B3B3B3] hover:text-accent transition-colors py-2 group/wsap tracking-[1px]"
+                onClick={(e) => e.stopPropagation()}
               >
                 <MessageCircle size={18} className="group-hover/wsap:scale-110 transition-transform" />
-                <span className="text-xs font-bold uppercase tracking-widest">CONSULTA</span>
+                <span className="text-xs font-bold uppercase">CONSULTA</span>
               </a>
             </div>
           </div>
@@ -92,12 +99,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
 
   // Standard Premium Style (Used for Normal, Promos and PRUEBA DESKTOP base)
   return (
-    <div className={cn(
-      "group relative flex flex-col h-full",
-      "premium-mobile-card",
-      !isExperimentalDesktop && "md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300",
-      isExperimentalDesktop && "md:before:block md:after:block md:border-none md:rounded-[24px] md:shadow-2xl"
-    )}>
+    <div 
+      className={cn(
+        "group relative flex flex-col h-full cursor-pointer",
+        "premium-mobile-card",
+        !isExperimentalDesktop && "md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300",
+        isExperimentalDesktop && "md:before:block md:after:block md:border-none md:rounded-[24px] md:shadow-2xl"
+      )}
+      onClick={() => onViewDetails(product)}
+    >
       
       {/* Image Section - Cinematic Format in Mobile */}
       <div className={cn(
@@ -168,10 +178,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               variant="default"
               size="lg"
               className={cn(
-                "w-full glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500",
+                "w-full glass-button bg-white text-black border-white/20 hover:bg-white/90 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500",
                 !isExperimentalDesktop && "md:h-10 md:text-xs"
               )}
-              onClick={() => onViewDetails(product)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewDetails(product);
+              }}
             >
               <ShoppingCart size={18} className="md:size-4" />
               Agregar
@@ -184,6 +197,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 "w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all duration-500",
                 !isExperimentalDesktop && "md:h-10 md:text-xs"
               )}
+              onClick={(e) => e.stopPropagation()}
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />
