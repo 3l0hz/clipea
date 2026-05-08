@@ -110,6 +110,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
 
   // PROMO GLASS DESIGN: FOR PRUEBA DESKTOP AND PROMOS MOTO
   if (isExperimentalDesktop) {
+    const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
+
     return (
       <div 
         className={cn(
@@ -124,14 +126,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
             PROMO PREMIUM
           </Badge>
-          <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
-            {product.brand || 'ELOHZ'}
-          </div>
+          {!isPruebaDesktop && (
+            <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
+              {product.brand || 'ELOHZ'}
+            </div>
+          )}
         </div>
 
         {/* Image Section with Mirror Spotlight */}
         <div className="relative aspect-square overflow-hidden m-4 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505] flex items-center justify-center border border-white/5">
-          {/* Subtle Radial Glow behind product */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" />
           <Image
             src={product.image}
@@ -148,13 +151,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             <h3 className="font-headline font-bold text-white text-xl leading-tight tracking-tight uppercase bg-clip-text">
               {product.name}
             </h3>
-            <p className="text-[13px] text-white/40 line-clamp-2 leading-relaxed font-medium">
-              {product.description}
-            </p>
+            {!isPruebaDesktop && (
+              <p className="text-[13px] text-white/40 line-clamp-2 leading-relaxed font-medium">
+                {product.description}
+              </p>
+            )}
           </div>
 
           {/* Highlights Premium */}
-          {product.highlights && (
+          {!isPruebaDesktop && product.highlights && (
             <div className="flex flex-col gap-2 pt-1">
               {product.highlights.map((h, i) => (
                 <div key={i} className="flex items-center gap-2.5">
