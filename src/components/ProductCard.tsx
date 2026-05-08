@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -107,14 +108,12 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // PROMO GLASS DESIGN: EXCLUSIVE FOR PRUEBA DESKTOP
+  // PROMO GLASS DESIGN: FOR PRUEBA DESKTOP AND PROMOS MOTO
   if (isExperimentalDesktop) {
-    const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
     return (
       <div 
         className={cn(
-          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer",
-          isPruebaDesktop && "glass-reflective-edge prueba-desktop-shine"
+          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer glass-reflective-edge prueba-desktop-shine"
         )}
         onClick={handleCardClick}
       >
@@ -172,24 +171,25 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 {product.price}
               </span>
               <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest line-through">
-                {product.price === '$39.990' ? '$54.990' : product.price === '$59.990' ? '$79.990' : '$99.990'}
+                {product.price === '$39.990' ? '$54.990' : 
+                 product.price === '$59.990' ? '$79.990' : 
+                 product.price === '$69.990' ? '$89.990' :
+                 product.price === '$82.990' ? '$112.990' :
+                 '$149.990'}
               </span>
             </div>
             
             <div className="flex flex-col gap-3">
               <Button
-                className={cn(
-                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700",
-                  isPruebaDesktop && "glass-reflective-button-edge"
-                )}
+                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge"
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
               >
-                <ShoppingCart size={20} className={cn(isPruebaDesktop && "relative z-20")} />
-                <span className={cn("uppercase tracking-widest text-xs", isPruebaDesktop && "relative z-20")}>
-                  {isPruebaDesktop ? 'AGREGAR' : 'AGREGAR A BOLSA'}
+                <ShoppingCart size={20} className="relative z-20" />
+                <span className="uppercase tracking-widest text-xs relative z-20">
+                  AGREGAR
                 </span>
               </Button>
               
