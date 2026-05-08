@@ -94,12 +94,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
   return (
     <div className={cn(
       "group relative flex flex-col h-full",
-      "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300",
-      isExperimentalDesktop && "md:border-dashed md:border-accent/50" // Subtle hint for lab card on desktop
+      "premium-mobile-card",
+      !isExperimentalDesktop && "md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300",
+      isExperimentalDesktop && "md:before:block md:after:block md:border-none md:rounded-[24px] md:shadow-2xl"
     )}>
       
       {/* Image Section - Cinematic Format in Mobile */}
-      <div className="relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[32px] md:rounded-none">
+      <div className={cn(
+        "relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[32px]",
+        !isExperimentalDesktop && "md:rounded-none"
+      )}>
         <Image
           src={product.image}
           alt={product.name}
@@ -113,7 +117,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           <Badge className={cn(
             "absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-none",
             "bg-black/40 backdrop-blur-md border border-accent/20 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5",
-            "md:bg-secondary md:backdrop-blur-none md:border-white/10 md:text-white/90 md:shadow-none md:border-t-0 md:border-l-0 md:tracking-widest"
+            !isExperimentalDesktop && "md:bg-secondary md:backdrop-blur-none md:border-white/10 md:text-white/90 md:shadow-none md:border-t-0 md:border-l-0 md:tracking-widest"
           )}>
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
           </Badge>
@@ -121,12 +125,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
       </div>
       
       {/* Content Section - Compact in Mobile */}
-      <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2">
+      <div className={cn(
+        "px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2",
+        isExperimentalDesktop && "md:pt-0"
+      )}>
         {/* Category Label */}
         <div className="flex justify-between items-start gap-2 mb-1">
           <span className={cn(
-            "text-[10px] font-bold uppercase tracking-wider",
-            "text-accent md:text-muted-foreground md:font-medium md:tracking-widest"
+            "text-[10px] font-bold uppercase tracking-wider text-accent",
+            !isExperimentalDesktop && "md:text-muted-foreground md:font-medium md:tracking-widest"
           )}>
             {product.category}
           </span>
@@ -153,11 +160,17 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             {product.price}
           </div>
           
-          <div className="flex flex-col gap-2 md:grid md:grid-cols-2">
+          <div className={cn(
+            "flex flex-col gap-2 md:grid md:grid-cols-2",
+            isExperimentalDesktop && "md:flex md:flex-col"
+          )}>
             <Button
               variant="default"
               size="lg"
-              className="w-full glass-button bg-white text-black hover:bg-white/90 font-bold rounded-2xl transition-all md:h-10 md:text-xs"
+              className={cn(
+                "w-full glass-button bg-white text-black hover:bg-white/90 font-bold rounded-2xl transition-all",
+                !isExperimentalDesktop && "md:h-10 md:text-xs"
+              )}
               onClick={() => onViewDetails(product)}
             >
               <ShoppingCart size={18} className="md:size-4" />
@@ -167,7 +180,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               asChild
               variant="outline"
               size="lg"
-              className="w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all md:h-10 md:text-xs"
+              className={cn(
+                "w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all",
+                !isExperimentalDesktop && "md:h-10 md:text-xs"
+              )}
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />
