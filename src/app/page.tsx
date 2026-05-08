@@ -109,27 +109,39 @@ export default function Home() {
       </section>
 
       {/* Benefits Bar */}
-      <section className="bg-card border-y border-border py-8">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-center gap-4 justify-center md:justify-start">
-            <Truck className="text-accent" />
-            <div>
-              <h3 className="text-white font-bold text-sm">Envíos a todo Chile</h3>
-              <p className="text-xs text-muted-foreground">Starken, BlueExpress y Chilexpress</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 justify-center">
-            <Shield className="text-accent" />
-            <div>
-              <h3 className="text-white font-bold text-sm">Garantía Asegurada</h3>
-              <p className="text-xs text-muted-foreground">Productos testeados para acción</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 justify-center md:justify-end">
-            <Zap className="text-accent" />
-            <div>
-              <h3 className="text-white font-bold text-sm">Atención Personalizada</h3>
-              <p className="text-xs text-muted-foreground">Soporte directo vía WhatsApp</p>
+      <section className="relative z-20 md:bg-card md:border-y md:border-border md:py-8 py-4 -mt-6 md:mt-0">
+        <div className="container mx-auto px-4">
+          <div className="md:bg-transparent md:border-none md:p-0 md:rounded-none bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[24px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:shadow-none">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
+              <div className="flex items-center gap-4 md:justify-start">
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 md:bg-transparent flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
+                  <Truck className="text-accent" size={isMobile ? 18 : 24} />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em] md:tracking-normal">Envíos a todo Chile</h3>
+                  <p className="text-[9px] md:text-xs text-muted-foreground uppercase font-medium tracking-tight opacity-70 md:opacity-100">Starken, BlueExpress y Chilexpress</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 md:justify-center border-y border-white/5 py-4 md:py-0 md:border-none">
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 md:bg-transparent flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
+                  <Shield className="text-accent" size={isMobile ? 18 : 24} />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em] md:tracking-normal">Garantía Asegurada</h3>
+                  <p className="text-[9px] md:text-xs text-muted-foreground uppercase font-medium tracking-tight opacity-70 md:opacity-100">Productos testeados para acción</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 md:justify-end">
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 md:bg-transparent flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
+                  <Zap className="text-accent" size={isMobile ? 18 : 24} />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em] md:tracking-normal">Atención Personalizada</h3>
+                  <p className="text-[9px] md:text-xs text-muted-foreground uppercase font-medium tracking-tight opacity-70 md:opacity-100">Soporte directo vía WhatsApp</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
