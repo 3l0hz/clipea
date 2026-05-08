@@ -1,4 +1,5 @@
 'use client';
+import { useState, useRef } from 'react';
 import { WHATSAPP_NUMBER } from '@/constants/data';
 import { cn } from '@/lib/utils';
 
@@ -14,26 +15,57 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export const WhatsAppButton = () => {
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!buttonRef.current) return;
+
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Calcular rotación máxima de 15 grados basada en posición del cursor
+    const rotateX = ((y - centerY) / centerY) * -15;
+    const rotateY = ((x - centerX) / centerX) * 15;
+
+    setRotate({ x: rotateX, y: rotateY });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+  };
+
   return (
     <a
+      ref={buttonRef}
       href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={cn(
         "fixed bottom-6 right-6 z-50",
         "flex items-center justify-center p-4 rounded-full",
         "bg-premium-green/20 backdrop-blur-xl border border-premium-green/30",
         "shadow-[0_0_20px_rgba(142,255,127,0.2)]",
-        "transition-all duration-500",
-        "animate-float-breathing",
-        "hover:animate-none hover:scale-110 hover:bg-premium-green/30 hover:border-premium-green/50 hover:shadow-[0_0_40px_rgba(142,255,127,0.4)]",
+        "transition-all duration-300 ease-out",
+        "hover:scale-110 hover:bg-premium-green/30 hover:border-premium-green/50 hover:shadow-[0_0_40px_rgba(142,255,127,0.4)]",
         "active:scale-95 group"
       )}
+      style={{
+        perspective: '1000px',
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+      }}
       aria-label="Contactar por WhatsApp"
     >
       <WhatsAppIcon className="w-6 h-6 text-premium-green transition-transform duration-500 group-hover:scale-110" />
-      {/* Subtle shine effect layer */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Sutil efecto de brillo tipo vidrio */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </a>
   );
 };
