@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
@@ -69,7 +68,7 @@ export default function Home() {
           <div className="flex justify-center items-center pt-4">
             <Button 
               size="lg" 
-              className="glass-button bg-white text-black hover:bg-white/90 px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]" 
+              className="glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500" 
               asChild
             >
               <a href="#catalog">Explorar Catálogo</a>
