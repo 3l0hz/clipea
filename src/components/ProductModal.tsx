@@ -46,9 +46,9 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <DialogDescription>{product.description}</DialogDescription>
           </DialogHeader>
           
-          {/* Custom Premium Close Button */}
-          <DialogClose className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-50 w-9 h-9 md:w-11 md:h-11 rounded-full glass-button bg-black/80 backdrop-blur-xl border-accent/40 text-white flex items-center justify-center transition-all hover:scale-110 hover:border-accent glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:ring-0 focus:outline-none">
-            <X size={18} className="md:w-6 md:h-6" />
+          {/* Custom Premium Minimalist Close Button */}
+          <DialogClose className="absolute -top-3 -right-3 md:-top-4 md:-right-4 z-50 w-8 h-8 md:w-10 md:h-10 rounded-full glass-button bg-black/60 backdrop-blur-2xl border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/60 hover:text-white glass-reflective-button-edge shadow-[0_0_20px_rgba(0,0,0,0.6)] focus:ring-0 focus:outline-none group">
+            <X size={16} strokeWidth={1.5} className="md:w-5 md:h-5 transition-transform duration-500 group-hover:rotate-90" />
             <span className="sr-only">Close</span>
           </DialogClose>
 
