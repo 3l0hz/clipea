@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -106,9 +105,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
 
   // PROMO GLASS DESIGN: EXCLUSIVE FOR PRUEBA DESKTOP
   if (isExperimentalDesktop) {
+    const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
     return (
       <div 
-        className="group promo-glass-card p-0 h-full flex flex-col cursor-pointer"
+        className={cn(
+          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer",
+          isPruebaDesktop && "glass-reflective-edge"
+        )}
         onClick={() => onViewDetails(product)}
       >
         <div className="shine-layer" />
