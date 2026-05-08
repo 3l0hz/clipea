@@ -37,98 +37,98 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // PREMIUM PROMO MODAL STYLE (Hero Product Experience)
+  // PREMIUM PROMO MODAL STYLE (Hero Product Experience - Compact Version)
   if (isPremiumPromo) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-lg p-0 bg-transparent border-none overflow-visible rounded-[32px] shadow-none">
+        <DialogContent className="max-w-md md:max-w-lg p-0 bg-transparent border-none overflow-visible rounded-[24px] md:rounded-[32px] shadow-none">
           <DialogHeader className="sr-only">
             <DialogTitle>{product.name}</DialogTitle>
             <DialogDescription>{product.description}</DialogDescription>
           </DialogHeader>
           
           <div className={cn(
-            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-6 md:p-10 gap-6 rounded-[32px] w-full"
+            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-5 md:p-8 gap-4 md:gap-6 rounded-[24px] md:rounded-[32px] w-full"
           )}>
             <div className="shine-layer" />
             
             {/* Header / Badges */}
-            <div className="flex flex-col items-center gap-3 z-10">
-              <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1.5 rounded-full text-[9px] font-bold tracking-[0.3em] uppercase">
+            <div className="flex flex-col items-center gap-2 z-10">
+              <Badge className="bg-accent/10 text-accent border-accent/20 px-3 py-1 rounded-full text-[8px] md:text-[9px] font-bold tracking-[0.25em] uppercase">
                 PROMO EXCLUSIVA ELOHZ
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-headline font-bold text-white tracking-tighter uppercase leading-[0.85]">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-headline font-bold text-white tracking-tighter uppercase leading-[0.9]">
                 {product.name}
               </h2>
             </div>
 
-            {/* Immersive Product Hero Container */}
-            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[24px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-4 md:p-6">
+            {/* Immersive Product Hero Container - Optimized Height */}
+            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[20px] md:rounded-[24px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-3 md:p-4">
               {/* Premium Glow Effect */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.15),transparent_60%)] animate-pulse" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.08),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.12),transparent_60%)] animate-pulse" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.06),transparent_50%)]" />
               
               <div className="relative w-full h-full">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_20px_rgba(255,255,255,0.08)]"
                   priority
                 />
               </div>
             </div>
 
             {/* Info Grid & Features */}
-            <div className="w-full space-y-6 z-10">
-              <div className="space-y-3">
-                <div className="text-4xl md:text-5xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-3">
+            <div className="w-full space-y-4 md:space-y-6 z-10">
+              <div className="space-y-2">
+                <div className="text-3xl md:text-4xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-2">
                   {product.price}
-                  <span className="text-[10px] font-bold text-accent/50 line-through tracking-widest block opacity-50">CLP</span>
+                  <span className="text-[9px] font-bold text-accent/50 line-through tracking-widest block opacity-50">CLP</span>
                 </div>
-                <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-lg mx-auto font-medium">
+                <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-sm mx-auto font-medium">
                   {product.description}
                 </p>
               </div>
 
-              {/* Highlights/Features Grid */}
+              {/* Highlights/Features Grid - Compact */}
               {product.highlights && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 py-5 border-y border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-4 border-y border-white/10">
                   {product.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-left">
-                      <CheckCircle2 size={14} className="text-accent shrink-0" />
-                      <span className="text-white/80 text-[11px] md:text-xs font-medium tracking-tight">{highlight}</span>
+                    <div key={idx} className="flex items-center gap-2 text-left">
+                      <CheckCircle2 size={12} className="text-accent shrink-0" />
+                      <span className="text-white/80 text-[10px] md:text-[11px] font-medium tracking-tight">{highlight}</span>
                     </div>
                   ))}
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-6 pt-2">
+              <div className="grid grid-cols-2 gap-4 pt-1">
                 <div className="text-left space-y-1">
-                  <h4 className="text-[9px] font-bold text-white/30 uppercase tracking-[0.25em]">Compatibilidad</h4>
-                  <p className="text-white text-[11px] md:text-xs font-bold tracking-tight">{product.compatibility}</p>
+                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">Compatibilidad</h4>
+                  <p className="text-white text-[10px] md:text-[11px] font-bold tracking-tight">{product.compatibility}</p>
                 </div>
                 <div className="text-right space-y-1">
-                  <h4 className="text-[9px] font-bold text-white/30 uppercase tracking-[0.25em]">Uso Pro</h4>
-                  <p className="text-white text-[11px] md:text-xs font-bold tracking-tight">{product.recommendedUse}</p>
+                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">Uso Pro</h4>
+                  <p className="text-white text-[10px] md:text-[11px] font-bold tracking-tight">{product.recommendedUse}</p>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-3 pt-4">
+              <div className="flex flex-col gap-2 pt-2">
                 <Button 
                   asChild 
-                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-14 rounded-xl text-lg font-extrabold flex items-center justify-center gap-3 transition-all duration-500 glass-reflective-button-edge"
+                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 md:h-13 rounded-xl text-base md:text-lg font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge"
                 >
                   <a href={waLink} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon className="w-5 h-5" />
+                    <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
                     SOLICITAR AHORA
                   </a>
                 </Button>
-                <div className="flex items-center justify-center gap-6 opacity-30">
-                   <p className="text-[8px] text-white font-bold uppercase tracking-[0.4em]">ENVÍO GRATUITO</p>
+                <div className="flex items-center justify-center gap-4 opacity-30">
+                   <p className="text-[7px] md:text-[8px] text-white font-bold uppercase tracking-[0.3em]">ENVÍO GRATUITO</p>
                    <div className="w-1 h-1 rounded-full bg-white" />
-                   <p className="text-[8px] text-white font-bold uppercase tracking-[0.4em]">STOCKS LIMITADOS</p>
+                   <p className="text-[7px] md:text-[8px] text-white font-bold uppercase tracking-[0.3em]">STOCKS LIMITADOS</p>
                 </div>
               </div>
             </div>
