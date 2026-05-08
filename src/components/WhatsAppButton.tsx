@@ -1,5 +1,6 @@
 'use client';
 import { WHATSAPP_NUMBER } from '@/constants/data';
+import { cn } from '@/lib/utils';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -18,10 +19,21 @@ export const WhatsAppButton = () => {
       href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-premium-green text-black p-4 rounded-full shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-110 transition-transform duration-300 animate-bounce hover:animate-none flex items-center justify-center border border-white/20"
+      className={cn(
+        "fixed bottom-6 right-6 z-50",
+        "flex items-center justify-center p-4 rounded-full",
+        "bg-premium-green/20 backdrop-blur-xl border border-premium-green/30",
+        "shadow-[0_0_20px_rgba(142,255,127,0.2)]",
+        "transition-all duration-500",
+        "animate-float-breathing",
+        "hover:animate-none hover:scale-110 hover:bg-premium-green/30 hover:border-premium-green/50 hover:shadow-[0_0_40px_rgba(142,255,127,0.4)]",
+        "active:scale-95 group"
+      )}
       aria-label="Contactar por WhatsApp"
     >
-      <WhatsAppIcon className="w-6 h-6" />
+      <WhatsAppIcon className="w-6 h-6 text-premium-green transition-transform duration-500 group-hover:scale-110" />
+      {/* Subtle shine effect layer */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </a>
   );
 };
