@@ -40,7 +40,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   const PremiumCloseButton = () => (
     <DialogClose asChild>
-      <button className="absolute top-4 right-4 md:top-6 md:right-6 z-[70] w-9 h-9 md:w-10 md:h-10 rounded-full bg-black/60 backdrop-blur-xl border-none flex items-center justify-center transition-all duration-300 hover:scale-110 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:outline-none group">
+      <button className="absolute top-3 left-1/2 -translate-x-1/2 z-[70] w-9 h-9 md:w-10 md:h-10 rounded-full bg-black/60 backdrop-blur-xl border-none flex items-center justify-center transition-all duration-300 hover:scale-110 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:outline-none group">
         <X size={20} strokeWidth={2} className="relative z-10 text-accent transition-transform duration-500 group-hover:rotate-90" />
         <span className="sr-only">Cerrar</span>
       </button>
@@ -73,7 +73,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <PremiumCloseButton />
             
             {/* Header Capsule */}
-            <div className="relative w-full z-10 mt-10 md:mt-4">
+            <div className="relative w-full z-10 mt-12 md:mt-8">
               <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-3 md:py-4 px-8 md:px-12 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-1 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
                 <span className="text-[8px] md:text-[9px] font-bold text-accent tracking-[0.5em] uppercase opacity-90 leading-none">PROMO EXCLUSIVA</span>
                 <h2 className="text-xl md:text-3xl font-headline font-bold text-white tracking-tighter uppercase leading-tight">{product.name}</h2>
