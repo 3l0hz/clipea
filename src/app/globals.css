@@ -1,29 +1,28 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 4.3%; /* #0B0B0B */
+    --background: 222 47% 3%; /* Azul eléctrico extremadamente profundo */
     --foreground: 0 0% 100%;
-    --card: 0 0% 6.7%; /* #111111 */
+    --card: 222 47% 5%; /* Navy profundo tecnológico */
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 6.7%;
+    --popover: 222 47% 5%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 12.2%; /* #1F1F1F */
+    --secondary: 222 47% 10%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 12.2%;
-    --muted-foreground: 0 0% 63.1%; /* #A1A1A1 */
-    --accent: 157 100% 50%; /* #00FF9C */
+    --muted: 222 20% 15%;
+    --muted-foreground: 222 10% 65%;
+    --accent: 188 100% 50%; /* Cian Eléctrico Neón */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 12.2%;
-    --input: 0 0% 12.2%;
-    --ring: 157 100% 50%;
+    --border: 222 47% 12%;
+    --input: 222 47% 12%;
+    --ring: 188 100% 50%;
     --radius: 0.75rem;
   }
 }
@@ -68,10 +67,10 @@
 
 .premium-mobile-card {
   @apply relative overflow-hidden flex flex-col;
-  background: radial-gradient(120% 120% at 50% 0%, #111111 0%, #0D0D0D 60%, #0A0A0A 100%);
+  background: radial-gradient(120% 120% at 50% 0%, #050810 0%, #03050a 60%, #020306 100%);
   border-radius: 24px;
   isolation: isolate;
-  box-shadow: 0 20px 20px rgba(0, 255, 204, 0.08), 0 40px 40px rgba(0, 255, 144, 0.06);
+  box-shadow: 0 20px 20px rgba(0, 229, 255, 0.05), 0 40px 40px rgba(0, 123, 255, 0.03);
 }
 
 .premium-mobile-card::before {
@@ -104,7 +103,7 @@
 /* EXPERIMENTAL SANDBOX CARD - LAB */
 .experimental-card {
   @apply relative overflow-hidden flex flex-col transition-all duration-500 ease-out;
-  background: #0B0B0B;
+  background: #020306;
   border-radius: 20px;
   isolation: isolate;
   box-shadow: 
@@ -140,17 +139,17 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent/80 to-gray-500;
 }
 
 /* Luxury Glass Button Shine Effect */
 .glass-button {
-  @apply relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 text-white transition-all duration-500 ease-out;
+  @apply relative overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 text-white transition-all duration-500 ease-out;
 }
 
 .glass-button::after {
   content: '';
-  @apply absolute inset-0 -translate-x-[150%] skew-x-[-30deg] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none;
+  @apply absolute inset-0 -translate-x-[150%] skew-x-[-30deg] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none;
   animation: glass-shine 4s infinite ease-in-out;
 }
 
