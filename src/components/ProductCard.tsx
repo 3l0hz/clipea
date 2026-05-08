@@ -31,9 +31,15 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Best Seller Badge - Static Glassmorphism Premium Design */}
+        {/* Best Seller Badge - Glassmorphism in Mobile / Minimalist in Desktop */}
         {product.bestSeller && (
-          <Badge className="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-accent/20 text-white font-bold uppercase tracking-[0.12em] text-[9px] rounded-lg px-2.5 py-1 z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5">
+          <Badge className={cn(
+            "absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-none",
+            // Mobile Styles (Glassmorphism)
+            "bg-black/40 backdrop-blur-md border border-accent/20 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5",
+            // Desktop Overrides (Clean, Flat & Minimalist)
+            "md:bg-secondary md:backdrop-blur-none md:border-white/10 md:text-white/90 md:shadow-none md:border-t-0 md:border-l-0 md:tracking-widest"
+          )}>
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
           </Badge>
         )}
@@ -43,7 +49,10 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
       <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2">
         {/* Category Label */}
         <div className="flex justify-between items-start gap-2 mb-1">
-          <span className="text-[10px] text-accent font-bold uppercase tracking-wider">
+          <span className={cn(
+            "text-[10px] font-bold uppercase tracking-wider",
+            "text-accent md:text-muted-foreground md:font-medium md:tracking-widest"
+          )}>
             {product.category}
           </span>
           {product.brand && (
