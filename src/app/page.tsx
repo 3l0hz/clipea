@@ -6,7 +6,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { FAQ } from '@/components/FAQ';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, EXPERIMENTAL_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
 
@@ -136,12 +136,21 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-            {/* LAB: PRUEBA CARD - Solo Mobile */}
+            {/* LAB MOBILE: Solo visible en Mobile */}
             <div className="md:hidden">
               <ProductCard
                 product={EXPERIMENTAL_PRODUCT}
                 onViewDetails={handleViewDetails}
                 isExperimental={true}
+              />
+            </div>
+
+            {/* LAB DESKTOP: Solo visible en Desktop */}
+            <div className="hidden md:block">
+              <ProductCard
+                product={EXPERIMENTAL_DESKTOP_PRODUCT}
+                onViewDetails={handleViewDetails}
+                isExperimentalDesktop={true}
               />
             </div>
 

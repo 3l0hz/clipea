@@ -12,11 +12,13 @@ interface ProductCardProps {
   product: Product;
   onViewDetails: (product: Product) => void;
   isExperimental?: boolean;
+  isExperimentalDesktop?: boolean;
 }
 
-export const ProductCard = ({ product, onViewDetails, isExperimental }: ProductCardProps) => {
+export const ProductCard = ({ product, onViewDetails, isExperimental, isExperimentalDesktop }: ProductCardProps) => {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
+  // LAB: Mobile Experimental Style
   if (isExperimental) {
     return (
       <div className="group experimental-card p-0 h-full flex flex-col">
@@ -88,10 +90,12 @@ export const ProductCard = ({ product, onViewDetails, isExperimental }: ProductC
     );
   }
 
+  // Standard Premium Style (Used for Normal, Promos and PRUEBA DESKTOP base)
   return (
     <div className={cn(
       "group relative flex flex-col h-full",
-      "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
+      "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300",
+      isExperimentalDesktop && "md:border-dashed md:border-accent/50" // Subtle hint for lab card on desktop
     )}>
       
       {/* Image Section - Cinematic Format in Mobile */}

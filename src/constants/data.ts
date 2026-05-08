@@ -17,6 +17,19 @@ export const EXPERIMENTAL_PRODUCT: Product = {
   bestSeller: true
 };
 
+export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
+  id: 'PRUEBA_DESKTOP',
+  name: 'PRUEBA DESKTOP',
+  category: 'Laboratorio',
+  price: '$99.990',
+  image: 'https://picsum.photos/seed/desktop-lab/600/600',
+  description: 'Tarjeta experimental exclusiva para pruebas en versión desktop. Base de diseño estándar.',
+  compatibility: 'Desktop Sandbox',
+  recommendedUse: 'Visual Lab',
+  brand: 'Prototyping',
+  bestSeller: false
+};
+
 export const PRODUCTS: Product[] = [
   {
     id: 'selfie1.20',
