@@ -1,10 +1,8 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
-import { FAQ } from '@/components/FAQ';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
@@ -187,39 +185,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Brand Section / Call to Action */}
-      <section className="py-24 bg-card relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[80px]" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-6xl font-headline font-bold text-white tracking-tight">
-              Graba mejor tus rutas y aventuras
-            </h2>
-            <p className="text-muted-foreground text-lg md:text-xl">
-              Nuestros accesorios están diseñados para resistir las condiciones más exigentes, asegurando que cada toma sea perfecta, ya sea en la carretera o en la montaña.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
-                  <Camera className="text-accent" size={32} />
-                </div>
-                <span className="text-white text-sm font-bold">Action Cameras</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
-                  <BikeIcon className="text-accent" size={32} />
-                </div>
-                <span className="text-white text-sm font-bold">Moto Gear</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <FAQ />
 
       {/* Footer */}
       <footer className="py-12 bg-[#0B0B0B] border-t border-border">
