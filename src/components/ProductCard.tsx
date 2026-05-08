@@ -114,7 +114,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
       <div 
         className={cn(
           "group promo-glass-card p-0 h-full flex flex-col cursor-pointer",
-          isPruebaDesktop && "glass-reflective-edge"
+          isPruebaDesktop && "glass-reflective-edge prueba-desktop-shine"
         )}
         onClick={handleCardClick}
       >
