@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/store';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ProductCardProps {
@@ -74,16 +74,17 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
             <Button
               variant="default"
               size="lg"
-              className="w-full bg-white text-black hover:bg-white/90 font-bold rounded-2xl md:rounded-md md:h-8 md:text-xs"
+              className="w-full glass-button font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all md:h-10 md:text-xs"
               onClick={() => onViewDetails(product)}
             >
-              Detalles
+              <ShoppingCart size={18} className="md:size-4" />
+              Agregar
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="w-full border-white/10 text-white hover:bg-white/5 font-bold rounded-2xl md:rounded-md md:h-8 md:text-xs md:border-input"
+              className="w-full border-white/10 text-white hover:bg-white/5 font-bold rounded-2xl md:rounded-md md:h-10 md:text-xs md:border-input"
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />
