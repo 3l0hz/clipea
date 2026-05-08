@@ -32,77 +32,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     onViewDetails(product);
   };
 
-  if (isExperimental) {
-    return (
-      <div 
-        className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit"
-        onClick={handleCardClick}
-      >
-        <div className="absolute top-2 left-2 z-20 flex flex-col gap-1">
-          {product.bestSeller && (
-            <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full">
-              <span className="text-[10px]">🔥</span>
-              <span className="text-[8px] font-bold text-white tracking-widest uppercase">TOP</span>
-            </div>
-          )}
-        </div>
-
-        <div className="relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-contain transition-transform duration-500 group-hover:scale-105 p-3"
-            sizes="(max-width: 768px) 80vw, 33vw"
-          />
-        </div>
-
-        <div className="px-3 pb-3 pt-0 flex flex-col gap-1">
-          <div className="space-y-0">
-            <h3 className="font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1">
-              {product.name}
-            </h3>
-            <p className="text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70">
-              {product.description}
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-1.5 mt-1">
-            <div className="text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none">
-              {product.price}
-            </div>
-            
-            <div className="flex flex-col gap-1.5">
-              <Button
-                variant="default"
-                className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onViewDetails(product);
-                }}
-              >
-                <ShoppingCart size={14} />
-                <span className="uppercase tracking-tighter text-[10px]">AGREGAR</span>
-              </Button>
-              
-              <a 
-                href={waLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center justify-center gap-1.5 text-[#B3B3B3] hover:text-accent transition-colors py-0.5 group/wsap"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <WhatsAppIcon className="w-3 h-3 group-hover/wsap:scale-110 transition-transform" />
-                <span className="text-[8px] font-bold uppercase tracking-wider">CONSULTA</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (isExperimentalDesktop) {
     const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
 
@@ -194,78 +123,70 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
+  // Unified Mobile/Standard Style (based on the Prueba Card)
   return (
     <div 
-      className="group relative overflow-hidden flex flex-col h-full cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
+      className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit"
       onClick={handleCardClick}
     >
-      <div className="relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[52px]">
+      <div className="absolute top-2 left-2 z-20 flex flex-col gap-1">
+        {product.bestSeller && (
+          <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full">
+            <span className="text-[10px]">🔥</span>
+            <span className="text-[8px] font-bold text-white tracking-widest uppercase">TOP</span>
+          </div>
+        )}
+      </div>
+
+      <div className="relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain transition-transform duration-500 group-hover:scale-110 p-2 md:p-4"
+          className="object-contain transition-transform duration-500 group-hover:scale-105 p-3"
           sizes="(max-width: 768px) 80vw, 33vw"
         />
-        
-        {product.bestSeller && (
-          <Badge className="absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-all bg-black/60 backdrop-blur-md border border-premium-green/30 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-            <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
-          </Badge>
-        )}
       </div>
-      
-      <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2 md:pt-0">
-        <div className="flex justify-between items-start gap-2 mb-1">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-accent">
-            {product.category}
-          </span>
-          {product.brand && (
-            <span className="text-[10px] text-muted-foreground uppercase hidden md:inline">
-              {product.brand}
-            </span>
-          )}
-        </div>
-        
-        <div className="space-y-1">
-          <h3 className="font-headline font-bold text-white text-base md:text-lg line-clamp-2 leading-tight tracking-tight">
+
+      <div className="px-3 pb-3 pt-0 flex flex-col gap-1">
+        <div className="space-y-0">
+          <h3 className="font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1">
             {product.name}
           </h3>
-          <p className="hidden md:block text-[11px] text-muted-foreground line-clamp-1 opacity-70">
+          <p className="text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70">
             {product.description}
           </p>
         </div>
         
-        <div className="mt-auto pt-3 flex flex-col gap-4 md:gap-3">
-          <div className="text-2xl md:text-xl font-headline font-bold text-white tracking-tighter">
+        <div className="flex flex-col gap-1.5 mt-1">
+          <div className="text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none">
             {product.price}
           </div>
           
-          <div className="flex flex-col gap-2 md:flex md:flex-col">
+          <div className="flex flex-col gap-1.5">
             <Button
               variant="default"
-              size="lg"
-              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500"
+              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
               }}
             >
-              <ShoppingCart size={18} className="md:size-4" />
-              Agregar
+              <ShoppingCart size={14} />
+              <span className="uppercase tracking-tighter text-[10px]">AGREGAR</span>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all duration-500"
+            
+            <a 
+              href={waLink} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center justify-center gap-1.5 text-[#B3B3B3] hover:text-accent transition-colors py-0.5 group/wsap"
               onClick={(e) => e.stopPropagation()}
             >
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                <WhatsAppIcon className="w-4 h-4 md:w-3.5 md:h-3.5" />
-                Consulta
-              </a>
-            </Button>
+              <WhatsAppIcon className="w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform" />
+              <span className="text-[8px] font-bold uppercase tracking-wider">CONSULTA</span>
+            </a>
           </div>
         </div>
       </div>
