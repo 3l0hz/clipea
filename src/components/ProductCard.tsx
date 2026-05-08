@@ -32,10 +32,9 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
   if (isExperimental) {
     return (
       <div 
-        className="group experimental-card p-0 h-full flex flex-col cursor-pointer"
+        className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
         onClick={() => onViewDetails(product)}
       >
-        {/* Badges Layout */}
         <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
           {product.bestSeller && (
             <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-premium-green/30 px-3 py-1.5 rounded-full">
@@ -48,9 +47,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           </div>
         </div>
 
-        {/* Image Container with Spotlight */}
-        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[40px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
-          {/* Spotlight Effect */}
+        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[52px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
           <Image
             src={product.image}
@@ -61,7 +58,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           />
         </div>
 
-        {/* Content Section */}
         <div className="px-5 pb-6 pt-4 flex flex-col flex-1 gap-2">
           <div className="space-y-1">
             <h3 className="font-headline font-bold text-white text-lg leading-tight tracking-tight uppercase">
@@ -80,7 +76,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             <div className="flex flex-col gap-3">
               <Button
                 variant="default"
-                className="w-full glass-button bg-white text-black border-white/20 hover:bg-white/90 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
+                className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
@@ -107,18 +103,94 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // Standard Premium Style (Enhanced for all desktop cards)
+  // PROMO GLASS DESIGN: EXCLUSIVE FOR PRUEBA DESKTOP
+  if (isExperimentalDesktop) {
+    return (
+      <div 
+        className="group promo-glass-card p-0 h-full flex flex-col cursor-pointer"
+        onClick={() => onViewDetails(product)}
+      >
+        <div className="shine-layer" />
+        
+        {/* Badges Layout */}
+        <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
+          <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
+            PROMO PREMIUN
+          </Badge>
+          <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
+            {product.brand || 'ELOHZ'}
+          </div>
+        </div>
+
+        {/* Image Section with Mirror Spotlight */}
+        <div className="relative aspect-square overflow-hidden m-4 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505] flex items-center justify-center border border-white/5">
+          {/* Subtle Radial Glow behind product */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" />
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain transition-transform duration-700 group-hover:scale-110 p-10"
+            sizes="33vw"
+          />
+        </div>
+
+        {/* Content Section */}
+        <div className="px-8 pb-8 pt-2 flex flex-col flex-1 gap-4">
+          <div className="space-y-2">
+            <h3 className="font-headline font-bold text-white text-xl leading-tight tracking-tight uppercase bg-clip-text">
+              {product.name}
+            </h3>
+            <p className="text-[13px] text-white/40 line-clamp-2 leading-relaxed font-medium">
+              {product.description}
+            </p>
+          </div>
+          
+          <div className="mt-auto pt-4 flex flex-col gap-6">
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-headline font-extrabold text-white tracking-tighter">
+                {product.price}
+              </span>
+              <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest line-through">
+                $129.990
+              </span>
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <Button
+                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDetails(product);
+                }}
+              >
+                <ShoppingCart size={20} />
+                <span className="uppercase tracking-widest text-xs">AGREGAR A BOLSA</span>
+              </Button>
+              
+              <a 
+                href={waLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-3 text-white/40 hover:text-white transition-all py-2 group/wsap tracking-[2px]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <WhatsAppIcon className="w-4 h-4 opacity-40 group-hover/wsap:opacity-100 transition-opacity" />
+                <span className="text-[10px] font-bold uppercase">CONSULTA DIRECTA</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ALL OTHER DESKTOP CARDS: PREVIOUS PREMIUM STYLE
   return (
     <div 
-      className={cn(
-        "group relative flex flex-col h-full cursor-pointer",
-        "premium-mobile-card",
-        "md:before:block md:after:block md:border-none md:rounded-[24px] md:shadow-2xl"
-      )}
+      className="group relative overflow-hidden flex flex-col h-full cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
       onClick={() => onViewDetails(product)}
     >
-      
-      {/* Image Section - Cinematic Format */}
       <div className="relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[52px]">
         <Image
           src={product.image}
@@ -128,21 +200,14 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Best Seller Badge - Minimalist Premium Green for Desktop */}
         {product.bestSeller && (
-          <Badge className={cn(
-            "absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-all",
-            "bg-black/60 backdrop-blur-md border border-premium-green/30 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]",
-            "md:bg-black md:border-premium-green/20 md:backdrop-blur-none md:shadow-none"
-          )}>
+          <Badge className="absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-all bg-black/60 backdrop-blur-md border border-premium-green/30 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
           </Badge>
         )}
       </div>
       
-      {/* Content Section */}
       <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2 md:pt-0">
-        {/* Category Label */}
         <div className="flex justify-between items-start gap-2 mb-1">
           <span className="text-[10px] font-bold uppercase tracking-wider text-accent">
             {product.category}
@@ -154,7 +219,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           )}
         </div>
         
-        {/* Name & Price */}
         <div className="space-y-1">
           <h3 className="font-headline font-bold text-white text-base md:text-lg line-clamp-2 leading-tight tracking-tight">
             {product.name}
@@ -164,7 +228,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           </p>
         </div>
         
-        {/* Price & Actions */}
         <div className="mt-auto pt-3 flex flex-col gap-4 md:gap-3">
           <div className="text-2xl md:text-xl font-headline font-bold text-white tracking-tighter">
             {product.price}
@@ -174,7 +237,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             <Button
               variant="default"
               size="lg"
-              className="w-full glass-button bg-white text-black border-white/20 hover:bg-white/90 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500"
+              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold rounded-2xl transition-all duration-500"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);

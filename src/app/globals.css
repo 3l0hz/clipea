@@ -16,13 +16,13 @@
     --secondary-foreground: 0 0% 100%;
     --muted: 222 20% 15%;
     --muted-foreground: 222 10% 65%;
-    --accent: 142 70% 50%; /* Verde Premium Neón (Restaurado) */
+    --accent: 142 70% 50%; /* Verde Premium Neón */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 222 47% 12%;
     --input: 222 47% 12%;
-    --ring: 142 70% 50%; /* Verde Premium Neón (Restaurado) */
+    --ring: 142 70% 50%;
     --radius: 0.75rem;
 
     /* Premium Neon Green Accent */
@@ -56,15 +56,15 @@
 }
 
 @keyframes borderGlow {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes lightSweep {
   0% { --sweep-x: 0%; --sweep-y: 0%; }
-  25% { --sweep-x: 0%; --sweep-y: 100%; }
+  25% { --sweep-x: 100%; --sweep-y: 0%; }
   50% { --sweep-x: 100%; --sweep-y: 100%; }
-  75% { --sweep-x: 100%; --sweep-y: 0%; }
+  75% { --sweep-x: 0%; --sweep-y: 100%; }
   100% { --sweep-x: 0%; --sweep-y: 0%; }
 }
 
@@ -103,42 +103,39 @@
   animation: lightSweep 12s linear infinite;
 }
 
-/* EXPERIMENTAL SANDBOX CARD - LAB */
-.experimental-card {
-  @apply relative overflow-hidden flex flex-col transition-all duration-500 ease-out;
-  background: #020306;
-  border-radius: 20px;
-  isolation: isolate;
-  box-shadow: 
-    0 0 20px rgba(0, 255, 194, 0.15), 
-    0 0 40px rgba(0, 229, 255, 0.1);
+/* PROMO GLASS CARD - EXCLUSIVE FOR PRUEBA DESKTOP */
+@keyframes shineSweep {
+  0% { transform: translateX(-100%) skewX(-30deg); }
+  20%, 100% { transform: translateX(200%) skewX(-30deg); }
 }
 
-.experimental-card::before {
+.promo-glass-card {
+  @apply relative overflow-hidden bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[32px] transition-all duration-700;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.promo-glass-card::before {
   content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #00FFC2, #00E5FF, #7B61FF, #00FFC2);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
+  @apply absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none;
 }
 
-.experimental-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-    0 0 30px rgba(0, 255, 194, 0.3), 
-    0 0 60px rgba(0, 229, 255, 0.2);
+.promo-glass-card .shine-layer {
+  @apply absolute inset-0 pointer-events-none overflow-hidden;
 }
 
-.experimental-card:active {
-  transform: translateY(-2px);
+.promo-glass-card .shine-layer::after {
+  content: '';
+  @apply absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  animation: shineSweep 8s infinite ease-in-out;
+}
+
+.promo-glass-card:hover {
+  @apply border-white/20 -translate-y-2;
   box-shadow: 
-    0 0 40px rgba(0, 255, 194, 0.4), 
-    0 0 80px rgba(0, 229, 255, 0.3);
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
 .text-gradient {
