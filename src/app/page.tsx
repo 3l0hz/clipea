@@ -41,11 +41,14 @@ export default function Home() {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale"
+            className="absolute inset-0 w-full h-full object-cover saturate-[1.1] contrast-[1.05] transform-gpu will-change-transform"
           >
             <source src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/HeroSection/2%20slide/0506%20(2).mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+          {/* Subtle overlay for legibility (approx 20%) */}
+          <div className="absolute inset-0 bg-black/20" />
+          {/* Gradient at the bottom to blend with the dark page layout */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-70" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
