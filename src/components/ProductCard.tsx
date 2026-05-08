@@ -74,7 +74,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
             <Button
               variant="default"
               size="lg"
-              className="w-full glass-button font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all md:h-10 md:text-xs"
+              className="w-full glass-button bg-white text-black hover:bg-white/90 font-bold rounded-2xl transition-all md:h-10 md:text-xs"
               onClick={() => onViewDetails(product)}
             >
               <ShoppingCart size={18} className="md:size-4" />
@@ -84,7 +84,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
               asChild
               variant="outline"
               size="lg"
-              className="w-full border-accent/20 text-accent hover:bg-accent/5 font-bold rounded-2xl transition-all md:h-10 md:text-xs"
+              className="w-full border-accent/20 text-accent hover:bg-accent/10 hover:text-accent font-bold rounded-2xl transition-all md:h-10 md:text-xs"
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />

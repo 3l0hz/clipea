@@ -70,7 +70,7 @@ export default function Home() {
           <div className="flex justify-center items-center pt-4">
             <Button 
               size="lg" 
-              className="glass-button px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]" 
+              className="glass-button bg-white text-black hover:bg-white/90 px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]" 
               asChild
             >
               <a href="#catalog">Explorar Catálogo</a>
