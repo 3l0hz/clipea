@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -33,73 +32,70 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     onViewDetails(product);
   };
 
-  // LAB: Mobile Experimental Style
+  // LAB: Mobile Experimental Style (Compact Version)
   if (isExperimental) {
     return (
       <div 
-        className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
+        className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl"
         onClick={handleCardClick}
       >
-        <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+        <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
           {product.bestSeller && (
-            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-premium-green/30 px-3 py-1.5 rounded-full">
-              <span className="text-xs">🔥</span>
-              <span className="text-[10px] font-bold text-white tracking-widest uppercase">RECOMENDADO</span>
+            <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-1 rounded-full">
+              <span className="text-[10px]">🔥</span>
+              <span className="text-[8px] font-bold text-white tracking-widest uppercase">TOP</span>
             </div>
           )}
-          <div className="bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full w-fit">
-            <span className="text-[10px] font-bold text-white tracking-widest uppercase">{product.category}</span>
-          </div>
         </div>
 
-        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[52px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
+        <div className="relative aspect-square overflow-hidden m-1.5 rounded-[32px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain transition-transform duration-500 group-hover:scale-105 p-6"
+            className="object-contain transition-transform duration-500 group-hover:scale-105 p-4"
             sizes="(max-width: 768px) 80vw, 33vw"
           />
         </div>
 
-        <div className="px-5 pb-6 pt-4 flex flex-col flex-1 gap-2">
-          <div className="space-y-1">
-            <h3 className="font-headline font-bold text-white text-lg leading-tight tracking-tight uppercase">
+        <div className="px-4 pb-4 pt-1 flex flex-col flex-1 gap-1">
+          <div className="space-y-0.5">
+            <h3 className="font-headline font-bold text-white text-base leading-tight tracking-tight uppercase line-clamp-1">
               {product.name}
             </h3>
-            <p className="text-[14px] text-[#B3B3B3] line-clamp-2 leading-relaxed">
+            <p className="text-[12px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-80">
               {product.description}
             </p>
           </div>
           
-          <div className="mt-auto pt-4 flex flex-col gap-5">
-            <div className="text-3xl font-headline font-extrabold text-white tracking-tighter">
+          <div className="mt-auto pt-2 flex flex-col gap-3">
+            <div className="text-2xl font-headline font-extrabold text-white tracking-tighter">
               {product.price}
             </div>
             
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <Button
                 variant="default"
-                className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] font-bold h-12 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500"
+                className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-10 rounded-xl flex items-center justify-center gap-2 transition-all duration-500"
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
               >
-                <ShoppingCart size={20} />
-                <span className="uppercase tracking-tighter">AGREGAR</span>
+                <ShoppingCart size={16} />
+                <span className="uppercase tracking-tighter text-xs">AGREGAR</span>
               </Button>
               
               <a 
                 href={waLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center justify-center gap-2 text-[#B3B3B3] hover:text-accent transition-colors py-2 group/wsap tracking-[1px]"
+                className="flex items-center justify-center gap-2 text-[#B3B3B3] hover:text-accent transition-colors py-1 group/wsap"
                 onClick={(e) => e.stopPropagation()}
               >
-                <WhatsAppIcon className="w-4 h-4 group-hover/wsap:scale-110 transition-transform" />
-                <span className="text-xs font-bold uppercase">CONSULTA</span>
+                <WhatsAppIcon className="w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform" />
+                <span className="text-[9px] font-bold uppercase tracking-wider">CONSULTA</span>
               </a>
             </div>
           </div>
