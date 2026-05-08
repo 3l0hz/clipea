@@ -73,7 +73,7 @@
   background: radial-gradient(120% 120% at 50% 0%, #050810 0%, #03050a 60%, #020306 100%);
   border-radius: 24px;
   isolation: isolate;
-  box-shadow: 0 20px 20px rgba(142, 255, 127, 0.05), 0 40px 40px rgba(0, 123, 255, 0.03);
+  box-shadow: 0 20px 40px rgba(142, 255, 127, 0.08), 0 0 20px rgba(0, 229, 255, 0.05);
 }
 
 .premium-mobile-card::before {

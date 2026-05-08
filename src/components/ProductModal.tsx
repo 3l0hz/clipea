@@ -40,14 +40,14 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   if (isPremiumPromo) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-md p-0 bg-transparent border-none overflow-visible rounded-[24px] md:rounded-[28px] shadow-none [&>button]:hidden">
+        <DialogContent className="max-w-md p-0 bg-transparent border-none overflow-visible rounded-[24px] md:rounded-[28px] shadow-none [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
           <DialogHeader className="sr-only">
             <DialogTitle>{product.name}</DialogTitle>
             <DialogDescription>{product.description}</DialogDescription>
           </DialogHeader>
           
           {/* Custom Premium Close Button */}
-          <DialogClose className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-50 w-9 h-9 md:w-11 md:h-11 rounded-full glass-button bg-black/80 backdrop-blur-xl border-accent/40 text-white flex items-center justify-center transition-all hover:scale-110 hover:border-accent glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.2)]">
+          <DialogClose className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-50 w-9 h-9 md:w-11 md:h-11 rounded-full glass-button bg-black/80 backdrop-blur-xl border-accent/40 text-white flex items-center justify-center transition-all hover:scale-110 hover:border-accent glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:ring-0 focus:outline-none">
             <X size={18} className="md:w-6 md:h-6" />
             <span className="sr-only">Close</span>
           </DialogClose>
@@ -59,22 +59,22 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             
             {/* New Premium Header Capsule */}
             <div className="relative w-full mb-1 md:mb-2 z-10">
-              <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_40px_rgba(142,255,127,0.1)]">
+              <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
                 <span className="text-[7px] md:text-[8px] font-bold text-accent tracking-[0.4em] uppercase opacity-90 leading-none">PROMO EXCLUSIVA</span>
                 <h2 className="text-lg md:text-xl font-headline font-bold text-white tracking-tighter uppercase leading-tight">{product.name}</h2>
               </div>
             </div>
 
             <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[16px] md:rounded-[20px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-2 md:p-3">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.12),transparent_60%)] animate-pulse" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.06),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_60%)] animate-pulse" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.04),transparent_50%)]" />
               
               <div className="relative w-full h-full">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_15px_rgba(255,255,255,0.06)]"
+                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_15px_rgba(255,255,255,0.04)]"
                   priority
                 />
               </div>
