@@ -63,18 +63,20 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             </div>
 
             {/* Immersive Product Hero Container */}
-            <div className="relative w-full aspect-video rounded-[32px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img">
+            <div className="relative w-full aspect-square md:aspect-video rounded-[32px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-4 md:p-8">
               {/* Premium Glow Effect */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.15),transparent_60%)] animate-pulse" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.08),transparent_50%)]" />
               
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain p-8 md:p-12 transition-transform duration-1000 group-hover/img:scale-110 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-                priority
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                  priority
+                />
+              </div>
             </div>
 
             {/* Info Grid & Features */}
