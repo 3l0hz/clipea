@@ -13,7 +13,7 @@ interface ProductCardProps {
   product: Product;
   onViewDetails: (product: Product) => void;
   isExperimental?: boolean;
-  isExperimentalDesktop?: boolean;
+  isPremium?: boolean;
 }
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -27,7 +27,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const ProductCard = ({ product, onViewDetails, isExperimental, isExperimentalDesktop }: ProductCardProps) => {
+export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium }: ProductCardProps) => {
   const isMobile = useIsMobile();
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
@@ -35,55 +35,74 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     onViewDetails(product);
   };
 
-  if (isExperimentalDesktop) {
+  if (isPremium) {
     const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
 
     return (
       <div 
         className={cn(
-          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer glass-reflective-edge prueba-desktop-shine"
+          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer glass-reflective-edge prueba-desktop-shine transition-all duration-500",
+          isMobile ? "rounded-[32px] overflow-hidden" : ""
         )}
         onClick={handleCardClick}
       >
         <div className="shine-layer" />
         
-        <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
+        <div className={cn(
+          "absolute z-20 flex flex-col gap-2",
+          isMobile ? "top-4 left-4" : "top-6 left-6"
+        )}>
           <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
             PROMO PREMIUM
           </Badge>
-          {!isPruebaDesktop && (
+          {!isPruebaDesktop && product.brand && (
             <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
-              {product.brand || 'ELOHZ'}
+              {product.brand}
             </div>
           )}
         </div>
 
-        <div className="relative aspect-square overflow-hidden m-2 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505] flex items-center justify-center border border-white/5">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" />
+        <div className={cn(
+          "relative overflow-hidden flex items-center justify-center border border-white/5",
+          isMobile ? "aspect-square m-2 rounded-[28px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A]" : "aspect-square m-2 rounded-[40px] bg-gradient-to-br from-[#1A1A1A] to-[#050505]"
+        )}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain transition-transform duration-700 group-hover:scale-110 p-2"
-            sizes="33vw"
+            className={cn(
+              "object-contain transition-transform duration-700 group-hover:scale-110",
+              isMobile ? "p-4" : "p-2"
+            )}
+            sizes={isMobile ? "80vw" : "33vw"}
           />
         </div>
 
-        <div className="px-5 pb-5 pt-1 flex flex-col flex-1 gap-2">
+        <div className={cn(
+          "flex flex-col flex-1 gap-2",
+          isMobile ? "px-4 pb-4 pt-1" : "px-5 pb-5 pt-1"
+        )}>
           <div className="space-y-1">
-            <h3 className="font-headline font-bold text-white text-xl leading-tight tracking-tight uppercase bg-clip-text">
+            <h3 className={cn(
+              "font-headline font-bold text-white uppercase bg-clip-text leading-tight tracking-tight",
+              isMobile ? "text-lg" : "text-xl"
+            )}>
               {product.name}
             </h3>
-            {!isPruebaDesktop && (
+            {!isPruebaDesktop && !isMobile && (
               <p className="text-[13px] text-white/40 line-clamp-1 leading-relaxed font-medium">
                 {product.description}
               </p>
             )}
           </div>
 
-          <div className="mt-auto pt-2 flex flex-col gap-3">
+          <div className="mt-auto pt-1 flex flex-col gap-3">
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-headline font-extrabold text-white tracking-tighter">
+              <span className={cn(
+                "font-headline font-extrabold text-white tracking-tighter",
+                isMobile ? "text-2xl" : "text-3xl"
+              )}>
                 {product.price}
               </span>
               <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest line-through">
@@ -97,14 +116,20 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             
             <div className="flex flex-col gap-2">
               <Button
-                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-12 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge"
+                className={cn(
+                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge",
+                  isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
+                )}
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
               >
-                <ShoppingCart size={18} className="relative z-20" />
-                <span className="uppercase tracking-widest text-xs relative z-20">
+                <ShoppingCart size={isMobile ? 16 : 18} className="relative z-20" />
+                <span className={cn(
+                  "uppercase tracking-widest relative z-20",
+                  isMobile ? "text-[10px]" : "text-xs"
+                )}>
                   AGREGAR
                 </span>
               </Button>
@@ -126,15 +151,12 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // Unified Mobile/Standard Style
-  // Compact logic for Desktop Non-Promo
-  const isCompactDesktop = !isMobile && !isExperimentalDesktop;
-
+  // Standard Style (Standardized to use the 'Experimental' compact mobile look)
   return (
     <div 
       className={cn(
         "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit transition-all duration-300",
-        isCompactDesktop ? "md:hover:-translate-y-1" : ""
+        !isMobile ? "md:hover:-translate-y-1" : ""
       )}
       onClick={handleCardClick}
     >
@@ -149,7 +171,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
 
       <div className={cn(
         "relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center transition-all",
-        isCompactDesktop ? "m-2 rounded-[12px]" : ""
+        !isMobile ? "m-2 rounded-[12px]" : ""
       )}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
         <Image
@@ -161,57 +183,33 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         />
       </div>
 
-      <div className={cn(
-        "px-3 pb-3 pt-0 flex flex-col gap-1",
-        isCompactDesktop ? "px-4 pb-4 pt-1 gap-0.5" : ""
-      )}>
+      <div className="px-3 pb-3 pt-0 flex flex-col gap-1">
         <div className="space-y-0">
           <span className="text-[8px] md:text-[9px] font-bold text-accent/60 uppercase tracking-widest block mb-0.5">{product.category}</span>
-          <h3 className={cn(
-            "font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1",
-            isCompactDesktop ? "text-base md:text-sm" : ""
-          )}>
+          <h3 className="font-headline font-bold text-white text-[14px] leading-tight tracking-tight uppercase line-clamp-1">
             {product.name}
           </h3>
-          <p className={cn(
-            "text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70",
-            isCompactDesktop ? "text-[11px] mb-1" : ""
-          )}>
+          <p className="text-[10px] text-[#B3B3B3] line-clamp-1 leading-tight opacity-70">
             {product.description}
           </p>
         </div>
         
-        <div className={cn(
-          "flex flex-col gap-1.5 mt-1",
-          isCompactDesktop ? "mt-0.5 gap-2" : ""
-        )}>
-          <div className={cn(
-            "text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none",
-            isCompactDesktop ? "text-xl md:text-lg mb-0.5" : ""
-          )}>
+        <div className="flex flex-col gap-1.5 mt-1">
+          <div className="text-[18px] font-headline font-extrabold text-white tracking-tighter leading-none">
             {product.price}
           </div>
           
-          <div className={cn(
-            "flex flex-col gap-1.5",
-            isCompactDesktop ? "gap-1" : ""
-          )}>
+          <div className="flex flex-col gap-1.5">
             <Button
               variant="default"
-              className={cn(
-                "w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500",
-                isCompactDesktop ? "h-8 md:h-7 rounded-md" : ""
-              )}
+              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
               }}
             >
-              <ShoppingCart size={isCompactDesktop ? 12 : 14} />
-              <span className={cn(
-                "uppercase tracking-tighter text-[10px]",
-                isCompactDesktop ? "text-[9px]" : ""
-              )}>AGREGAR</span>
+              <ShoppingCart size={14} />
+              <span className="uppercase tracking-tighter text-[10px]">AGREGAR</span>
             </Button>
             
             <a 
@@ -221,8 +219,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               className="flex items-center justify-center gap-1.5 text-[#B3B3B3] hover:text-accent transition-colors py-0.5 group/wsap"
               onClick={(e) => e.stopPropagation()}
             >
-              <WhatsAppIcon className={cn("w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform", isCompactDesktop ? "w-3 h-3" : "")} />
-              <span className={cn("text-[8px] font-bold uppercase tracking-wider", isCompactDesktop ? "text-[7px]" : "")}>CONSULTA</span>
+              <WhatsAppIcon className="w-3.5 h-3.5 group-hover/wsap:scale-110 transition-transform" />
+              <span className="text-[8px] font-bold uppercase tracking-wider">CONSULTA</span>
             </a>
           </div>
         </div>

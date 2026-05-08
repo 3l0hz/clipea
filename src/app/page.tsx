@@ -133,7 +133,7 @@ export default function Home() {
             <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección premium de accesorios diseñada para resistir las condiciones más extremas.</p>
           </div>
 
-          <div className="flex flex-col gap-24 md:gap-48 pb-20">
+          <div className="flex flex-col gap-32 md:gap-48 pb-20">
             {CATEGORY_ORDER.map((cat) => {
               const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
               if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
@@ -152,7 +152,7 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                     {cat.value === 'Accesorios Cámara' && (
                       <>
                         <div className="md:hidden">
@@ -166,7 +166,7 @@ export default function Home() {
                           <ProductCard
                             product={EXPERIMENTAL_DESKTOP_PRODUCT}
                             onViewDetails={handleViewDetails}
-                            isExperimentalDesktop={true}
+                            isPremium={true}
                           />
                         </div>
                       </>
@@ -177,7 +177,7 @@ export default function Home() {
                         key={product.id}
                         product={product}
                         onViewDetails={handleViewDetails}
-                        isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
+                        isPremium={product.category === 'Promos Moto'}
                       />
                     ))}
                   </div>
