@@ -38,11 +38,9 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // Common Premium Close Button
   const PremiumCloseButton = () => (
     <DialogClose asChild>
-      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/40 hover:text-white shadow-[0_0_12px_rgba(142,255,127,0.15)] hover:shadow-[0_0_18px_rgba(142,255,127,0.25)] focus:outline-none group">
-        <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/20 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.05)] hover:shadow-[0_0_18px_rgba(255,255,255,0.1)] focus:outline-none group">
         <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
         <span className="sr-only">Cerrar</span>
       </button>
@@ -74,8 +72,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
             <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[16px] md:rounded-[20px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-2 md:p-3">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_60%)] animate-pulse" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.04),transparent_50%)]" />
-              
               <div className="relative w-full h-full">
                 <Image
                   src={product.image}
@@ -130,11 +126,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                     SOLICITAR AHORA
                   </a>
                 </Button>
-                <div className="flex items-center justify-center gap-3 opacity-30">
-                   <p className="text-[6px] md:text-[7px] text-white font-bold uppercase tracking-[0.3em]">ENVÍO GRATUITO</p>
-                   <div className="w-0.5 h-0.5 rounded-full bg-white" />
-                   <p className="text-[6px] md:text-[7px] text-white font-bold uppercase tracking-[0.3em]">STOCKS LIMITADOS</p>
-                </div>
               </div>
             </div>
           </div>
@@ -189,42 +180,49 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             )}
           </div>
 
-          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col gap-6 md:overflow-y-auto bg-card">
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-accent text-xs font-bold uppercase tracking-widest">{product.category}</span>
-                {product.brand && <span className="text-muted-foreground text-xs uppercase">{product.brand}</span>}
+          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col gap-6 md:overflow-y-auto bg-card relative">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">{product.category}</span>
+                {product.brand && (
+                  <>
+                    <div className="w-1 h-1 rounded-full bg-white/10" />
+                    <span className="text-muted-foreground text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em]">{product.brand}</span>
+                  </>
+                )}
               </div>
-              <h2 className="text-3xl font-headline font-bold leading-tight">{product.name}</h2>
-              <div className="text-3xl font-headline font-bold text-accent">{product.price}</div>
+              <div className="space-y-1">
+                <h2 className="text-2xl md:text-3xl font-headline font-bold leading-tight uppercase tracking-tight">{product.name}</h2>
+                <div className="text-2xl md:text-3xl font-headline font-extrabold text-accent tracking-tighter">{product.price}</div>
+              </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="space-y-2">
-                <h4 className="text-xs font-bold uppercase text-muted-foreground tracking-tighter">Descripción</h4>
+                <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Descripción</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">{product.description}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
-                <div className="space-y-1">
-                  <h4 className="text-[10px] font-bold uppercase text-muted-foreground tracking-widest">Compatibilidad</h4>
-                  <p className="text-white text-xs">{product.compatibility}</p>
+              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/5">
+                <div className="space-y-1.5">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Compatibilidad</h4>
+                  <p className="text-white text-xs font-medium">{product.compatibility}</p>
                 </div>
-                <div className="space-y-1">
-                  <h4 className="text-[10px] font-bold uppercase text-muted-foreground tracking-widest">Uso Recomendado</h4>
-                  <p className="text-white text-xs">{product.recommendedUse}</p>
+                <div className="space-y-1.5">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Uso Recomendado</h4>
+                  <p className="text-white text-xs font-medium">{product.recommendedUse}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-auto pt-6 flex flex-col gap-3">
-              <Button asChild className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 rounded-xl text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)]">
+            <div className="mt-auto pt-8 flex flex-col gap-4">
+              <Button asChild className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 rounded-xl text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(255,255,255,0.05)]">
                 <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                   <WhatsAppIcon className="w-5 h-5" />
                   Comprar por WhatsApp
                 </a>
               </Button>
-              <p className="text-center text-[10px] text-muted-foreground">Envío a todo Chile · Pago Seguro</p>
+              <p className="text-center text-[9px] text-white/30 uppercase font-bold tracking-[0.3em]">Envío a todo Chile · Pago Seguro</p>
             </div>
           </div>
         </div>
