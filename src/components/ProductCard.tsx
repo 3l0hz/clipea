@@ -21,51 +21,45 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
       "premium-mobile-card md:bg-card md:border md:border-border md:rounded-xl md:shadow-none md:before:hidden md:after:hidden md:hover:border-accent/30 md:transition-all md:duration-300"
     )}>
       
-      {/* Badge Section (Mobile Centered Badge over image or Top Left) */}
-      <div className="absolute top-4 left-4 z-10 md:hidden">
-        <Badge className="bg-accent/20 text-accent border-accent/30 text-[9px] uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-md">
-          {product.category}
-        </Badge>
-      </div>
-
-      {/* Image Section */}
-      <div className="relative aspect-square overflow-hidden flex items-center justify-center p-8 md:p-0 bg-transparent">
+      {/* Image Section - Maximized in Mobile */}
+      <div className="relative aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain transition-transform duration-500 group-hover:scale-110 p-6 md:p-4"
+          className="object-contain transition-transform duration-500 group-hover:scale-110 p-2 md:p-4"
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Desktop Best Seller Badge */}
+        {/* Best Seller Badge - Desktop Only or subtle in Mobile */}
         {product.bestSeller && (
-          <Badge className="hidden md:flex absolute top-3 left-3 bg-accent text-black font-bold uppercase tracking-tighter text-[10px] rounded-md px-2 py-0.5">
+          <Badge className="absolute top-3 left-3 bg-accent text-black font-bold uppercase tracking-tighter text-[10px] rounded-md px-2 py-0.5 z-10">
             🔥 MÁS VENDIDO
           </Badge>
         )}
       </div>
       
-      {/* Content Section */}
-      <div className="px-5 pb-6 pt-2 flex flex-col flex-1 gap-1 md:p-4 md:gap-2">
-        {/* Desktop Categories */}
-        <div className="hidden md:flex justify-between items-start gap-2">
+      {/* Content Section - Compact in Mobile */}
+      <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2">
+        {/* Category Label - Now below image for clean look */}
+        <div className="flex justify-between items-start gap-2 mb-1">
           <span className="text-[10px] text-accent font-bold uppercase tracking-wider">
             {product.category}
           </span>
           {product.brand && (
-            <span className="text-[10px] text-muted-foreground uppercase">
+            <span className="text-[10px] text-muted-foreground uppercase hidden md:inline">
               {product.brand}
             </span>
           )}
         </div>
         
-        {/* Name & Short Desc */}
+        {/* Name & Price */}
         <div className="space-y-1">
-          <h3 className="font-headline font-bold text-white text-lg md:text-base line-clamp-2 leading-tight tracking-tight">
+          <h3 className="font-headline font-bold text-white text-base md:text-lg line-clamp-2 leading-tight tracking-tight">
             {product.name}
           </h3>
-          <p className="text-[11px] text-muted-foreground line-clamp-1 opacity-70">
+          {/* Description - Hidden in Mobile for cleaner layout, visible in Desktop */}
+          <p className="hidden md:block text-[11px] text-muted-foreground line-clamp-1 opacity-70">
             {product.description}
           </p>
         </div>
@@ -83,7 +77,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
               className="w-full bg-white text-black hover:bg-white/90 font-bold rounded-2xl md:rounded-md md:h-8 md:text-xs"
               onClick={() => onViewDetails(product)}
             >
-              Ver Detalles
+              Detalles
             </Button>
             <Button
               asChild
