@@ -1,3 +1,4 @@
+
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
@@ -37,6 +38,17 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
+  // Common Premium Close Button
+  const PremiumCloseButton = () => (
+    <DialogClose asChild>
+      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/40 hover:text-white shadow-[0_0_12px_rgba(142,255,127,0.15)] hover:shadow-[0_0_18px_rgba(142,255,127,0.25)] focus:outline-none group">
+        <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+        <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
+        <span className="sr-only">Cerrar</span>
+      </button>
+    </DialogClose>
+  );
+
   if (isPremiumPromo) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
@@ -51,13 +63,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           )}>
             <div className="shine-layer" />
             
-            <DialogClose asChild>
-              <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-accent/20 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-accent/40 hover:text-white shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)] focus:outline-none group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
-                <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
-                <span className="sr-only">Cerrar</span>
-              </button>
-            </DialogClose>
+            <PremiumCloseButton />
             
             <div className="relative w-full mb-1 md:mb-2 z-10">
               <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 rounded-2xl glass-reflective-button-edge flex flex-col items-center gap-0.5 shadow-[0_0_25px_rgba(142,255,127,0.1)]">
@@ -117,7 +123,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               <div className="flex flex-col gap-1.5">
                 <Button 
                   asChild 
-                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-10 md:h-11 rounded-xl text-sm md:text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge"
+                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-10 md:h-11 rounded-xl text-sm md:text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)]"
                 >
                   <a href={waLink} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
@@ -139,13 +145,15 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95">
+      <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
         <DialogHeader className="sr-only">
           <DialogTitle>{product.name}</DialogTitle>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         
-        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden">
+        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative">
+          <PremiumCloseButton />
+
           <div className="w-full md:w-1/2 relative bg-[#0F0F0F] flex flex-col">
             <div className="relative aspect-square w-full">
               <Image
@@ -210,7 +218,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             </div>
 
             <div className="mt-auto pt-6 flex flex-col gap-3">
-              <Button asChild className="w-full bg-white text-black hover:bg-white/90 font-bold h-12 rounded-xl flex items-center justify-center gap-2">
+              <Button asChild className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 rounded-xl text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] hover:shadow-[0_0_20px_rgba(142,255,127,0.25)]">
                 <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                   <WhatsAppIcon className="w-5 h-5" />
                   Comprar por WhatsApp

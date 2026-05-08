@@ -117,7 +117,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex flex-col gap-2">
               <Button
                 className={cn(
-                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge",
+                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]",
                   isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
                 )}
                 onClick={(e) => {
@@ -151,7 +151,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     );
   }
 
-  // Standard Style (Standardized to use the 'Experimental' compact mobile look)
+  // Standard Style
   return (
     <div 
       className={cn(
@@ -201,15 +201,14 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              variant="default"
-              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500"
+              className="w-full glass-button bg-white/10 text-white border-white/20 hover:bg-white/20 font-bold h-9 rounded-lg flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_12px_rgba(142,255,127,0.1)] hover:shadow-[0_0_18px_rgba(142,255,127,0.2)]"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
               }}
             >
-              <ShoppingCart size={14} />
-              <span className="uppercase tracking-tighter text-[10px]">AGREGAR</span>
+              <ShoppingCart size={14} className="relative z-20" />
+              <span className="uppercase tracking-tighter text-[10px] relative z-20">AGREGAR</span>
             </Button>
             
             <a 
