@@ -88,7 +88,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />
-                WhatsApp
+                Consulta
               </a>
             </Button>
           </div>
