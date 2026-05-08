@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --background: 222 47% 3%; /* Azul eléctrico extremadamente profundo */
+    --background: 222 47% 4%; /* Azul eléctrico profundo cinematográfico */
     --foreground: 0 0% 100%;
-    --card: 222 47% 5%; /* Navy profundo tecnológico */
+    --card: 222 47% 6%; /* Navy profundo tecnológico */
     --card-foreground: 0 0% 100%;
-    --popover: 222 47% 5%;
+    --popover: 222 47% 6%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 222 47% 10%;
+    --primary-foreground: 222 47% 4%;
+    --secondary: 222 47% 12%;
     --secondary-foreground: 0 0% 100%;
     --muted: 222 20% 15%;
     --muted-foreground: 222 10% 65%;
@@ -24,6 +24,9 @@
     --input: 222 47% 12%;
     --ring: 188 100% 50%;
     --radius: 0.75rem;
+
+    /* Premium Neon Green Accent */
+    --premium-green: 142 70% 50%;
   }
 }
 

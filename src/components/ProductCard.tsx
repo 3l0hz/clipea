@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -28,12 +27,12 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         {/* Badges Layout */}
         <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
           {product.bestSeller && (
-            <div className="flex items-center gap-1.5 bg-[#111111] border border-white/10 px-3 py-1.5 rounded-full">
+            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-premium-green/30 px-3 py-1.5 rounded-full">
               <span className="text-xs">🔥</span>
               <span className="text-[10px] font-bold text-white tracking-widest uppercase">RECOMENDADO</span>
             </div>
           )}
-          <div className="bg-[#111111] border border-white/10 px-3 py-1.5 rounded-full w-fit">
+          <div className="bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full w-fit">
             <span className="text-[10px] font-bold text-white tracking-widest uppercase">{product.category}</span>
           </div>
         </div>
@@ -97,7 +96,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // Standard Premium Style (Used for Normal, Promos and PRUEBA DESKTOP base)
+  // Standard Premium Style
   return (
     <div 
       className={cn(
@@ -109,7 +108,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
       onClick={() => onViewDetails(product)}
     >
       
-      {/* Image Section - Cinematic Format in Mobile */}
+      {/* Image Section - Cinematic Format */}
       <div className={cn(
         "relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[52px]",
         !isExperimentalDesktop && "md:rounded-[52px]"
@@ -122,11 +121,11 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Best Seller Badge - Glassmorphism in Mobile / Minimalist in Desktop */}
+        {/* Best Seller Badge - Glassmorphism Premium Green */}
         {product.bestSeller && (
           <Badge className={cn(
             "absolute top-4 left-4 z-10 uppercase tracking-[0.12em] text-[9px] font-bold px-2.5 py-1 rounded-lg transition-none",
-            "bg-black/40 backdrop-blur-md border border-accent/20 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5",
+            "bg-black/60 backdrop-blur-md border border-premium-green/30 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]",
             !isExperimentalDesktop && "md:bg-secondary md:backdrop-blur-none md:border-white/10 md:text-white/90 md:shadow-none md:border-t-0 md:border-l-0 md:tracking-widest"
           )}>
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
@@ -134,7 +133,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         )}
       </div>
       
-      {/* Content Section - Compact in Mobile */}
+      {/* Content Section */}
       <div className={cn(
         "px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2",
         isExperimentalDesktop && "md:pt-0"
@@ -207,10 +206,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           </div>
         </div>
       </div>
-      
-      {/* Tech Subtle Points - Decorative */}
-      <div className="absolute top-2 right-6 w-1 h-1 bg-accent/20 rounded-full blur-[1px] md:hidden" />
-      <div className="absolute bottom-20 left-2 w-1 h-1 bg-white/10 rounded-full blur-[1px] md:hidden" />
     </div>
   );
 };
