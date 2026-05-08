@@ -28,12 +28,16 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 export const ProductCard = ({ product, onViewDetails, isExperimental, isExperimentalDesktop }: ProductCardProps) => {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
+  const handleCardClick = () => {
+    onViewDetails(product);
+  };
+
   // LAB: Mobile Experimental Style
   if (isExperimental) {
     return (
       <div 
         className="group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
-        onClick={() => onViewDetails(product)}
+        onClick={handleCardClick}
       >
         <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
           {product.bestSeller && (
@@ -112,7 +116,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
           "group promo-glass-card p-0 h-full flex flex-col cursor-pointer",
           isPruebaDesktop && "glass-reflective-edge"
         )}
-        onClick={() => onViewDetails(product)}
+        onClick={handleCardClick}
       >
         <div className="shine-layer" />
         
@@ -174,14 +178,19 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
             
             <div className="flex flex-col gap-3">
               <Button
-                className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700"
+                className={cn(
+                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold h-14 rounded-2xl flex items-center justify-center gap-3 transition-all duration-700",
+                  isPruebaDesktop && "glass-reflective-button-edge"
+                )}
                 onClick={(e) => {
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
               >
-                <ShoppingCart size={20} />
-                <span className="uppercase tracking-widest text-xs">AGREGAR A BOLSA</span>
+                <ShoppingCart size={20} className={cn(isPruebaDesktop && "relative z-20")} />
+                <span className={cn("uppercase tracking-widest text-xs", isPruebaDesktop && "relative z-20")}>
+                  {isPruebaDesktop ? 'AGREGAR' : 'AGREGAR A BOLSA'}
+                </span>
               </Button>
               
               <a 
@@ -205,7 +214,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
   return (
     <div 
       className="group relative overflow-hidden flex flex-col h-full cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"
-      onClick={() => onViewDetails(product)}
+      onClick={handleCardClick}
     >
       <div className="relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[52px]">
         <Image

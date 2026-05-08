@@ -56,15 +56,15 @@
 }
 
 @keyframes borderGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 @keyframes lightSweep {
   0% { --sweep-x: 0%; --sweep-y: 0%; }
-  25% { --sweep-x: 100%; --sweep-y: 0%; }
+  25% { --sweep-x: 0%; --sweep-y: 100%; }
   50% { --sweep-x: 100%; --sweep-y: 100%; }
-  75% { --sweep-x: 0%; --sweep-y: 100%; }
+  75% { --sweep-x: 100%; --sweep-y: 0%; }
   100% { --sweep-x: 0%; --sweep-y: 0%; }
 }
 
@@ -180,6 +180,36 @@
   z-index: 30;
 }
 
+/* Glass Reflective Button Edge - Special for PRUEBA DESKTOP Button */
+.glass-reflective-button-edge {
+  @apply relative overflow-hidden;
+  border: none !important;
+  box-shadow: 
+    0 0 12px -2px rgba(103, 232, 249, 0.4),
+    0 0 15px -2px rgba(142, 255, 127, 0.3) !important;
+}
+
+.glass-reflective-button-edge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(103, 232, 249, 0.8) 0%,
+    rgba(142, 255, 127, 0.7) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(103, 232, 249, 0.7) 75%,
+    rgba(142, 255, 127, 0.8) 100%
+  ) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent/80 to-gray-500;
 }
@@ -193,6 +223,7 @@
   content: '';
   @apply absolute inset-0 -translate-x-[150%] skew-x-[-30deg] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none;
   animation: glass-shine 4s infinite ease-in-out;
+  z-index: 15;
 }
 
 @keyframes glass-shine {
