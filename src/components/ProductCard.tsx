@@ -84,7 +84,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
               asChild
               variant="outline"
               size="lg"
-              className="w-full border-white/10 text-white hover:bg-white/5 font-bold rounded-2xl md:rounded-md md:h-10 md:text-xs md:border-input"
+              className="w-full border-white/10 text-accent hover:bg-white/5 font-bold rounded-2xl md:rounded-md md:h-10 md:text-xs md:border-accent/20 transition-all"
             >
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                 <MessageCircle size={18} className="md:size-3.5" />
