@@ -36,13 +36,15 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://picsum.photos/seed/elohz-hero-2/1920/1080"
-            alt="Hero Background"
-            fill
-            className="object-cover opacity-30 grayscale"
-            priority
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale"
+          >
+            <source src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/HeroSection/2%20slide/0506%20(2).mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         </div>
         
