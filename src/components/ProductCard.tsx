@@ -31,10 +31,10 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Best Seller Badge - Desktop Only or subtle in Mobile */}
+        {/* Best Seller Badge - Glassmorphism Premium Design */}
         {product.bestSeller && (
-          <Badge className="absolute top-3 left-3 bg-accent text-black font-bold uppercase tracking-tighter text-[10px] rounded-md px-2 py-0.5 z-10">
-            🔥 MÁS VENDIDO
+          <Badge className="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-accent/20 text-white font-bold uppercase tracking-[0.12em] text-[9px] rounded-lg px-2.5 py-1 z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5">
+            <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
           </Badge>
         )}
       </div>
