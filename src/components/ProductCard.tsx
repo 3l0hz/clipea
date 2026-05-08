@@ -36,7 +36,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         </div>
 
         {/* Image Container with Spotlight */}
-        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[32px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
+        <div className="relative aspect-[4/5] overflow-hidden m-2 rounded-[40px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center">
           {/* Spotlight Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
           <Image
@@ -101,8 +101,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
       
       {/* Image Section - Cinematic Format in Mobile */}
       <div className={cn(
-        "relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[44px]",
-        !isExperimentalDesktop && "md:rounded-[44px]"
+        "relative aspect-[4/5] md:aspect-square overflow-hidden flex items-center justify-center p-4 md:p-0 bg-transparent rounded-[52px]",
+        !isExperimentalDesktop && "md:rounded-[52px]"
       )}>
         <Image
           src={product.image}
