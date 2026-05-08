@@ -6,7 +6,19 @@ import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
-import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
+import { 
+  Shield, 
+  Truck, 
+  Zap, 
+  Camera, 
+  Smartphone as BikeIcon, 
+  Instagram, 
+  Youtube, 
+  Twitter, 
+  ShieldCheck, 
+  Headset, 
+  Clock 
+} from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const CATEGORY_ORDER: { label: string; value: Category; description: string }[] = [
@@ -186,30 +198,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 bg-[#0B0B0B] border-t border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-            <div>
-              <h3 className="text-2xl font-headline font-bold text-white mb-2">elohz<span className="text-accent">.</span></h3>
-              <p className="text-muted-foreground text-sm max-w-xs">Especialistas en accesorios para cámaras deportivas GoPro, Insta360 y DJI.</p>
-            </div>
+      {/* New Redesigned Footer */}
+      <footer className="py-24 bg-[#060606] border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 mb-24">
             
-            <div className="flex flex-col gap-2">
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-2">Contacto</h4>
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="text-muted-foreground hover:text-accent transition-colors text-sm">WhatsApp: +56 9 4062 8182</a>
-              <a href="mailto:soporte.elohz@gmail.com" className="text-muted-foreground hover:text-accent transition-colors text-sm">soporte.elohz@gmail.com</a>
+            {/* Columna Marca */}
+            <div className="space-y-10">
+              <a href="#" className="text-4xl font-headline font-bold tracking-tighter text-white">
+                elohz<span className="text-accent">.</span>
+              </a>
+              <p className="text-muted-foreground text-[11px] leading-relaxed max-w-[280px] uppercase font-bold tracking-[0.25em] opacity-80">
+                Accesorios premium para cámaras de acción y creación de contenido técnico de alto nivel.
+              </p>
+              <div className="flex gap-8">
+                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
+                  <Instagram size={22} />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
+                  <Youtube size={22} />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
+                  <Twitter size={22} />
+                </a>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-2">Información</h4>
-              <p className="text-muted-foreground text-sm">Envíos a todo Chile</p>
-              <p className="text-muted-foreground text-sm">Basado en Chile 🇨🇱</p>
+            {/* Columna SERVICIOS */}
+            <div className="space-y-10">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Servicios</h4>
+              <div className="space-y-7">
+                <div className="flex items-center gap-5 group cursor-default">
+                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
+                    <Truck size={18} />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Envíos a todo Chile</span>
+                </div>
+                <div className="flex items-center gap-5 group cursor-default">
+                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
+                    <ShieldCheck size={18} />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Garantía fallas fábrica</span>
+                </div>
+                <div className="flex items-center gap-5 group cursor-default">
+                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
+                    <Headset size={18} />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Soporte personalizado</span>
+                </div>
+                <div className="flex items-center gap-5 group cursor-default">
+                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
+                    <Clock size={18} />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Atención postventa</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna AYUDA & POLÍTICAS */}
+            <div className="space-y-10">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Ayuda & Políticas</h4>
+              <div className="flex flex-col gap-6">
+                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Devoluciones</a>
+                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Términos y condiciones</a>
+                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Política de envíos</a>
+                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Contacto</a>
+              </div>
+              <div className="pt-6 border-t border-white/5 space-y-3">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-medium">WhatsApp: +56 9 4062 8182</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-medium">soporte.elohz@gmail.com</p>
+              </div>
             </div>
           </div>
-          
-          <div className="mt-12 pt-8 border-t border-border text-center">
-            <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} elohz. Todos los derechos reservados.</p>
+
+          {/* Bottom Bar */}
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/20">
+                © 2026 elohz Chile. Todos los derechos reservados.
+              </p>
+              <div className="flex gap-8 opacity-40">
+                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors">Privacy</a>
+                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors">Terms</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-8">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Basado en Chile 🇨🇱</span>
+              <div className="flex gap-4 opacity-10">
+                <div className="w-9 h-6 rounded-sm bg-white" />
+                <div className="w-9 h-6 rounded-sm bg-white" />
+                <div className="w-9 h-6 rounded-sm bg-white" />
+              </div>
+            </div>
           </div>
         </div>
       </footer>
