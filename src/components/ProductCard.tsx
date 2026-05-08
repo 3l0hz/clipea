@@ -31,7 +31,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
           sizes="(max-width: 768px) 80vw, 33vw"
         />
         
-        {/* Best Seller Badge - Glassmorphism Premium Design */}
+        {/* Best Seller Badge - Static Glassmorphism Premium Design */}
         {product.bestSeller && (
           <Badge className="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-accent/20 text-white font-bold uppercase tracking-[0.12em] text-[9px] rounded-lg px-2.5 py-1 z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border-t-white/5 border-l-white/5">
             <span className="mr-1.5 opacity-90">🔥</span> MÁS VENDIDO
@@ -41,7 +41,7 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
       
       {/* Content Section - Compact in Mobile */}
       <div className="px-5 pb-6 pt-0 flex flex-col flex-1 gap-1 md:p-4 md:gap-2">
-        {/* Category Label - Now below image for clean look */}
+        {/* Category Label */}
         <div className="flex justify-between items-start gap-2 mb-1">
           <span className="text-[10px] text-accent font-bold uppercase tracking-wider">
             {product.category}
@@ -58,7 +58,6 @@ export const ProductCard = ({ product, onViewDetails }: ProductCardProps) => {
           <h3 className="font-headline font-bold text-white text-base md:text-lg line-clamp-2 leading-tight tracking-tight">
             {product.name}
           </h3>
-          {/* Description - Hidden in Mobile for cleaner layout, visible in Desktop */}
           <p className="hidden md:block text-[11px] text-muted-foreground line-clamp-1 opacity-70">
             {product.description}
           </p>
