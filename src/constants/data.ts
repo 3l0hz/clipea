@@ -40,7 +40,7 @@ export const PRODUCTS: Product[] = [
   // PROMOS MOTO
   {
     id: 'pack-moto-basico',
-    name: '🔥 Pack Moto Básico',
+    name: 'MOTO START',
     category: 'Promos Moto',
     price: '$39.990',
     image: 'https://picsum.photos/seed/moto-pack-1/600/600',
@@ -57,7 +57,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-esencial',
-    name: '⚡ Pack Moto Esencial',
+    name: 'MOTO CREATOR',
     category: 'Promos Moto',
     price: '$59.990',
     image: 'https://picsum.photos/seed/moto-pack-2/600/600',
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-avanzado',
-    name: '🚀 Pack Moto Avanzado',
+    name: 'MOTO ELITE',
     category: 'Promos Moto',
     price: '$69.990',
     image: 'https://picsum.photos/seed/moto-pack-3/600/600',
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-completo',
-    name: '🏍️ Pack Moto Completo + Parabrisas',
+    name: 'MOTO PRO + PARABRISAS',
     category: 'Promos Moto',
     price: '$82.990',
     image: 'https://picsum.photos/seed/moto-pack-4/600/600',
