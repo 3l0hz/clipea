@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -115,7 +116,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         {/* Badges Layout */}
         <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
           <Badge className="bg-white/10 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
-            PROMO PREMIUN
+            PROMO PREMIUM
           </Badge>
           <div className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase px-1">
             {product.brand || 'ELOHZ'}
@@ -136,7 +137,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
         </div>
 
         {/* Content Section */}
-        <div className="px-8 pb-8 pt-2 flex flex-col flex-1 gap-4">
+        <div className="px-8 pb-8 pt-2 flex flex-col flex-1 gap-5">
           <div className="space-y-2">
             <h3 className="font-headline font-bold text-white text-xl leading-tight tracking-tight uppercase bg-clip-text">
               {product.name}
@@ -145,6 +146,18 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
               {product.description}
             </p>
           </div>
+
+          {/* Highlights Premium */}
+          {product.highlights && (
+            <div className="flex flex-col gap-2 pt-1">
+              {product.highlights.map((h, i) => (
+                <div key={i} className="flex items-center gap-2.5">
+                  <div className="w-1 h-1 rounded-full bg-accent/50" />
+                  <span className="text-[10px] text-white/60 font-medium uppercase tracking-widest">{h}</span>
+                </div>
+              ))}
+            </div>
+          )}
           
           <div className="mt-auto pt-4 flex flex-col gap-6">
             <div className="flex items-baseline gap-2">
@@ -152,7 +165,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
                 {product.price}
               </span>
               <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest line-through">
-                $129.990
+                {product.price === '$39.990' ? '$54.990' : product.price === '$59.990' ? '$79.990' : '$99.990'}
               </span>
             </div>
             
@@ -185,7 +198,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isExperime
     );
   }
 
-  // ALL OTHER DESKTOP CARDS: PREVIOUS PREMIUM STYLE
+  // ALL OTHER CARDS
   return (
     <div 
       className="group relative overflow-hidden flex flex-col h-full cursor-pointer premium-mobile-card border-none rounded-[24px] shadow-2xl"

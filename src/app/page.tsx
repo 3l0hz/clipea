@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
@@ -8,6 +9,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { Shield, Truck, Zap, Camera, Smartphone as BikeIcon } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const CATEGORIES: Category[] = [
   'Promos Moto',
@@ -22,6 +24,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All');
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const filteredProducts = useMemo(() => {
     if (selectedCategory === 'All') return PRODUCTS;
@@ -158,6 +161,7 @@ export default function Home() {
                 key={product.id}
                 product={product}
                 onViewDetails={handleViewDetails}
+                isExperimentalDesktop={!isMobile && product.category === 'Promos Moto'}
               />
             ))}
           </div>

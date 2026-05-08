@@ -14,6 +14,7 @@ export interface Product {
   brand?: string;
   bestSeller?: boolean;
   videoUrl?: string;
+  highlights?: string[];
 }
 
 export interface FAQItem {

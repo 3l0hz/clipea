@@ -27,10 +27,84 @@ export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
   compatibility: 'Desktop Sandbox',
   recommendedUse: 'Visual Lab',
   brand: 'Prototyping',
-  bestSeller: false
+  bestSeller: false,
+  highlights: [
+    'Vidrio Templado 2.5D',
+    'Efecto Espejo Premium',
+    'Acabado Metálico',
+    'Corte Laser Preciso'
+  ]
 };
 
 export const PRODUCTS: Product[] = [
+  // PROMOS MOTO
+  {
+    id: 'pack-moto-basico',
+    name: '🔥 Pack Moto Básico',
+    category: 'Promos Moto',
+    price: '$39.990',
+    image: 'https://picsum.photos/seed/moto-pack-1/600/600',
+    description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
+    compatibility: 'Universal',
+    recommendedUse: 'Vlogs urbanos',
+    highlights: [
+      'Selfie invisible 1.20 m',
+      'Soporte moto reforzado',
+      'Compatible Insta360 / GoPro / DJI',
+      'Ideal para viajes y rutas urbanas'
+    ],
+    bestSeller: true
+  },
+  {
+    id: 'pack-moto-esencial',
+    name: '⚡ Pack Moto Esencial',
+    category: 'Promos Moto',
+    price: '$59.990',
+    image: 'https://picsum.photos/seed/moto-pack-2/600/600',
+    description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
+    compatibility: 'Universal',
+    recommendedUse: 'Contenido dinámico',
+    highlights: [
+      'Sistema reforzado',
+      'POV más estable',
+      'Compatible Insta360 / GoPro / DJI',
+      'Ideal para contenido dinámico'
+    ]
+  },
+  {
+    id: 'pack-moto-avanzado',
+    name: '🚀 Pack Moto Avanzado',
+    category: 'Promos Moto',
+    price: '$69.990',
+    image: 'https://picsum.photos/seed/moto-pack-3/600/600',
+    description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
+    compatibility: 'Universal',
+    recommendedUse: 'Carretera y rutas largas',
+    highlights: [
+      'Construcción CNC premium',
+      'Anti vibración',
+      'Mayor seguridad en conducción',
+      'Ideal para carretera y rutas largas'
+    ],
+    bestSeller: true
+  },
+  {
+    id: 'pack-moto-completo',
+    name: '🏍️ Pack Moto Completo + Parabrisas',
+    category: 'Promos Moto',
+    price: '$82.990',
+    image: 'https://picsum.photos/seed/moto-pack-4/600/600',
+    description: 'La configuración más premium para grabar contenido cinematográfico en moto.',
+    compatibility: 'Universal',
+    recommendedUse: 'Touring premium',
+    highlights: [
+      'Soporte parabrisas CNC',
+      'Máxima estabilidad',
+      'Compatible Insta360 / GoPro / DJI',
+      'Setup touring premium'
+    ]
+  },
+  // TRÍPODES
   {
     id: 'selfie1.20',
     name: 'Selfie Stick Telesin 1.2m',
