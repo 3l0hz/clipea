@@ -37,7 +37,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // PREMIUM PROMO MODAL STYLE (Hero Product Experience - Compact Version)
   if (isPremiumPromo) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
@@ -48,12 +47,11 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           </DialogHeader>
           
           <div className={cn(
-            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-5 md:p-8 gap-4 md:gap-6 rounded-[24px] md:rounded-[32px] w-full"
+            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-hidden flex flex-col items-center text-center p-5 md:p-8 gap-3 md:gap-5 rounded-[24px] md:rounded-[32px] w-full"
           )}>
             <div className="shine-layer" />
             
-            {/* Header / Badges */}
-            <div className="flex flex-col items-center gap-2 z-10">
+            <div className="flex flex-col items-center gap-1.5 z-10">
               <Badge className="bg-accent/10 text-accent border-accent/20 px-3 py-1 rounded-full text-[8px] md:text-[9px] font-bold tracking-[0.25em] uppercase">
                 PROMO EXCLUSIVA ELOHZ
               </Badge>
@@ -62,9 +60,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </h2>
             </div>
 
-            {/* Immersive Product Hero Container - Optimized Height */}
-            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[20px] md:rounded-[24px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-3 md:p-4">
-              {/* Premium Glow Effect */}
+            <div className="relative w-full aspect-square md:aspect-[16/10] rounded-[20px] md:rounded-[24px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-2 md:p-3">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.12),transparent_60%)] animate-pulse" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(142,255,127,0.06),transparent_50%)]" />
               
@@ -79,9 +75,8 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </div>
             </div>
 
-            {/* Info Grid & Features */}
-            <div className="w-full space-y-4 md:space-y-6 z-10">
-              <div className="space-y-2">
+            <div className="w-full space-y-3 md:space-y-4 z-10">
+              <div className="space-y-1.5">
                 <div className="text-3xl md:text-4xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-2">
                   {product.price}
                   <span className="text-[9px] font-bold text-accent/50 line-through tracking-widest block opacity-50">CLP</span>
@@ -91,9 +86,8 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 </p>
               </div>
 
-              {/* Highlights/Features Grid - Compact */}
               {product.highlights && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-4 border-y border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-2.5 border-y border-white/10">
                   {product.highlights.map((highlight, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-left">
                       <CheckCircle2 size={12} className="text-accent shrink-0" />
@@ -103,7 +97,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4 pt-1">
+              <div className="grid grid-cols-2 gap-4">
                 <div className="text-left space-y-1">
                   <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">Compatibilidad</h4>
                   <p className="text-white text-[10px] md:text-[11px] font-bold tracking-tight">{product.compatibility}</p>
@@ -114,11 +108,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-2 pt-2">
+              <div className="flex flex-col gap-2">
                 <Button 
                   asChild 
-                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 md:h-13 rounded-xl text-base md:text-lg font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge"
+                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-11 md:h-12 rounded-xl text-base md:text-lg font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge"
                 >
                   <a href={waLink} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
@@ -138,7 +131,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
     );
   }
 
-  // STANDARD MODAL STYLE (For regular products)
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95">
@@ -148,7 +140,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
         </DialogHeader>
         
         <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden">
-          {/* Gallery - Left (Desktop) / Top (Mobile) */}
           <div className="w-full md:w-1/2 relative bg-[#0F0F0F] flex flex-col">
             <div className="relative aspect-square w-full">
               <Image
@@ -169,7 +160,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 </>
               )}
             </div>
-            {/* Thumbnails */}
             {images.length > 1 && (
               <div className="flex gap-2 p-4 overflow-x-auto justify-center">
                 {images.map((img, idx) => (
@@ -185,7 +175,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             )}
           </div>
 
-          {/* Info - Right (Desktop) / Bottom (Mobile) */}
           <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col gap-6 md:overflow-y-auto bg-card">
             <div className="space-y-2">
               <div className="flex justify-between items-center">
