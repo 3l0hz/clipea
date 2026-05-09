@@ -123,7 +123,13 @@ export const PRODUCTS: Product[] = [
     name: 'Selfie Stick Carbono 2m',
     category: 'Bastones Selfie',
     price: '$34.990',
-    image: getImg('Selfie2m'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/3.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/4.png'
+    ],
     description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
     compatibility: 'Insta360 X3/X4, GoPro',
     recommendedUse: 'Tomas de dron falsas, efectos 360',
