@@ -37,7 +37,7 @@ export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
 
 export const EXPERIMENTAL_NORMAL_PRODUCT: Product = {
   id: 'PRUEBA_NORMAL',
-  name: 'ADAPTADOR DJI ACTION 360',
+  name: 'PRUEBA PRODUCTO',
   category: 'Accesorios Cámara',
   price: '$12.990',
   image: 'https://picsum.photos/seed/dji-adapter/600/600',
@@ -61,13 +61,13 @@ export const EXPERIMENTAL_NORMAL_PRODUCT_V2: Product = {
   name: 'ADAPTADOR DJI ACTION 360 V2',
   category: 'Accesorios Cámara',
   price: '$12.990',
-  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
+  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
   images: [
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/1.png',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/4(1).jpg',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/adaptador%20dji%20sunny.jpg'
   ],
   description: 'Adaptador magnético de liberación rápida compatible con DJI Osmo Action y OSMO 360. Sistema de doble fijación con imán y seguro metálico para máxima estabilidad en grabaciones dinámicas.',
