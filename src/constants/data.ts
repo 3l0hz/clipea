@@ -61,11 +61,11 @@ export const EXPERIMENTAL_NORMAL_PRODUCT_V2: Product = {
   name: 'ADAPTADOR DJI ACTION 360 V2',
   category: 'Accesorios Cámara',
   price: '$12.990',
-  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
+  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
   images: [
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/1.png',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/4(1).jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
     'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/adaptador%20dji%20sunny.jpg'
