@@ -90,9 +90,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           {/* PARTE VISUAL: Galería e Imagen */}
           <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col relative bg-transparent shrink-0">
             <div className="relative aspect-square md:h-full w-full flex items-center justify-center overflow-hidden bg-transparent">
+              {/* Overlay sutil para integrar imagen */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.1),transparent_70%)] pointer-events-none" />
               
-              <div className="relative w-full h-full flex items-center justify-center p-4 md:p-8">
+              <div className="relative w-full h-full flex items-center justify-center p-2 md:p-8">
                 {showModel && product.modelUrl ? (
                   <div className="w-full h-full min-h-[300px]">
                     <ModelViewer src={product.modelUrl} poster={product.image} alt={product.name} />
@@ -103,7 +104,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                       src={images[currentImageIndex]}
                       alt={product.name}
                       fill
-                      className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                      className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-700"
                       priority
                     />
                   </div>
@@ -121,14 +122,16 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 )}
               </div>
 
-              {/* Selector de medios (miniaturas) */}
-              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex gap-2 md:gap-3 px-6 overflow-x-auto justify-center z-20 no-scrollbar">
+              {/* Selector de medios (miniaturas) - Optimizado para evitar cortes de borde en mobile */}
+              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex gap-2 md:gap-3 px-6 py-1 overflow-x-auto justify-center z-20 no-scrollbar">
                 {product.modelUrl && (
                   <button
                     onClick={() => setShowModel(true)}
                     className={cn(
                       "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl shrink-0 group",
-                      showModel ? "border-accent scale-105 md:scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" : "border-white/10 opacity-60"
+                      showModel 
+                        ? "border-accent scale-105 md:scale-110 shadow-[0_0_20px_rgba(103,232,249,0.3)] ring-1 ring-accent/30" 
+                        : "border-white/10 opacity-60"
                     )}
                   >
                     <Box size={20} className={cn("transition-colors md:w-6 md:h-6", showModel ? "text-accent" : "text-white/70")} />
@@ -141,7 +144,9 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                     onClick={() => { setShowModel(false); setCurrentImageIndex(idx); }}
                     className={cn(
                       "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all bg-white/[0.03] backdrop-blur-md shrink-0",
-                      !showModel && currentImageIndex === idx ? "border-accent scale-105 md:scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" : "border-white/10 opacity-60"
+                      !showModel && currentImageIndex === idx 
+                        ? "border-accent scale-105 md:scale-110 shadow-[0_0_20px_rgba(103,232,249,0.3)] ring-1 ring-accent/30" 
+                        : "border-white/10 opacity-60"
                     )}
                   >
                     <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover p-1" />
@@ -153,10 +158,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
           {/* PARTE INFORMACIÓN */}
           <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col bg-transparent md:border-l md:border-white/5">
-            <div className="flex-1 overflow-y-auto px-5 py-5 md:px-16 md:py-16 space-y-4 md:space-y-10">
+            <div className="flex-1 overflow-y-auto px-5 py-4 md:px-16 md:py-16 space-y-4 md:space-y-10">
               
               {/* Encabezado */}
-              <div className="space-y-2 md:space-y-4">
+              <div className="space-y-1 md:space-y-4">
                 <div className="space-y-1 md:space-y-2">
                   <div className="flex items-center gap-2 md:gap-3">
                     <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.4em] text-cyan-400/80">
@@ -199,7 +204,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </div>
 
               {/* Grid de Especificaciones */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-10 py-3 md:py-8 border-y border-cyan-500/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-10 py-2 md:py-8 border-y border-cyan-500/10">
                 <div className="space-y-1 md:space-y-2">
                   <h4 className="text-[8px] md:text-[10px] font-bold uppercase text-cyan-400/40 tracking-[0.4em]">Compatibilidad</h4>
                   <p className="text-white text-xs md:text-base font-bold tracking-tight bg-white/5 w-fit px-2.5 py-1.5 rounded-lg border border-white/5">
@@ -232,11 +237,11 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               )}
             </div>
 
-            {/* Acciones de Compra Quick */}
+            {/* Acciones de Compra Quick - Refinado con estilo glass tecnológico */}
             <div className="p-5 md:px-16 md:py-10 bg-white/[0.01] backdrop-blur-2xl border-t border-cyan-500/10 flex flex-col sm:flex-row items-center gap-3 md:gap-6">
               <Button 
                 onClick={handleAddToCart}
-                className="w-full sm:w-2/3 h-14 md:h-16 rounded-[24px] text-sm md:text-base font-bold flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 bg-black/20 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 hover:scale-[1.03] active:scale-95 shadow-[0_20px_40px_rgba(103,232,249,0.15)] glass-button glass-reflective-button-edge"
+                className="w-full sm:w-2/3 h-14 md:h-16 rounded-[24px] text-sm md:text-base font-bold flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 bg-black/40 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 hover:scale-[1.03] active:scale-95 shadow-[0_0_30px_rgba(103,232,249,0.15)] glass-button glass-reflective-button-edge"
               >
                 <ShoppingCart size={18} strokeWidth={2.5} className="md:w-5 md:h-5 text-cyan-400" />
                 <span className="tracking-[0.1em] md:tracking-[0.15em] uppercase font-black">Agregar al Carrito</span>
