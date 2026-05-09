@@ -83,16 +83,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
 
           <div className="mt-auto pt-1 flex flex-col gap-3">
-            <div className="flex items-baseline gap-3">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
               <span className={cn(
-                "font-headline font-extrabold text-white tracking-tighter",
-                isMobile ? "text-3xl" : "text-3xl"
+                "font-headline font-extrabold text-white tracking-tighter leading-tight",
+                isMobile ? "text-[26px]" : "text-3xl"
               )}>
                 {product.price}
               </span>
               <span className={cn(
-                "font-bold text-white/20 uppercase line-through",
-                isMobile ? "text-sm tracking-tight" : "text-[10px] tracking-widest"
+                "font-bold text-white/20 uppercase line-through leading-tight",
+                isMobile ? "text-[11px] tracking-tight" : "text-[10px] tracking-widest"
               )}>
                 {product.price === '$39.990' ? '$54.990' : 
                  product.price === '$59.990' ? '$79.990' : 
