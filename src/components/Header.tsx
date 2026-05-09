@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, User, ShoppingCart } from 'lucide-react';
@@ -8,10 +9,10 @@ import { CartDrawer } from './CartDrawer';
 import { useCart } from '@/context/CartContext';
 
 const CATEGORIES = [
-  { label: 'Promos Moto', href: '#catalog' },
+  { label: 'Soportes Moto / Vehículo', href: '#catalog' },
   { label: 'Trípodes', href: '#catalog' },
   { label: 'Bastones Selfie', href: '#catalog' },
-  { label: 'Soportes Moto / Vehículo', href: '#catalog' },
+  { label: 'Promos Moto', href: '#catalog' },
   { label: 'Accesorios Cámara', href: '#catalog' },
   { label: 'Accesorios Corporales', href: '#catalog' },
 ];

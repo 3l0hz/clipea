@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -23,9 +24,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const CATEGORY_ORDER: { label: string; value: Category; description: string }[] = [
   { 
-    label: 'Bastones Selfie', 
-    value: 'Bastones Selfie',
-    description: 'Captura ángulos increíbles y tomas tipo drone con nuestra selección de bastones invisibles y de carbono.'
+    label: 'Soportes Moto / Vehículo', 
+    value: 'Soportes Moto / Vehículo',
+    description: 'Fijaciones de alta resistencia para manillares, espejos y superficies curvas en cualquier terreno.'
   },
   { 
     label: 'Trípodes', 
@@ -33,14 +34,14 @@ const CATEGORY_ORDER: { label: string; value: Category; description: string }[] 
     description: 'Estabilidad total para tus grabaciones estáticas, time-lapses y vlogs profesionales.'
   },
   { 
+    label: 'Bastones Selfie', 
+    value: 'Bastones Selfie',
+    description: 'Captura ángulos increíbles y tomas tipo drone con nuestra selección de bastones invisibles y de carbono.'
+  },
+  { 
     label: 'Promos Moto', 
     value: 'Promos Moto',
     description: 'Packs exclusivos diseñados para motovloggers y aventureros que buscan el setup perfecto con el mejor ahorro.'
-  },
-  { 
-    label: 'Soportes Moto / Vehículo', 
-    value: 'Soportes Moto / Vehículo',
-    description: 'Fijaciones de alta resistencia para manillares, espejos y superficies curvas en cualquier terreno.'
   },
   { 
     label: 'Soportes Corporales', 
