@@ -216,7 +216,14 @@ export const PRODUCTS: Product[] = [
     name: 'Mango Bullet Time',
     category: 'Accesorios Cámara',
     price: '$24.990',
-    image: getImg('Bullet'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/3.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/4.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/0.png'
+    ],
     description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
     compatibility: 'Insta360 ONE X/X2/X3',
     recommendedUse: 'Efectos cinemáticos 360',
