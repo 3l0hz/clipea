@@ -104,7 +104,7 @@ export const PRODUCTS: Product[] = [
       'Setup touring premium'
     ]
   },
-  // TRÍPODES
+  // BASTONES
   {
     id: 'selfie1.20',
     name: 'Selfie Stick Telesin 1.2m',
@@ -152,6 +152,7 @@ export const PRODUCTS: Product[] = [
     brand: 'Telesin',
     bestSeller: true
   },
+  // TRÍPODES
   {
     id: 'MinitripodeGoPro',
     name: 'Minitrípode Pro GoPro',
@@ -163,6 +164,7 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/2(2).jpg',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/20250912_133035.jpg'
     ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/minitripodegopro-optimizado.glb',
     description: 'Trípode compacto que también funciona como empuñadura.',
     compatibility: 'Todas las GoPro',
     recommendedUse: 'Time-lapse, vlogs estáticos',
@@ -179,11 +181,13 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/2.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/3.png'
     ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/mini%20tripode%20insta-optimizado.glb',
     description: 'Diseño ultra estable para cámaras 360 pesadas.',
     compatibility: 'Insta360 ONE X/X2/X3/X4',
     recommendedUse: 'Superficies planas, tomas bajas',
     brand: 'Insta360'
   },
+  // SOPORTES VEHICULO
   {
     id: 'soportemotomanillar',
     name: 'Soporte Moto Manillar CNC',
@@ -216,6 +220,7 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Parabrisas, tanques de moto, autos',
     recommendedUse: 'Grabación onboard'
   },
+  // OTROS
   {
     id: 'Bullet',
     name: 'Mango Bullet Time',
@@ -258,6 +263,7 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera%201.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/2.png'
     ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera-optimizado.glb',
     description: 'Correas elásticas de alta calidad para tomas en primera persona.',
     compatibility: 'Universal',
     recommendedUse: 'Deportes de acción, POV',

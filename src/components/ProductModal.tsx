@@ -1,14 +1,16 @@
+
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { ChevronLeft, ChevronRight, X, ShoppingCart } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ShoppingCart, Box } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
+import { ModelViewer } from './ModelViewer';
 
 interface ProductModalProps {
   product: Product | null;
@@ -29,12 +31,14 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showModel, setShowModel] = useState(false);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
   useEffect(() => {
     if (isOpen) {
       setCurrentImageIndex(0);
+      setShowModel(false);
     }
   }, [isOpen]);
 
@@ -44,8 +48,14 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const images = product.images || [product.image];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
-  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  const nextImage = () => {
+    setShowModel(false);
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  const prevImage = () => {
+    setShowModel(false);
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -70,13 +80,11 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         
-        {/* Ambient Glow for Promo */}
         {isPromo && (
           <div className="absolute -inset-[500px] pointer-events-none opacity-20 z-0 bg-[radial-gradient(circle_at_50%_50%,rgba(142,255,127,0.15),transparent_70%)]" />
         )}
 
         <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative z-10">
-          {/* Close Button */}
           <DialogClose asChild>
             <button 
               className={cn(
@@ -91,7 +99,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             </button>
           </DialogClose>
 
-          {/* Left Side: Image Section */}
           <div 
             className={cn(
               "w-full md:w-1/2 relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[500px] bg-transparent"
@@ -107,25 +114,29 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             />
             
             <div className="relative w-full h-full p-10 flex items-center justify-center">
-              <div 
-                className={cn(
-                  "relative w-full h-full flex items-center justify-center",
-                  isPromo && "drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-                )}
-              >
-                <Image
-                  src={images[currentImageIndex]}
-                  alt={product.name}
-                  fill
+              {showModel && product.modelUrl ? (
+                <ModelViewer src={product.modelUrl} poster={product.image} alt={product.name} />
+              ) : (
+                <div 
                   className={cn(
-                    "object-contain p-4 md:p-10 transition-transform duration-700",
-                    isPromo && "filter brightness-[1.05] contrast-[1.05]"
+                    "relative w-full h-full flex items-center justify-center",
+                    isPromo && "drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
                   )}
-                  priority
-                />
-              </div>
+                >
+                  <Image
+                    src={images[currentImageIndex]}
+                    alt={product.name}
+                    fill
+                    className={cn(
+                      "object-contain p-4 md:p-10 transition-transform duration-700",
+                      isPromo && "filter brightness-[1.05] contrast-[1.05]"
+                    )}
+                    priority
+                  />
+                </div>
+              )}
               
-              {images.length > 1 && (
+              {images.length > 1 && !showModel && (
                 <>
                   <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
                     <ChevronLeft size={24} />
@@ -137,15 +148,27 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               )}
             </div>
             
-            {images.length > 1 && (
-              <div className="absolute bottom-6 left-0 right-0 flex gap-2 px-4 overflow-x-auto justify-center z-20">
+            {(images.length > 1 || product.modelUrl) && (
+              <div className="absolute bottom-6 left-0 right-0 flex gap-2 px-4 overflow-x-auto justify-center z-20 scrollbar-hide">
+                {product.modelUrl && (
+                  <button
+                    onClick={() => setShowModel(true)}
+                    className={cn(
+                      "relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm group/btn3d",
+                      showModel ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
+                    )}
+                  >
+                    <Box size={20} className={cn("transition-colors", showModel ? "text-accent" : "text-white/70")} />
+                    <span className="absolute bottom-0 inset-x-0 text-[7px] font-bold text-center bg-accent/90 text-black uppercase tracking-tighter py-0.5">3D VIEW</span>
+                  </button>
+                )}
                 {images.map((img, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
+                    onClick={() => { setShowModel(false); setCurrentImageIndex(idx); }}
                     className={cn(
                       "relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all",
-                      currentImageIndex === idx ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
+                      !showModel && currentImageIndex === idx ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
                     )}
                   >
                     <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover" />
@@ -155,7 +178,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             )}
           </div>
 
-          {/* Right Side: Info Section */}
           <div 
             className={cn(
               "w-full md:w-1/2 p-8 md:p-12 flex flex-col gap-8 md:overflow-y-auto relative",

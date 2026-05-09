@@ -8,6 +8,7 @@ export interface Product {
   price: string;
   image: string;
   images?: string[];
+  modelUrl?: string;
   description: string;
   compatibility: string;
   recommendedUse: string;
