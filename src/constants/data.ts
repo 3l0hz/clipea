@@ -237,7 +237,11 @@ export const PRODUCTS: Product[] = [
     name: 'Pechera Ajustable Telesin',
     category: 'Accesorios Corporales',
     price: '$16.990',
-    image: getImg('PecheraTelesin'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera%201.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera%201.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/2.png'
+    ],
     description: 'Correas elásticas de alta calidad para tomas en primera persona.',
     compatibility: 'Universal',
     recommendedUse: 'Deportes de acción, POV',
