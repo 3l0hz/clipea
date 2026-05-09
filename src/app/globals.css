@@ -175,6 +175,48 @@
   z-index: 30;
 }
 
+/* Glass Reflective Border - Intensified for PROMO */
+.glass-reflective-edge-promo {
+  border: none !important;
+  box-shadow: 
+    0 0 25px -5px rgba(103, 232, 249, 0.3),
+    0 0 30px -5px rgba(142, 255, 127, 0.2),
+    0 25px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+.glass-reflective-edge-promo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.08), transparent 60%, rgba(255, 255, 255, 0.03)) !important;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.glass-reflective-edge-promo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px; /* Aumento sutil del grosor visual */
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(103, 232, 249, 0.8) 0%,
+    rgba(142, 255, 127, 0.7) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(103, 232, 249, 0.6) 75%,
+    rgba(142, 255, 127, 0.8) 100%
+  ) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 30;
+}
+
 /* Luxury Glass Button Reflective Edge - Updated for Verde y Cian */
 .glass-reflective-button-edge {
   @apply relative;
@@ -235,9 +277,9 @@
 .crystal-glass-button {
   @apply relative bg-black/60 backdrop-blur-2xl border-none !important;
   background-image: 
-    linear-gradient(120deg, transparent 25%, rgba(103, 232, 249, 0.25) 45%, rgba(255, 255, 255, 0.3) 50%, rgba(103, 232, 249, 0.25) 55%, transparent 75%),
-    radial-gradient(circle at 30% 30%, rgba(103, 232, 249, 0.18) 0%, transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.18) 0%, transparent 60%) !important;
+    linear-gradient(120deg, transparent 25%, rgba(103, 232, 249, 0.35) 45%, rgba(255, 255, 255, 0.4) 50%, rgba(103, 232, 249, 0.35) 55%, transparent 75%),
+    radial-gradient(circle at 30% 30%, rgba(103, 232, 249, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.25) 0%, transparent 60%) !important;
   background-size: 200% 100%, 100% 100%, 100% 100% !important;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(103, 232, 249, 0.1) !important;
   animation: crystalRefraction 6s ease-in-out infinite !important;
@@ -251,11 +293,11 @@
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(103, 232, 249, 0.7) 25%,
-    rgba(59, 130, 246, 0.6) 50%,
-    rgba(103, 232, 249, 0.7) 75%,
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(103, 232, 249, 0.8) 25%,
+    rgba(59, 130, 246, 0.7) 50%,
+    rgba(103, 232, 249, 0.8) 75%,
+    rgba(255, 255, 255, 0.5) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -272,9 +314,9 @@
   background: conic-gradient(
     from 0deg,
     transparent 0 340deg,
-    rgba(255, 255, 255, 0.6) 345deg,
-    rgba(103, 232, 249, 0.9) 350deg,
-    rgba(59, 130, 246, 0.8) 355deg,
+    rgba(255, 255, 255, 0.7) 345deg,
+    rgba(103, 232, 249, 1) 350deg,
+    rgba(59, 130, 246, 0.9) 355deg,
     transparent 360deg
   );
   animation: crystalSweep 5s linear infinite; /* Faster and more visible */
