@@ -43,7 +43,7 @@ export const PRODUCTS: Product[] = [
     name: 'MOTO START',
     category: 'Promos Moto',
     price: '$39.990',
-    image: 'https://picsum.photos/seed/moto-pack-1/600/600',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
     description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
     compatibility: 'Universal',
     recommendedUse: 'Vlogs urbanos',
