@@ -43,6 +43,7 @@ export const PRODUCTS: Product[] = [
     category: 'Promos Moto',
     price: '$39.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
     description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
     compatibility: 'Universal',
     recommendedUse: 'Vlogs urbanos',
