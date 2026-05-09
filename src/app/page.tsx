@@ -200,7 +200,7 @@ export default function Home() {
                           <ProductCard
                             product={EXPERIMENTAL_NORMAL_PRODUCT}
                             onViewDetails={handleViewDetails}
-                            isPremium={true}
+                            isPremium={false}
                           />
                         </div>
                       </>
