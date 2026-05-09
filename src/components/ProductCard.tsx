@@ -62,7 +62,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "relative overflow-hidden flex items-center justify-center border border-white/5",
-          isMobile ? "aspect-square m-1 rounded-[24px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A]" : "aspect-square m-1 rounded-[32px] bg-gradient-to-br from-[#1A1A1A] to-[#050505]"
+          isMobile ? "aspect-square m-1 rounded-[24px] bg-transparent" : "aspect-square m-1 rounded-[32px] bg-transparent"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
           <Image
@@ -74,6 +74,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               isMobile ? "p-2" : "p-1"
             )}
             sizes={isMobile ? "80vw" : "33vw"}
+            priority={product.bestSeller}
           />
         </div>
 
@@ -174,7 +175,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
       </div>
 
       <div className={cn(
-        "relative aspect-square overflow-hidden m-1 rounded-[16px] bg-gradient-to-b from-[#121212] to-[#0A0A0A] flex items-center justify-center transition-all",
+        "relative aspect-square overflow-hidden m-1 rounded-[16px] bg-transparent flex items-center justify-center transition-all",
         !isMobile ? "m-2 rounded-[12px]" : ""
       )}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
@@ -182,8 +183,9 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain transition-all duration-700 group-hover:scale-110 p-0.5 filter brightness-[1.03] contrast-[1.01] saturate-[1.05]"
+          className="object-contain transition-transform duration-700 group-hover:scale-110 p-0.5 filter brightness-[1.03] contrast-[1.01] saturate-[1.05]"
           sizes="(max-width: 768px) 80vw, 33vw"
+          priority={product.bestSeller}
         />
       </div>
 

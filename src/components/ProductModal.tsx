@@ -94,10 +94,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           {/* Left Side: Image Section */}
           <div 
             className={cn(
-              "w-full md:w-1/2 relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[500px]",
-              isPromo 
-                ? "bg-gradient-to-br from-[#050810] via-[#020306] to-[#020306]" 
-                : "bg-[#0a0a0a]"
+              "w-full md:w-1/2 relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[500px] bg-transparent"
             )}
           >
             <div 
@@ -112,7 +109,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <div className="relative w-full h-full p-10 flex items-center justify-center">
               <div 
                 className={cn(
-                  "relative w-full h-full flex items-center justify-center transition-all duration-700",
+                  "relative w-full h-full flex items-center justify-center",
                   isPromo && "drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
                 )}
               >
@@ -121,7 +118,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   alt={product.name}
                   fill
                   className={cn(
-                    "object-contain p-4 md:p-10",
+                    "object-contain p-4 md:p-10 transition-transform duration-700",
                     isPromo && "filter brightness-[1.05] contrast-[1.05]"
                   )}
                   priority

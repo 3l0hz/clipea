@@ -51,7 +51,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
           ) : (
             cart.map((item) => (
               <div key={item.id} className="group relative bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex gap-4 hover:bg-white/[0.05] transition-all hover:border-accent/20">
-                <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-black/40 border border-white/5">
+                <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-transparent border border-white/5">
                   <Image src={item.image} alt={item.name} fill className="object-contain p-2" />
                 </div>
                 <div className="flex-1 space-y-2">
