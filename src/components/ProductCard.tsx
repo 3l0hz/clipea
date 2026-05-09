@@ -182,7 +182,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain transition-transform duration-500 group-hover:scale-105 p-3"
+          className="object-contain transition-all duration-700 group-hover:scale-110 p-0.5 filter brightness-[1.03] contrast-[1.01] saturate-[1.05]"
           sizes="(max-width: 768px) 80vw, 33vw"
         />
       </div>
