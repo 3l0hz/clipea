@@ -241,17 +241,17 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <div className="p-5 md:px-16 md:py-5 bg-white/[0.01] backdrop-blur-2xl border-t border-white/[0.05] flex flex-col sm:flex-row items-center gap-3 md:gap-10">
               <Button 
                 onClick={handleAddToCart}
-                className="w-full sm:w-2/3 h-14 md:h-14 rounded-[24px] text-sm md:text-base font-bold flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 bg-black/40 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 hover:scale-[1.03] active:scale-95 shadow-[0_0_30px_rgba(103,232,249,0.15)] glass-button glass-reflective-button-edge"
+                className="w-full sm:w-2/3 h-14 md:h-14 rounded-[24px] text-sm md:text-base font-bold flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 premium-liquid-glass-button"
               >
-                <ShoppingCart size={18} strokeWidth={2.5} className="md:w-5 md:h-5 text-cyan-400" />
-                <span className="tracking-[0.1em] md:tracking-[0.15em] uppercase font-black">Agregar al Carrito</span>
+                <ShoppingCart size={18} strokeWidth={2.5} className="md:w-5 md:h-5 text-white/90" />
+                <span className="tracking-[0.1em] md:tracking-[0.15em] uppercase font-black text-white">Agregar al Carrito</span>
               </Button>
               <div className="flex flex-row sm:flex-col items-center sm:items-start justify-center gap-4 sm:gap-1 w-full sm:w-1/3">
                 <a 
                   href={waLink} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center gap-2 text-[10px] md:text-[10px] text-white/40 hover:text-cyan-400 transition-colors font-bold uppercase tracking-[0.2em]"
+                  className="flex items-center gap-2 text-[10px] md:text-[10px] text-white/40 hover:text-white transition-colors font-bold uppercase tracking-[0.2em]"
                 >
                   <WhatsAppIcon className="w-3.5 h-3.5 md:w-3.5 md:h-3.5 opacity-60" />
                   Consulta rápida
