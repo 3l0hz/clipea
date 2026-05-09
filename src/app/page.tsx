@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
   Shield, 
@@ -177,16 +177,28 @@ export default function Home() {
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                     {cat.value === 'Accesorios Cámara' && (
                       <>
-                        <div className="md:hidden">
+                        <div className="md:hidden space-y-6">
                           <ProductCard
                             product={EXPERIMENTAL_PRODUCT}
                             onViewDetails={handleViewDetails}
                             isExperimental={true}
                           />
+                          <ProductCard
+                            product={EXPERIMENTAL_NORMAL_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isPremium={true}
+                          />
                         </div>
                         <div className="hidden md:block">
                           <ProductCard
                             product={EXPERIMENTAL_DESKTOP_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isPremium={true}
+                          />
+                        </div>
+                        <div className="hidden md:block">
+                          <ProductCard
+                            product={EXPERIMENTAL_NORMAL_PRODUCT}
                             onViewDetails={handleViewDetails}
                             isPremium={true}
                           />

@@ -48,13 +48,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   };
 
   if (isPremium) {
-    const isPruebaDesktop = product.id === 'PRUEBA_DESKTOP';
+    const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
 
     return (
       <div 
         className={cn(
           "group promo-glass-card p-0 h-full flex flex-col cursor-pointer transition-all duration-500",
-          isPruebaDesktop ? "glass-reflective-edge" : "glass-reflective-edge-promo",
+          isSpecialLab ? "glass-reflective-edge" : "glass-reflective-edge-promo",
           isMobile ? "rounded-[32px] overflow-hidden" : ""
         )}
         onClick={handleCardClick}
@@ -90,7 +90,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             )}>
               {product.name}
             </h3>
-            {!isPruebaDesktop && !isMobile && (
+            {!isSpecialLab && !isMobile && (
               <p className="text-[13px] text-white/40 line-clamp-1 leading-relaxed font-medium">
                 {product.description}
               </p>

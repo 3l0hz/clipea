@@ -35,6 +35,25 @@ export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
   ]
 };
 
+export const EXPERIMENTAL_NORMAL_PRODUCT: Product = {
+  id: 'PRUEBA_NORMAL',
+  name: 'PRUEBA PRODUCTO',
+  category: 'Experimental',
+  price: '$45.990',
+  image: 'https://picsum.photos/seed/normal-lab/600/600',
+  description: 'Nueva tarjeta experimental para pruebas de productos individuales con estética high-end.',
+  compatibility: 'Universal Sandbox',
+  recommendedUse: 'Testing Visual',
+  brand: 'High-End Lab',
+  bestSeller: true,
+  highlights: [
+    'Bordes Premium Reflectivos',
+    'Glow Cian/Verde Refinado',
+    'Botón Crystal Glass',
+    'Fondo Glassmorphism'
+  ]
+};
+
 export const PRODUCTS: Product[] = [
   // PROMOS MOTO
   {
