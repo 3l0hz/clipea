@@ -174,7 +174,12 @@ export const PRODUCTS: Product[] = [
     name: 'Minitrípode Insta360',
     category: 'Trípodes',
     price: '$14.990',
-    image: getImg('Minitripodeinsta'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/3.png'
+    ],
     description: 'Diseño ultra estable para cámaras 360 pesadas.',
     compatibility: 'Insta360 ONE X/X2/X3/X4',
     recommendedUse: 'Superficies planas, tomas bajas',
