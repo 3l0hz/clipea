@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT, Category, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT_V2, Category, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
   Shield, 
@@ -189,7 +189,7 @@ export default function Home() {
                             isPremium={true}
                           />
                           <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT}
+                            product={EXPERIMENTAL_NORMAL_PRODUCT_V2}
                             onViewDetails={handleViewDetails}
                             isPremium={true}
                           />
@@ -210,7 +210,7 @@ export default function Home() {
                         </div>
                         <div className="hidden md:block">
                           <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT}
+                            product={EXPERIMENTAL_NORMAL_PRODUCT_V2}
                             onViewDetails={handleViewDetails}
                             isPremium={false}
                           />

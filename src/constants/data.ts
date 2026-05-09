@@ -56,6 +56,35 @@ export const EXPERIMENTAL_NORMAL_PRODUCT: Product = {
   ]
 };
 
+export const EXPERIMENTAL_NORMAL_PRODUCT_V2: Product = {
+  id: 'PRUEBA_NORMAL_V2',
+  name: 'ADAPTADOR DJI ACTION 360 V2',
+  category: 'Accesorios Cámara',
+  price: '$12.990',
+  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/1.png',
+  images: [
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/1.png',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/4(1).jpg',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
+    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/adaptador%20dji%20sunny.jpg'
+  ],
+  description: 'Adaptador magnético de liberación rápida compatible con DJI Osmo Action y OSMO 360. Sistema de doble fijación con imán y seguro metálico para máxima estabilidad en grabaciones dinámicas.',
+  compatibility: 'OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
+  recommendedUse: 'Liberación rápida en grabaciones dinámicas',
+  brand: 'ELOHZ Tech',
+  bestSeller: true,
+  highlights: [
+    'Compatible con OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
+    'Sistema magnético de liberación rápida',
+    'Seguro metálico de doble garra ultra estable',
+    'Construcción ligera en aluminio + imán',
+    'Compatible con múltiples accesorios y soportes',
+    'Interfaz 1/4 y montaje doble garra'
+  ]
+};
+
 export const PRODUCTS: Product[] = [
   // PROMOS MOTO
   {
