@@ -127,7 +127,7 @@
 }
 
 .promo-glass-card:hover {
-  @apply border-white/20 -translate-y-2;
+  @apply border-white/20;
   box-shadow: 
     0 0 0 1px rgba(255, 255, 255, 0.1),
     0 30px 60px rgba(0, 0, 0, 0.6);
