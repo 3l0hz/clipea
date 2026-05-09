@@ -90,10 +90,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           {/* PARTE VISUAL: Galería e Imagen */}
           <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col relative bg-transparent shrink-0">
             <div className="relative aspect-square md:h-full w-full flex items-center justify-center overflow-hidden bg-transparent">
-              {/* Overlay sutil para integrar imagen */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.1),transparent_70%)] pointer-events-none" />
+              {/* Overlay sutil solo para desktop para no interferir en mobile */}
+              <div className="hidden md:block absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.1),transparent_70%)] pointer-events-none" />
               
-              <div className="relative w-full h-full flex items-center justify-center p-4 md:p-8 pb-20 md:pb-8">
+              <div className="relative w-full h-full flex items-center justify-center p-1 md:p-8">
                 {showModel && product.modelUrl ? (
                   <div className="w-full h-full min-h-[300px]">
                     <ModelViewer src={product.modelUrl} poster={product.image} alt={product.name} />
@@ -121,38 +121,38 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Selector de medios (miniaturas) - Bajado y corregido para evitar cortes */}
-              <div className="absolute bottom-2 md:bottom-6 left-0 right-0 flex gap-2 md:gap-3 px-6 py-2 overflow-x-auto justify-center z-20 no-scrollbar">
-                {product.modelUrl && (
-                  <button
-                    onClick={() => setShowModel(true)}
-                    className={cn(
-                      "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl shrink-0 group",
-                      showModel 
-                        ? "border-[#00E5FF] scale-105 shadow-[0_0_15px_rgba(0,229,255,0.4)]" 
-                        : "border-white/10 opacity-60"
-                    )}
-                  >
-                    <Box size={20} className={cn("transition-colors md:w-6 md:h-6", showModel ? "text-accent" : "text-white/70")} />
-                    <span className="absolute bottom-1 text-[7px] md:text-[8px] font-bold text-center text-accent uppercase tracking-tighter">3D VIEW</span>
-                  </button>
-                )}
-                {images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => { setShowModel(false); setCurrentImageIndex(idx); }}
-                    className={cn(
-                      "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all bg-white/[0.03] backdrop-blur-md shrink-0",
-                      !showModel && currentImageIndex === idx 
-                        ? "border-[#00E5FF] scale-105 shadow-[0_0_15px_rgba(0,229,255,0.4)]" 
-                        : "border-white/10 opacity-60"
-                    )}
-                  >
-                    <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover p-1" />
-                  </button>
-                ))}
-              </div>
+            {/* Selector de medios (miniaturas) - Reposicionado debajo en mobile */}
+            <div className="relative md:absolute md:bottom-6 left-0 right-0 flex gap-2 md:gap-3 px-6 py-4 md:py-2 overflow-x-auto justify-center z-20 no-scrollbar">
+              {product.modelUrl && (
+                <button
+                  onClick={() => setShowModel(true)}
+                  className={cn(
+                    "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl shrink-0 group",
+                    showModel 
+                      ? "border-[#00E5FF] scale-105 shadow-[0_0_15px_rgba(0,229,255,0.4)]" 
+                      : "border-white/10 opacity-60"
+                  )}
+                >
+                  <Box size={20} className={cn("transition-colors md:w-6 md:h-6", showModel ? "text-accent" : "text-white/70")} />
+                  <span className="absolute bottom-1 text-[7px] md:text-[8px] font-bold text-center text-accent uppercase tracking-tighter">3D VIEW</span>
+                </button>
+              )}
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => { setShowModel(false); setCurrentImageIndex(idx); }}
+                  className={cn(
+                    "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl overflow-hidden border-2 transition-all bg-white/[0.03] backdrop-blur-md shrink-0",
+                    !showModel && currentImageIndex === idx 
+                      ? "border-[#00E5FF] scale-105 shadow-[0_0_15px_rgba(0,229,255,0.4)]" 
+                      : "border-white/10 opacity-60"
+                  )}
+                >
+                  <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover p-1" />
+                </button>
+              ))}
             </div>
           </div>
 
