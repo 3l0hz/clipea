@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, User } from 'lucide-react';
@@ -49,9 +48,9 @@ export const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-8 flex justify-between items-center">
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-12 md:gap-20">
         {/* Logo */}
-        <a href="#" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1">
+        <a href="#" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
             elohz
             <span className="text-accent">.</span>
@@ -60,12 +59,12 @@ export const Header = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-12 items-center">
+        <nav className="hidden md:flex gap-10 lg:gap-14 items-center">
           {CATEGORIES.slice(0, 4).map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="relative text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-white transition-all duration-500 group"
+              className="relative text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
             >
               {link.label}
               {/* Animated underline with glow */}
@@ -76,7 +75,7 @@ export const Header = () => {
           
           {/* Premium WhatsApp Button */}
           <Button 
-            className="glass-button bg-black/40 text-white border-white/10 hover:border-white/30 px-8 h-11 text-[9px] font-bold uppercase tracking-[0.3em] rounded-xl glass-reflective-button-edge shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(142,255,127,0.1)] transition-all duration-700 group/btn"
+            className="glass-button bg-black/40 text-white border-white/10 hover:border-white/30 px-8 h-11 text-[9px] font-bold uppercase tracking-[0.3em] rounded-xl glass-reflective-button-edge shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(142,255,127,0.1)] transition-all duration-700 group/btn shrink-0"
             asChild
           >
             <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">
