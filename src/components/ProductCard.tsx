@@ -49,6 +49,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
   if (isPremium) {
     const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
+    const isLiquidLab = product.id === 'PRUEBA_NORMAL';
 
     return (
       <div 
@@ -120,7 +121,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex flex-col gap-2">
               <Button
                 className={cn(
-                  "w-full glass-button bg-white/5 text-white font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)] crystal-glass-button",
+                  "w-full glass-button bg-white/5 text-white font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]",
+                  isLiquidLab ? "liquid-glass-button" : "crystal-glass-button",
                   isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
                 )}
                 onClick={handleAddToCart}
