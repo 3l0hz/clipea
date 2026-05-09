@@ -188,12 +188,24 @@ export default function Home() {
                             onViewDetails={handleViewDetails}
                             isPremium={true}
                           />
+                          <ProductCard
+                            product={EXPERIMENTAL_NORMAL_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isPremium={true}
+                          />
                         </div>
                         <div className="hidden md:block">
                           <ProductCard
                             product={EXPERIMENTAL_DESKTOP_PRODUCT}
                             onViewDetails={handleViewDetails}
                             isPremium={true}
+                          />
+                        </div>
+                        <div className="hidden md:block">
+                          <ProductCard
+                            product={EXPERIMENTAL_NORMAL_PRODUCT}
+                            onViewDetails={handleViewDetails}
+                            isPremium={false}
                           />
                         </div>
                         <div className="hidden md:block">
