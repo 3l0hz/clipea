@@ -140,7 +140,12 @@ export const PRODUCTS: Product[] = [
     name: 'Selfie Stick Carbono 3m',
     category: 'Bastones Selfie',
     price: '$49.990',
-    image: getImg('selfie3m'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/4.png'
+    ],
     description: 'El stick más largo del mercado para perspectivas aéreas increíbles.',
     compatibility: 'Insta360, GoPro con adaptador',
     recommendedUse: 'Paisajes masivos, grupos grandes',
