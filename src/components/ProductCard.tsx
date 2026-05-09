@@ -83,16 +83,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
 
           <div className="mt-auto pt-1 flex flex-col gap-3">
-            <div className="flex items-baseline gap-2 flex-wrap">
+            <div className="flex items-baseline gap-3">
               <span className={cn(
                 "font-headline font-extrabold text-white tracking-tighter",
-                isMobile ? "text-2xl" : "text-3xl"
+                isMobile ? "text-3xl" : "text-3xl"
               )}>
                 {product.price}
               </span>
               <span className={cn(
                 "font-bold text-white/20 uppercase line-through",
-                isMobile ? "text-[9px] tracking-tight" : "text-[10px] tracking-widest"
+                isMobile ? "text-sm tracking-tight" : "text-[10px] tracking-widest"
               )}>
                 {product.price === '$39.990' ? '$54.990' : 
                  product.price === '$59.990' ? '$79.990' : 
@@ -127,15 +127,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className={cn(
-                  "flex items-center justify-center gap-2 text-white/40 hover:text-white transition-all py-1 group/wsap text-center",
-                  isMobile ? "tracking-[1px]" : "tracking-[2px]"
+                  "flex items-center justify-center gap-2 text-white/40 hover:text-white transition-all group/wsap text-center",
+                  isMobile ? "h-11 rounded-xl border border-white/10 tracking-[1px] w-full" : "py-1 tracking-[2px]"
                 )}
                 onClick={(e) => e.stopPropagation()}
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 opacity-40 group-hover/wsap:opacity-100 transition-opacity shrink-0" />
                 <span className={cn(
                   "font-bold uppercase",
-                  isMobile ? "text-[8px]" : "text-[9px]"
+                  isMobile ? "text-[10px]" : "text-[9px]"
                 )}>CONSULTA DIRECTA</span>
               </a>
             </div>
