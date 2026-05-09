@@ -105,7 +105,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex flex-col gap-2">
               <Button
                 className={cn(
-                  "w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]",
+                  "w-full glass-button bg-white/5 text-white font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]",
                   isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
                 )}
                 onClick={(e) => {
@@ -195,7 +195,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              className="w-full glass-button bg-black/40 text-white border-white/10 hover:border-white/30 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.1)] backdrop-blur-md"
+              className="w-full glass-button bg-black/40 text-white font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.1)] backdrop-blur-md"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);

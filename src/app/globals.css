@@ -123,7 +123,7 @@
 .promo-glass-card .shine-layer::after {
   content: '';
   @apply absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
-  display: none; /* Estático en promos */
+  display: none;
 }
 
 .promo-glass-card:hover {
@@ -175,7 +175,7 @@
   z-index: 30;
 }
 
-/* Luxury Glass Button Reflective Edge */
+/* Luxury Glass Button Reflective Edge - Updated for Verde y Cian */
 .glass-reflective-button-edge {
   @apply relative;
 }
@@ -184,18 +184,19 @@
   content: '';
   position: absolute;
   inset: 0;
-  padding: 1px;
+  padding: 1.2px;
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    rgba(103, 232, 249, 0.4) 0%,
-    rgba(142, 255, 127, 0.3) 50%,
-    rgba(103, 232, 249, 0.4) 100%
+    rgba(103, 232, 249, 0.8) 0%,
+    rgba(142, 255, 127, 0.7) 50%,
+    rgba(103, 232, 249, 0.8) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+  z-index: 10;
 }
 
 .text-gradient {
@@ -204,7 +205,7 @@
 
 /* Luxury Glass Button Shine Effect */
 .glass-button {
-  @apply relative overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 text-white transition-all duration-500 ease-out;
+  @apply relative overflow-hidden bg-white/5 backdrop-blur-md border-none text-white transition-all duration-500 ease-out;
 }
 
 .glass-button::after {
