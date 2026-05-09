@@ -103,89 +103,6 @@ export const PRODUCTS: Product[] = [
       'Setup touring premium'
     ]
   },
-  // BASTONES
-  {
-    id: 'selfie1.20',
-    name: 'Bastón Selfie Telesin 1.2m',
-    category: 'Bastones Selfie',
-    price: '$18.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
-    images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', getImg('Bullet')],
-    description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
-    compatibility: 'GoPro, Insta360, DJI Action',
-    recommendedUse: 'Vlogs, viajes, rutas suaves',
-    brand: 'Telesin',
-    bestSeller: true
-  },
-  {
-    id: 'Selfie2m',
-    name: 'Bastón Selfie Carbono 2m',
-    category: 'Bastones Selfie',
-    price: '$34.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/3.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/4.png'
-    ],
-    description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
-    compatibility: 'Insta360 X3/X4, GoPro',
-    recommendedUse: 'Tomas de dron falsas, efectos 360',
-    brand: 'Telesin'
-  },
-  {
-    id: 'selfie3m',
-    name: 'Bastón Selfie Carbono 3m',
-    category: 'Bastones Selfie',
-    price: '$49.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/4.png'
-    ],
-    description: 'El bastón más largo del mercado para perspectivas aéreas increíbles.',
-    compatibility: 'Insta360, GoPro con adaptador',
-    recommendedUse: 'Paisajes masivos, grupos grandes',
-    brand: 'Telesin',
-    bestSeller: true
-  },
-  // TRÍPODES
-  {
-    id: 'MinitripodeGoPro',
-    name: 'Mini Tripode Gopro',
-    category: 'Trípodes',
-    price: '$14.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/2(2).jpg',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/20250912_133035.jpg'
-    ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/minitripodegopro-optimizado.glb',
-    description: 'Trípode compacto que también funciona como empuñadura.',
-    compatibility: 'Todas las GoPro',
-    recommendedUse: 'Time-lapse, vlogs estáticos',
-    brand: 'Telesin'
-  },
-  {
-    id: 'Minitripodeinsta',
-    name: 'Minitrípode Insta360',
-    category: 'Trípodes',
-    price: '$14.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/3.png'
-    ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/mini%20tripode%20insta-optimizado.glb',
-    description: 'Diseño ultra estable para cámaras 360 pesadas.',
-    compatibility: 'Insta360 ONE X/X2/X3/X4',
-    recommendedUse: 'Superficies planas, tomas bajas',
-    brand: 'Insta360'
-  },
   // SOPORTES VEHICULO
   {
     id: 'soportemotomanillar',
@@ -234,6 +151,89 @@ export const PRODUCTS: Product[] = [
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Rutas de carretera, motovlogs',
     bestSeller: false
+  },
+  // TRÍPODES
+  {
+    id: 'MinitripodeGoPro',
+    name: 'Mini Tripode Gopro',
+    category: 'Trípodes',
+    price: '$14.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/2(2).jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/20250912_133035.jpg'
+    ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/minitripodegopro-optimizado.glb',
+    description: 'Trípode compacto que también funciona como empuñadura.',
+    compatibility: 'Todas las GoPro',
+    recommendedUse: 'Time-lapse, vlogs estáticos',
+    brand: 'Telesin'
+  },
+  {
+    id: 'Minitripodeinsta',
+    name: 'Minitrípode Insta360',
+    category: 'Trípodes',
+    price: '$14.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/3.png'
+    ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/mini%20tripode%20insta-optimizado.glb',
+    description: 'Diseño ultra estable para cámaras 360 pesadas.',
+    compatibility: 'Insta360 ONE X/X2/X3/X4',
+    recommendedUse: 'Superficies planas, tomas bajas',
+    brand: 'Insta360'
+  },
+  // BASTONES
+  {
+    id: 'selfie1.20',
+    name: 'Bastón Selfie Telesin 1.2m',
+    category: 'Bastones Selfie',
+    price: '$18.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
+    images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', getImg('Bullet')],
+    description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
+    compatibility: 'GoPro, Insta360, DJI Action',
+    recommendedUse: 'Vlogs, viajes, rutas suaves',
+    brand: 'Telesin',
+    bestSeller: true
+  },
+  {
+    id: 'Selfie2m',
+    name: 'Bastón Selfie Carbono 2m',
+    category: 'Bastones Selfie',
+    price: '$29.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/3.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/4.png'
+    ],
+    description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
+    compatibility: 'Insta360 X3/X4, GoPro',
+    recommendedUse: 'Tomas de dron falsas, efectos 360',
+    brand: 'Telesin'
+  },
+  {
+    id: 'selfie3m',
+    name: 'Bastón Selfie Carbono 3m',
+    category: 'Bastones Selfie',
+    price: '$34.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/4.png'
+    ],
+    description: 'El bastón más largo del mercado para perspectivas aéreas increíbles.',
+    compatibility: 'Insta360, GoPro con adaptador',
+    recommendedUse: 'Paisajes masivos, grupos grandes',
+    brand: 'Telesin',
+    bestSeller: true
   },
   // OTROS
   {
