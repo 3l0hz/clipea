@@ -90,22 +90,6 @@ export const PRODUCTS: Product[] = [
     ],
     bestSeller: true
   },
-  {
-    id: 'pack-moto-completo',
-    name: 'MOTO PRO + PARABRISAS',
-    category: 'Promos Moto',
-    price: '$82.990',
-    image: 'https://picsum.photos/seed/moto-pack-4/600/600',
-    description: 'La configuración más premium para grabar contenido cinematográfico en moto.',
-    compatibility: 'Universal',
-    recommendedUse: 'Touring premium',
-    highlights: [
-      'Soporte parabrisas CNC',
-      'Máxima estabilidad',
-      'Compatible Insta360 / GoPro / DJI',
-      'Setup touring premium'
-    ]
-  },
   // SOPORTES VEHICULO
   {
     id: 'soportemotomanillar',
