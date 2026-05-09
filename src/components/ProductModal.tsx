@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, Di
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { ChevronLeft, ChevronRight, X, ShoppingCart, Box } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ShoppingCart, Box, Info, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
@@ -69,10 +69,8 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
         className={cn(
-          "max-w-[95vw] md:max-w-4xl p-0 overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0 border shadow-[0_0_100px_rgba(0,0,0,0.5)]",
-          isPromo 
-            ? "bg-[#020306] border-white/10" 
-            : "bg-background border-border"
+          "max-w-[100vw] h-[100dvh] md:max-w-5xl md:h-[85vh] p-0 overflow-hidden rounded-none md:rounded-[32px] animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0 border-none md:border md:border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.8)]",
+          isPromo ? "bg-[#020306]" : "bg-[#050505]"
         )}
       >
         <DialogHeader className="sr-only">
@@ -80,86 +78,64 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         
-        {isPromo && (
-          <div className="absolute -inset-[500px] pointer-events-none opacity-20 z-0 bg-[radial-gradient(circle_at_50%_50%,rgba(142,255,127,0.15),transparent_70%)]" />
-        )}
-
-        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative z-10">
+        <div className="flex flex-col md:flex-row h-full relative overflow-y-auto md:overflow-hidden">
+          {/* Botón Cerrar Flotante */}
           <DialogClose asChild>
             <button 
-              className={cn(
-                "absolute top-4 right-4 z-[70] w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 focus:outline-none group border glass-reflective-button-edge",
-                isPromo 
-                  ? "bg-black/60 text-accent/80 hover:text-accent shadow-[0_0_15px_rgba(142,255,127,0.1)]"
-                  : "bg-black/40 border-white/10 text-white/80 hover:text-white"
-              )}
+              className="absolute top-6 right-6 z-[100] w-11 h-11 rounded-full bg-black/60 backdrop-blur-xl text-white/80 hover:text-white border border-white/10 flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group"
             >
-              <X size={18} className="transition-transform duration-500 group-hover:rotate-90" />
-              <span className="sr-only">Cerrar</span>
+              <X size={22} className="group-hover:rotate-90 transition-transform duration-500" />
             </button>
           </DialogClose>
 
-          <div 
-            className={cn(
-              "w-full md:w-1/2 relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[500px] bg-transparent"
-            )}
-          >
-            <div 
-              className={cn(
-                "absolute inset-0 pointer-events-none",
-                isPromo 
-                  ? "bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.08),transparent_70%)]" 
-                  : "bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)]"
-              )} 
-            />
-            
-            <div className="relative w-full h-full p-10 flex items-center justify-center">
-              {showModel && product.modelUrl ? (
-                <ModelViewer src={product.modelUrl} poster={product.image} alt={product.name} />
-              ) : (
-                <div 
-                  className={cn(
-                    "relative w-full h-full flex items-center justify-center",
-                    isPromo && "drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-                  )}
-                >
-                  <Image
-                    src={images[currentImageIndex]}
-                    alt={product.name}
-                    fill
-                    className={cn(
-                      "object-contain p-4 md:p-10 transition-transform duration-700",
-                      isPromo && "filter brightness-[1.05] contrast-[1.05]"
-                    )}
-                    priority
-                  />
-                </div>
-              )}
+          {/* PARTE VISUAL: Galería e Imagen (40% en Desktop) */}
+          <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col relative bg-transparent shrink-0">
+            <div className="relative aspect-square md:h-full w-full flex items-center justify-center overflow-hidden bg-transparent">
+              {/* Efectos de fondo tecnológicos */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.1),transparent_70%)] pointer-events-none" />
+              <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black/40 to-transparent pointer-events-none md:hidden" />
               
-              {images.length > 1 && !showModel && (
-                <>
-                  <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
-                    <ChevronRight size={24} />
-                  </button>
-                </>
-              )}
-            </div>
-            
-            {(images.length > 1 || product.modelUrl) && (
-              <div className="absolute bottom-6 left-0 right-0 flex gap-2 px-4 overflow-x-auto justify-center z-20 scrollbar-hide">
+              <div className="relative w-full h-full flex items-center justify-center p-6 md:p-12">
+                {showModel && product.modelUrl ? (
+                  <div className="w-full h-full min-h-[300px]">
+                    <ModelViewer src={product.modelUrl} poster={product.image} alt={product.name} />
+                  </div>
+                ) : (
+                  <div className="relative w-full h-full flex items-center justify-center animate-in fade-in duration-700">
+                    <Image
+                      src={images[currentImageIndex]}
+                      alt={product.name}
+                      fill
+                      className="object-contain filter brightness-[1.05] contrast-[1.05] drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                      priority
+                    />
+                  </div>
+                )}
+                
+                {images.length > 1 && !showModel && (
+                  <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                    <button onClick={prevImage} className="pointer-events-auto p-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all">
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button onClick={nextImage} className="pointer-events-auto p-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all">
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Selector de medios (miniaturas) */}
+              <div className="absolute bottom-6 left-0 right-0 flex gap-3 px-6 overflow-x-auto justify-center z-20 no-scrollbar">
                 {product.modelUrl && (
                   <button
                     onClick={() => setShowModel(true)}
                     className={cn(
-                      "relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm group/btn3d",
-                      showModel ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
+                      "relative w-14 h-14 rounded-2xl overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl shrink-0 group",
+                      showModel ? "border-accent scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" : "border-white/10 opacity-60"
                     )}
                   >
-                    <Box size={20} className={cn("transition-colors", showModel ? "text-accent" : "text-white/70")} />
-                    <span className="absolute bottom-0 inset-x-0 text-[7px] font-bold text-center bg-accent/90 text-black uppercase tracking-tighter py-0.5">3D VIEW</span>
+                    <Box size={22} className={cn("transition-colors", showModel ? "text-accent" : "text-white/70")} />
+                    <span className="absolute bottom-1 text-[8px] font-bold text-center text-accent uppercase tracking-tighter">3D VIEW</span>
                   </button>
                 )}
                 {images.map((img, idx) => (
@@ -167,98 +143,119 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                     key={idx}
                     onClick={() => { setShowModel(false); setCurrentImageIndex(idx); }}
                     className={cn(
-                      "relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all",
-                      !showModel && currentImageIndex === idx ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
+                      "relative w-14 h-14 rounded-2xl overflow-hidden border-2 transition-all bg-white/[0.03] backdrop-blur-md shrink-0",
+                      !showModel && currentImageIndex === idx ? "border-accent scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" : "border-white/10 opacity-60"
                     )}
                   >
-                    <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover" />
+                    <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover p-1" />
                   </button>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
-          <div 
-            className={cn(
-              "w-full md:w-1/2 p-8 md:p-12 flex flex-col gap-8 md:overflow-y-auto relative",
-              isPromo ? "bg-transparent" : "bg-card"
-            )}
-          >
-            <div className="space-y-4">
-              <div className="flex flex-col gap-1.5">
-                <span 
-                  className={cn(
-                    "text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em]",
-                    isPromo ? "text-accent/90" : "text-accent"
+          {/* PARTE INFORMACIÓN: (60% en Desktop) */}
+          <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col bg-transparent md:border-l md:border-white/5">
+            <div className="flex-1 overflow-y-auto px-8 py-10 md:px-16 md:py-16 space-y-12">
+              
+              {/* Encabezado */}
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] text-accent/80">
+                      {product.category}
+                    </span>
+                    {product.bestSeller && (
+                      <span className="bg-accent/10 text-accent text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase">Best Seller</span>
+                    )}
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold leading-[0.9] uppercase tracking-tighter text-white">
+                    {product.name}
+                  </h2>
+                </div>
+                
+                <div className="flex items-baseline gap-4">
+                  <span className="text-4xl md:text-5xl font-headline font-extrabold tracking-tighter text-accent drop-shadow-[0_0_15px_rgba(142,255,127,0.3)]">
+                    {product.price}
+                  </span>
+                  {isPromo && (
+                    <span className="text-lg text-white/20 line-through font-bold tracking-tight">
+                      {product.price === '$39.990' ? '$54.990' : 
+                       product.price === '$59.990' ? '$79.990' : 
+                       product.price === '$69.990' ? '$89.990' :
+                       product.price === '$82.990' ? '$112.990' :
+                       '$149.990'}
+                    </span>
                   )}
-                >
-                  {product.category}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-headline font-bold leading-none uppercase tracking-tight text-white">{product.name}</h2>
-              </div>
-              <div 
-                className={cn(
-                  "text-3xl md:text-4xl font-headline font-extrabold tracking-tighter leading-none",
-                  isPromo ? "text-accent drop-shadow-[0_0_12px_rgba(142,255,127,0.3)]" : "text-accent"
-                )}
-              >
-                {product.price}
-              </div>
-            </div>
-
-            <div className="space-y-8 flex-1">
-              <div className="space-y-3">
-                <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Descripción</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed font-medium">{product.description}</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
-                <div className="space-y-2">
-                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Compatibilidad</h4>
-                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Uso Recomendado</h4>
-                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.recommendedUse}</p>
                 </div>
               </div>
 
+              {/* Descripción */}
+              <div className="space-y-4">
+                <h4 className="flex items-center gap-2 text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">
+                  <Info size={12} className="text-accent/40" />
+                  Descripción técnica
+                </h4>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed font-medium max-w-2xl">
+                  {product.description}
+                </p>
+              </div>
+
+              {/* Grid de Especificaciones */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 py-10 border-y border-white/5">
+                <div className="space-y-3">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Compatibilidad</h4>
+                  <p className="text-white text-sm md:text-base font-bold tracking-tight bg-white/5 w-fit px-3 py-1.5 rounded-lg border border-white/5">
+                    {product.compatibility}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Uso Recomendado</h4>
+                  <p className="text-white text-sm md:text-base font-bold tracking-tight bg-white/5 w-fit px-3 py-1.5 rounded-lg border border-white/5">
+                    {product.recommendedUse}
+                  </p>
+                </div>
+              </div>
+
+              {/* Highlights / Incluye */}
               {product.highlights && product.highlights.length > 0 && (
-                <div className="space-y-3 pt-6 border-t border-white/5">
-                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Incluye</h4>
-                  <ul className="grid grid-cols-1 gap-2.5">
+                <div className="space-y-6">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Contenido del paquete</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {product.highlights.map((h, i) => (
-                      <li key={i} className="flex items-center gap-3 text-[11px] text-white/70 font-medium">
-                        <div className={cn("w-1 h-1 rounded-full", isPromo ? "bg-accent/60" : "bg-accent")} />
+                      <div key={i} className="flex items-center gap-4 text-sm text-white/80 font-semibold group">
+                        <div className="w-8 h-8 rounded-xl bg-accent/5 border border-accent/20 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
+                          <CheckCircle2 size={16} />
+                        </div>
                         {h}
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
             </div>
 
-            <div className="mt-auto pt-8 flex flex-col gap-4">
+            {/* Acciones de Compra Quick (Sticky en el Modal) */}
+            <div className="p-8 md:px-16 md:py-10 bg-white/[0.01] backdrop-blur-2xl border-t border-white/5 flex flex-col sm:flex-row items-center gap-6">
               <Button 
                 onClick={handleAddToCart}
-                className={cn(
-                  "w-full h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_25px_rgba(142,255,127,0.15)]",
-                  isPromo 
-                    ? "bg-accent text-black hover:scale-[1.02]" 
-                    : "bg-white/5 text-white border-white/10 hover:bg-white/10"
-                )}
+                className="w-full sm:w-2/3 h-16 rounded-[24px] text-base font-bold flex items-center justify-center gap-4 transition-all duration-500 bg-accent text-black hover:scale-[1.03] active:scale-95 shadow-[0_20px_40px_rgba(142,255,127,0.25)] glass-reflective-button-edge"
               >
-                <ShoppingCart size={20} />
-                <span className="tracking-widest uppercase text-sm">Agregar al Carrito</span>
+                <ShoppingCart size={22} strokeWidth={2.5} />
+                <span className="tracking-[0.15em] uppercase font-black text-sm">Agregar al Carrito</span>
               </Button>
-              <a 
-                href={waLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-center text-[10px] text-white/40 uppercase font-bold tracking-[0.2em] hover:text-white transition-colors"
-              >
-                O consulta directa por WhatsApp
-              </a>
+              <div className="flex flex-col items-center sm:items-start gap-1 w-full sm:w-1/3">
+                <a 
+                  href={waLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 text-[11px] text-white/40 hover:text-accent transition-colors font-bold uppercase tracking-[0.2em]"
+                >
+                  <WhatsAppIcon className="w-4 h-4 opacity-60" />
+                  Consulta rápida
+                </a>
+                <span className="text-[9px] text-white/20 uppercase font-bold tracking-[0.1em]">Envío a todo Chile</span>
+              </div>
             </div>
           </div>
         </div>
