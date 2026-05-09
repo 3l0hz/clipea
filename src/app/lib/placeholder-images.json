@@ -1,4 +1,3 @@
-
 {
   "placeholderImages": [
     {
@@ -9,19 +8,19 @@
     },
     {
       "id": "selfie1.20",
-      "description": "Premium 1.2m Selfie Stick",
+      "description": "Premium 1.2m Bastón Selfie",
       "imageUrl": "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png",
       "imageHint": "selfie stick"
     },
     {
       "id": "Selfie2m",
-      "description": "Extended 2m Carbon Fiber Selfie Stick",
+      "description": "Extended 2m Carbon Fiber Bastón Selfie",
       "imageUrl": "https://picsum.photos/seed/selfie2/600/600",
       "imageHint": "carbon selfie"
     },
     {
       "id": "selfie3m",
-      "description": "Super Long 3m Selfie Stick",
+      "description": "Super Long 3m Bastón Selfie",
       "imageUrl": "https://picsum.photos/seed/selfie3/600/600",
       "imageHint": "extra long pole"
     },

@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -95,7 +94,7 @@ export default function Home() {
             <span className="text-gradient">cámaras deportivas</span>
           </h1>
           <p className="max-w-2xl mx-auto text-white/80 md:text-xl leading-relaxed font-medium">
-            Selfie sticks, soportes de moto, trípodes y accesorios para grabar rutas, viajes y contenido con la mejor estabilidad.
+            Bastones selfie, soportes de moto, trípodes y accesorios para grabar rutas, viajes y contenido con la mejor estabilidad.
           </p>
           <div className="flex justify-center items-center pt-4">
             <Button 

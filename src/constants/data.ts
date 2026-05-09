@@ -1,4 +1,3 @@
-
 import { Product, FAQItem } from '@/types/store';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -48,7 +47,7 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Universal',
     recommendedUse: 'Vlogs urbanos',
     highlights: [
-      'Selfie invisible 1.20 m',
+      'Bastón selfie invisible 1.20 m',
       'Soporte moto reforzado',
       'Compatible Insta360 / GoPro / DJI',
       'Ideal para viajes y rutas urbanas'
@@ -107,12 +106,12 @@ export const PRODUCTS: Product[] = [
   // BASTONES
   {
     id: 'selfie1.20',
-    name: 'Selfie Stick Telesin 1.2m',
+    name: 'Bastón Selfie Telesin 1.2m',
     category: 'Bastones Selfie',
     price: '$18.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
     images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', getImg('Bullet')],
-    description: 'Selfie stick de aluminio ligero y resistente, perfecto para tomas estables.',
+    description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Vlogs, viajes, rutas suaves',
     brand: 'Telesin',
@@ -120,7 +119,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'Selfie2m',
-    name: 'Selfie Stick Carbono 2m',
+    name: 'Bastón Selfie Carbono 2m',
     category: 'Bastones Selfie',
     price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
@@ -137,7 +136,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'selfie3m',
-    name: 'Selfie Stick Carbono 3m',
+    name: 'Bastón Selfie Carbono 3m',
     category: 'Bastones Selfie',
     price: '$49.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
@@ -146,7 +145,7 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/2.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/4.png'
     ],
-    description: 'El stick más largo del mercado para perspectivas aéreas increíbles.',
+    description: 'El bastón más largo del mercado para perspectivas aéreas increíbles.',
     compatibility: 'Insta360, GoPro con adaptador',
     recommendedUse: 'Paisajes masivos, grupos grandes',
     brand: 'Telesin',
