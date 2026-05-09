@@ -234,7 +234,11 @@ export const PRODUCTS: Product[] = [
     name: 'Lente Repuesto GoPro 9-13',
     category: 'Accesorios Cámara',
     price: '$9.990',
-    image: getImg('lente-rep-gopro9.13'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente1.jpg',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente1.jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente%202.jpg'
+    ],
     description: 'Vidrio templado de alta transparencia para reemplazar lentes rayados.',
     compatibility: 'GoPro Hero 9, 10, 11, 12, 13',
     recommendedUse: 'Mantenimiento preventivo'
