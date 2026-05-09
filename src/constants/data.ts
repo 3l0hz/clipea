@@ -155,9 +155,9 @@ export const PRODUCTS: Product[] = [
   // TRÍPODES
   {
     id: 'MinitripodeGoPro',
-    name: 'Minitrípode Pro GoPro',
+    name: 'Mini Tripode Gopro',
     category: 'Trípodes',
-    price: '$12.990',
+    price: '$14.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
