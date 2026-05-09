@@ -55,6 +55,12 @@
   inherits: false;
 }
 
+@property --sweep-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @keyframes borderGlow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -66,6 +72,16 @@
   50% { --sweep-x: 100%; --sweep-y: 100%; }
   75% { --sweep-x: 100%; --sweep-y: 0%; }
   100% { --sweep-x: 0%; --sweep-y: 0%; }
+}
+
+@keyframes border-rotate {
+  from { --sweep-angle: 0deg; }
+  to { --sweep-angle: 360deg; }
+}
+
+@keyframes particles-drift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
 .premium-mobile-card {
@@ -114,16 +130,6 @@
 .promo-glass-card::before {
   content: '';
   @apply absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none;
-}
-
-.promo-glass-card .shine-layer {
-  @apply absolute inset-0 pointer-events-none overflow-hidden;
-}
-
-.promo-glass-card .shine-layer::after {
-  content: '';
-  @apply absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
-  display: none;
 }
 
 .promo-glass-card:hover {
@@ -200,7 +206,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  padding: 2px; /* Aumento sutil del grosor visual */
+  padding: 2px;
   border-radius: inherit;
   background: linear-gradient(
     135deg,
@@ -217,7 +223,7 @@
   z-index: 30;
 }
 
-/* Luxury Glass Button Reflective Edge - Updated for Verde y Cian */
+/* Luxury Glass Button Reflective Edge */
 .glass-reflective-button-edge {
   @apply relative;
 }
@@ -257,6 +263,47 @@
   z-index: 15;
 }
 
+/* HERO BUTTON SPECIAL AURA EFFECT */
+.hero-button-aura {
+  @apply relative isolation-auto overflow-hidden;
+}
+
+.hero-button-aura::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--sweep-angle, 0deg),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.5) 30deg,
+    rgba(200, 200, 200, 0.2) 60deg,
+    transparent 120deg,
+    rgba(255, 255, 255, 0.4) 210deg,
+    rgba(180, 180, 180, 0.1) 240deg,
+    transparent 360deg
+  );
+  animation: border-rotate 4s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1.8px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Subtle Particles Background for Hero Button */
+.hero-button-aura::after {
+  content: '';
+  @apply absolute inset-0 opacity-40 pointer-events-none;
+  background-image: radial-gradient(circle at center, white 1px, transparent 1px);
+  background-size: 14px 14px;
+  animation: particles-drift 20s linear infinite;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  z-index: 5;
+}
+
 @keyframes glass-shine {
   0% { transform: translateX(-150%) skewX(-30deg); }
   20%, 100% { transform: translateX(150%) skewX(-30deg); }
@@ -289,7 +336,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  padding: 1.8px; /* Slightly thicker for more intensity */
+  padding: 1.8px;
   border-radius: inherit;
   background: linear-gradient(
     135deg,
@@ -306,7 +353,6 @@
   z-index: 20;
 }
 
-/* Animación de cristales en el borde constante - Intensificada */
 .crystal-glass-button::after {
   content: '';
   position: absolute;
@@ -319,7 +365,7 @@
     rgba(59, 130, 246, 0.9) 355deg,
     transparent 360deg
   );
-  animation: crystalSweep 5s linear infinite; /* Faster and more visible */
+  animation: crystalSweep 5s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -390,7 +436,6 @@
   z-index: 30;
 }
 
-/* Vidriado sutil e iluminación de bordes */
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent/80 to-gray-500;
 }
