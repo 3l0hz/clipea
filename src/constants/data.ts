@@ -220,6 +220,22 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Parabrisas, tanques de moto, autos',
     recommendedUse: 'Grabación onboard'
   },
+  {
+    id: 'soporte-parabrisas-gopro-insta',
+    name: 'Soporte Parabrisas GoPro Insta',
+    category: 'Soportes Moto / Vehículo',
+    price: '$19.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/11.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/11.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/1(1).jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/2.jpg'
+    ],
+    description: 'Soporte de succión ultra resistente diseñado para capturar tomas estables desde el parabrisas de tu vehículo.',
+    compatibility: 'GoPro, Insta360, DJI Action',
+    recommendedUse: 'Vlogs de auto, rutas de carretera',
+    bestSeller: false
+  },
   // OTROS
   {
     id: 'Bullet',
