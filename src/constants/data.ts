@@ -168,7 +168,12 @@ export const PRODUCTS: Product[] = [
     name: 'Soporte Moto Manillar CNC',
     category: 'Soportes Moto / Vehículo',
     price: '$19.990',
-    image: getImg('soportemotomanillar'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/3.png'
+    ],
     description: 'Construcción en aluminio CNC para máxima resistencia a vibraciones.',
     compatibility: 'Manillares de 22mm a 32mm',
     recommendedUse: 'Rutas en moto, enduro, ciclismo',
