@@ -155,12 +155,12 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
           {/* PARTE INFORMACIÓN */}
           <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col bg-transparent md:border-l md:border-white/5">
-            <div className="flex-1 overflow-y-auto px-6 py-8 md:px-16 md:py-16 space-y-8 md:space-y-12">
+            <div className="flex-1 overflow-y-auto px-5 py-5 md:px-16 md:py-16 space-y-6 md:space-y-12">
               
               {/* Encabezado */}
-              <div className="space-y-4 md:space-y-6">
-                <div className="space-y-1.5 md:space-y-2">
-                  <div className="flex items-center gap-3">
+              <div className="space-y-3 md:space-y-6">
+                <div className="space-y-1 md:space-y-2">
+                  <div className="flex items-center gap-2 md:gap-3">
                     <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.4em] text-accent/80">
                       {product.category}
                     </span>
@@ -168,17 +168,17 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                       <span className="bg-accent/10 text-accent text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase">Best Seller</span>
                     )}
                   </div>
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-bold leading-[0.9] uppercase tracking-tighter text-white">
+                  <h2 className="text-2xl md:text-5xl lg:text-6xl font-headline font-bold leading-[0.9] uppercase tracking-tighter text-white">
                     {product.name}
                   </h2>
                 </div>
                 
-                <div className="flex items-baseline gap-3 md:gap-4">
-                  <span className="text-3xl md:text-5xl font-headline font-extrabold tracking-tighter text-accent drop-shadow-[0_0_15px_rgba(142,255,127,0.3)]">
+                <div className="flex items-baseline gap-2 md:gap-4">
+                  <span className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-accent drop-shadow-[0_0_15px_rgba(142,255,127,0.3)]">
                     {product.price}
                   </span>
                   {isPromo && (
-                    <span className="text-base md:text-lg text-white/20 line-through font-bold tracking-tight">
+                    <span className="text-sm md:text-lg text-white/20 line-through font-bold tracking-tight">
                       {product.price === '$39.990' ? '$54.990' : 
                        product.price === '$59.990' ? '$79.990' : 
                        product.price === '$69.990' ? '$89.990' :
@@ -190,8 +190,8 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </div>
 
               {/* Descripción */}
-              <div className="space-y-3 md:space-y-4">
-                <h4 className="flex items-center gap-2 text-[9px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">
+              <div className="space-y-2 md:space-y-4">
+                <h4 className="flex items-center gap-2 text-[8px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">
                   <Info size={10} className="text-accent/40 md:w-3 md:h-3" />
                   Descripción técnica
                 </h4>
@@ -201,16 +201,16 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               </div>
 
               {/* Grid de Especificaciones */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 py-6 md:py-10 border-y border-white/[0.05]">
-                <div className="space-y-2 md:space-y-3">
-                  <h4 className="text-[9px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Compatibilidad</h4>
-                  <p className="text-white text-xs md:text-base font-bold tracking-tight bg-white/5 w-fit px-3 py-1.5 rounded-lg border border-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-10 py-4 md:py-10 border-y border-white/[0.05]">
+                <div className="space-y-1.5 md:space-y-3">
+                  <h4 className="text-[8px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Compatibilidad</h4>
+                  <p className="text-white text-xs md:text-base font-bold tracking-tight bg-white/5 w-fit px-2.5 py-1.5 rounded-lg border border-white/5">
                     {product.compatibility}
                   </p>
                 </div>
-                <div className="space-y-2 md:space-y-3">
-                  <h4 className="text-[9px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Uso Recomendado</h4>
-                  <p className="text-white text-xs md:text-base font-bold tracking-tight bg-white/5 w-fit px-3 py-1.5 rounded-lg border border-white/5">
+                <div className="space-y-1.5 md:space-y-3">
+                  <h4 className="text-[8px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Uso Recomendado</h4>
+                  <p className="text-white text-xs md:text-base font-bold tracking-tight bg-white/5 w-fit px-2.5 py-1.5 rounded-lg border border-white/5">
                     {product.recommendedUse}
                   </p>
                 </div>
@@ -219,12 +219,12 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               {/* Highlights / Incluye */}
               {product.highlights && product.highlights.length > 0 && (
                 <div className="space-y-4 md:space-y-6">
-                  <h4 className="text-[9px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Contenido del paquete</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                  <h4 className="text-[8px] md:text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">Contenido del paquete</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
                     {product.highlights.map((h, i) => (
                       <div key={i} className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-white/80 font-semibold group">
-                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-accent/5 border border-accent/20 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
-                          <CheckCircle2 size={14} className="md:w-4 md:h-4" />
+                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-accent/5 border border-accent/20 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
+                          <CheckCircle2 size={12} className="md:w-4 md:h-4" />
                         </div>
                         {h}
                       </div>
@@ -235,7 +235,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             </div>
 
             {/* Acciones de Compra Quick */}
-            <div className="p-6 md:px-16 md:py-10 bg-white/[0.01] backdrop-blur-2xl border-t border-white/5 flex flex-col sm:flex-row items-center gap-4 md:gap-6">
+            <div className="p-5 md:px-16 md:py-10 bg-white/[0.01] backdrop-blur-2xl border-t border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-6">
               <Button 
                 onClick={handleAddToCart}
                 className="w-full sm:w-2/3 h-14 md:h-16 rounded-xl md:rounded-[24px] text-sm md:text-base font-bold flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 bg-accent text-black hover:scale-[1.03] active:scale-95 shadow-[0_20px_40px_rgba(142,255,127,0.25)] glass-reflective-button-edge"
