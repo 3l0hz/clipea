@@ -42,7 +42,7 @@
   }
 }
 
-/* Premium Product Card Mobile Animations - REACTIVATED FOR NORMAL CARDS */
+/* Premium Product Card Mobile Animations */
 @property --sweep-x {
   syntax: '<percentage>';
   initial-value: 0%;
@@ -56,8 +56,8 @@
 }
 
 @keyframes borderGlow {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes lightSweep {
@@ -79,7 +79,7 @@
 .premium-mobile-card::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -1px;
   padding: 1.5px;
   border-radius: 24px;
   background: conic-gradient(from 0deg, #67e8f9, #00E5FF, #67e8f9, #00FFC2);
@@ -87,6 +87,7 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   z-index: -1;
+  animation: borderGlow 6s linear infinite;
 }
 
 .premium-mobile-card::after {
@@ -99,10 +100,10 @@
   pointer-events: none;
   filter: blur(8px);
   z-index: -1;
-  animation: lightSweep 8s linear infinite; /* Animación restaurada para normales */
+  animation: lightSweep 8s linear infinite;
 }
 
-/* PROMO GLASS CARD - STATIC (NO ANIMATIONS) */
+/* PROMO GLASS CARD - STATIC */
 .promo-glass-card {
   @apply relative overflow-hidden bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[32px] transition-all duration-700;
   box-shadow: 
@@ -119,11 +120,10 @@
   @apply absolute inset-0 pointer-events-none overflow-hidden;
 }
 
-/* Estático: Sin animación de brillo */
 .promo-glass-card .shine-layer::after {
   content: '';
   @apply absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
-  display: none; /* Se oculta el efecto de brillo animado en promos */
+  display: none; /* Estático en promos */
 }
 
 .promo-glass-card:hover {
@@ -173,6 +173,29 @@
   mask-composite: exclude;
   pointer-events: none;
   z-index: 30;
+}
+
+/* Luxury Glass Button Reflective Edge */
+.glass-reflective-button-edge {
+  @apply relative;
+}
+
+.glass-reflective-button-edge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(103, 232, 249, 0.4) 0%,
+    rgba(142, 255, 127, 0.3) 50%,
+    rgba(103, 232, 249, 0.4) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .text-gradient {

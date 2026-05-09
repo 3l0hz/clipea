@@ -40,7 +40,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     return (
       <div 
         className={cn(
-          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer glass-reflective-edge prueba-desktop-shine transition-all duration-500",
+          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer glass-reflective-edge transition-all duration-500",
           isMobile ? "rounded-[32px] overflow-hidden" : ""
         )}
         onClick={handleCardClick}
@@ -136,7 +136,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     );
   }
 
-  // Standard Style
+  // Standard Style (Normal Products)
   return (
     <div 
       className={cn(
@@ -186,7 +186,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              className="w-full bg-black/20 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] shadow-sm backdrop-blur-md"
+              className="w-full glass-button bg-black/40 text-white border-white/10 hover:border-white/30 font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.1)] backdrop-blur-md"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(product);
