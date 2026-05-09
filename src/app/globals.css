@@ -42,7 +42,7 @@
   }
 }
 
-/* Premium Product Card Mobile Animations */
+/* Premium Product Card Mobile Animations - REACTIVATED FOR NORMAL CARDS */
 @property --sweep-x {
   syntax: '<percentage>';
   initial-value: 0%;
@@ -99,14 +99,10 @@
   pointer-events: none;
   filter: blur(8px);
   z-index: -1;
+  animation: lightSweep 8s linear infinite; /* Animación restaurada para normales */
 }
 
-/* PROMO GLASS CARD - EXCLUSIVE FOR PRUEBA DESKTOP */
-@keyframes shineSweep {
-  0% { transform: translateX(-100%) skewX(-30deg); }
-  20%, 100% { transform: translateX(200%) skewX(-30deg); }
-}
-
+/* PROMO GLASS CARD - STATIC (NO ANIMATIONS) */
 .promo-glass-card {
   @apply relative overflow-hidden bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[32px] transition-all duration-700;
   box-shadow: 
@@ -123,21 +119,11 @@
   @apply absolute inset-0 pointer-events-none overflow-hidden;
 }
 
+/* Estático: Sin animación de brillo */
 .promo-glass-card .shine-layer::after {
   content: '';
   @apply absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
-}
-
-/* PRUEBA DESKTOP SPECIFIC SHINE: Cyan and Green - Smoother and Continuous */
-.prueba-desktop-shine .shine-layer::after {
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(103, 232, 249, 0.12) 35%,
-    rgba(142, 255, 127, 0.15) 50%,
-    rgba(103, 232, 249, 0.12) 65%,
-    transparent 100%
-  ) !important;
+  display: none; /* Se oculta el efecto de brillo animado en promos */
 }
 
 .promo-glass-card:hover {
@@ -147,7 +133,7 @@
     0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* Glass Reflective Border - Exclusive for PRUEBA DESKTOP */
+/* Glass Reflective Border */
 .glass-reflective-edge {
   border: none !important;
   box-shadow: 
@@ -187,36 +173,6 @@
   mask-composite: exclude;
   pointer-events: none;
   z-index: 30;
-}
-
-/* Glass Reflective Button Edge - Special for PRUEBA DESKTOP Button */
-.glass-reflective-button-edge {
-  @apply relative overflow-hidden;
-  border: none !important;
-  box-shadow: 
-    0 0 12px -2px rgba(103, 232, 249, 0.4),
-    0 0 15px -2px rgba(142, 255, 127, 0.3) !important;
-}
-
-.glass-reflective-button-edge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1.5px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(103, 232, 249, 0.8) 0%,
-    rgba(142, 255, 127, 0.7) 25%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(103, 232, 249, 0.7) 75%,
-    rgba(142, 255, 127, 0.8) 100%
-  ) !important;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 10;
 }
 
 .text-gradient {
