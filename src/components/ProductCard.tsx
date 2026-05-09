@@ -53,7 +53,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     return (
       <div 
         className={cn(
-          "group promo-glass-card p-0 h-full flex flex-col cursor-pointer transition-all duration-500",
+          "group promo-glass-card p-0 h-fit flex flex-col cursor-pointer transition-all duration-500",
           isSpecialLab ? "glass-reflective-edge" : "glass-reflective-edge-promo",
           isMobile ? "rounded-[32px] overflow-hidden" : ""
         )}
