@@ -265,32 +265,38 @@
 
 /* HERO BUTTON SPECIAL AURA EFFECT */
 .hero-button-aura {
-  @apply relative isolation-auto overflow-hidden;
+  @apply relative isolation-auto overflow-visible !important; /* Allow aura to be fully seen */
 }
 
 .hero-button-aura::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: -2.5px; /* Sutilmente fuera para envolver el borde real */
   border-radius: inherit;
   background: conic-gradient(
     from var(--sweep-angle, 0deg),
-    rgba(255, 255, 255, 0) 0deg,
-    rgba(255, 255, 255, 0.3) 45deg,
-    rgba(200, 200, 200, 0.15) 90deg,
-    rgba(255, 255, 255, 0) 135deg,
-    rgba(255, 255, 255, 0.3) 225deg,
-    rgba(200, 200, 200, 0.15) 270deg,
-    rgba(255, 255, 255, 0) 315deg
+    rgba(255, 255, 255, 0.05) 0deg,
+    rgba(255, 255, 255, 0.45) 45deg,
+    rgba(180, 180, 180, 0.2) 90deg,
+    rgba(255, 255, 255, 0.05) 135deg,
+    rgba(255, 255, 255, 0.45) 225deg,
+    rgba(180, 180, 180, 0.2) 270deg,
+    rgba(255, 255, 255, 0.05) 315deg
   );
-  animation: border-rotate 6s linear infinite;
+  animation: border-rotate 8s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  padding: 2.2px;
+  padding: 3px; /* Slightly thicker and uniform on all sides */
   z-index: 10;
   pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+
+.hero-button-aura:hover::before {
+  opacity: 1; /* Intensify uniform glow on hover */
 }
 
 /* Subtle Particles Background for Hero Button */
