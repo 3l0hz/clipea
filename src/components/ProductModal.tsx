@@ -4,9 +4,11 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, Di
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ShoppingCart } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/context/CartContext';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProductModalProps {
   product: Product | null;
@@ -27,6 +29,8 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isOpen) {
@@ -43,14 +47,22 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast({
+      title: "Agregado al carrito",
+      description: `${product.name} se añadió correctamente.`,
+    });
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
         className={cn(
-          "max-w-[95vw] md:max-w-4xl p-0 overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0 border",
+          "max-w-[95vw] md:max-w-4xl p-0 overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0 border shadow-[0_0_100px_rgba(0,0,0,0.5)]",
           isPromo 
-            ? "bg-[#020306] border-white/10 shadow-[0_0_80px_rgba(142,255,127,0.08)]" 
-            : "bg-background border-border shadow-2xl"
+            ? "bg-[#020306] border-white/10" 
+            : "bg-background border-border"
         )}
       >
         <DialogHeader className="sr-only">
@@ -58,14 +70,19 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         
-        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative">
+        {/* Ambient Glow for Promo */}
+        {isPromo && (
+          <div className="absolute -inset-[500px] pointer-events-none opacity-20 z-0 bg-[radial-gradient(circle_at_50%_50%,rgba(142,255,127,0.15),transparent_70%)]" />
+        )}
+
+        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative z-10">
           {/* Close Button */}
           <DialogClose asChild>
             <button 
               className={cn(
-                "absolute top-4 right-4 z-[70] w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 focus:outline-none group border",
+                "absolute top-4 right-4 z-[70] w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 focus:outline-none group border glass-reflective-button-edge",
                 isPromo 
-                  ? "bg-black/60 border-white/10 text-accent/80 hover:border-accent/40 hover:text-accent shadow-[0_0_15px_rgba(142,255,127,0.1)]"
+                  ? "bg-black/60 text-accent/80 hover:text-accent shadow-[0_0_15px_rgba(142,255,127,0.1)]"
                   : "bg-black/40 border-white/10 text-white/80 hover:text-white"
               )}
             >
@@ -123,7 +140,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               )}
             </div>
             
-            {/* Thumbnail selector if multiple images */}
             {images.length > 1 && (
               <div className="absolute bottom-6 left-0 right-0 flex gap-2 px-4 overflow-x-auto justify-center z-20">
                 {images.map((img, idx) => (
@@ -177,13 +193,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 <p className="text-muted-foreground text-sm leading-relaxed font-medium">{product.description}</p>
               </div>
 
-              {/* Technical Details Grid */}
-              <div 
-                className={cn(
-                  "grid grid-cols-2 gap-8 pt-8 border-t",
-                  isPromo ? "border-white/5" : "border-white/5"
-                )}
-              >
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
                 <div className="space-y-2">
                   <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Compatibilidad</h4>
                   <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
@@ -194,7 +204,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                 </div>
               </div>
 
-              {/* Highlights for Promo Products */}
               {product.highlights && product.highlights.length > 0 && (
                 <div className="space-y-3 pt-6 border-t border-white/5">
                   <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Incluye</h4>
@@ -210,24 +219,27 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               )}
             </div>
 
-            <div className="mt-auto pt-8 flex flex-col gap-6">
+            <div className="mt-auto pt-8 flex flex-col gap-4">
               <Button 
-                asChild 
+                onClick={handleAddToCart}
                 className={cn(
-                  "w-full h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500",
+                  "w-full h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_25px_rgba(142,255,127,0.15)]",
                   isPromo 
-                    ? "glass-button bg-white/5 text-white border-accent/20 hover:border-accent/50 hover:bg-accent/5 shadow-[0_0_25px_rgba(142,255,127,0.15)]" 
-                    : "glass-button bg-white/5 text-white border-white/10 hover:bg-white/10"
+                    ? "bg-accent text-black hover:scale-[1.02]" 
+                    : "bg-white/5 text-white border-white/10 hover:bg-white/10"
                 )}
               >
-                <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
-                  <WhatsAppIcon className={cn("w-5 h-5", isPromo && "text-accent")} />
-                  <span className="tracking-widest uppercase text-sm">Comprar por WhatsApp</span>
-                </a>
+                <ShoppingCart size={20} />
+                <span className="tracking-widest uppercase text-sm">Agregar al Carrito</span>
               </Button>
-              <div className="flex flex-col items-center gap-1 opacity-40">
-                <p className="text-[9px] text-white uppercase font-bold tracking-[0.4em]">Envío a todo Chile · Pago Seguro</p>
-              </div>
+              <a 
+                href={waLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-center text-[10px] text-white/40 uppercase font-bold tracking-[0.2em] hover:text-white transition-colors"
+              >
+                O consulta directa por WhatsApp
+              </a>
             </div>
           </div>
         </div>

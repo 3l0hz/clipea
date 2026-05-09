@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, User } from 'lucide-react';
+import { Menu, X, ChevronRight, User, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { WHATSAPP_NUMBER } from '@/constants/data';
+import { CartDrawer } from './CartDrawer';
+import { useCart } from '@/context/CartContext';
 
 const CATEGORIES = [
   { label: 'Promos Moto', href: '#catalog' },
@@ -21,12 +22,15 @@ const BRANDS = [
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const PremiumButtonClass = "relative overflow-hidden bg-white/5 backdrop-blur-md border-none text-white transition-all duration-500 ease-out glass-reflective-button-edge hover:bg-white/10 hover:shadow-[0_0_20px_rgba(103,232,249,0.3)] group h-12 w-12 flex items-center justify-center rounded-2xl";
 
   return (
     <header 
@@ -37,7 +41,6 @@ export const Header = () => {
           : "bg-transparent py-8"
       )}
     >
-      {/* Premium Reflective Edge (Bottom line glow when scrolled) */}
       <div 
         className={cn(
           "absolute bottom-0 left-0 w-full h-[1px] transition-opacity duration-700 pointer-events-none",
@@ -48,7 +51,7 @@ export const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-12 md:gap-20">
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-12">
         {/* Logo */}
         <a href="#" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
@@ -67,22 +70,32 @@ export const Header = () => {
               className="relative text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
             >
               {link.label}
-              {/* Animated underline with glow */}
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-accent transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(103,232,249,0.8)]" />
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[4px] bg-accent/20 blur-md transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
-        {/* Mobile Nav Trigger */}
-        <div className="md:hidden flex items-center gap-4">
+        {/* Right Section: Cart & Menu */}
+        <div className="flex items-center gap-4">
+          <CartDrawer>
+            <button className={PremiumButtonClass}>
+              <ShoppingBag size={22} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-accent text-black text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.8)] animate-in zoom-in duration-300">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </CartDrawer>
+
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/5 transition-colors">
-                <Menu size={26} strokeWidth={1.5} />
-              </Button>
+              <button className={PremiumButtonClass}>
+                <Menu size={24} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
+              </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-[#050505] border-white/5 w-full p-0 flex flex-col">
+            <SheetContent side="right" className="bg-[#050505]/95 backdrop-blur-2xl border-white/5 w-full p-0 flex flex-col">
               <div className="flex justify-between items-center px-8 py-8 border-b border-white/5">
                 <span className="text-2xl font-headline font-bold text-white tracking-tighter">elohz<span className="text-accent">.</span></span>
                 <SheetClose asChild>
