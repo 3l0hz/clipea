@@ -206,7 +206,13 @@ export const PRODUCTS: Product[] = [
     name: 'Soporte Ventosa Parabrisas',
     category: 'Soportes Moto / Vehículo',
     price: '$15.990',
-    image: getImg('soporteparab'),
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/1(1).jpg',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/1(1).jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/11.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/1.jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/2.jpg'
+    ],
     description: 'Ventosa de grado industrial para fijación en superficies lisas.',
     compatibility: 'Parabrisas, tanques de moto, autos',
     recommendedUse: 'Grabación onboard'
