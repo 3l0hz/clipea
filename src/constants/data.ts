@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     bestSeller: true
   },
   {
-    id: 'pack-moto-esencial',
+    id: 'pack-moto-medio',
     name: 'MOTO CREATOR',
     category: 'Promos Moto',
     price: '$59.990',
@@ -77,7 +77,8 @@ export const PRODUCTS: Product[] = [
     name: 'MOTO ELITE',
     category: 'Promos Moto',
     price: '$69.990',
-    image: 'https://picsum.photos/seed/moto-pack-3/600/600',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/full.jpg',
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
     description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
     compatibility: 'Universal',
     recommendedUse: 'Carretera y rutas largas',
