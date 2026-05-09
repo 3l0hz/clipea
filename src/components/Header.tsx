@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, User, ShoppingBag } from 'lucide-react';
+import { Menu, X, ChevronRight, User, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -30,8 +30,6 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const PremiumButtonClass = "relative overflow-hidden bg-white/5 backdrop-blur-md border-none text-white transition-all duration-500 ease-out glass-reflective-button-edge hover:bg-white/10 hover:shadow-[0_0_20px_rgba(103,232,249,0.3)] group h-12 w-12 flex items-center justify-center rounded-2xl";
-
   return (
     <header 
       className={cn(
@@ -51,7 +49,7 @@ export const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-12">
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-20">
         {/* Logo */}
         <a href="#" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
@@ -76,13 +74,13 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Right Section: Cart & Menu */}
-        <div className="flex items-center gap-4">
+        {/* Right Section: Icons */}
+        <div className="flex items-center gap-6 md:gap-8">
           <CartDrawer>
-            <button className={PremiumButtonClass}>
-              <ShoppingBag size={22} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
+            <button className="relative text-accent transition-transform hover:scale-110 active:scale-95 duration-300 group">
+              <ShoppingCart size={28} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent text-black text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.8)] animate-in zoom-in duration-300">
+                <span className="absolute -top-2 -right-2 bg-accent text-black text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.8)] animate-in zoom-in duration-300">
                   {totalItems}
                 </span>
               )}
@@ -91,8 +89,8 @@ export const Header = () => {
 
           <Sheet>
             <SheetTrigger asChild>
-              <button className={PremiumButtonClass}>
-                <Menu size={24} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
+              <button className="text-accent transition-transform hover:scale-110 active:scale-95 duration-300 group">
+                <Menu size={32} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#050505]/95 backdrop-blur-2xl border-white/5 w-full p-0 flex flex-col">
