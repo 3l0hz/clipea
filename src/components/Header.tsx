@@ -72,19 +72,6 @@ export const Header = () => {
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[4px] bg-accent/20 blur-md transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
-          
-          {/* Premium WhatsApp Button */}
-          <Button 
-            className="glass-button bg-black/40 text-white border-white/10 hover:border-white/30 px-8 h-11 text-[9px] font-bold uppercase tracking-[0.3em] rounded-xl glass-reflective-button-edge shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(142,255,127,0.1)] transition-all duration-700 group/btn shrink-0"
-            asChild
-          >
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">
-              <span className="relative z-10 flex items-center gap-3">
-                WhatsApp
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(142,255,127,0.9)]" />
-              </span>
-            </a>
-          </Button>
         </nav>
 
         {/* Mobile Nav Trigger */}
