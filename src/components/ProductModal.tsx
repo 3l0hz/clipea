@@ -36,6 +36,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   if (!product) return null;
 
+  const isPromo = product.category === 'Promos Moto';
   const images = product.images || [product.image];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
@@ -44,7 +45,14 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
+      <DialogContent 
+        className={cn(
+          "max-w-[95vw] md:max-w-4xl p-0 overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0 border",
+          isPromo 
+            ? "bg-[#020306] border-white/10 shadow-[0_0_80px_rgba(142,255,127,0.08)]" 
+            : "bg-background border-border shadow-2xl"
+        )}
+      >
         <DialogHeader className="sr-only">
           <DialogTitle>{product.name}</DialogTitle>
           <DialogDescription>{product.description}</DialogDescription>
@@ -53,23 +61,56 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
         <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative">
           {/* Close Button */}
           <DialogClose asChild>
-            <button className="absolute top-4 right-4 z-[70] w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/20 hover:text-white focus:outline-none group">
-              <X size={20} className="transition-transform duration-500 group-hover:rotate-90" />
+            <button 
+              className={cn(
+                "absolute top-4 right-4 z-[70] w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 focus:outline-none group border",
+                isPromo 
+                  ? "bg-black/60 border-white/10 text-accent/80 hover:border-accent/40 hover:text-accent shadow-[0_0_15px_rgba(142,255,127,0.1)]"
+                  : "bg-black/40 border-white/10 text-white/80 hover:text-white"
+              )}
+            >
+              <X size={18} className="transition-transform duration-500 group-hover:rotate-90" />
               <span className="sr-only">Cerrar</span>
             </button>
           </DialogClose>
 
           {/* Left Side: Image Section */}
-          <div className="w-full md:w-1/2 relative bg-[#0a0a0a] flex flex-col items-center justify-center min-h-[300px] md:min-h-[500px]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
-            <div className="relative w-full h-full p-8 flex items-center justify-center">
-              <Image
-                src={images[currentImageIndex]}
-                alt={product.name}
-                fill
-                className="object-contain p-4 md:p-8"
-                priority
-              />
+          <div 
+            className={cn(
+              "w-full md:w-1/2 relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[500px]",
+              isPromo 
+                ? "bg-gradient-to-br from-[#050810] via-[#020306] to-[#020306]" 
+                : "bg-[#0a0a0a]"
+            )}
+          >
+            <div 
+              className={cn(
+                "absolute inset-0 pointer-events-none",
+                isPromo 
+                  ? "bg-[radial-gradient(circle_at_50%_40%,rgba(103,232,249,0.08),transparent_70%)]" 
+                  : "bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)]"
+              )} 
+            />
+            
+            <div className="relative w-full h-full p-10 flex items-center justify-center">
+              <div 
+                className={cn(
+                  "relative w-full h-full flex items-center justify-center transition-all duration-700",
+                  isPromo && "drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+                )}
+              >
+                <Image
+                  src={images[currentImageIndex]}
+                  alt={product.name}
+                  fill
+                  className={cn(
+                    "object-contain p-4 md:p-10",
+                    isPromo && "filter brightness-[1.05] contrast-[1.05]"
+                  )}
+                  priority
+                />
+              </div>
+              
               {images.length > 1 && (
                 <>
                   <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
@@ -102,25 +143,47 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           </div>
 
           {/* Right Side: Info Section */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col gap-8 md:overflow-y-auto bg-card relative">
+          <div 
+            className={cn(
+              "w-full md:w-1/2 p-8 md:p-12 flex flex-col gap-8 md:overflow-y-auto relative",
+              isPromo ? "bg-transparent" : "bg-card"
+            )}
+          >
             <div className="space-y-4">
-              <div className="flex flex-col gap-1">
-                <span className="text-accent text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em]">{product.category}</span>
+              <div className="flex flex-col gap-1.5">
+                <span 
+                  className={cn(
+                    "text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em]",
+                    isPromo ? "text-accent/90" : "text-accent"
+                  )}
+                >
+                  {product.category}
+                </span>
                 <h2 className="text-3xl md:text-4xl font-headline font-bold leading-none uppercase tracking-tight text-white">{product.name}</h2>
               </div>
-              <div className="text-3xl md:text-4xl font-headline font-extrabold text-accent tracking-tighter leading-none">
+              <div 
+                className={cn(
+                  "text-3xl md:text-4xl font-headline font-extrabold tracking-tighter leading-none",
+                  isPromo ? "text-accent drop-shadow-[0_0_12px_rgba(142,255,127,0.3)]" : "text-accent"
+                )}
+              >
                 {product.price}
               </div>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-8 flex-1">
               <div className="space-y-3">
                 <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Descripción</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed font-medium">{product.description}</p>
               </div>
 
               {/* Technical Details Grid */}
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
+              <div 
+                className={cn(
+                  "grid grid-cols-2 gap-8 pt-8 border-t",
+                  isPromo ? "border-white/5" : "border-white/5"
+                )}
+              >
                 <div className="space-y-2">
                   <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Compatibilidad</h4>
                   <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
@@ -135,10 +198,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               {product.highlights && product.highlights.length > 0 && (
                 <div className="space-y-3 pt-6 border-t border-white/5">
                   <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Incluye</h4>
-                  <ul className="grid grid-cols-1 gap-2">
+                  <ul className="grid grid-cols-1 gap-2.5">
                     {product.highlights.map((h, i) => (
-                      <li key={i} className="flex items-center gap-2 text-[11px] text-white/80 font-medium">
-                        <div className="w-1 h-1 rounded-full bg-accent" />
+                      <li key={i} className="flex items-center gap-3 text-[11px] text-white/70 font-medium">
+                        <div className={cn("w-1 h-1 rounded-full", isPromo ? "bg-accent/60" : "bg-accent")} />
                         {h}
                       </li>
                     ))}
@@ -147,10 +210,18 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               )}
             </div>
 
-            <div className="mt-auto pt-8 flex flex-col gap-5">
-              <Button asChild className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+            <div className="mt-auto pt-8 flex flex-col gap-6">
+              <Button 
+                asChild 
+                className={cn(
+                  "w-full h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500",
+                  isPromo 
+                    ? "glass-button bg-white/5 text-white border-accent/20 hover:border-accent/50 hover:bg-accent/5 shadow-[0_0_25px_rgba(142,255,127,0.15)]" 
+                    : "glass-button bg-white/5 text-white border-white/10 hover:bg-white/10"
+                )}
+              >
                 <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
-                  <WhatsAppIcon className="w-5 h-5" />
+                  <WhatsAppIcon className={cn("w-5 h-5", isPromo && "text-accent")} />
                   <span className="tracking-widest uppercase text-sm">Comprar por WhatsApp</span>
                 </a>
               </Button>
