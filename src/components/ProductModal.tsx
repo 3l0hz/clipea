@@ -4,9 +4,8 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, Di
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/constants/data';
-import { ChevronLeft, ChevronRight, CheckCircle2, X } from 'lucide-react';
-import { useState } from 'react';
-import { Badge } from '@/components/ui/badge';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface ProductModalProps {
@@ -28,164 +27,72 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen]);
+
   if (!product) return null;
 
-  const isPremiumPromo = product.category === 'Promos Moto' || product.id === 'PRUEBA_DESKTOP';
   const images = product.images || [product.image];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
 
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  const PremiumCloseButton = () => (
-    <DialogClose asChild>
-      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border-none flex items-center justify-center transition-all duration-300 hover:scale-110 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.15)] focus:outline-none group">
-        <X size={18} strokeWidth={2} className="relative z-10 text-accent transition-transform duration-500 group-hover:rotate-90" />
-        <span className="sr-only">Cerrar</span>
-      </button>
-    </DialogClose>
-  );
-
-  const StandardCloseButton = () => (
-    <DialogClose asChild>
-      <button className="absolute top-4 right-4 z-[70] w-9 h-9 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/20 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.05)] hover:shadow-[0_0_18px_rgba(255,255,255,0.1)] focus:outline-none group">
-        <X size={18} strokeWidth={1.5} className="relative z-10 transition-transform duration-500 group-hover:rotate-90" />
-        <span className="sr-only">Cerrar</span>
-      </button>
-    </DialogClose>
-  );
-
-  if (isPremiumPromo) {
-    return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-[94vw] md:max-w-4xl p-0 bg-transparent border-none overflow-visible rounded-[24px] md:rounded-[32px] shadow-none [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
-          <DialogHeader className="sr-only">
-            <DialogTitle>{product.name}</DialogTitle>
-            <DialogDescription>{product.description}</DialogDescription>
-          </DialogHeader>
-          
-          <div className={cn(
-            "premium-mobile-card promo-glass-card glass-reflective-edge relative overflow-y-auto max-h-[90vh] flex flex-col items-center text-center p-6 md:p-10 gap-5 md:gap-8 rounded-[24px] md:rounded-[32px] w-full"
-          )}>
-            <div className="shine-layer" />
-            
-            <PremiumCloseButton />
-            
-            {/* Header Capsule */}
-            <div className="relative w-full z-10 mt-6 md:mt-4">
-              <div className="mx-auto w-fit glass-button bg-black/60 backdrop-blur-xl border-accent/30 py-2.5 px-8 md:px-10 rounded-xl glass-reflective-button-edge flex flex-col items-center gap-1 shadow-[0_0_15px_rgba(142,255,127,0.1)]">
-                <span className="text-[8px] font-bold text-accent tracking-[0.5em] uppercase opacity-90 leading-none">PROMO EXCLUSIVA</span>
-                <h2 className="text-xl md:text-3xl font-headline font-bold text-white tracking-tighter uppercase leading-tight">{product.name}</h2>
-              </div>
-            </div>
-
-            {/* Product Image */}
-            <div className="relative w-full max-w-xl aspect-square md:aspect-[16/9] rounded-[20px] bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center group/img p-4 md:p-6">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_60%)]" />
-              <div className="relative w-full h-full">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain transition-transform duration-1000 group-hover/img:scale-105 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Product Info */}
-            <div className="w-full max-w-2xl space-y-4 md:space-y-6 z-10">
-              <div className="space-y-2">
-                <div className="text-3xl md:text-4xl font-headline font-extrabold text-white tracking-tighter flex items-center justify-center gap-2">
-                  {product.price}
-                  <span className="text-[10px] font-bold text-accent/50 tracking-widest block opacity-50 uppercase">CLP</span>
-                </div>
-                <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-lg mx-auto font-medium">
-                  {product.description}
-                </p>
-              </div>
-
-              {product.highlights && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 py-4 md:py-6 border-y border-white/10">
-                  {product.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-left">
-                      <CheckCircle2 size={12} className="text-accent shrink-0" />
-                      <span className="text-white/80 text-[10px] md:text-xs font-medium tracking-tight line-clamp-1">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Technical Details */}
-              <div className="grid grid-cols-2 gap-8 py-2">
-                <div className="text-left space-y-1">
-                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.4em]">Compatibilidad</h4>
-                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
-                </div>
-                <div className="text-right space-y-1">
-                  <h4 className="text-[8px] font-bold text-white/30 uppercase tracking-[0.4em]">Uso Pro</h4>
-                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.recommendedUse}</p>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="pt-2">
-                <Button 
-                  asChild 
-                  className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 md:h-14 rounded-xl text-base md:text-lg font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_10px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]"
-                >
-                  <a href={waLink} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" />
-                    SOLICITAR AHORA
-                  </a>
-                </Button>
-                <p className="mt-3 text-[9px] text-white/20 uppercase font-bold tracking-[0.4em]">Envío prioritario a todo Chile</p>
-              </div>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
+      <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 bg-background border-border overflow-hidden rounded-2xl sm:rounded-3xl animate-in zoom-in-95 [&>button]:hidden focus:ring-0 focus:outline-none focus-visible:ring-0">
         <DialogHeader className="sr-only">
           <DialogTitle>{product.name}</DialogTitle>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         
         <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden relative">
-          <StandardCloseButton />
+          {/* Close Button */}
+          <DialogClose asChild>
+            <button className="absolute top-4 right-4 z-[70] w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/20 hover:text-white focus:outline-none group">
+              <X size={20} className="transition-transform duration-500 group-hover:rotate-90" />
+              <span className="sr-only">Cerrar</span>
+            </button>
+          </DialogClose>
 
-          <div className="w-full md:w-1/2 relative bg-[#0F0F0F] flex flex-col">
-            <div className="relative aspect-square w-full">
+          {/* Left Side: Image Section */}
+          <div className="w-full md:w-1/2 relative bg-[#0a0a0a] flex flex-col items-center justify-center min-h-[300px] md:min-h-[500px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
+            <div className="relative w-full h-full p-8 flex items-center justify-center">
               <Image
                 src={images[currentImageIndex]}
                 alt={product.name}
                 fill
-                className="object-contain"
+                className="object-contain p-4 md:p-8"
                 priority
               />
               {images.length > 1 && (
                 <>
-                  <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors">
-                    <ChevronLeft size={20} />
+                  <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
+                    <ChevronLeft size={24} />
                   </button>
-                  <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors">
-                    <ChevronRight size={20} />
+                  <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black transition-colors z-20">
+                    <ChevronRight size={24} />
                   </button>
                 </>
               )}
             </div>
+            
+            {/* Thumbnail selector if multiple images */}
             {images.length > 1 && (
-              <div className="flex gap-2 p-4 overflow-x-auto justify-center">
+              <div className="absolute bottom-6 left-0 right-0 flex gap-2 px-4 overflow-x-auto justify-center z-20">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
-                    className={`relative w-16 h-16 rounded-md overflow-hidden border-2 transition-colors ${currentImageIndex === idx ? 'border-accent' : 'border-transparent'}`}
+                    className={cn(
+                      "relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all",
+                      currentImageIndex === idx ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
+                    )}
                   >
                     <Image src={img} alt={`${product.name} thumb ${idx}`} fill className="object-cover" />
                   </button>
@@ -194,49 +101,62 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             )}
           </div>
 
-          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col gap-6 md:overflow-y-auto bg-card relative">
+          {/* Right Side: Info Section */}
+          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col gap-8 md:overflow-y-auto bg-card relative">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <span className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">{product.category}</span>
-                {product.brand && (
-                  <>
-                    <div className="w-1 h-1 rounded-full bg-white/10" />
-                    <span className="text-muted-foreground text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em]">{product.brand}</span>
-                  </>
-                )}
+              <div className="flex flex-col gap-1">
+                <span className="text-accent text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em]">{product.category}</span>
+                <h2 className="text-3xl md:text-4xl font-headline font-bold leading-none uppercase tracking-tight text-white">{product.name}</h2>
               </div>
-              <div className="space-y-1">
-                <h2 className="text-2xl md:text-3xl font-headline font-bold leading-tight uppercase tracking-tight">{product.name}</h2>
-                <div className="text-2xl md:text-3xl font-headline font-extrabold text-accent tracking-tighter">{product.price}</div>
+              <div className="text-3xl md:text-4xl font-headline font-extrabold text-accent tracking-tighter leading-none">
+                {product.price}
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Descripción</h4>
-                <h5 className="text-muted-foreground text-sm leading-relaxed">{product.description}</h5>
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Descripción</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed font-medium">{product.description}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/5">
-                <div className="space-y-1.5">
-                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Compatibilidad</h4>
-                  <p className="text-white text-xs font-medium">{product.compatibility}</p>
+              {/* Technical Details Grid */}
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
+                <div className="space-y-2">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Compatibilidad</h4>
+                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.compatibility}</p>
                 </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.2em]">Uso Recomendado</h4>
-                  <p className="text-white text-xs font-medium">{product.recommendedUse}</p>
+                <div className="space-y-2">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Uso Recomendado</h4>
+                  <p className="text-white text-xs md:text-sm font-bold tracking-tight">{product.recommendedUse}</p>
                 </div>
               </div>
+
+              {/* Highlights for Promo Products */}
+              {product.highlights && product.highlights.length > 0 && (
+                <div className="space-y-3 pt-6 border-t border-white/5">
+                  <h4 className="text-[10px] font-bold uppercase text-white/30 tracking-[0.3em]">Incluye</h4>
+                  <ul className="grid grid-cols-1 gap-2">
+                    {product.highlights.map((h, i) => (
+                      <li key={i} className="flex items-center gap-2 text-[11px] text-white/80 font-medium">
+                        <div className="w-1 h-1 rounded-full bg-accent" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
-            <div className="mt-auto pt-8 flex flex-col gap-4">
-              <Button asChild className="w-full glass-button bg-white text-black hover:bg-white/90 border-none h-12 rounded-xl text-base font-extrabold flex items-center justify-center gap-2 transition-all duration-500 glass-reflective-button-edge shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+            <div className="mt-auto pt-8 flex flex-col gap-5">
+              <Button asChild className="w-full glass-button bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/30 h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all duration-500 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
                   <WhatsAppIcon className="w-5 h-5" />
-                  Comprar por WhatsApp
+                  <span className="tracking-widest uppercase text-sm">Comprar por WhatsApp</span>
                 </a>
               </Button>
-              <p className="text-center text-[9px] text-white/30 uppercase font-bold tracking-[0.3em]">Envío a todo Chile · Pago Seguro</p>
+              <div className="flex flex-col items-center gap-1 opacity-40">
+                <p className="text-[9px] text-white uppercase font-bold tracking-[0.4em]">Envío a todo Chile · Pago Seguro</p>
+              </div>
             </div>
           </div>
         </div>
