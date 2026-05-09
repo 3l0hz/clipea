@@ -37,20 +37,22 @@ export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
 
 export const EXPERIMENTAL_NORMAL_PRODUCT: Product = {
   id: 'PRUEBA_NORMAL',
-  name: 'PRUEBA PRODUCTO',
-  category: 'Experimental',
-  price: '$45.990',
-  image: 'https://picsum.photos/seed/normal-lab/600/600',
-  description: 'Nueva tarjeta experimental para pruebas de productos individuales con estética high-end.',
-  compatibility: 'Universal Sandbox',
-  recommendedUse: 'Testing Visual',
-  brand: 'High-End Lab',
+  name: 'ADAPTADOR DJI ACTION 360',
+  category: 'Accesorios Cámara',
+  price: '$12.990',
+  image: 'https://picsum.photos/seed/dji-adapter/600/600',
+  description: 'Adaptador magnético de liberación rápida compatible con DJI Osmo Action y OSMO 360. Sistema de doble fijación con imán y seguro metálico para máxima estabilidad en grabaciones dinámicas.',
+  compatibility: 'OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
+  recommendedUse: 'Liberación rápida en grabaciones dinámicas',
+  brand: 'ELOHZ Tech',
   bestSeller: true,
   highlights: [
-    'Bordes Premium Reflectivos',
-    'Glow Cian/Verde Refinado',
-    'Botón Crystal Glass',
-    'Fondo Glassmorphism'
+    'Compatible con OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
+    'Sistema magnético de liberación rápida',
+    'Seguro metálico de doble garra ultra estable',
+    'Construcción ligera en aluminio + imán',
+    'Compatible con múltiples accesorios y soportes',
+    'Interfaz 1/4 y montaje doble garra'
   ]
 };
 
