@@ -245,7 +245,7 @@ export const PRODUCTS: Product[] = [
   // BASTONES
   {
     id: 'selfie1.20',
-    name: 'Bastón Selfie Telesin 1.2m',
+    name: 'Baston selfie Alumino 1.2m',
     category: 'Bastones Selfie',
     price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
@@ -253,7 +253,6 @@ export const PRODUCTS: Product[] = [
     description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Vlogs, viajes, rutas suaves',
-    brand: 'Telesin',
     bestSeller: true
   },
   {
