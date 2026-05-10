@@ -160,8 +160,14 @@ export default function Home() {
               const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
               if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
 
+              const categoryId = cat.value.toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+
               return (
-                <div key={cat.value} className="space-y-12 md:space-y-16">
+                <div key={cat.value} id={categoryId} className="space-y-12 md:space-y-16 scroll-mt-32">
                   <div className="space-y-4 max-w-3xl">
                     <div className="flex items-center gap-4">
                       <div className="h-[2px] w-12 bg-accent" />

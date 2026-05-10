@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, User, ShoppingCart } from 'lucide-react';
@@ -9,12 +8,12 @@ import { CartDrawer } from './CartDrawer';
 import { useCart } from '@/context/CartContext';
 
 const CATEGORIES = [
-  { label: 'Soportes Moto / Vehículo', href: '#catalog' },
-  { label: 'Trípodes', href: '#catalog' },
-  { label: 'Bastones Selfie', href: '#catalog' },
-  { label: 'Promos Moto', href: '#catalog' },
-  { label: 'Accesorios Cámara', href: '#catalog' },
-  { label: 'Accesorios Corporales', href: '#catalog' },
+  { label: 'Soportes Moto / Vehículo', href: '#soportes-moto-vehiculo' },
+  { label: 'Trípodes', href: '#tripodes' },
+  { label: 'Bastones Selfie', href: '#bastones-selfie' },
+  { label: 'Promos Moto', href: '#promos-moto' },
+  { label: 'Accesorios Cámara', href: '#accesorios-camara' },
+  { label: 'Accesorios Corporales', href: '#accesorios-corporales' },
 ];
 
 const BRANDS = [
@@ -52,7 +51,7 @@ export const Header = () => {
 
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-20">
         {/* Logo */}
-        <a href="#" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
+        <a href="#home" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
             elohz
             <span className="text-accent">.</span>

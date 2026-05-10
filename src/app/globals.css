@@ -28,6 +28,10 @@
     /* Premium Neon Green Accent */
     --premium-green: 142 70% 50%;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer base {
