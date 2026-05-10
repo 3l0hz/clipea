@@ -81,7 +81,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
           {/* Botón Cerrar Flotante */}
           <DialogClose asChild>
             <button 
-              className="absolute top-4 right-4 md:top-6 md:right-6 z-[100] w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/60 backdrop-blur-xl text-white/80 hover:text-white border border-white/10 flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group"
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-[100] w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/60 backdrop-blur-xl text-white/80 hover:text-white border border-white/10 flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group focus:outline-none focus:ring-0 focus-visible:ring-0"
             >
               <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
             </button>
