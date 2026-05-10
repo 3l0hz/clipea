@@ -261,7 +261,7 @@ export default function Home() {
                 elohz<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
               </a>
               <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">
-                Accesorios para cámaras deportivas, creación de contenido POV y equipamiento compatible con Insta360, GoPro y DJI.
+                Accesorios para cámaras deportivas, creación POV y contenido en movimiento.
               </p>
               <div className="flex gap-6">
                 {[
