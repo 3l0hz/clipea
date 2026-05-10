@@ -224,6 +224,24 @@ export const PRODUCTS: Product[] = [
     recommendedUse: 'Superficies planas, tomas bajas',
     brand: 'Insta360'
   },
+  {
+    id: 'Bullet',
+    name: 'Mango Bullet Time',
+    category: 'Trípodes',
+    price: '$24.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/2.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/3.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/4.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/0.png'
+    ],
+    description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
+    compatibility: 'Insta360 ONE X/X2/X3',
+    recommendedUse: 'Efectos cinemáticos 360',
+    brand: 'Insta360'
+  },
   // BASTONES
   {
     id: 'selfie1.20',
@@ -231,7 +249,7 @@ export const PRODUCTS: Product[] = [
     category: 'Bastones Selfie',
     price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
-    images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', getImg('Bullet')],
+    images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png'],
     description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Vlogs, viajes, rutas suaves',
@@ -273,24 +291,6 @@ export const PRODUCTS: Product[] = [
     bestSeller: true
   },
   // OTROS
-  {
-    id: 'Bullet',
-    name: 'Mango Bullet Time',
-    category: 'Accesorios Cámara',
-    price: '$24.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/3.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/4.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/0.png'
-    ],
-    description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
-    compatibility: 'Insta360 ONE X/X2/X3',
-    recommendedUse: 'Efectos cinemáticos 360',
-    brand: 'Insta360'
-  },
   {
     id: 'lente-rep-gopro9.13',
     name: 'Lente Repuesto GoPro 9-13',
