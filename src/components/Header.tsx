@@ -12,7 +12,7 @@ const CATEGORIES = [
   { label: 'Trípodes', href: '#tripodes' },
   { label: 'Bastones Selfie', href: '#bastones-selfie' },
   { label: 'Promos Moto', href: '#promos-moto' },
-  { label: 'Soportes Cámara', href: '#accesorios-camara' },
+  { label: 'Accesorios Cámara', href: '#accesorios-camara' },
   { label: 'Soportes Corporales', href: '#accesorios-corporales' },
 ];
 
