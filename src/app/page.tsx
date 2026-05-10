@@ -11,15 +11,22 @@ import {
   Truck, 
   Zap, 
   Camera, 
-  Smartphone as BikeIcon, 
   Instagram, 
   Youtube, 
   Twitter, 
   ShieldCheck, 
   Headset, 
-  Clock 
+  Clock,
+  ArrowUpRight
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const CATEGORY_ORDER: { label: string; value: Category; description: string }[] = [
   { 
@@ -240,96 +247,168 @@ export default function Home() {
         </div>
       </section>
 
-      {/* New Redesigned Footer */}
-      <footer className="py-24 bg-[#060606] border-t border-white/5">
-        <div className="container mx-auto px-6">
+      {/* Refined Footer */}
+      <footer className="py-24 bg-[#060606] border-t border-white/5 relative overflow-hidden">
+        {/* Subtle Ambient Background */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/5 blur-[120px] pointer-events-none rounded-full" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 mb-24">
             
-            {/* Columna Marca */}
-            <div className="space-y-10">
-              <a href="#" className="text-4xl font-headline font-bold tracking-tighter text-white">
-                elohz<span className="text-accent">.</span>
+            {/* Column 1: Brand & Description */}
+            <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 w-fit">
+                elohz<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
               </a>
-              <p className="text-muted-foreground text-[11px] leading-relaxed max-w-[280px] uppercase font-bold tracking-[0.25em] opacity-80">
-                Accesorios premium para cámaras de acción y creación de contenido técnico de alto nivel.
+              <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">
+                Accesorios para cámaras deportivas, creación de contenido POV y equipamiento compatible con Insta360, GoPro y DJI.
               </p>
-              <div className="flex gap-8">
-                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
-                  <Instagram size={22} />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
-                  <Youtube size={22} />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110">
-                  <Twitter size={22} />
-                </a>
+              <div className="flex gap-6">
+                {[
+                  { icon: Instagram, href: "https://instagram.com/elohz.cl" },
+                  { icon: Youtube, href: "#" },
+                  { icon: Twitter, href: "#" }
+                ].map((social, i) => (
+                  <a 
+                    key={i}
+                    href={social.href} 
+                    className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-white/5 translate-y-full group-hover/social:translate-y-0 transition-transform duration-500" />
+                    <social.icon size={20} className="relative z-10 group-hover/social:scale-110 transition-transform" />
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* Columna SERVICIOS */}
-            <div className="space-y-10">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Servicios</h4>
-              <div className="space-y-7">
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
-                    <Truck size={18} />
+            {/* Column 2: SERVICES */}
+            <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Servicios Premium</h4>
+              <div className="space-y-8">
+                {[
+                  { icon: Truck, text: "Envíos a todo Chile" },
+                  { icon: ShieldCheck, text: "Garantía fallas fábrica" },
+                  { icon: Headset, text: "Soporte personalizado" },
+                  { icon: Clock, text: "Atención postventa" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-5 group cursor-default">
+                    <div className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:shadow-[0_0_15px_rgba(142,255,127,0.15)] transition-all duration-700">
+                      <item.icon size={18} strokeWidth={1.5} />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/60 group-hover:text-white transition-colors duration-500">{item.text}</span>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Envíos a todo Chile</span>
-                </div>
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
-                    <ShieldCheck size={18} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Garantía fallas fábrica</span>
-                </div>
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
-                    <Headset size={18} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Soporte personalizado</span>
-                </div>
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-500">
-                    <Clock size={18} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">Atención postventa</span>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Columna AYUDA & POLÍTICAS */}
-            <div className="space-y-10">
+            {/* Column 3: HELP & POLICIES */}
+            <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Ayuda & Políticas</h4>
-              <div className="flex flex-col gap-6">
-                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Devoluciones</a>
-                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Términos y condiciones</a>
-                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Política de envíos</a>
-                <a href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-accent transition-all duration-300">Contacto</a>
+              <div className="flex flex-col gap-8">
+                <FooterDialogLink 
+                  title="Devoluciones" 
+                  content={
+                    <div className="space-y-6 text-sm text-white/80 leading-relaxed">
+                      <p>En ELOHZ tienes hasta 7 días desde la recepción del pedido para solicitar una devolución o reembolso.</p>
+                      <div className="space-y-2">
+                        <p className="font-bold text-accent uppercase tracking-widest text-xs">Condiciones:</p>
+                        <ul className="list-disc pl-5 space-y-1">
+                          <li>Producto sin uso</li>
+                          <li>Empaque original</li>
+                          <li>Buen estado general</li>
+                        </ul>
+                      </div>
+                      <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                        <p className="font-bold mb-1">Importante:</p>
+                        <p>El envío de devolución corre por cuenta del cliente, excepto por fallas de fábrica demostrables o errores de despacho.</p>
+                      </div>
+                    </div>
+                  }
+                />
+                <FooterDialogLink 
+                  title="Términos y condiciones" 
+                  content={
+                    <div className="space-y-6 text-sm text-white/80 leading-relaxed">
+                      <p>ELOHZ comercializa accesorios y equipamiento para cámaras deportivas y creación de contenido POV.</p>
+                      <div className="space-y-2">
+                        <p className="font-bold text-accent uppercase tracking-widest text-xs">Compatibilidad asegurada:</p>
+                        <p>Diseñados para Insta360, GoPro y DJI Action.</p>
+                      </div>
+                      <div className="space-y-3">
+                        <p>• Existen productos alternativos y también productos de marcas reconocidas como Telesin o Ulanzi.</p>
+                        <p>• Algunos productos pueden tener disponibilidad limitada.</p>
+                        <p>• Las imágenes son referenciales.</p>
+                        <p>• Los tiempos de despacho varían según región.</p>
+                      </div>
+                    </div>
+                  }
+                />
+                <FooterDialogLink 
+                  title="Política de envíos" 
+                  content={
+                    <div className="space-y-6 text-sm text-white/80 leading-relaxed">
+                      <ul className="space-y-4">
+                        <li className="flex gap-3">
+                          <CheckCircle className="text-accent shrink-0" size={16} />
+                          <span>Envíos a todo Chile vía Starken, Blue Express y Chilexpress.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <CheckCircle className="text-accent shrink-0" size={16} />
+                          <span>Seguimiento en línea disponible para todos los pedidos.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <CheckCircle className="text-accent shrink-0" size={16} />
+                          <span>Los tiempos de entrega dependen exclusivamente del courier seleccionado y la región de destino.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  }
+                />
+                <FooterDialogLink 
+                  title="Contacto" 
+                  content={
+                    <div className="space-y-8 py-4">
+                      <div className="flex flex-col gap-2">
+                        <span className="text-[10px] text-accent uppercase font-bold tracking-widest">WhatsApp Directo</span>
+                        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" className="text-2xl font-headline font-bold text-white hover:text-accent transition-colors">+56 9 4062 8182</a>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <span className="text-[10px] text-accent uppercase font-bold tracking-widest">Correo de Soporte</span>
+                        <a href="mailto:soporte.elohz@gmail.com" className="text-lg font-bold text-white/80 hover:text-white transition-colors">soporte.elohz@gmail.com</a>
+                      </div>
+                    </div>
+                  }
+                />
               </div>
-              <div className="pt-6 border-t border-white/5 space-y-3">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-medium">WhatsApp: +56 9 4062 8182</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-medium">soporte.elohz@gmail.com</p>
+              <div className="pt-8 border-t border-white/5 space-y-4">
+                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] font-bold flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  WhatsApp: +56 9 4062 8182
+                </p>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] font-bold">soporte.elohz@gmail.com</p>
               </div>
             </div>
           </div>
 
           {/* Bottom Bar */}
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/20">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
+              <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/20">
                 © 2026 elohz Chile. Todos los derechos reservados.
               </p>
               <div className="flex gap-8 opacity-40">
-                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors">Privacy</a>
-                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors">Terms</a>
+                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors duration-300">Privacidad</a>
+                <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors duration-300">Términos</a>
               </div>
             </div>
             <div className="flex items-center gap-8">
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Basado en Chile 🇨🇱</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 flex items-center gap-2">
+                Despachos a todo Chile 🇨🇱
+              </span>
               <div className="flex gap-4 opacity-10">
-                <div className="w-9 h-6 rounded-sm bg-white" />
-                <div className="w-9 h-6 rounded-sm bg-white" />
-                <div className="w-9 h-6 rounded-sm bg-white" />
+                <div className="w-10 h-6 rounded-md bg-white" />
+                <div className="w-10 h-6 rounded-md bg-white" />
+                <div className="w-10 h-6 rounded-md bg-white" />
               </div>
             </div>
           </div>
@@ -347,4 +426,45 @@ export default function Home() {
 
 function Badge({ children, className }: { children: React.ReactNode; className?: string }) {
   return <div className={`inline-block ${className}`}>{children}</div>;
+}
+
+function CheckCircle({ className, size = 16 }: { className?: string; size?: number }) {
+  return (
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  );
+}
+
+function FooterDialogLink({ title, content }: { title: string; content: React.ReactNode }) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="text-[12px] font-bold uppercase tracking-[0.25em] text-white/50 hover:text-accent transition-all duration-500 flex items-center gap-3 group/link w-fit text-left">
+          <div className="w-0 h-[1.5px] bg-accent group-hover/link:w-6 transition-all duration-500" />
+          {title}
+          <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-y-0 group-hover/link:translate-x-0 transition-all duration-500" />
+        </button>
+      </DialogTrigger>
+      <DialogContent className="bg-[#050505]/95 backdrop-blur-2xl border-white/10 text-white max-w-lg rounded-[32px] p-10 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-none md:border md:border-white/10">
+        <DialogHeader className="mb-8">
+          <DialogTitle className="text-3xl font-headline font-bold uppercase tracking-tighter text-white">
+            {title}<span className="text-accent">.</span>
+          </DialogTitle>
+        </DialogHeader>
+        {content}
+      </DialogContent>
+    </Dialog>
+  );
 }
