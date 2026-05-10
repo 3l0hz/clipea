@@ -49,9 +49,9 @@ export const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-10 lg:gap-20">
+      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
         {/* Logo */}
-        <a href="#home" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
+        <a href="#home" className="relative z-10 text-2xl lg:text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
             elohz
             <span className="text-accent">.</span>
@@ -59,13 +59,13 @@ export const Header = () => {
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 lg:gap-10 items-center">
+        {/* Desktop Nav - Balanced Layout */}
+        <nav className="hidden xl:flex gap-6 2xl:gap-10 items-center justify-center flex-1">
           {CATEGORIES.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="relative text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
+              className="relative text-[9px] 2xl:text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
             >
               {link.label}
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-accent transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(103,232,249,0.8)]" />
@@ -74,13 +74,26 @@ export const Header = () => {
           ))}
         </nav>
 
+        {/* Desktop Nav - Mid-range screens */}
+        <nav className="hidden md:flex xl:hidden gap-4 items-center justify-center flex-1 overflow-x-auto no-scrollbar px-4">
+          {CATEGORIES.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="relative text-[8px] font-bold uppercase tracking-[0.1em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
         {/* Right Section: Icons */}
-        <div className="flex items-center gap-6 md:gap-8 shrink-0">
+        <div className="flex items-center gap-5 lg:gap-8 shrink-0 relative z-10">
           <CartDrawer>
             <button className="relative text-accent transition-transform hover:scale-110 active:scale-95 duration-300 group">
-              <ShoppingCart size={28} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
+              <ShoppingCart size={24} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-accent text-black text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.8)] animate-in zoom-in duration-300">
+                <span className="absolute -top-2 -right-2 bg-accent text-black text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.8)] animate-in zoom-in duration-300">
                   {totalItems}
                 </span>
               )}
@@ -90,7 +103,7 @@ export const Header = () => {
           <Sheet>
             <SheetTrigger asChild>
               <button className="text-accent transition-transform hover:scale-110 active:scale-95 duration-300 group">
-                <Menu size={32} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
+                <Menu size={28} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#050505]/95 backdrop-blur-2xl border-white/5 w-full p-0 flex flex-col">
