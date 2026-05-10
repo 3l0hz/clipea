@@ -8,12 +8,12 @@ import { CartDrawer } from './CartDrawer';
 import { useCart } from '@/context/CartContext';
 
 const CATEGORIES = [
-  { label: 'Soportes Moto / Vehículo', href: '#soportes-moto-vehiculo' },
+  { label: 'Soportes Moto', href: '#soportes-moto-vehiculo' },
   { label: 'Trípodes', href: '#tripodes' },
   { label: 'Bastones Selfie', href: '#bastones-selfie' },
   { label: 'Promos Moto', href: '#promos-moto' },
-  { label: 'Accesorios Cámara', href: '#accesorios-camara' },
-  { label: 'Accesorios Corporales', href: '#accesorios-corporales' },
+  { label: 'Soportes Cámara', href: '#accesorios-camara' },
+  { label: 'Soportes Corporales', href: '#accesorios-corporales' },
 ];
 
 const BRANDS = [
@@ -49,7 +49,7 @@ export const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-20">
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center gap-10 lg:gap-20">
         {/* Logo */}
         <a href="#home" className="relative z-10 text-3xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
           <span className="relative">
@@ -60,12 +60,12 @@ export const Header = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-10 lg:gap-14 items-center">
-          {CATEGORIES.slice(0, 4).map((link) => (
+        <nav className="hidden md:flex gap-6 lg:gap-10 items-center">
+          {CATEGORIES.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="relative text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
+              className="relative text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-all duration-500 group whitespace-nowrap"
             >
               {link.label}
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-accent transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(103,232,249,0.8)]" />
@@ -75,7 +75,7 @@ export const Header = () => {
         </nav>
 
         {/* Right Section: Icons */}
-        <div className="flex items-center gap-6 md:gap-8">
+        <div className="flex items-center gap-6 md:gap-8 shrink-0">
           <CartDrawer>
             <button className="relative text-accent transition-transform hover:scale-110 active:scale-95 duration-300 group">
               <ShoppingCart size={28} strokeWidth={1.5} className="group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)]" />
