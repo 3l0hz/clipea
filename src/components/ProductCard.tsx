@@ -49,7 +49,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
   if (isPremium) {
     const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
-    const isLiquidLab = product.id === 'PRUEBA_NORMAL';
 
     return (
       <div 
@@ -91,7 +90,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             )}>
               {product.name}
             </h3>
-            {!isSpecialLab && !isMobile && (
+            {!isMobile && (
               <p className="text-[13px] text-white/40 line-clamp-1 leading-relaxed font-medium">
                 {product.description}
               </p>
@@ -121,15 +120,14 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex flex-col gap-2">
               <Button
                 className={cn(
-                  "w-full glass-button bg-white/5 text-white font-bold flex items-center justify-center gap-3 transition-all duration-700 glass-reflective-button-edge shadow-[0_0_15px_rgba(142,255,127,0.1)] hover:shadow-[0_0_20px_rgba(142,255,127,0.2)]",
-                  isLiquidLab ? "liquid-glass-button" : "crystal-glass-button",
+                  "w-full bg-white/[0.05] text-white font-bold flex items-center justify-center gap-3 border border-white/10 relative overflow-hidden backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:bg-white/[0.1] active:scale-[0.98]",
                   isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
                 )}
                 onClick={handleAddToCart}
               >
                 <ShoppingCart size={isMobile ? 16 : 18} className="relative z-20" />
                 <span className={cn(
-                  "uppercase tracking-widest relative z-20",
+                  "uppercase tracking-[0.2em] relative z-20 font-bold",
                   isMobile ? "text-[10px]" : "text-xs"
                 )}>
                   AGREGAR
@@ -210,11 +208,11 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className="flex flex-col gap-1.5">
             <Button
-              className="w-full glass-button bg-black/40 text-white font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 active:scale-95 glass-reflective-button-edge shadow-[0_0_20px_rgba(142,255,127,0.1)] backdrop-blur-md"
+              className="w-full bg-black/40 text-white font-bold h-11 rounded-2xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-black/60 active:scale-95 border border-white/5 backdrop-blur-md"
               onClick={handleAddToCart}
             >
               <ShoppingCart size={14} className="relative z-20" />
-              <span className="uppercase tracking-widest text-[10px] relative z-20">AGREGAR</span>
+              <span className="uppercase tracking-widest text-[10px] relative z-20 font-bold">AGREGAR</span>
             </Button>
             
             <a 
