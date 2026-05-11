@@ -1,96 +1,42 @@
 import { Product, FAQItem } from '@/types/store';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const getImg = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://picsum.photos/seed/elohz-fallback/600/600';
+export type MainCategory = 'CÁMARAS & CREACIÓN' | 'MOTO & AVENTURA' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';
 
-export const EXPERIMENTAL_PRODUCT: Product = {
-  id: 'PRUEBA',
-  name: 'TARJETA PRUEBA',
-  category: 'Accesorios Cámara',
-  price: '$0.000',
-  image: 'https://picsum.photos/seed/experimental/600/600',
-  description: 'Tarjeta experimental para pruebas visuales en mobile. Este producto es solo para desarrollo.',
-  compatibility: 'Sandbox',
-  recommendedUse: 'Laboratorio Visual',
-  brand: 'Experimental',
-  bestSeller: true
-};
+export interface CategoryStructure {
+  label: MainCategory;
+  subcategories: string[];
+}
 
-export const EXPERIMENTAL_DESKTOP_PRODUCT: Product = {
-  id: 'PRUEBA_DESKTOP',
-  name: 'PRUEBA DESKTOP',
-  category: 'Laboratorio',
-  price: '$99.990',
-  image: 'https://picsum.photos/seed/desktop-lab/600/600',
-  description: 'Tarjeta experimental exclusiva para pruebas en versión desktop. Base de diseño estándar.',
-  compatibility: 'Desktop Sandbox',
-  recommendedUse: 'Visual Lab',
-  brand: 'Prototyping',
-  bestSeller: false,
-  highlights: [
-    'Vidrio Templado 2.5D',
-    'Efecto Espejo Premium',
-    'Acabado Metálico',
-    'Corte Laser Preciso'
-  ]
-};
-
-export const EXPERIMENTAL_NORMAL_PRODUCT: Product = {
-  id: 'PRUEBA_NORMAL',
-  name: 'PRUEBA PRODUCTO MOBILE',
-  category: 'Accesorios Cámara',
-  price: '$12.990',
-  image: 'https://picsum.photos/seed/dji-adapter/600/600',
-  description: 'Adaptador magnético de liberación rápida compatible con DJI Osmo Action y OSMO 360. Sistema de doble fijación con imán y seguro metálico para máxima estabilidad en grabaciones dinámicas.',
-  compatibility: 'OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
-  recommendedUse: 'Liberación rápida en grabaciones dinámicas',
-  brand: 'ELOHZ Tech',
-  bestSeller: true,
-  highlights: [
-    'Compatible con OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
-    'Sistema magnético de liberación rápida',
-    'Seguro metálico de doble garra ultra estable',
-    'Construcción ligera en aluminio + imán',
-    'Compatible con múltiples accesorios y soportes',
-    'Interfaz 1/4 y montaje doble garra'
-  ]
-};
-
-export const EXPERIMENTAL_NORMAL_PRODUCT_V2: Product = {
-  id: 'PRUEBA_NORMAL_V2',
-  name: 'ADAPTADOR DJI ACTION 360 V2',
-  category: 'Accesorios Cámara',
-  price: '$12.990',
-  image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
-  images: [
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/2(3).jpg',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ok.jpg',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/1.png',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/3.jpg',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/4(1).jpg',
-    'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/adaptador%20dji%20sunny.jpg'
-  ],
-  description: 'Adaptador magnético de liberación rápida compatible con DJI Osmo Action y OSMO 360. Sistema de doble fijación con imán y seguro metálico para máxima estabilidad en grabaciones dinámicas.',
-  compatibility: 'OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
-  recommendedUse: 'Liberación rápida en grabaciones dinámicas',
-  brand: 'ELOHZ Tech',
-  bestSeller: true,
-  highlights: [
-    'Compatible con OSMO Action 5 Pro / 4 / 3 / 2 y OSMO 360',
-    'Sistema magnético de liberación rápida',
-    'Seguro metálico de doble garra ultra estable',
-    'Construcción ligera en aluminio + imán',
-    'Compatible con múltiples accesorios y soportes',
-    'Interfaz 1/4 y montaje doble garra'
-  ]
-};
+export const CATEGORY_STRUCTURE: CategoryStructure[] = [
+  {
+    label: 'CÁMARAS & CREACIÓN',
+    subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
+  },
+  {
+    label: 'MOTO & AVENTURA',
+    subcategories: ['Soportes Moto', 'Packs Moto', 'Monturas', 'Grabación POV']
+  },
+  {
+    label: 'GADGETS TECH',
+    subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
+  },
+  {
+    label: 'SETUP & ESCRITORIO',
+    subcategories: ['Pixel Art', 'Audio', 'Carga Rápida', 'Setup Creator']
+  },
+  {
+    label: 'OFERTAS',
+    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
+  }
+];
 
 export const PRODUCTS: Product[] = [
-  // PROMOS MOTO
+  // PROMOS MOTO (Ahora en OFERTAS -> Packs Especiales o MOTO & AVENTURA -> Packs Moto)
   {
     id: 'pack-moto-basico',
     name: 'MOTO START',
-    category: 'Promos Moto',
+    mainCategory: 'OFERTAS',
+    subcategory: 'Packs Especiales',
     price: '$39.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
@@ -108,7 +54,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'pack-moto-medio',
     name: 'MOTO CREATOR',
-    category: 'Promos Moto',
+    mainCategory: 'OFERTAS',
+    subcategory: 'Packs Especiales',
     price: '$59.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/1(3).jpg',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
@@ -125,7 +72,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'pack-moto-avanzado',
     name: 'MOTO ELITE',
-    category: 'Promos Moto',
+    mainCategory: 'OFERTAS',
+    subcategory: 'Packs Especiales',
     price: '$69.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/full.jpg',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
@@ -144,7 +92,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'soportemotomanillar',
     name: 'Soporte Moto Manillar CNC',
-    category: 'Soportes Moto / Vehículo',
+    mainCategory: 'MOTO & AVENTURA',
+    subcategory: 'Soportes Moto',
     price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/1.png',
     images: [
@@ -160,7 +109,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'soporteparab',
     name: 'Soporte Ventosa Parabrisas',
-    category: 'Soportes Moto / Vehículo',
+    mainCategory: 'MOTO & AVENTURA',
+    subcategory: 'Monturas',
     price: '$15.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/1(1).jpg',
     images: [
@@ -173,27 +123,12 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Parabrisas, tanques de moto, autos',
     recommendedUse: 'Grabación onboard'
   },
-  {
-    id: 'soporte-parabrisas-gopro-insta',
-    name: 'Soporte Parabrisas GoPro Insta',
-    category: 'Soportes Moto / Vehículo',
-    price: '$19.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soporteparab/primera.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soporteparab/primera.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soporteparab/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soporteparab/2.png'
-    ],
-    description: 'Soporte ultra resistente diseñado para capturar tomas estables desde el parabrisas de tu moto o vehículo.',
-    compatibility: 'GoPro, Insta360, DJI Action',
-    recommendedUse: 'Rutas de carretera, motovlogs',
-    bestSeller: false
-  },
   // TRÍPODES
   {
     id: 'MinitripodeGoPro',
     name: 'Mini Tripode Gopro',
-    category: 'Trípodes',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Trípodes',
     price: '$14.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/1(2).jpg',
     images: [
@@ -210,7 +145,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'Minitripodeinsta',
     name: 'Minitrípode Insta360',
-    category: 'Trípodes',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Trípodes',
     price: '$14.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
     images: [
@@ -227,7 +163,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'Bullet',
     name: 'Mango Bullet Time',
-    category: 'Trípodes',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Trípodes',
     price: '$24.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
     images: [
@@ -246,7 +183,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'selfie1.20',
     name: 'Baston selfie Alumino 1.2m',
-    category: 'Bastones Selfie',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Bastones Selfie',
     price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
     images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png'],
@@ -258,7 +196,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'Selfie2m',
     name: 'Bastón Selfie Carbono 2m',
-    category: 'Bastones Selfie',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Bastones Selfie',
     price: '$29.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
     images: [
@@ -275,7 +214,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'selfie3m',
     name: 'Bastón Selfie Carbono 3m',
-    category: 'Bastones Selfie',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Bastones Selfie',
     price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
     images: [
@@ -289,11 +229,12 @@ export const PRODUCTS: Product[] = [
     brand: 'Telesin',
     bestSeller: true
   },
-  // OTROS
+  // OTROS / ADAPTADORES
   {
     id: 'lente-rep-gopro9.13',
     name: 'Lente Repuesto GoPro 9-13',
-    category: 'Accesorios Cámara',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Accesorios GoPro',
     price: '$9.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente1.jpg',
     images: [
@@ -307,8 +248,9 @@ export const PRODUCTS: Product[] = [
   {
     id: 'PecheraTelesin',
     name: 'Pechera Ajustable Telesin',
-    category: 'Accesorios Corporales',
-    price: '$16.990',
+    mainCategory: 'MOTO & AVENTURA',
+    subcategory: 'Grabación POV',
+    price: '$12.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera%201.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera%201.png',

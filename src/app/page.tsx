@@ -1,23 +1,19 @@
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, EXPERIMENTAL_PRODUCT, EXPERIMENTAL_DESKTOP_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT, EXPERIMENTAL_NORMAL_PRODUCT_V2, Category, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, CATEGORY_STRUCTURE, MainCategory, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
   Shield, 
   Truck, 
   Zap, 
-  Camera, 
-  Instagram, 
-  Youtube, 
-  Twitter, 
-  ShieldCheck, 
-  Headset, 
-  Clock,
-  ArrowUpRight
+  ArrowUpRight,
+  ShieldCheck,
+  Headset,
+  Clock
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -27,48 +23,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
-const CATEGORY_ORDER: { label: string; value: Category; description: string }[] = [
-  { 
-    label: 'Soportes Moto / Vehículo', 
-    value: 'Soportes Moto / Vehículo',
-    description: 'Fijaciones de alta resistencia para manillares, espejos y superficies curvas en cualquier terreno.'
-  },
-  { 
-    label: 'Trípodes', 
-    value: 'Trípodes',
-    description: 'Estabilidad total para tus grabaciones estáticas, time-lapses y vlogs profesionales.'
-  },
-  { 
-    label: 'Bastones Selfie', 
-    value: 'Bastones Selfie',
-    description: 'Captura ángulos increíbles y tomas tipo drone con nuestra selección de bastones invisibles y de carbono.'
-  },
-  { 
-    label: 'Promos Moto', 
-    value: 'Promos Moto',
-    description: 'Packs exclusivos diseñados para motovloggers y aventureros que buscan el setup perfecto con el mejor ahorro.'
-  },
-  { 
-    label: 'Soportes Corporales', 
-    value: 'Accesorios Corporales',
-    description: 'La mejor perspectiva POV para tus deportes de acción con pecheras y soportes de alta sujeción.'
-  },
-  { 
-    label: 'Accesorios Cámara', 
-    value: 'Accesorios Cámara',
-    description: 'Protección y complementos esenciales para mantener tu equipo siempre listo para la acción.'
-  },
-];
+import { cn } from '@/lib/utils';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeSubcategory, setActiveSubcategory] = useState<Record<string, string>>({});
   const isMobile = useIsMobile();
 
   const handleViewDetails = (product: any) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
+  };
+
+  const handleSubcategoryChange = (mainCategory: string, sub: string) => {
+    setActiveSubcategory(prev => ({
+      ...prev,
+      [mainCategory]: prev[mainCategory] === sub ? '' : sub
+    }));
   };
 
   return (
@@ -163,83 +135,73 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-32 md:gap-48 pb-20">
-            {CATEGORY_ORDER.map((cat) => {
-              const categoryProducts = PRODUCTS.filter(p => p.category === cat.value);
-              if (categoryProducts.length === 0 && cat.value !== 'Accesorios Cámara') return null;
+            {CATEGORY_STRUCTURE.map((cat) => {
+              const categoryProducts = PRODUCTS.filter(p => p.mainCategory === cat.label);
+              
+              // Filtrar por subcategoría si hay una activa
+              const filteredProducts = activeSubcategory[cat.label]
+                ? categoryProducts.filter(p => p.subcategory === activeSubcategory[cat.label])
+                : categoryProducts;
 
-              const categoryId = cat.value.toLowerCase()
+              if (categoryProducts.length === 0) return null;
+
+              const categoryId = cat.label.toLowerCase()
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^a-z0-9]/g, '-')
                 .replace(/-+/g, '-')
                 .replace(/^-|-$/g, '');
 
               return (
-                <div key={cat.value} id={categoryId} className="space-y-12 md:space-y-16 scroll-mt-32">
-                  <div className="space-y-4 max-w-3xl">
+                <div key={cat.label} id={categoryId} className="space-y-12 md:space-y-16 scroll-mt-32">
+                  <div className="space-y-8 max-w-5xl">
                     <div className="flex items-center gap-4">
                       <div className="h-[2px] w-12 bg-accent" />
                       <h3 className="text-3xl md:text-5xl font-headline font-bold text-white uppercase tracking-tight">
                         {cat.label}
                       </h3>
                     </div>
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-16">
-                      {cat.description}
-                    </p>
+                    
+                    {/* Subcategory Pills */}
+                    <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 px-1">
+                      {cat.subcategories.map((sub) => {
+                        const hasProducts = categoryProducts.some(p => p.subcategory === sub);
+                        if (!hasProducts) return null;
+                        
+                        const isActive = activeSubcategory[cat.label] === sub;
+                        return (
+                          <button
+                            key={sub}
+                            onClick={() => handleSubcategoryChange(cat.label, sub)}
+                            className={cn(
+                              "px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap border",
+                              isActive 
+                                ? "bg-accent text-black border-accent shadow-[0_0_20px_rgba(142,255,127,0.3)]" 
+                                : "bg-white/5 text-white/40 border-white/10 hover:border-white/30 hover:text-white"
+                            )}
+                          >
+                            {sub}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                    {cat.value === 'Accesorios Cámara' && (
-                      <>
-                        <div className="md:hidden space-y-6">
-                          <ProductCard
-                            product={EXPERIMENTAL_PRODUCT}
-                            onViewDetails={handleViewDetails}
-                            isExperimental={true}
-                          />
-                          <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT}
-                            onViewDetails={handleViewDetails}
-                            isPremium={true}
-                          />
-                          <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT_V2}
-                            onViewDetails={handleViewDetails}
-                            isPremium={true}
-                          />
-                        </div>
-                        <div className="hidden md:block">
-                          <ProductCard
-                            product={EXPERIMENTAL_DESKTOP_PRODUCT}
-                            onViewDetails={handleViewDetails}
-                            isPremium={true}
-                          />
-                        </div>
-                        <div className="hidden md:block">
-                          <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT}
-                            onViewDetails={handleViewDetails}
-                            isPremium={false}
-                          />
-                        </div>
-                        <div className="hidden md:block">
-                          <ProductCard
-                            product={EXPERIMENTAL_NORMAL_PRODUCT_V2}
-                            onViewDetails={handleViewDetails}
-                            isPremium={false}
-                          />
-                        </div>
-                      </>
-                    )}
-
-                    {categoryProducts.map((product) => (
+                    {filteredProducts.map((product) => (
                       <ProductCard
                         key={product.id}
                         product={product}
                         onViewDetails={handleViewDetails}
-                        isPremium={product.category === 'Promos Moto'}
+                        isPremium={product.mainCategory === 'OFERTAS'}
                       />
                     ))}
                   </div>
+                  
+                  {filteredProducts.length === 0 && (
+                    <div className="py-20 text-center border border-dashed border-white/5 rounded-3xl">
+                      <p className="text-white/20 font-bold uppercase tracking-[0.3em]">Próximamente productos en esta categoría</p>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -264,20 +226,14 @@ export default function Home() {
                 Accesorios para cámaras deportivas, creación POV y contenido en movimiento.
               </p>
               <div className="flex gap-6">
-                {[
-                  { icon: Instagram, href: "https://instagram.com/elohz.cl" },
-                  { icon: Youtube, href: "#" },
-                  { icon: Twitter, href: "#" }
-                ].map((social, i) => (
-                  <a 
-                    key={i}
-                    href={social.href} 
-                    className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-white/5 translate-y-full group-hover/social:translate-y-0 transition-transform duration-500" />
-                    <social.icon size={20} className="relative z-10 group-hover/social:scale-110 transition-transform" />
-                  </a>
-                ))}
+                <a 
+                  href="https://instagram.com/elohz.cl" 
+                  target="_blank"
+                  className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/5 translate-y-full group-hover/social:translate-y-0 transition-transform duration-500" />
+                  <svg className="relative z-10 w-5 h-5 group-hover/social:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
               </div>
             </div>
 
@@ -380,13 +336,6 @@ export default function Home() {
                   }
                 />
               </div>
-              <div className="pt-8 border-t border-white/5 space-y-4">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] font-bold flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  WhatsApp: +56 9 4062 8182
-                </p>
-                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] font-bold">soporte.elohz@gmail.com</p>
-              </div>
             </div>
           </div>
 
@@ -405,11 +354,6 @@ export default function Home() {
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 flex items-center gap-2">
                 Despachos a todo Chile 🇨🇱
               </span>
-              <div className="flex gap-4 opacity-10">
-                <div className="w-10 h-6 rounded-md bg-white" />
-                <div className="w-10 h-6 rounded-md bg-white" />
-                <div className="w-10 h-6 rounded-md bg-white" />
-              </div>
             </div>
           </div>
         </div>
