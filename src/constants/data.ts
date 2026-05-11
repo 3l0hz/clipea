@@ -1,3 +1,4 @@
+
 import { Product, FAQItem } from '@/types/store';
 
 export type MainCategory = 'CÁMARAS & CREACIÓN' | 'MOTO & AVENTURA' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';
@@ -31,7 +32,7 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
 ];
 
 export const PRODUCTS: Product[] = [
-  // PROMOS MOTO (Ahora en OFERTAS -> Packs Especiales o MOTO & AVENTURA -> Packs Moto)
+  // PROMOS MOTO
   {
     id: 'pack-moto-basico',
     name: 'MOTO START',
@@ -230,6 +231,24 @@ export const PRODUCTS: Product[] = [
     bestSeller: true
   },
   // OTROS / ADAPTADORES
+  {
+    id: 'telesin-floating-grip-remote',
+    name: 'TELESIN Floating Hand Grip with Remote Control',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Soportes Cámara',
+    price: '$29.990',
+    image: 'https://picsum.photos/seed/floating-grip/600/600',
+    description: 'Empuñadura flotante con control remoto integrado, perfecta para capturar tomas en el agua con total control.',
+    compatibility: 'GoPro Hero 13, 12, 11, 10, 9, 8',
+    recommendedUse: 'Deportes acuáticos, buceo, surf',
+    brand: 'Telesin',
+    highlights: [
+      'Control remoto Bluetooth',
+      'Cuerpo flotante de alta visibilidad',
+      'Agarre antideslizante',
+      'Compatible con trípodes standard'
+    ]
+  },
   {
     id: 'lente-rep-gopro9.13',
     name: 'Lente Repuesto GoPro 9-13',

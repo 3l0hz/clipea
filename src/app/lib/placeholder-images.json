@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -65,6 +66,12 @@
       "description": "Telesin Chest Strap Mount",
       "imageUrl": "https://picsum.photos/seed/acc3/600/600",
       "imageHint": "chest mount"
+    },
+    {
+      "id": "telesin-floating-grip",
+      "description": "TELESIN Floating Hand Grip with Remote Control",
+      "imageUrl": "https://picsum.photos/seed/floating-grip/600/600",
+      "imageHint": "floating hand grip"
     }
   ]
 }
