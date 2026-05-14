@@ -1,10 +1,10 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, CATEGORY_STRUCTURE, MainCategory, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, CATEGORY_STRUCTURE, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
   Shield, 
@@ -66,7 +66,7 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
           <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
-            Premium Gear for Adventure
+            Equipamiento para Aventuras
           </Badge>
           <h1 className="text-5xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
             Accesorios para <br/>
@@ -131,14 +131,13 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mb-24 md:mb-32">
             <h2 className="text-5xl md:text-7xl font-headline font-bold text-white mb-4 tracking-tighter">Equípate para la acción</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección premium de accesorios diseñada para resistir las condiciones más extremas.</p>
+            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección de alta calidad diseñada para resistir las condiciones más extremas.</p>
           </div>
 
           <div className="flex flex-col gap-32 md:gap-48 pb-20">
             {CATEGORY_STRUCTURE.map((cat) => {
               const categoryProducts = PRODUCTS.filter(p => p.mainCategory === cat.label);
               
-              // Filtrar por subcategoría si hay una activa
               const filteredProducts = activeSubcategory[cat.label]
                 ? categoryProducts.filter(p => p.subcategory === activeSubcategory[cat.label])
                 : categoryProducts;
@@ -161,7 +160,6 @@ export default function Home() {
                       </h3>
                     </div>
                     
-                    {/* Subcategory Pills */}
                     <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 px-1">
                       {cat.subcategories.map((sub) => {
                         const hasProducts = categoryProducts.some(p => p.subcategory === sub);
@@ -209,15 +207,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Refined Footer */}
+      {/* Footer */}
       <footer className="py-24 bg-[#060606] border-t border-white/5 relative overflow-hidden">
-        {/* Subtle Ambient Background */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/5 blur-[120px] pointer-events-none rounded-full" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 mb-24">
             
-            {/* Column 1: Brand & Description */}
             <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 w-fit">
                 elohz<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
@@ -237,9 +233,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Column 2: SERVICES */}
             <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Servicios Premium</h4>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Nuestros Servicios</h4>
               <div className="space-y-8">
                 {[
                   { icon: Truck, text: "Envíos a todo Chile" },
@@ -257,7 +252,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Column 3: HELP & POLICIES */}
             <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 border-b border-white/5 pb-4 w-fit pr-10">Ayuda & Políticas</h4>
               <div className="flex flex-col gap-8">
@@ -339,7 +333,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom Bar */}
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
               <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/20">
