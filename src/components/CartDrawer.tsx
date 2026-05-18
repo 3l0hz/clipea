@@ -2,7 +2,7 @@
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { useCart } from '@/context/CartContext';
 import { Button } from '@/components/ui/button';
-import { Minus, Plus, Trash2, X, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, Trash2, X, ShoppingBag, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import { WHATSAPP_NUMBER } from '@/constants/data';
 import { cn } from '@/lib/utils';
@@ -28,7 +28,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         <SheetHeader className="p-8 border-b border-white/5 flex flex-row items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-              <ShoppingBag size={24} strokeWidth={1.5} />
+              <ShoppingCart size={24} strokeWidth={1.5} />
             </div>
             <div>
               <SheetTitle className="text-2xl font-headline font-bold text-white tracking-tighter">Mi Carrito</SheetTitle>
