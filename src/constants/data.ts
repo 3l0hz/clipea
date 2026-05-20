@@ -57,7 +57,7 @@ export const PRODUCTS: Product[] = [
     name: 'MOTO CREATOR',
     mainCategory: 'OFERTAS',
     subcategory: 'Packs Especiales',
-    price: '$59.990',
+    price: '$54.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/1(3).jpg',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
     description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
