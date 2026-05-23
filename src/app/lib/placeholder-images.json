@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -71,6 +72,12 @@
       "description": "TELESIN Floating Hand Grip with Remote Control",
       "imageUrl": "https://picsum.photos/seed/floating-grip/600/600",
       "imageHint": "floating hand grip"
+    },
+    {
+      "id": "sunnylife-clip-moto",
+      "description": "Soporte Sunnylife Clip Parabrisas Moto",
+      "imageUrl": "https://picsum.photos/seed/clip-moto/600/600",
+      "imageHint": "motorcycle clip"
     }
   ]
 }

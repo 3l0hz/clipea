@@ -1,7 +1,7 @@
 
 import { Product, FAQItem } from '@/types/store';
 
-export type MainCategory = 'CÁMARAS & CREACIÓN' | 'MOTO & AVENTURA' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';
+export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';
 
 export interface CategoryStructure {
   label: MainCategory;
@@ -106,6 +106,24 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Manillares de 22mm a 32mm',
     recommendedUse: 'Rutas en moto, enduro, ciclismo',
     bestSeller: true
+  },
+  {
+    id: 'sunnylife-clip-moto',
+    name: 'Soporte Sunnylife Clip Parabrisas Moto',
+    mainCategory: 'MOTO & AVENTURA',
+    subcategory: 'Soportes Moto',
+    price: '$15.990',
+    image: 'https://picsum.photos/seed/clip-moto/600/600',
+    description: 'Soporte tipo clip Sunnylife para instalar cámaras de acción en el parabrisas de la moto. Ideal para grabaciones POV, rutas, viajes y contenido en movimiento.',
+    compatibility: 'GoPro, Insta360, DJI Action',
+    recommendedUse: 'Rutas en moto, Vlogs de viaje',
+    brand: 'Sunnylife',
+    highlights: [
+      'Clip firme para parabrisas de moto',
+      'Rotación ajustable hasta 180°',
+      'Diseño compacto y resistente',
+      'Compatible con cámaras de acción'
+    ]
   },
   {
     id: 'soporteparab',
