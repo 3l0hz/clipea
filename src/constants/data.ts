@@ -10,12 +10,12 @@ export interface CategoryStructure {
 
 export const CATEGORY_STRUCTURE: CategoryStructure[] = [
   {
-    label: 'CÁMARAS & CREACIÓN',
-    subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
-  },
-  {
     label: 'MOTO & AVENTURA',
     subcategories: ['Soportes Moto', 'Packs Moto', 'Monturas', 'Grabación POV']
+  },
+  {
+    label: 'CÁMARAS & CREACIÓN',
+    subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
   },
   {
     label: 'GADGETS TECH',
