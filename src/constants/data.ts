@@ -35,10 +35,10 @@ export const PRODUCTS: Product[] = [
   // PROMOS MOTO
   {
     id: 'pack-moto-basico',
-    name: 'MOTO START',
+    name: 'MOTO URBANO',
     mainCategory: 'OFERTAS',
     subcategory: 'Packs Especiales',
-    price: '$39.990',
+    price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
     description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
@@ -54,7 +54,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-medio',
-    name: 'MOTO CREATOR',
+    name: 'MOTO RUTA',
     mainCategory: 'OFERTAS',
     subcategory: 'Packs Especiales',
     price: '$54.990',
@@ -72,7 +72,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-avanzado',
-    name: 'MOTO ELITE',
+    name: 'MOTO PRO',
     mainCategory: 'OFERTAS',
     subcategory: 'Packs Especiales',
     price: '$69.990',
