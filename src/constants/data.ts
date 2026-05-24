@@ -58,7 +58,12 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'OFERTAS',
     subcategory: 'Packs Especiales',
     price: '$54.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/1(3).jpg',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/signal-2026-05-24-000334_005.jpg',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/signal-2026-05-24-000334_005.jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/signal-2026-05-24-000334_004.jpg',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/signal-2026-05-24-000334_006.jpg'
+    ],
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
     description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
     compatibility: 'Universal',
