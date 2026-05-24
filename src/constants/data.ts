@@ -113,7 +113,12 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
     price: '$15.990',
-    image: 'https://picsum.photos/seed/clip-moto/600/600',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/primera.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/primera.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/chico.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/2.png'
+    ],
     description: 'Soporte tipo clip Sunnylife para instalar cámaras de acción en el parabrisas de la moto. Ideal para grabaciones POV, rutas, viajes y contenido en movimiento.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Rutas en moto, Vlogs de viaje',
