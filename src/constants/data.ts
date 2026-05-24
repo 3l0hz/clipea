@@ -109,7 +109,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'sunnylife-clip-moto',
-    name: 'Soporte Sunnylife Clip Parabrisas Moto',
+    name: 'Clip Parabrisas Moto',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
     price: '$15.990',
