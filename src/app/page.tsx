@@ -129,11 +129,6 @@ export default function Home() {
       {/* Catalog Section */}
       <section id="catalog" className="py-20 md:py-32 bg-[#0B0B0B]">
         <div className="container mx-auto px-4">
-          <div className="mb-24 md:mb-32">
-            <h2 className="text-5xl md:text-7xl font-headline font-bold text-white mb-4 tracking-tighter">Equípate para la acción</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">Explora nuestra selección de alta calidad diseñada para resistir las condiciones más extremas.</p>
-          </div>
-
           <div className="flex flex-col gap-32 md:gap-48 pb-20">
             {CATEGORY_STRUCTURE.map((cat) => {
               const categoryProducts = PRODUCTS.filter(p => p.mainCategory === cat.label);
@@ -216,14 +211,14 @@ export default function Home() {
             
             <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 w-fit">
-                elohz<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
+                clipea<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
               </a>
               <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">
                 Accesorios para cámaras deportivas, creación POV y contenido en movimiento.
               </p>
               <div className="flex gap-6">
                 <a 
-                  href="https://instagram.com/elohz.cl" 
+                  href="https://instagram.com/clipea.cl" 
                   target="_blank"
                   className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social overflow-hidden"
                 >
@@ -259,7 +254,7 @@ export default function Home() {
                   title="Devoluciones" 
                   content={
                     <div className="space-y-6 text-sm text-white/80 leading-relaxed">
-                      <p>En ELOHZ tienes hasta 7 días desde la recepción del pedido para solicitar una devolución o reembolso.</p>
+                      <p>En Clipea tienes hasta 7 días desde la recepción del pedido para solicitar una devolución o reembolso.</p>
                       <div className="space-y-2">
                         <p className="font-bold text-accent uppercase tracking-widest text-xs">Condiciones:</p>
                         <ul className="list-disc pl-5 space-y-1">
@@ -279,7 +274,7 @@ export default function Home() {
                   title="Términos y condiciones" 
                   content={
                     <div className="space-y-6 text-sm text-white/80 leading-relaxed">
-                      <p>ELOHZ comercializa accesorios y equipamiento para cámaras deportivas y creación de contenido POV.</p>
+                      <p>Clipea comercializa accesorios y equipamiento para cámaras deportivas y creación de contenido POV.</p>
                       <div className="space-y-2">
                         <p className="font-bold text-accent uppercase tracking-widest text-xs">Compatibilidad asegurada:</p>
                         <p>Diseñados para Insta360, GoPro y DJI Action.</p>
@@ -324,7 +319,7 @@ export default function Home() {
                       </div>
                       <div className="flex flex-col gap-2">
                         <span className="text-[10px] text-accent uppercase font-bold tracking-widest">Correo de Soporte</span>
-                        <a href="mailto:soporte.elohz@gmail.com" className="text-lg font-bold text-white/80 hover:text-white transition-colors">soporte.elohz@gmail.com</a>
+                        <a href="mailto:soporte.clipea@gmail.com" className="text-lg font-bold text-white/80 hover:text-white transition-colors">soporte.clipea@gmail.com</a>
                       </div>
                     </div>
                   }
@@ -336,7 +331,7 @@ export default function Home() {
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
               <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/20">
-                © 2026 elohz Chile. Todos los derechos reservados.
+                © 2026 clipea Chile. Todos los derechos reservados.
               </p>
               <div className="flex gap-8 opacity-40">
                 <a href="#" className="text-[9px] font-bold uppercase tracking-[0.3em] text-white hover:text-accent transition-colors duration-300">Privacidad</a>

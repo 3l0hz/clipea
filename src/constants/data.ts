@@ -1,4 +1,3 @@
-
 import { Product, FAQItem } from '@/types/store';
 
 export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';

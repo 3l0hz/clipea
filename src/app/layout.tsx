@@ -4,7 +4,7 @@ import { CartProvider } from '@/context/CartContext';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'elohz | Accesorios de Alta Calidad para Cámaras Deportivas',
+  title: 'clipea | Accesorios de Alta Calidad para Cámaras Deportivas',
   description: 'Tienda especializada en accesorios para GoPro, Insta360 y DJI. Selfie sticks, soportes de moto, trípodes y más.',
 };
 

@@ -32,7 +32,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   const isMobile = useIsMobile();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de clipea.`;
 
   const handleCardClick = () => {
     onViewDetails(product);
@@ -41,10 +41,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     addToCart(product);
-    toast({
-      title: "Agregado al carrito",
-      description: `${product.name} se añadió correctamente.`,
-    });
   };
 
   if (isPremium) {
@@ -109,8 +105,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 "font-bold text-white/20 uppercase line-through leading-tight",
                 isMobile ? "text-[11px] tracking-tight" : "text-[10px] tracking-widest"
               )}>
-                {product.price === '$39.990' ? '$54.990' : 
-                 product.price === '$59.990' ? '$79.990' : 
+                {product.price === '$34.990' ? '$49.990' : 
+                 product.price === '$54.990' ? '$74.990' : 
                  product.price === '$69.990' ? '$89.990' :
                  product.price === '$82.990' ? '$112.990' :
                  '$149.990'}

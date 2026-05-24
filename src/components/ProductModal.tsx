@@ -45,7 +45,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   const isPromo = product.category === 'Promos Moto';
   const images = product.images || [product.image];
-  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de elohz.`;
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de clipea.`;
 
   const nextImage = () => {
     setShowModel(false);
@@ -58,10 +58,6 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   const handleAddToCart = () => {
     addToCart(product);
-    toast({
-      title: "Agregado al carrito",
-      description: `${product.name} se añadió correctamente.`,
-    });
   };
 
   return (
@@ -182,8 +178,8 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   </span>
                   {isPromo && (
                     <span className="text-sm md:text-lg text-white/20 line-through font-bold tracking-tight">
-                      {product.price === '$39.990' ? '$54.990' : 
-                       product.price === '$59.990' ? '$79.990' : 
+                      {product.price === '$34.990' ? '$49.990' : 
+                       product.price === '$54.990' ? '$74.990' : 
                        product.price === '$69.990' ? '$89.990' :
                        product.price === '$82.990' ? '$112.990' :
                        '$149.990'}

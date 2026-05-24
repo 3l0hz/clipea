@@ -257,7 +257,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <div className="w-10 h-6 bg-white/20 rounded" />
                           </div>
                           <p className="text-[10px] text-white/30 uppercase font-medium leading-relaxed tracking-tight relative z-10">
-                            Estamos integrando MercadoPago y Flow para que puedas pagar directamente desde ELOHZ.
+                            Estamos integrando MercadoPago y Flow para que puedas pagar directamente desde Clipea.
                           </p>
                         </div>
                       </div>
