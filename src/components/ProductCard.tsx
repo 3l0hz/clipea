@@ -51,7 +51,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     return '$149.990';
   };
 
-  if (isPremium || product.mainCategory === 'SETUP & ESCRITORIO' || product.mainCategory === 'OFERTAS') {
+  if (isPremium || product.mainCategory === 'OFERTAS') {
     const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
 
     return (
