@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, User, ShoppingCart, Search, Zap } from 'lucide-react';
@@ -10,7 +11,7 @@ import { useCart } from '@/context/CartContext';
 const NAV_LINKS = [
   { label: 'Moto & Aventura', href: '#moto-aventura' },
   { label: 'Cámaras & Creación', href: '#camaras-creacion' },
-  { label: 'Gadgets Tech', href: '#gadgets-tech' },
+  { label: 'Smart Home', href: '#smart-home' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
   { label: 'Ofertas', href: '#ofertas' },
 ];
