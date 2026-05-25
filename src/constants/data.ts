@@ -100,7 +100,7 @@ export const PRODUCTS: Product[] = [
   // GADGETS TECH
   {
     id: 'bestcon-rm4c-mini',
-    name: 'Smart Remote Hub BestCon RM4C Mini',
+    name: 'Control Remoto Wifi',
     mainCategory: 'GADGETS TECH',
     subcategory: 'Hogar Inteligente',
     price: '$19.990',
