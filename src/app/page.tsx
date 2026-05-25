@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -210,7 +211,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 mb-24">
             
             <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 w-fit">
+              <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group w-fit">
                 clipea<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
               </a>
               <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">

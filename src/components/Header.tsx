@@ -37,7 +37,7 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
         {/* Logo */}
-        <a href="#home" className="relative z-10 text-2xl font-headline font-bold tracking-tighter text-white group flex items-center gap-1 shrink-0">
+        <a href="#home" className="relative z-10 text-2xl font-headline font-bold tracking-tighter text-white group shrink-0">
           clipea<span className="text-accent">.</span>
         </a>
 
