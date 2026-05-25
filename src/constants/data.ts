@@ -190,7 +190,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'Bullet',
-    name: 'Mango Bullet Time',
+    name: 'Mango Bullet',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
     price: '$24.990',
