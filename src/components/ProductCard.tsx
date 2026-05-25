@@ -43,7 +43,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     addToCart(product);
   };
 
-  if (isPremium) {
+  const getStrikethroughPrice = (price: string) => {
+    if (price === '$34.990') return '$49.990';
+    if (price === '$54.990') return '$69.990';
+    if (price === '$69.990') return '$89.990';
+    if (price === '$82.990') return '$112.990';
+    return '$149.990';
+  };
+
+  if (isPremium || product.mainCategory === 'SETUP & ESCRITORIO' || product.mainCategory === 'OFERTAS') {
     const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
 
     return (
@@ -105,11 +113,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 "font-bold text-white/20 uppercase line-through leading-tight",
                 isMobile ? "text-[11px] tracking-tight" : "text-[10px] tracking-widest"
               )}>
-                {product.price === '$34.990' ? '$49.990' : 
-                 product.price === '$54.990' ? '$74.990' : 
-                 product.price === '$69.990' ? '$89.990' :
-                 product.price === '$82.990' ? '$112.990' :
-                 '$149.990'}
+                {getStrikethroughPrice(product.price)}
               </span>
             </div>
             

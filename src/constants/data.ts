@@ -151,6 +151,27 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Parabrisas, tanques de moto, autos',
     recommendedUse: 'Grabación onboard'
   },
+  // SETUP & ESCRITORIO
+  {
+    id: 'divoom-timebox-evo',
+    name: 'Divoom Timebox Evo',
+    mainCategory: 'SETUP & ESCRITORIO',
+    subcategory: 'Pixel Art',
+    price: '$54.990',
+    image: 'https://picsum.photos/seed/divoom-clipea/600/600',
+    description: 'La pieza central definitiva para tu setup. El Timebox Evo trasciende la función de un altavoz convencional para convertirse en un lienzo digital de 16x16 píxeles. Diseñado para quienes ven la tecnología como una forma de arte y decoración funcional.',
+    compatibility: 'iOS / Android (Divoom App)',
+    recommendedUse: 'Setup Creator / Escritorio Gamer / Decoración Tech',
+    brand: 'Divoom',
+    highlights: [
+      'Pantalla LED RGB de 256 píxeles programables',
+      'Altavoz Bluetooth con procesamiento DSP de 6W',
+      'Visualizador de música rítmico en tiempo real',
+      'Reloj inteligente, alarmas y notificaciones sociales',
+      'Estética futurista y minimalista para setups modernos'
+    ],
+    bestSeller: true
+  },
   // TRÍPODES
   {
     id: 'MinitripodeGoPro',

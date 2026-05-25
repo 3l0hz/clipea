@@ -77,6 +77,12 @@
       "description": "Clip Parabrisas Moto",
       "imageUrl": "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/primera.png",
       "imageHint": "motorcycle clip"
+    },
+    {
+      "id": "divoom-timebox",
+      "description": "Divoom Timebox Evo Pixel Art Speaker",
+      "imageUrl": "https://picsum.photos/seed/divoom-clipea/600/600",
+      "imageHint": "pixel speaker"
     }
   ]
 }
