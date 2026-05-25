@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, User, ShoppingCart, Search } from 'lucide-react';
+import { Menu, X, ChevronRight, User, ShoppingCart, Search, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -13,10 +13,6 @@ const NAV_LINKS = [
   { label: 'Gadgets Tech', href: '#gadgets-tech' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
   { label: 'Ofertas', href: '#ofertas' },
-];
-
-const BRANDS = [
-  'Insta360', 'GoPro', 'DJI', 'Telesin', 'Ulanzi', 'SunnyLife'
 ];
 
 export const Header = () => {
@@ -117,14 +113,27 @@ export const Header = () => {
                   </div>
                 </div>
 
-                <div className="space-y-8">
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">Partners</h3>
-                  <div className="grid grid-cols-2 gap-y-4">
-                    {BRANDS.map((brand) => (
-                      <span key={brand} className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
-                        {brand}
-                      </span>
-                    ))}
+                <div className="space-y-10">
+                  <div className="flex items-center gap-3">
+                    <Zap size={14} className="text-accent" strokeWidth={2.5} />
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">Gear for Creators</h3>
+                  </div>
+                  <div className="space-y-8">
+                    <p className="text-[12px] font-bold text-white/50 leading-relaxed uppercase tracking-[0.25em] max-w-[240px]">
+                      Diseñado para aventura y contenido en movimiento.
+                    </p>
+                    <div className="flex gap-8 border-l border-white/10 pl-6">
+                      <div className="flex flex-col gap-4">
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-accent uppercase">POV</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Travel</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Motion</span>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Gear</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Adventure</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Create</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
