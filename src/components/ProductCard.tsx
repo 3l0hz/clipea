@@ -166,7 +166,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         {product.bestSeller && (
           <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full">
             <span className="text-[10px]">🔥</span>
-            <span className="text-[8px] font-bold text-white tracking-widest uppercase">TOP</span>
+            <span className="text-[8px] font-bold text-white tracking-widest uppercase">MÁS VENDIDO</span>
           </div>
         )}
       </div>

@@ -132,7 +132,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   )}
                 >
                   <Box size={20} className={cn("transition-colors md:w-6 md:h-6", showModel ? "text-accent" : "text-white/70")} />
-                  <span className="absolute bottom-1 text-[7px] md:text-[8px] font-bold text-center text-accent uppercase tracking-tighter">3D VIEW</span>
+                  <span className="absolute bottom-1 text-[7px] md:text-[8px] font-bold text-center text-accent uppercase tracking-tighter">VISTA 3D</span>
                 </button>
               )}
               {images.map((img, idx) => (
@@ -164,7 +164,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                       {product.category}
                     </span>
                     {product.bestSeller && (
-                      <span className="bg-accent/10 text-accent text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase">Best Seller</span>
+                      <span className="bg-accent/10 text-accent text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase">MÁS VENDIDO</span>
                     )}
                   </div>
                   <h2 className="text-2xl md:text-5xl lg:text-6xl font-headline font-bold leading-[0.9] uppercase tracking-tighter text-white">
