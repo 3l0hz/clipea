@@ -197,7 +197,6 @@ export const PRODUCTS: Product[] = [
       'Reloj inteligente, alarmas y notificaciones sociales',
       'Estética futurista y minimalista para setups modernos'
     ],
-    bestSeller: true,
     category: 'Accesorios Cámara'
   },
   // TRÍPODES
