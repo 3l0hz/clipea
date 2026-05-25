@@ -104,7 +104,7 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'Smart Home',
     subcategory: 'Hogar Inteligente',
     price: '$19.990',
-    image: 'https://picsum.photos/seed/bestcon-hub/600/600',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/2.HOGAR%20INTELIGENTE/control%20wifi/ChatGPT%20Image%2025%20may%202026,%2015_51_40.png',
     description: 'Haz inteligentes tus dispositivos tradicionales y contrólalos desde cualquier lugar. Este pequeño hub permite manejar aire acondicionado, TV y más desde tu celular, convirtiéndolos en parte de tu setup inteligente.',
     compatibility: 'Android / iPhone (WiFi)',
     recommendedUse: 'Hogar Inteligente, oficinas, setups',
@@ -115,7 +115,7 @@ export const PRODUCTS: Product[] = [
       'Compatible con equipos IR (AC, TV, Ventiladores)',
       'Diseño compacto y minimalista'
     ],
-    category: 'Accesorios Cámara'
+    category: 'Hogar inteligente'
   },
   // SOPORTES VEHICULO
   {
