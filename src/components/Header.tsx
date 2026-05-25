@@ -117,22 +117,22 @@ export const Header = () => {
                 <div className="space-y-10">
                   <div className="flex items-center gap-3">
                     <Zap size={14} className="text-accent" strokeWidth={2.5} />
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">Equipo para Creadores</h3>
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">TECNOLOGÍA PARA CREAR EXPERIENCIAS</h3>
                   </div>
                   <div className="space-y-8">
-                    <p className="text-[12px] font-bold text-white/50 leading-relaxed uppercase tracking-[0.25em] max-w-[240px]">
-                      Diseñado para aventura y contenido en movimiento.
+                    <p className="text-[12px] font-bold text-white/50 leading-relaxed uppercase tracking-[0.25em] max-w-[280px]">
+                      CREADO PARA CREADORES, SETUPS, SMART HOME Y TECNOLOGÍA EN MOVIMIENTO.
                     </p>
                     <div className="flex gap-8 border-l border-white/10 pl-6">
                       <div className="flex flex-col gap-4">
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-accent uppercase">POV</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Viajes</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Movimiento</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-accent uppercase">CREAR</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">EXPLORAR</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">CONECTAR</span>
                       </div>
                       <div className="flex flex-col gap-4">
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Equipo</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Aventura</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">Crear</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">SETUP</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">SMART</span>
+                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">MOVIMIENTO</span>
                       </div>
                     </div>
                   </div>
