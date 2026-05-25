@@ -22,12 +22,12 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
     subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
   },
   {
-    label: 'Hogar inteligente',
-    subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
-  },
-  {
     label: 'SETUP & ESCRITORIO',
     subcategories: ['Pixel Art', 'Audio', 'Carga Rápida', 'Setup Creator']
+  },
+  {
+    label: 'Hogar inteligente',
+    subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
   }
 ];
 

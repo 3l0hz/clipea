@@ -11,9 +11,9 @@ import { useCart } from '@/context/CartContext';
 const NAV_LINKS = [
   { label: 'Moto & Aventura', href: '#moto-aventura' },
   { label: 'Cámaras & Creación', href: '#camaras-creacion' },
-  { label: 'Hogar inteligente', href: '#hogar-inteligente' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
   { label: 'Ofertas', href: '#ofertas' },
+  { label: 'Hogar inteligente', href: '#hogar-inteligente' },
 ];
 
 export const Header = () => {
