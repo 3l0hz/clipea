@@ -47,7 +47,10 @@ export const Header = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors duration-300 whitespace-nowrap"
+              className={cn(
+                "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 whitespace-nowrap",
+                link.label === 'Ofertas' ? "text-accent" : "text-white/50 hover:text-white"
+              )}
             >
               {link.label}
             </a>
@@ -60,7 +63,10 @@ export const Header = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-[9px] font-bold uppercase tracking-[0.1em] text-white/50 hover:text-white transition-colors duration-300 whitespace-nowrap"
+              className={cn(
+                "text-[9px] font-bold uppercase tracking-[0.1em] transition-colors duration-300 whitespace-nowrap",
+                link.label === 'Ofertas' ? "text-accent" : "text-white/50 hover:text-white"
+              )}
             >
               {link.label}
             </a>
@@ -106,7 +112,13 @@ export const Header = () => {
                   <div className="flex flex-col gap-6">
                     {NAV_LINKS.map((link) => (
                       <SheetClose asChild key={link.label}>
-                        <a href={link.href} className="text-3xl font-headline font-bold text-white/60 hover:text-white transition-all duration-500 hover:translate-x-2">
+                        <a 
+                          href={link.href} 
+                          className={cn(
+                            "text-3xl font-headline font-bold transition-all duration-500 hover:translate-x-2",
+                            link.label === 'Ofertas' ? "text-accent" : "text-white/60 hover:text-white"
+                          )}
+                        >
                           {link.label}
                         </a>
                       </SheetClose>
