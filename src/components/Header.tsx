@@ -12,8 +12,8 @@ const NAV_LINKS = [
   { label: 'Moto & Aventura', href: '#moto-aventura' },
   { label: 'Cámaras & Creación', href: '#camaras-creacion' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
-  { label: 'Ofertas', href: '#ofertas' },
   { label: 'Hogar inteligente', href: '#hogar-inteligente' },
+  { label: 'Ofertas', href: '#ofertas' },
 ];
 
 export const Header = () => {

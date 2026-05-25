@@ -10,10 +10,6 @@ export interface CategoryStructure {
 
 export const CATEGORY_STRUCTURE: CategoryStructure[] = [
   {
-    label: 'OFERTAS',
-    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
-  },
-  {
     label: 'MOTO & AVENTURA',
     subcategories: ['Soportes Moto', 'Packs Moto', 'Monturas', 'Grabación POV']
   },
@@ -28,6 +24,10 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
   {
     label: 'Hogar inteligente',
     subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
+  },
+  {
+    label: 'OFERTAS',
+    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
   }
 ];
 
