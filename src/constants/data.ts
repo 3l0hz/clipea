@@ -1,7 +1,7 @@
 
 import { Product, FAQItem } from '@/types/store';
 
-export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'Smart Home' | 'SETUP & ESCRITORIO' | 'OFERTAS';
+export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'Hogar inteligente' | 'SETUP & ESCRITORIO' | 'OFERTAS';
 
 export interface CategoryStructure {
   label: MainCategory;
@@ -22,7 +22,7 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
     subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
   },
   {
-    label: 'Smart Home',
+    label: 'Hogar inteligente',
     subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
   },
   {
@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'bestcon-rm4c-mini',
     name: 'Control Remoto Wifi',
-    mainCategory: 'Smart Home',
+    mainCategory: 'Hogar inteligente',
     subcategory: 'Hogar Inteligente',
     price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/2.HOGAR%20INTELIGENTE/control%20wifi/ChatGPT%20Image%2025%20may%202026,%2015_51_40.png',
