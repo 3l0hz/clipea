@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -83,6 +84,12 @@
       "description": "Divoom Timebox Evo Pixel Art Speaker",
       "imageUrl": "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/timebox%20evo/ChatGPT%20Image%2025%20may%202026,%2014_22_35.png",
       "imageHint": "pixel speaker"
+    },
+    {
+      "id": "bestcon-rm4c-mini",
+      "description": "Smart Remote Hub BestCon RM4C Mini",
+      "imageUrl": "https://picsum.photos/seed/bestcon-hub/600/600",
+      "imageHint": "smart hub"
     }
   ]
 }

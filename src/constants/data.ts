@@ -1,3 +1,4 @@
+
 import { Product, FAQItem } from '@/types/store';
 
 export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'GADGETS TECH' | 'SETUP & ESCRITORIO' | 'OFERTAS';
@@ -49,7 +50,8 @@ export const PRODUCTS: Product[] = [
       'Compatible Insta360 / GoPro / DJI',
       'Ideal para viajes y rutas urbanas'
     ],
-    bestSeller: true
+    bestSeller: true,
+    category: 'Promos Moto'
   },
   {
     id: 'pack-moto-medio',
@@ -72,7 +74,8 @@ export const PRODUCTS: Product[] = [
       'POV más estable',
       'Compatible Insta360 / GoPro / DJI',
       'Ideal para contenido dinámico'
-    ]
+    ],
+    category: 'Promos Moto'
   },
   {
     id: 'pack-moto-avanzado',
@@ -91,7 +94,28 @@ export const PRODUCTS: Product[] = [
       'Mayor seguridad en conducción',
       'Ideal para carretera y rutas largas'
     ],
-    bestSeller: true
+    bestSeller: true,
+    category: 'Promos Moto'
+  },
+  // GADGETS TECH
+  {
+    id: 'bestcon-rm4c-mini',
+    name: 'Smart Remote Hub BestCon RM4C Mini',
+    mainCategory: 'GADGETS TECH',
+    subcategory: 'Hogar Inteligente',
+    price: '$19.990',
+    image: 'https://picsum.photos/seed/bestcon-hub/600/600',
+    description: 'Haz inteligentes tus dispositivos tradicionales y contrólalos desde cualquier lugar. Este pequeño hub permite manejar aire acondicionado, TV y más desde tu celular, convirtiéndolos en parte de tu setup inteligente.',
+    compatibility: 'Android / iPhone (WiFi)',
+    recommendedUse: 'Hogar Inteligente, oficinas, setups',
+    brand: 'BestCon',
+    highlights: [
+      'Control remoto universal inteligente',
+      'Control desde cualquier parte del mundo',
+      'Compatible con equipos IR (AC, TV, Ventiladores)',
+      'Diseño compacto y minimalista'
+    ],
+    category: 'Accesorios Cámara'
   },
   // SOPORTES VEHICULO
   {
@@ -109,7 +133,8 @@ export const PRODUCTS: Product[] = [
     description: 'Construcción en aluminio CNC para máxima resistencia a vibraciones.',
     compatibility: 'Manillares de 22mm a 32mm',
     recommendedUse: 'Rutas en moto, enduro, ciclismo',
-    bestSeller: true
+    bestSeller: true,
+    category: 'Soportes Moto / Vehículo'
   },
   {
     id: 'sunnylife-clip-moto',
@@ -132,7 +157,8 @@ export const PRODUCTS: Product[] = [
       'Rotación ajustable hasta 180°',
       'Diseño compacto y resistente',
       'Compatible con cámaras de acción'
-    ]
+    ],
+    category: 'Soportes Moto / Vehículo'
   },
   {
     id: 'soporteparab',
@@ -149,7 +175,8 @@ export const PRODUCTS: Product[] = [
     ],
     description: 'Ventosa de grado industrial para fijación en superficies lisas.',
     compatibility: 'Parabrisas, tanques de moto, autos',
-    recommendedUse: 'Grabación onboard'
+    recommendedUse: 'Grabación onboard',
+    category: 'Soportes Moto / Vehículo'
   },
   // SETUP & ESCRITORIO
   {
@@ -170,7 +197,8 @@ export const PRODUCTS: Product[] = [
       'Reloj inteligente, alarmas y notificaciones sociales',
       'Estética futurista y minimalista para setups modernos'
     ],
-    bestSeller: true
+    bestSeller: true,
+    category: 'Accesorios Cámara'
   },
   // TRÍPODES
   {
@@ -189,7 +217,8 @@ export const PRODUCTS: Product[] = [
     description: 'Trípode compacto que también funciona como empuñadura.',
     compatibility: 'Todas las GoPro',
     recommendedUse: 'Time-lapse, vlogs estáticos',
-    brand: 'Telesin'
+    brand: 'Telesin',
+    category: 'Trípodes'
   },
   {
     id: 'Minitripodeinsta',
@@ -207,7 +236,8 @@ export const PRODUCTS: Product[] = [
     description: 'Diseño ultra estable para cámaras 360 pesadas.',
     compatibility: 'Insta360 ONE X/X2/X3/X4',
     recommendedUse: 'Superficies planas, tomas bajas',
-    brand: 'Insta360'
+    brand: 'Insta360',
+    category: 'Trípodes'
   },
   {
     id: 'Bullet',
@@ -226,7 +256,8 @@ export const PRODUCTS: Product[] = [
     description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
     compatibility: 'Insta360 ONE X/X2/X3',
     recommendedUse: 'Efectos cinemáticos 360',
-    brand: 'Insta360'
+    brand: 'Insta360',
+    category: 'Trípodes'
   },
   // BASTONES
   {
@@ -240,7 +271,8 @@ export const PRODUCTS: Product[] = [
     description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Vlogs, viajes, rutas suaves',
-    bestSeller: true
+    bestSeller: true,
+    category: 'Bastones Selfie'
   },
   {
     id: 'Selfie2m',
@@ -258,7 +290,8 @@ export const PRODUCTS: Product[] = [
     description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
     compatibility: 'Insta360 X3/X4, GoPro',
     recommendedUse: 'Tomas de dron falsas, efectos 360',
-    brand: 'Telesin'
+    brand: 'Telesin',
+    category: 'Bastones Selfie'
   },
   {
     id: 'selfie3m',
@@ -276,7 +309,8 @@ export const PRODUCTS: Product[] = [
     compatibility: 'Insta360, GoPro con adaptador',
     recommendedUse: 'Paisajes masivos, grupos grandes',
     brand: 'Telesin',
-    bestSeller: true
+    bestSeller: true,
+    category: 'Bastones Selfie'
   },
   // OTROS / ADAPTADORES
   {
@@ -295,7 +329,8 @@ export const PRODUCTS: Product[] = [
       'Cuerpo flotante de alta visibilidad',
       'Agarre antideslizante',
       'Compatible con trípodes standard'
-    ]
+    ],
+    category: 'Accesorios Cámara'
   },
   {
     id: 'lente-rep-gopro9.13',
@@ -310,7 +345,8 @@ export const PRODUCTS: Product[] = [
     ],
     description: 'Vidrio templado de alta transparencia para reemplazar lentes rayados.',
     compatibility: 'GoPro Hero 9, 10, 11, 12, 13',
-    recommendedUse: 'Mantenimiento preventivo'
+    recommendedUse: 'Mantenimiento preventivo',
+    category: 'Accesorios Cámara'
   },
   {
     id: 'PecheraTelesin',
@@ -327,7 +363,8 @@ export const PRODUCTS: Product[] = [
     description: 'Correas elásticas de alta calidad para tomas en primera persona.',
     compatibility: 'Universal',
     recommendedUse: 'Deportes de acción, POV',
-    brand: 'Telesin'
+    brand: 'Telesin',
+    category: 'Accesorios Corporales'
   }
 ];
 
