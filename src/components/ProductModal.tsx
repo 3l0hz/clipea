@@ -196,7 +196,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   <Info size={12} className="text-cyan-400/50" />
                   Detalles
                 </h4>
-                <p className="text-sky-300 text-sm md:text-base leading-relaxed font-medium">
+                <p className="text-white/80 text-sm md:text-base leading-relaxed font-medium">
                   {product.description}
                 </p>
               </div>
