@@ -201,11 +201,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         isMobile ? "px-2 pb-2 pt-0 gap-0.5" : "px-3 pb-3 pt-0 gap-1"
       )}>
         <div className="space-y-0">
-          {!isMobile && (
-            <span className="text-[8px] md:text-[9px] font-bold text-accent/60 uppercase tracking-widest block mb-0.5">
-              {product.category}
-            </span>
-          )}
           <h3 className={cn(
             "font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-1",
             isMobile ? "text-[10px]" : "text-[14px]"
