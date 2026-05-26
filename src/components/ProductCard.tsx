@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
@@ -53,6 +54,97 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     if (price === '$82.990') return '$112.990';
     return '$149.990';
   };
+
+  // Experiment for "MOTO URBANO" (pack-moto-basico)
+  const isBasicoExperiment = product.id === 'pack-moto-basico';
+
+  if (isBasicoExperiment) {
+    return (
+      <div 
+        className={cn(
+          "group promo-glass-card p-0 flex flex-col cursor-pointer transition-all duration-500 glass-reflective-edge",
+          "rounded-[20px] overflow-hidden shadow-2xl h-fit border-none bg-black/40",
+          !isMobile ? "md:hover:-translate-y-1" : ""
+        )}
+        onClick={handleCardClick}
+      >
+        <div className="shine-layer" />
+
+        <div className={cn(
+          "relative overflow-hidden flex items-center justify-center border border-white/5 bg-transparent aspect-square",
+          isMobile ? "m-1.5 rounded-[12px]" : "m-2 rounded-[12px]"
+        )}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className={cn(
+              "object-contain transition-transform duration-700 group-hover:scale-110",
+              isMobile ? "p-1.5" : "p-2"
+            )}
+            sizes="(max-width: 768px) 50vw, 25vw"
+            priority={product.bestSeller}
+          />
+        </div>
+
+        <div className={cn(
+          "flex flex-col flex-1 gap-1",
+          isMobile ? "px-2 pb-2 pt-0.5" : "px-3 pb-3 pt-0.5"
+        )}>
+          <div className="space-y-0">
+            <h3 className={cn(
+              "font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-1",
+              isMobile ? "text-[10px]" : "text-[14px]"
+            )}>
+              {product.name}
+            </h3>
+            <p className={cn(
+              "text-white/40 line-clamp-1 leading-tight font-medium",
+              isMobile ? "text-[8px]" : "text-[10px]"
+            )}>
+              {product.description}
+            </p>
+          </div>
+
+          <div className={cn("flex flex-col mt-0.5", isMobile ? "gap-1" : "gap-1.5")}>
+            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0">
+              <span className={cn(
+                "font-headline font-extrabold text-white tracking-tighter leading-none",
+                isMobile ? "text-[14px]" : "text-[18px]"
+              )}>
+                {product.price}
+              </span>
+              <span className={cn(
+                "font-bold text-white/20 uppercase line-through leading-none",
+                isMobile ? "text-[8px]" : "text-[10px]"
+              )}>
+                {getStrikethroughPrice(product.price)}
+              </span>
+            </div>
+            
+            <div className="flex flex-col gap-1">
+              <Button
+                className={cn(
+                  "w-full bg-white/[0.05] text-white font-bold flex items-center justify-center gap-2 border border-white/10 relative overflow-hidden backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.1] active:scale-[0.98]",
+                  isMobile ? "h-7 rounded-xl" : "h-11 rounded-2xl"
+                )}
+                onClick={handleAddToCart}
+              >
+                <ShoppingCart size={isMobile ? 10 : 14} className="relative z-20" />
+                <span className={cn(
+                  "uppercase tracking-widest relative z-20 font-bold",
+                  isMobile ? "text-[7px]" : "text-[10px]"
+                )}>
+                  AGREGAR
+                </span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (isPremium || product.mainCategory === 'OFERTAS') {
     const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
