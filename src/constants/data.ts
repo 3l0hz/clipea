@@ -219,11 +219,11 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
     price: '$14.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_03_20.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/3.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_03_20.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_02_50.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_03_13.png'
     ],
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/mini%20tripode%20insta-optimizado.glb',
     description: 'Diseño ultra estable para cámaras 360 pesadas.',
