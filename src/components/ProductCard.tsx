@@ -1,7 +1,5 @@
-
 'use client';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/store';
 import { WHATSAPP_NUMBER } from '@/constants/data';
@@ -55,10 +53,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     return '$149.990';
   };
 
-  // Experiment for "MOTO URBANO" (pack-moto-basico)
-  const isBasicoExperiment = product.id === 'pack-moto-basico';
-
-  if (isBasicoExperiment) {
+  if (isPremium || product.mainCategory === 'OFERTAS') {
     return (
       <div 
         className={cn(
@@ -139,112 +134,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                   AGREGAR
                 </span>
               </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (isPremium || product.mainCategory === 'OFERTAS') {
-    const isSpecialLab = product.id === 'PRUEBA_DESKTOP' || product.id === 'PRUEBA_NORMAL';
-
-    return (
-      <div 
-        className={cn(
-          "group promo-glass-card p-0 h-fit flex flex-col cursor-pointer transition-all duration-500",
-          isSpecialLab ? "glass-reflective-edge" : "glass-reflective-edge-promo",
-          isMobile ? "rounded-[32px] overflow-hidden" : ""
-        )}
-        onClick={handleCardClick}
-      >
-        <div className="shine-layer" />
-
-        <div className={cn(
-          "relative overflow-hidden flex items-center justify-center border border-white/5",
-          isMobile ? "aspect-square m-1 rounded-[24px] bg-transparent" : "aspect-square m-1 rounded-[32px] bg-transparent"
-        )}>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className={cn(
-              "object-contain transition-transform duration-700 group-hover:scale-110",
-              isMobile ? "p-2" : "p-1"
-            )}
-            sizes={isMobile ? "80vw" : "33vw"}
-            priority={product.bestSeller}
-          />
-        </div>
-
-        <div className={cn(
-          "flex flex-col flex-1 gap-2",
-          isMobile ? "px-4 pb-4 pt-1" : "px-5 pb-5 pt-1"
-        )}>
-          <div className="space-y-1">
-            <h3 className={cn(
-              "font-headline font-bold text-white uppercase bg-clip-text leading-tight tracking-tight",
-              isMobile ? "text-lg" : "text-xl"
-            )}>
-              {product.name}
-            </h3>
-            {!isMobile && (
-              <p className="text-[13px] text-white/40 line-clamp-1 leading-relaxed font-medium">
-                {product.description}
-              </p>
-            )}
-          </div>
-
-          <div className="mt-auto pt-1 flex flex-col gap-3">
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-              <span className={cn(
-                "font-headline font-extrabold text-white tracking-tighter leading-tight",
-                isMobile ? "text-[26px]" : "text-3xl"
-              )}>
-                {product.price}
-              </span>
-              <span className={cn(
-                "font-bold text-white/20 uppercase line-through leading-tight",
-                isMobile ? "text-[11px] tracking-tight" : "text-[10px] tracking-widest"
-              )}>
-                {getStrikethroughPrice(product.price)}
-              </span>
-            </div>
-            
-            <div className="flex flex-col gap-2">
-              <Button
-                className={cn(
-                  "w-full bg-white/[0.05] text-white font-bold flex items-center justify-center gap-3 border border-white/10 relative overflow-hidden backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:bg-white/[0.1] active:scale-[0.98]",
-                  isMobile ? "h-11 rounded-xl" : "h-12 rounded-2xl"
-                )}
-                onClick={handleAddToCart}
-              >
-                <ShoppingCart size={isMobile ? 16 : 18} className="relative z-20" />
-                <span className={cn(
-                  "uppercase tracking-[0.2em] relative z-20 font-bold",
-                  isMobile ? "text-[10px]" : "text-xs"
-                )}>
-                  AGREGAR
-                </span>
-              </Button>
-              
-              <a 
-                href={waLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={cn(
-                  "flex items-center justify-center gap-2 text-white/40 hover:text-white transition-all group/wsap text-center",
-                  isMobile ? "h-11 rounded-xl border border-white/10 tracking-[1px] w-full" : "py-1 tracking-[2px]"
-                )}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <WhatsAppIcon className="w-3.5 h-3.5 opacity-40 group-hover/wsap:opacity-100 transition-opacity shrink-0" />
-                <span className={cn(
-                  "font-bold uppercase",
-                  isMobile ? "text-[10px]" : "text-[9px]"
-                )}>CONSULTA DIRECTA</span>
-              </a>
             </div>
           </div>
         </div>
