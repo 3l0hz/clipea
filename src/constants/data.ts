@@ -342,10 +342,10 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Accesorios GoPro',
     price: '$9.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente1.jpg',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/ChatGPT%20Image%2025%20may%202026,%2023_48_44.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente1.jpg',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/lente%202.jpg'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/ChatGPT%20Image%2025%20may%202026,%2023_48_44.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/ChatGPT%20Image%2025%20may%202026,%2023_52_29.png'
     ],
     description: 'Vidrio templado de alta transparencia para reemplazar lentes rayados.',
     compatibility: 'GoPro Hero 9, 10, 11, 12, 13',
