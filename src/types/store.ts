@@ -1,5 +1,5 @@
 
-export type Category = 'Promos Moto' | 'Trípodes' | 'Bastones Selfie' | 'Soportes Moto / Vehículo' | 'Accesorios Cámara' | 'Accesorios Corporales' | 'Hogar inteligente';
+export type Category = 'Promos Moto' | 'Trípodes' | 'Bastones Selfie' | 'Soportes Moto / Vehículo' | 'Setup y Escritorio' | 'Accesorios Corporales' | 'Hogar inteligente';
 
 export interface Product {
   id: string;

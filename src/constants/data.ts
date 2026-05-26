@@ -197,7 +197,7 @@ export const PRODUCTS: Product[] = [
       'Reloj inteligente, alarmas y notificaciones sociales',
       'Estética futurista y minimalista para setups modernos'
     ],
-    category: 'Accesorios Cámara'
+    category: 'Setup y Escritorio'
   },
   // TRÍPODES
   {
@@ -329,7 +329,7 @@ export const PRODUCTS: Product[] = [
       'Agarre antideslizante',
       'Compatible con trípodes standard'
     ],
-    category: 'Accesorios Cámara'
+    category: 'Setup y Escritorio'
   },
   {
     id: 'lente-rep-gopro9.13',
@@ -345,7 +345,7 @@ export const PRODUCTS: Product[] = [
     description: 'Vidrio templado de alta transparencia para reemplazar lentes rayados.',
     compatibility: 'GoPro Hero 9, 10, 11, 12, 13',
     recommendedUse: 'Mantenimiento preventivo',
-    category: 'Accesorios Cámara'
+    category: 'Setup y Escritorio'
   },
   {
     id: 'PecheraTelesin',
