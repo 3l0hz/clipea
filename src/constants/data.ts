@@ -61,7 +61,8 @@ export const PRODUCTS: Product[] = [
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_10_01.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_09_02.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2025%20may%202026,%2023_59_22.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2025%20may%202026,%2023_59_22.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_12_51.png'
     ],
     description: 'Soporte tipo clip Sunnylife para instalar cámaras de acción en el parabrisas de la moto. Ideal para grabaciones POV, rutas, viajes y contenido en movimiento.',
     compatibility: 'GoPro, Insta360, DJI Action',
