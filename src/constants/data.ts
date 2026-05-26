@@ -18,16 +18,16 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
     subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
   },
   {
+    label: 'OFERTAS',
+    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
+  },
+  {
     label: 'SETUP & ESCRITORIO',
     subcategories: ['Pixel Art', 'Audio', 'Carga Rápida', 'Setup Creator']
   },
   {
     label: 'Hogar inteligente',
     subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
-  },
-  {
-    label: 'OFERTAS',
-    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
   }
 ];
 
@@ -268,47 +268,6 @@ export const PRODUCTS: Product[] = [
     recommendedUse: 'Mantenimiento preventivo',
     category: 'Setup y Escritorio'
   },
-  // SETUP & ESCRITORIO
-  {
-    id: 'divoom-timebox-evo',
-    name: 'Divoom Timebox Evo',
-    mainCategory: 'SETUP & ESCRITORIO',
-    subcategory: 'Pixel Art',
-    price: '$54.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/timebox%20evo/ChatGPT%20Image%2025%20may%202026,%2014_22_35.png',
-    description: 'La pieza central definitiva para tu setup. El Timebox Evo trasciende la función de un altavoz convencional para convertirse en un lienzo digital de 16x16 píxeles. Diseñado para quienes ven la tecnología como una forma de arte y decoración funcional.',
-    compatibility: 'iOS / Android (Divoom App)',
-    recommendedUse: 'Setup Creator / Escritorio Gamer / Decoración Tech',
-    brand: 'Divoom',
-    highlights: [
-      'Pantalla LED RGB de 256 píxeles programables',
-      'Altavoz Bluetooth con procesamiento DSP de 6W',
-      'Visualizador de música rítmico en tiempo real',
-      'Reloj inteligente, alarmas y notificaciones sociales',
-      'Estética futurista y minimalista para setups modernos'
-    ],
-    category: 'Setup y Escritorio'
-  },
-  // HOGAR INTELIGENTE
-  {
-    id: 'bestcon-rm4c-mini',
-    name: 'Control Remoto Wifi',
-    mainCategory: 'Hogar inteligente',
-    subcategory: 'Hogar Inteligente',
-    price: '$19.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/2.HOGAR%20INTELIGENTE/control%20wifi/ChatGPT%20Image%2025%20may%202026,%2015_51_40.png',
-    description: 'Haz inteligentes tus dispositivos tradicionales y contrólalos desde cualquier lugar. Este pequeño hub permite manejar aire acondicionado, TV y más desde tu celular, convirtiéndolos en parte de tu setup inteligente.',
-    compatibility: 'Android / iPhone (WiFi)',
-    recommendedUse: 'Hogar Inteligente, oficinas, setups',
-    brand: 'BestCon',
-    highlights: [
-      'Control remoto universal inteligente',
-      'Control desde cualquier parte del mundo',
-      'Compatible con equipos IR (AC, TV, Ventiladores)',
-      'Diseño compacto y minimalista'
-    ],
-    category: 'Hogar inteligente'
-  },
   // OFERTAS
   {
     id: 'pack-moto-basico',
@@ -373,6 +332,47 @@ export const PRODUCTS: Product[] = [
     ],
     bestSeller: true,
     category: 'Promos Moto'
+  },
+  // SETUP & ESCRITORIO
+  {
+    id: 'divoom-timebox-evo',
+    name: 'Divoom Timebox Evo',
+    mainCategory: 'SETUP & ESCRITORIO',
+    subcategory: 'Pixel Art',
+    price: '$54.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/timebox%20evo/ChatGPT%20Image%2025%20may%202026,%2014_22_35.png',
+    description: 'La pieza central definitiva para tu setup. El Timebox Evo trasciende la función de un altavoz convencional para convertirse en un lienzo digital de 16x16 píxeles. Diseñado para quienes ven la tecnología como una forma de arte y decoración funcional.',
+    compatibility: 'iOS / Android (Divoom App)',
+    recommendedUse: 'Setup Creator / Escritorio Gamer / Decoración Tech',
+    brand: 'Divoom',
+    highlights: [
+      'Pantalla LED RGB de 256 píxeles programables',
+      'Altavoz Bluetooth con procesamiento DSP de 6W',
+      'Visualizador de música rítmico en tiempo real',
+      'Reloj inteligente, alarmas y notificaciones sociales',
+      'Estética futurista y minimalista para setups modernos'
+    ],
+    category: 'Setup y Escritorio'
+  },
+  // HOGAR INTELIGENTE
+  {
+    id: 'bestcon-rm4c-mini',
+    name: 'Control Remoto Wifi',
+    mainCategory: 'Hogar inteligente',
+    subcategory: 'Hogar Inteligente',
+    price: '$19.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/2.HOGAR%20INTELIGENTE/control%20wifi/ChatGPT%20Image%2025%20may%202026,%2015_51_40.png',
+    description: 'Haz inteligentes tus dispositivos tradicionales y contrólalos desde cualquier lugar. Este pequeño hub permite manejar aire acondicionado, TV y más desde tu celular, convirtiéndolos en parte de tu setup inteligente.',
+    compatibility: 'Android / iPhone (WiFi)',
+    recommendedUse: 'Hogar Inteligente, oficinas, setups',
+    brand: 'BestCon',
+    highlights: [
+      'Control remoto universal inteligente',
+      'Control desde cualquier parte del mundo',
+      'Compatible con equipos IR (AC, TV, Ventiladores)',
+      'Diseño compacto y minimalista'
+    ],
+    category: 'Hogar inteligente'
   }
 ];
 
