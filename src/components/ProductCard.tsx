@@ -146,7 +146,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     <div 
       className={cn(
         "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl h-fit transition-all duration-300",
-        !isMobile ? "md:hover:-translate-y-1" : ""
+        !isMobile ? "md:hover:-translate-y-1" : "",
+        product.id === 'Bullet' && "[&::before]:animate-none [&::after]:animate-none"
       )}
       onClick={handleCardClick}
     >
