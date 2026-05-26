@@ -41,6 +41,9 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     addToCart(product);
+    toast({
+      description: "Agregado al carrito",
+    });
   };
 
   const getStrikethroughPrice = (price: string) => {

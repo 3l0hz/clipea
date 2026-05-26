@@ -58,6 +58,9 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
 
   const handleAddToCart = () => {
     addToCart(product);
+    toast({
+      description: "Agregado al carrito",
+    });
   };
 
   return (
