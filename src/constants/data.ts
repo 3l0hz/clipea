@@ -119,8 +119,13 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
     price: '$19.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png',
-    images: ['https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/1.png', 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png'],
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_31_16.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_31_16.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_04_58.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_19_06.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_25_24.png'
+    ],
     description: 'Bastón selfie de aluminio ligero y resistente, perfecto para tomas estables.',
     compatibility: 'GoPro, Insta360, DJI Action',
     recommendedUse: 'Vlogs, viajes, rutas suaves',
