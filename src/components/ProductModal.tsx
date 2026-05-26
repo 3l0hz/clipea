@@ -129,12 +129,12 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   className={cn(
                     "relative w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden border-2 transition-all flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl shrink-0 group",
                     showModel 
-                      ? "border-accent scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" 
+                      ? "border-cyan-400 scale-110 shadow-[0_0_20px_rgba(0,229,255,0.4)]" 
                       : "border-white/10 opacity-60 hover:opacity-100"
                   )}
                 >
-                  <Box size={22} className={cn("transition-colors md:w-7 md:h-7", showModel ? "text-accent" : "text-white/70")} />
-                  <span className="absolute bottom-1 text-[8px] font-bold text-center text-accent uppercase tracking-tighter">VISTA 3D</span>
+                  <Box size={22} className={cn("transition-colors md:w-7 md:h-7", showModel ? "text-cyan-400" : "text-white/70")} />
+                  <span className="absolute bottom-1 text-[8px] font-bold text-center text-cyan-400 uppercase tracking-tighter">VISTA 3D</span>
                 </button>
               )}
               {images.map((img, idx) => (
@@ -144,7 +144,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   className={cn(
                     "relative w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden border-2 transition-all bg-white/[0.03] backdrop-blur-md shrink-0",
                     !showModel && currentImageIndex === idx 
-                      ? "border-accent scale-110 shadow-[0_0_20px_rgba(142,255,127,0.4)]" 
+                      ? "border-cyan-400 scale-110 shadow-[0_0_20px_rgba(0,229,255,0.4)]" 
                       : "border-white/10 opacity-60 hover:opacity-100"
                   )}
                 >
@@ -162,7 +162,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               <div className="space-y-3">
                 <div className="space-y-2">
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent/80">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400">
                       {product.category}
                     </span>
                     {product.bestSeller && (
@@ -193,10 +193,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
               {/* Descripción */}
               <div className="space-y-2">
                 <h4 className="flex items-center gap-2 text-[10px] font-bold uppercase text-white/30 tracking-[0.4em]">
-                  <Info size={12} className="text-accent/50" />
+                  <Info size={12} className="text-cyan-400/50" />
                   Detalles
                 </h4>
-                <p className="text-white/70 text-sm md:text-base leading-relaxed font-medium">
+                <p className="text-sky-300 text-sm md:text-base leading-relaxed font-medium">
                   {product.description}
                 </p>
               </div>
