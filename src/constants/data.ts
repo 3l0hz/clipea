@@ -39,11 +39,11 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
     price: '$19.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/93db2520-62a3-4faf-a546-09955ee00f4b.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/3.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/93db2520-62a3-4faf-a546-09955ee00f4b.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/ChatGPT%20Image%2026%20may%202026,%2000_16_19.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/soportemotomanillar/ChatGPT%20Image%2026%20may%202026,%2000_19_45.png'
     ],
     description: 'Construcción en aluminio CNC para máxima resistencia a vibraciones.',
     compatibility: 'Manillares de 22mm a 32mm',
