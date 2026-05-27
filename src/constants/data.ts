@@ -18,16 +18,16 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
     subcategories: ['Bastones Selfie', 'Trípodes', 'Accesorios GoPro', 'Accesorios Insta360', 'Accesorios DJI', 'Soportes Cámara']
   },
   {
-    label: 'OFERTAS',
-    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
-  },
-  {
     label: 'SETUP & ESCRITORIO',
     subcategories: ['Pixel Art', 'Audio', 'Carga Rápida', 'Setup Creator']
   },
   {
     label: 'Hogar inteligente',
     subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
+  },
+  {
+    label: 'OFERTAS',
+    subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
   }
 ];
 
@@ -180,11 +180,11 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
     price: '$34.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/ChatGPT%20Image%2026%20may%202026,%2021_51_30.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/4.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/ChatGPT%20Image%2026%20may%202026,%2021_51_30.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/ChatGPT%20Image%2026%20may%202026,%2021_26_21.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie3m/ChatGPT%20Image%2026%20may%202026,%2021_54_38.png'
     ],
     description: 'El bastón más largo del mercado para perspectivas aéreas increíbles.',
     compatibility: 'Insta360, GoPro con adaptador',
