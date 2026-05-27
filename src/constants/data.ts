@@ -1,7 +1,7 @@
 
 import { Product, FAQItem } from '@/types/store';
 
-export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'SETUP & ESCRITORIO' | 'Hogar inteligente' | 'OFERTAS';
+export type MainCategory = 'MOTO & AVENTURA' | 'CÁMARAS & CREACIÓN' | 'SETUP & ESCRITORIO' | 'Hogar inteligente' | 'PROMO';
 
 export interface CategoryStructure {
   label: MainCategory;
@@ -26,7 +26,7 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
     subcategories: ['Dashcams', 'Hogar Inteligente', 'Gadgets Smart', 'Automatización']
   },
   {
-    label: 'OFERTAS',
+    label: 'PROMO',
     subcategories: ['Promos', 'Bundles', 'Packs Especiales', 'Liquidaciones']
   }
 ];
@@ -262,11 +262,11 @@ export const PRODUCTS: Product[] = [
     recommendedUse: 'Mantenimiento preventivo',
     category: 'Setup y Escritorio'
   },
-  // OFERTAS
+  // PROMO
   {
     id: 'pack-moto-basico',
     name: 'MOTO URBANO',
-    mainCategory: 'OFERTAS',
+    mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
     price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
@@ -286,7 +286,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'pack-moto-medio',
     name: 'MOTO RUTA',
-    mainCategory: 'OFERTAS',
+    mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
     price: '$54.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/signal-2026-05-24-000334_005.jpg',
@@ -310,7 +310,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'pack-moto-avanzado',
     name: 'MOTO PRO',
-    mainCategory: 'OFERTAS',
+    mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
     price: '$69.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/signal-2026-05-24-000334_005(2).jpg',

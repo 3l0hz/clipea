@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: 'Cámaras & Creación', href: '#camaras-creacion' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
   { label: 'Hogar inteligente', href: '#hogar-inteligente' },
-  { label: 'Ofertas', href: '#ofertas' },
+  { label: 'PROMO', href: '#promo' },
 ];
 
 export const Header = () => {
@@ -49,7 +49,7 @@ export const Header = () => {
               href={link.href}
               className={cn(
                 "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 whitespace-nowrap",
-                link.label === 'Ofertas' ? "text-accent" : "text-white/50 hover:text-white"
+                link.label === 'PROMO' ? "text-accent" : "text-white/50 hover:text-white"
               )}
             >
               {link.label}
@@ -65,7 +65,7 @@ export const Header = () => {
               href={link.href}
               className={cn(
                 "text-[9px] font-bold uppercase tracking-[0.1em] transition-colors duration-300 whitespace-nowrap",
-                link.label === 'Ofertas' ? "text-accent" : "text-white/50 hover:text-white"
+                link.label === 'PROMO' ? "text-accent" : "text-white/50 hover:text-white"
               )}
             >
               {link.label}
@@ -116,7 +116,7 @@ export const Header = () => {
                           href={link.href} 
                           className={cn(
                             "text-3xl font-headline font-bold transition-all duration-500 hover:translate-x-2",
-                            link.label === 'Ofertas' ? "text-accent" : "text-white/60 hover:text-white"
+                            link.label === 'PROMO' ? "text-accent" : "text-white/60 hover:text-white"
                           )}
                         >
                           {link.label}

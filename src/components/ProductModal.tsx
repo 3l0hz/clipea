@@ -1,3 +1,4 @@
+
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
@@ -179,7 +180,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   <span className="text-3xl md:text-4xl lg:text-5xl font-headline font-extrabold tracking-tighter text-accent">
                     {product.price}
                   </span>
-                  {product.mainCategory === 'OFERTAS' && (
+                  {product.mainCategory === 'PROMO' && (
                     <span className="text-lg text-white/20 line-through font-bold">
                       {product.price === '$34.990' ? '$49.990' : 
                        product.price === '$54.990' ? '$74.990' : 

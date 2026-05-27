@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -53,7 +54,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     return '$149.990';
   };
 
-  if (isPremium || product.mainCategory === 'OFERTAS') {
+  if (isPremium || product.mainCategory === 'PROMO') {
     return (
       <div 
         className={cn(
