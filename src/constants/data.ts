@@ -200,6 +200,30 @@ export const PRODUCTS: Product[] = [
     category: 'Setup y Escritorio'
   },
   {
+    id: 'telesin-floating-grip-remote-copy',
+    name: 'Baston Selfie Telesin',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Soportes Cámara',
+    price: '$29.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_21_31.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_31_12.png'
+    ],
+    description: 'Empuñadura flotante con control remoto integrado, perfecta para capturar tomas en el agua con total control.',
+    compatibility: 'GoPro Hero 13, 12, 11, 10, 9, 8',
+    recommendedUse: 'Deportes acuáticos, buceo, surf',
+    brand: 'Telesin',
+    highlights: [
+      'Control remoto Bluetooth',
+      'Cuerpo flotante de alta visibilidad',
+      'Agarre antideslizante',
+      'Compatible con trípodes standard'
+    ],
+    category: 'Setup y Escritorio'
+  },
+  {
     id: 'selfie1.20',
     name: 'Baston selfie Alumino 1.2m',
     mainCategory: 'CÁMARAS & CREACIÓN',
