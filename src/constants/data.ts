@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     name: 'Clip Parabrisas Moto',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
-    price: '$15.990',
+    price: '$18.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_10_01.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_10_01.png',
@@ -81,7 +81,7 @@ export const PRODUCTS: Product[] = [
     name: 'Soporte Ventosa Parabrisas',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Monturas',
-    price: '$15.990',
+    price: '$17.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/ChatGPT%20Image%2026%20may%202026,%2000_01_41.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/ChatGPT%20Image%2026%20may%202026,%2000_01_41.png',
@@ -98,7 +98,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pechera Ajustable Telesin',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Grabación POV',
-    price: '$12.990',
+    price: '$14.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/ChatGPT%20Image%2026%20may%202026,%2000_17_31.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/ChatGPT%20Image%2026%20may%202026,%2000_17_31.png',
@@ -236,7 +236,7 @@ export const PRODUCTS: Product[] = [
     name: 'Mango Bullet',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
-    price: '$24.990',
+    price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
@@ -254,7 +254,7 @@ export const PRODUCTS: Product[] = [
     name: 'Lente Repuesto GoPro 9-13',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Accesorios GoPro',
-    price: '$9.990',
+    price: '$16.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/ChatGPT%20Image%2025%20may%202026,%2023_48_44.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/lenterepgpro9.13/ChatGPT%20Image%2025%20may%202026,%2023_48_44.png',
