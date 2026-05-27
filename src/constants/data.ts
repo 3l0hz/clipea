@@ -237,13 +237,11 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
     price: '$24.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/3.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/4.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/0.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_51_38.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_51_27.png'
     ],
     description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
     compatibility: 'Insta360 ONE X/X2/X3',
