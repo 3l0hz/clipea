@@ -90,7 +90,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "flex flex-col gap-1",
-          isMobile ? "px-2 pb-2 pt-0 gap-0.5" : "px-3 pb-3 pt-0 gap-1"
+          isMobile ? "px-2 pb-3 pt-0 gap-0.5" : "px-3 pb-4 pt-0 gap-1"
         )}>
           <div className="space-y-0">
             <h3 className={cn(
@@ -107,7 +107,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             </p>
           </div>
           
-          <div className={cn("flex flex-col mt-0.5", isMobile ? "gap-1" : "gap-1.5")}>
+          <div className="flex items-center justify-between mt-2 pt-1">
             <div className="flex flex-wrap items-center gap-x-2">
               <span className={cn(
                 "font-headline font-extrabold text-white tracking-tighter leading-none",
@@ -123,20 +123,25 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               </span>
             </div>
             
-            <div className={cn("flex flex-col", isMobile ? "gap-1" : "gap-1.5")}>
-              <Button
+            <div className="flex items-center gap-2">
+              <button
+                onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
                 className={cn(
-                  "w-full bg-black/40 text-white font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:bg-black/60 active:scale-95 border border-white/5 backdrop-blur-md",
-                  isMobile ? "h-7 rounded-xl gap-1" : "h-11 rounded-2xl gap-2"
+                  "flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-500 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]",
+                  isMobile ? "h-7 w-7" : "h-10 w-10"
                 )}
-                onClick={handleAddToCart}
               >
-                <ShoppingCart size={isMobile ? 10 : 14} className="relative z-20" />
-                <span className={cn(
-                  "uppercase tracking-widest relative z-20 font-bold",
-                  isMobile ? "text-[7px]" : "text-[10px]"
-                )}>AGREGAR</span>
-              </Button>
+                <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
+              </button>
+              <button
+                onClick={handleAddToCart}
+                className={cn(
+                  "flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-500 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-105 active:scale-95",
+                  isMobile ? "h-8 w-8" : "h-11 w-11"
+                )}
+              >
+                <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
+              </button>
             </div>
           </div>
         </div>
@@ -204,17 +209,15 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-2">
-          {/* Price adjusted to be slightly higher and centered visualy with buttons */}
+        <div className="flex items-center justify-between mt-auto pt-1">
           <div className={cn(
-            "font-headline font-extrabold text-white tracking-tighter leading-none",
+            "font-headline font-extrabold text-white tracking-tighter leading-none mb-1",
             isMobile ? "text-[14px]" : "text-[18px]"
           )}>
             {product.price}
           </div>
           
           <div className="flex items-center gap-2">
-            {/* Search button: Circular with glow */}
             <button
               onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
               className={cn(
@@ -224,7 +227,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             >
               <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
             </button>
-            {/* Cart button: Circular to match search button with neon glow */}
             <button
               onClick={handleAddToCart}
               className={cn(
