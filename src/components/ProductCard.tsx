@@ -108,40 +108,43 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             </p>
           </div>
           
-          <div className="flex items-center justify-between mt-2 pt-1">
-            <div className="flex flex-wrap items-center gap-x-2">
+          <div className={cn(
+            "flex items-center justify-between mt-2 pt-1",
+            isMobile ? "pr-0.5" : ""
+          )}>
+            <div className="flex flex-wrap items-center gap-x-1.5">
               <span className={cn(
                 "font-headline font-extrabold text-white tracking-tighter leading-none",
-                isMobile ? "text-[14px]" : "text-[18px]"
+                isMobile ? "text-[13px]" : "text-[18px]"
               )}>
                 {product.price}
               </span>
               <span className={cn(
                 "font-bold text-white/20 uppercase line-through leading-none",
-                isMobile ? "text-[8px]" : "text-[10px]"
+                isMobile ? "text-[7px]" : "text-[10px]"
               )}>
                 {getStrikethroughPrice(product.price)}
               </span>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className={cn("flex items-center", isMobile ? "gap-1.5" : "gap-2")}>
               <button
                 onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
                 className={cn(
                   "flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-500 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]",
-                  isMobile ? "h-7 w-7" : "h-10 w-10"
+                  isMobile ? "h-[26px] w-[26px]" : "h-10 w-10"
                 )}
               >
-                <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
+                <Search size={isMobile ? 11 : 16} strokeWidth={2.5} />
               </button>
               <button
                 onClick={handleAddToCart}
                 className={cn(
                   "flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-500 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-105 active:scale-95",
-                  isMobile ? "h-8 w-8" : "h-11 w-11"
+                  isMobile ? "h-[30px] w-[30px]" : "h-11 w-11"
                 )}
               >
-                <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
+                <ShoppingCart size={isMobile ? 13 : 18} strokeWidth={2.5} />
               </button>
             </div>
           </div>
@@ -220,32 +223,35 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-1">
+        <div className={cn(
+          "flex items-center justify-between mt-auto pt-1",
+          isMobile ? "pr-0.5" : ""
+        )}>
           <div className={cn(
             "font-headline font-extrabold text-white tracking-tighter leading-none mb-1",
-            isMobile ? "text-[14px]" : "text-[18px]"
+            isMobile ? "text-[13px]" : "text-[18px]"
           )}>
             {product.price}
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className={cn("flex items-center", isMobile ? "gap-1.5" : "gap-2")}>
             <button
               onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
               className={cn(
                 "flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 hover:bg-white/15 hover:text-white hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]",
-                isMobile ? "h-7 w-7" : "h-10 w-10"
+                isMobile ? "h-[26px] w-[26px]" : "h-10 w-10"
               )}
             >
-              <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
+              <Search size={isMobile ? 11 : 16} strokeWidth={2.5} />
             </button>
             <button
               onClick={handleAddToCart}
               className={cn(
                 "flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-500 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-105 active:scale-95",
-                isMobile ? "h-8 w-8" : "h-11 w-11"
+                isMobile ? "h-[30px] w-[30px]" : "h-11 w-11"
               )}
             >
-              <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
+              <ShoppingCart size={isMobile ? 13 : 18} strokeWidth={2.5} />
             </button>
           </div>
         </div>
