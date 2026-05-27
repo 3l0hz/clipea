@@ -177,7 +177,7 @@ export const PRODUCTS: Product[] = [
   // CÁMARAS & CREACIÓN
   {
     id: 'telesin-floating-grip-remote',
-    name: 'Baston Selfie Telesin',
+    name: 'Selfie sumergible Telesin',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
     price: '$29.990',
