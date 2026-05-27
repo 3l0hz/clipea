@@ -172,8 +172,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           alt={product.name}
           fill
           className={cn(
-            "object-contain transition-transform duration-700 group-hover:scale-110",
-            isMobile ? "p-1" : "p-1.5"
+            "object-contain transition-transform duration-700 scale-[1.15] group-hover:scale-125",
+            "p-0"
           )}
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={product.bestSeller}
