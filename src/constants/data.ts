@@ -269,7 +269,7 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
     price: '$34.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/promo/basico/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/ChatGPT%20Image%2027%20may%202026,%2014_36_56.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
     description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
     compatibility: 'Universal',
