@@ -105,7 +105,6 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/ChatGPT%20Image%2026%20may%202026,%2000_24_17.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/ChatGPT%20Image%2026%20may%202026,%2000_25_48.png'
     ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/PecheraTelesin/pechera-optimizado.glb',
     description: 'Correas elásticas de alta calidad para tomas en primera persona.',
     compatibility: 'Universal',
     recommendedUse: 'Deportes de acción, POV',
@@ -205,7 +204,6 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/ChatGPT%20Image%2026%20may%202026,%2014_15_31.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/ChatGPT%20Image%2026%20may%202026,%2015_09_23.png'
     ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/MinitripodeGoPro/minitripodegopro-optimizado.glb',
     description: 'Trípode compacto que también funciona como empuñadura.',
     compatibility: 'Todas las GoPro',
     recommendedUse: 'Time-lapse, vlogs estáticos',
@@ -224,7 +222,6 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_02_50.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/ChatGPT%20Image%2026%20may%202026,%2014_03_13.png'
     ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Minitripodeinsta/mini%20tripode%20insta-optimizado.glb',
     description: 'Diseño ultra estable para cámaras 360 pesadas.',
     compatibility: 'Insta360 ONE X/X2/X3/X4',
     recommendedUse: 'Superficies planas, tomas bajas',
