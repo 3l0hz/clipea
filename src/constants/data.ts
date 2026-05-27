@@ -162,12 +162,11 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
     price: '$29.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/ChatGPT%20Image%2026%20may%202026,%2001_28_34.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/1.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/2.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/3.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/4.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/ChatGPT%20Image%2026%20may%202026,%2001_28_34.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/ChatGPT%20Image%2026%20may%202026,%2001_25_24.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie2m/ChatGPT%20Image%2026%20may%202026,%2001_18_18.png'
     ],
     description: 'Extensión máxima de 2 metros en fibra de carbono ultra liviana.',
     compatibility: 'Insta360 X3/X4, GoPro',
