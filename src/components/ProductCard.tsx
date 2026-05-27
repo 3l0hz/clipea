@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/store';
-import { WHATSAPP_NUMBER } from '@/constants/data';
 import { ShoppingCart, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -46,13 +45,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
   const isPromo = isPremium || product.mainCategory === 'PROMO';
 
-  // PROMO STYLE (Impactful/Dynamic)
+  // PROMO STYLE
   if (isPromo) {
     return (
       <div 
         className={cn(
           "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl transition-all duration-300",
-          isMobile ? "h-[220px]" : "h-fit",
+          isMobile ? "h-[200px]" : "h-fit",
           !isMobile ? "md:hover:-translate-y-1" : ""
         )}
         onClick={handleCardClick}
@@ -61,23 +60,23 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           {product.bestSeller && (
             <div className={cn(
               "flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full",
-              isMobile ? "px-1.5 py-0" : ""
+              isMobile ? "px-1 py-0" : ""
             )}>
-              <span className={cn("text-[10px]", isMobile && "text-[8px]")}>🔥</span>
-              <span className={cn("font-bold text-white tracking-widest uppercase", isMobile ? "text-[6px]" : "text-[8px]")}>MÁS VENDIDO</span>
+              <span className={cn("text-[8px]", isMobile && "text-[7px]")}>🔥</span>
+              <span className={cn("font-bold text-white tracking-widest uppercase", isMobile ? "text-[5px]" : "text-[8px]")}>MÁS VENDIDO</span>
             </div>
           )}
           <div className={cn(
             "flex items-center gap-1 bg-accent/20 backdrop-blur-md border border-accent/30 px-2 py-0.5 rounded-full",
-            isMobile ? "px-1.5 py-0" : ""
+            isMobile ? "px-1 py-0" : ""
           )}>
-            <span className={cn("font-bold text-accent tracking-widest uppercase", isMobile ? "text-[6px]" : "text-[8px]")}>PROMO</span>
+            <span className={cn("font-bold text-accent tracking-widest uppercase", isMobile ? "text-[5px]" : "text-[8px]")}>PROMO</span>
           </div>
         </div>
 
         <div className={cn(
           "relative overflow-hidden bg-transparent flex items-center justify-center transition-all",
-          isMobile ? "m-1 rounded-[10px] h-[130px]" : "m-2 rounded-[12px] aspect-square"
+          isMobile ? "m-1 rounded-[10px] h-[100px]" : "m-2 rounded-[12px] aspect-square"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
           <Image
@@ -92,43 +91,45 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "flex flex-col gap-1",
-          isMobile ? "px-1.5 pb-2 pt-0 gap-0.5" : "px-3 pb-4 pt-0 gap-1"
+          isMobile ? "px-1 pb-2 pt-0 gap-0.5" : "px-3 pb-4 pt-0 gap-1"
         )}>
           <div className="space-y-0 text-center">
             <h3 className={cn(
               "font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-1",
-              isMobile ? "text-[9px]" : "text-[14px]"
+              isMobile ? "text-[8px]" : "text-[14px]"
             )}>
               {product.name}
             </h3>
           </div>
           
           <div className={cn(
-            "flex items-center justify-between mt-auto pt-1",
-            isMobile ? "w-full" : ""
+            "flex flex-col items-center justify-center mt-auto",
+            isMobile ? "w-full gap-2" : "flex-row justify-between"
           )}>
             {isMobile ? (
               <>
-                <button
-                  onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
-                  className="flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-300 h-[22px] w-[22px]"
-                >
-                  <Search size={10} strokeWidth={2.5} />
-                </button>
-                <div className="flex flex-col items-center">
-                  <span className="font-headline font-extrabold text-white tracking-tighter leading-none text-[11px]">
+                <div className="flex flex-col items-center leading-none">
+                  <span className="font-headline font-extrabold text-white tracking-tighter text-[10px]">
                     {product.price}
                   </span>
-                  <span className="text-[6px] font-bold text-white/20 uppercase line-through leading-none mt-0.5">
+                  <span className="text-[5px] font-bold text-white/20 uppercase line-through mt-0.5">
                     {getStrikethroughPrice(product.price)}
                   </span>
                 </div>
-                <button
-                  onClick={handleAddToCart}
-                  className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[26px] w-[26px]"
-                >
-                  <ShoppingCart size={12} strokeWidth={2.5} />
-                </button>
+                <div className="flex items-center justify-center gap-6 w-full px-2">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
+                    className="flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-300 h-[20px] w-[20px]"
+                  >
+                    <Search size={9} strokeWidth={2.5} />
+                  </button>
+                  <button
+                    onClick={handleAddToCart}
+                    className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[24px] w-[24px]"
+                  >
+                    <ShoppingCart size={11} strokeWidth={2.5} />
+                  </button>
+                </div>
               </>
             ) : (
               <>
@@ -163,13 +164,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     );
   }
 
-  // NORMAL STYLE (Clean/Elegant)
+  // NORMAL STYLE
   return (
     <div 
       className={cn(
         "group promo-glass-card p-0 flex flex-col cursor-pointer transition-all duration-500 glass-reflective-edge",
         "rounded-[20px] overflow-hidden shadow-2xl border-none bg-black/40",
-        isMobile ? "h-[220px]" : "h-fit",
+        isMobile ? "h-[200px]" : "h-fit",
         !isMobile ? "md:hover:-translate-y-1" : ""
       )}
       onClick={handleCardClick}
@@ -178,7 +179,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
       <div className={cn(
         "relative overflow-hidden flex items-center justify-center border border-white/5 bg-transparent",
-        isMobile ? "m-1 rounded-[10px] h-[130px]" : "m-2 rounded-[12px] h-[220px]"
+        isMobile ? "m-1 rounded-[10px] h-[100px]" : "m-2 rounded-[12px] h-[220px]"
       )}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
         <Image
@@ -205,9 +206,9 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           <div className="absolute top-2 left-2 z-20">
             <div className={cn(
               "flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full",
-              isMobile ? "px-1.5 py-0" : ""
+              isMobile ? "px-1 py-0" : ""
             )}>
-              <span className={cn("font-bold text-white tracking-widest uppercase", isMobile ? "text-[6px]" : "text-[8px]")}>TOP</span>
+              <span className={cn("font-bold text-white tracking-widest uppercase", isMobile ? "text-[5px]" : "text-[8px]")}>TOP</span>
             </div>
           </div>
         )}
@@ -215,38 +216,40 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
       <div className={cn(
         "flex flex-col flex-1 gap-1",
-        isMobile ? "px-1.5 pb-2 pt-0.5" : "px-3 pb-3.5 pt-0.5"
+        isMobile ? "px-1 pb-2 pt-0.5" : "px-3 pb-3.5 pt-0.5"
       )}>
         <div className="space-y-0.5 text-center">
           <h3 className={cn(
             "font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-1",
-            isMobile ? "text-[9px]" : "text-[14px]"
+            isMobile ? "text-[8px]" : "text-[14px]"
           )}>
             {product.name}
           </h3>
         </div>
 
         <div className={cn(
-          "flex items-center justify-between mt-auto pt-1",
-          isMobile ? "w-full" : ""
+          "flex flex-col items-center justify-center mt-auto",
+          isMobile ? "w-full gap-2" : "flex-row justify-between"
         )}>
           {isMobile ? (
             <>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 h-[22px] w-[22px]"
-              >
-                <Search size={10} strokeWidth={2.5} />
-              </button>
-              <div className="font-headline font-extrabold text-white tracking-tighter leading-none text-[11px]">
+              <div className="font-headline font-extrabold text-white tracking-tighter text-[10px] mb-0.5">
                 {product.price}
               </div>
-              <button
-                onClick={handleAddToCart}
-                className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[26px] w-[26px]"
-              >
-                <ShoppingCart size={12} strokeWidth={2.5} />
-              </button>
+              <div className="flex items-center justify-center gap-6 w-full px-2">
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
+                  className="flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 h-[20px] w-[20px]"
+                >
+                  <Search size={9} strokeWidth={2.5} />
+                </button>
+                <button
+                  onClick={handleAddToCart}
+                  className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[24px] w-[24px]"
+                >
+                  <ShoppingCart size={11} strokeWidth={2.5} />
+                </button>
+              </div>
             </>
           ) : (
             <>
