@@ -9,11 +9,11 @@ import { CartDrawer } from './CartDrawer';
 import { useCart } from '@/context/CartContext';
 
 const NAV_LINKS = [
+  { label: 'PROMO', href: '#promo' },
   { label: 'Moto & Aventura', href: '#moto-aventura' },
   { label: 'Cámaras & Creación', href: '#camaras-creacion' },
   { label: 'Setup & Escritorio', href: '#setup-escritorio' },
   { label: 'Hogar inteligente', href: '#hogar-inteligente' },
-  { label: 'PROMO', href: '#promo' },
 ];
 
 export const Header = () => {
