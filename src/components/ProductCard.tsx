@@ -204,17 +204,17 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </p>
         </div>
 
-        <div className="flex items-end justify-between mt-auto pt-2">
-          {/* Price with more visual air */}
+        <div className="flex items-center justify-between mt-auto pt-2">
+          {/* Price adjusted to be slightly higher and centered visualy with buttons */}
           <div className={cn(
-            "font-headline font-extrabold text-white tracking-tighter leading-none mb-1.5",
+            "font-headline font-extrabold text-white tracking-tighter leading-none",
             isMobile ? "text-[14px]" : "text-[18px]"
           )}>
             {product.price}
           </div>
           
           <div className="flex items-center gap-2">
-            {/* Search button: More brightness and glow */}
+            {/* Search button: Circular with glow */}
             <button
               onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
               className={cn(
@@ -224,7 +224,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             >
               <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
             </button>
-            {/* Cart button: Now circular to match search button */}
+            {/* Cart button: Circular to match search button with neon glow */}
             <button
               onClick={handleAddToCart}
               className={cn(
