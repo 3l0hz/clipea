@@ -1,5 +1,6 @@
 
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/store';
@@ -21,8 +22,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   const isMobile = useIsMobile();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de clipea.`;
-
+  const [isTall, setIsTall] = useState(false);
+  
   const handleCardClick = () => {
     onViewDetails(product);
   };
@@ -161,7 +162,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     >
       <div className="shine-layer" />
 
-      {/* Adjusted Image Area to occupy ~55% of the card prominence */}
+      {/* Adjusted Image Area to occupy ~65% of the card prominence */}
       <div className={cn(
         "relative overflow-hidden flex items-center justify-center border border-white/5 bg-transparent",
         isMobile ? "m-1.5 rounded-[12px] h-[160px]" : "m-2 rounded-[12px] h-[220px]"
@@ -172,9 +173,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           alt={product.name}
           fill
           className={cn(
-            "object-contain transition-transform duration-700 scale-[1.15] group-hover:scale-125",
+            "object-contain transition-transform duration-700 p-2",
+            isTall ? "scale-[1.05] group-hover:scale-[1.15]" : "scale-[1.15] group-hover:scale-125",
             "p-0"
           )}
+          onLoad={(e) => {
+            const img = e.target as HTMLImageElement;
+            if (img.naturalHeight > img.naturalWidth * 1.2) {
+              setIsTall(true);
+            }
+          }}
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={product.bestSeller}
         />
