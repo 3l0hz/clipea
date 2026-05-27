@@ -181,11 +181,13 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
     price: '$29.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/e30db6ea-359b-4e92-b880-1db2631691ce.png',
     images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_21_31.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_31_12.png'
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/e30db6ea-359b-4e92-b880-1db2631691ce.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/ChatGPT%20Image%2027%20may%202026,%2016_29_20.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/2a30114c-da2b-4b28-bedf-3b59eba344db.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/ChatGPT%20Image%2027%20may%202026,%2016_44_41.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Selfie%20sumergible%20TELESIN/ChatGPT%20Image%2027%20may%202026,%2016_55_30.png'
     ],
     description: 'Empuñadura flotante con control remoto integrado, perfecta para capturar tomas en el agua con total control.',
     compatibility: 'GoPro Hero 13, 12, 11, 10, 9, 8',
