@@ -311,7 +311,7 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
     price: '$69.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/signal-2026-05-24-000334_005(2).jpg',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
     description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
     compatibility: 'Universal',
