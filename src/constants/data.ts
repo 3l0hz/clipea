@@ -32,6 +32,69 @@ export const CATEGORY_STRUCTURE: CategoryStructure[] = [
 ];
 
 export const PRODUCTS: Product[] = [
+  // PROMO
+  {
+    id: 'pack-moto-basico',
+    name: 'MOTO URBANO',
+    mainCategory: 'PROMO',
+    subcategory: 'Packs Especiales',
+    price: '$34.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/ChatGPT%20Image%2027%20may%202026,%2014_36_56.png',
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
+    description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
+    compatibility: 'Universal',
+    recommendedUse: 'Vlogs urbanos',
+    highlights: [
+      'Bastón selfie invisible 1.20 m',
+      'Soporte moto reforzado',
+      'Compatible Insta360 / GoPro / DJI',
+      'Ideal para viajes y rutas urbanas'
+    ],
+    bestSeller: true,
+    category: 'Promos Moto'
+  },
+  {
+    id: 'pack-moto-medio',
+    name: 'MOTO RUTA',
+    mainCategory: 'PROMO',
+    subcategory: 'Packs Especiales',
+    price: '$54.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/ChatGPT%20Image%2027%20may%202026,%2014_15_22.png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/ChatGPT%20Image%2027%20may%202026,%2014_15_22.png'
+    ],
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
+    description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
+    compatibility: 'Universal',
+    recommendedUse: 'Contenido dinámico',
+    highlights: [
+      'Sistema reforzado',
+      'POV más estable',
+      'Compatible Insta360 / GoPro / DJI',
+      'Ideal para contenido dinámico'
+    ],
+    category: 'Promos Moto'
+  },
+  {
+    id: 'pack-moto-avanzado',
+    name: 'MOTO PRO',
+    mainCategory: 'PROMO',
+    subcategory: 'Packs Especiales',
+    price: '$69.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
+    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
+    description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
+    compatibility: 'Universal',
+    recommendedUse: 'Carretera y rutas largas',
+    highlights: [
+      'Construcción CNC premium',
+      'Anti vibración',
+      'Mayor seguridad en conducción',
+      'Ideal para carretera y rutas largas'
+    ],
+    bestSeller: true,
+    category: 'Promos Moto'
+  },
   // MOTO & AVENTURA
   {
     id: 'soportemotomanillar',
@@ -262,69 +325,6 @@ export const PRODUCTS: Product[] = [
     recommendedUse: 'Mantenimiento preventivo',
     category: 'Setup y Escritorio'
   },
-  // PROMO
-  {
-    id: 'pack-moto-basico',
-    name: 'MOTO URBANO',
-    mainCategory: 'PROMO',
-    subcategory: 'Packs Especiales',
-    price: '$34.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/ChatGPT%20Image%2027%20may%202026,%2014_36_56.png',
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
-    description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
-    compatibility: 'Universal',
-    recommendedUse: 'Vlogs urbanos',
-    highlights: [
-      'Bastón selfie invisible 1.20 m',
-      'Soporte moto reforzado',
-      'Compatible Insta360 / GoPro / DJI',
-      'Ideal para viajes y rutas urbanas'
-    ],
-    bestSeller: true,
-    category: 'Promos Moto'
-  },
-  {
-    id: 'pack-moto-medio',
-    name: 'MOTO RUTA',
-    mainCategory: 'PROMO',
-    subcategory: 'Packs Especiales',
-    price: '$54.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/ChatGPT%20Image%2027%20may%202026,%2014_15_22.png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/ChatGPT%20Image%2027%20may%202026,%2014_15_22.png'
-    ],
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
-    description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
-    compatibility: 'Universal',
-    recommendedUse: 'Contenido dinámico',
-    highlights: [
-      'Sistema reforzado',
-      'POV más estable',
-      'Compatible Insta360 / GoPro / DJI',
-      'Ideal para contenido dinámico'
-    ],
-    category: 'Promos Moto'
-  },
-  {
-    id: 'pack-moto-avanzado',
-    name: 'MOTO PRO',
-    mainCategory: 'PROMO',
-    subcategory: 'Packs Especiales',
-    price: '$69.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
-    modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
-    description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
-    compatibility: 'Universal',
-    recommendedUse: 'Carretera y rutas largas',
-    highlights: [
-      'Construcción CNC premium',
-      'Anti vibración',
-      'Mayor seguridad en conducción',
-      'Ideal para carretera y rutas largas'
-    ],
-    bestSeller: true,
-    category: 'Promos Moto'
-  },
   // SETUP & ESCRITORIO
   {
     id: 'divoom-timebox-evo',
@@ -332,7 +332,7 @@ export const PRODUCTS: Product[] = [
     mainCategory: 'SETUP & ESCRITORIO',
     subcategory: 'Pixel Art',
     price: '$54.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/timebox%20evo/ChatGPT%20Image%2025%20may%202026,%2014_22_35.png',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/ChatGPT%20Image%2027%20may%202026,%2015_06_33.png',
     description: 'La pieza central definitiva para tu setup. El Timebox Evo trasciende la función de un altavoz convencional para convertirse en un lienzo digital de 16x16 píxeles. Diseñado para quienes ven la tecnología como una forma de arte y decoración funcional.',
     compatibility: 'iOS / Android (Divoom App)',
     recommendedUse: 'Setup Creator / Escritorio Gamer / Decoración Tech',
