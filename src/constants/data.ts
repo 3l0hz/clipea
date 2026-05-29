@@ -84,13 +84,16 @@ export const PRODUCTS: Product[] = [
     price: '$69.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
-    description: 'Diseñado para quienes buscan llevar sus grabaciones al siguiente nivel sobre dos ruedas. El Pack Moto Pro combina estabilidad, seguridad y versatilidad. capturar contenido profesional desde múltiples ángulos.',
+    description: 'Nuestro pack más completo para grabación en motocicleta. Incluye todo lo necesario para conseguir el espectacular efecto dron invisible con máxima estabilidad, además de dos opciones adicionales de grabación: montaje en el manillar para tomas POV y montaje en el parabrisas para capturar una perspectiva frontal limpia y estable.\n\nUna solución diseñada para quienes quieren aprovechar al máximo su cámara y disponer de múltiples ángulos de grabación sin necesidad de adquirir accesorios adicionales.',
     compatibility: 'GoPro, Insta360 y DJI',
     recommendedUse: 'Ruta / Enduro',
     highlights: [
-      'Anclaje carenado de moto (Efecto Dron)',
-      'Soporte Parabrisas de moto',
-      'Anclaje manillar de moto'
+      'Compatible con Insta360 / GoPro / DJI',
+      'Selfie stick de aluminio extensible hasta 120 cm.',
+      'Dos Soporte Pinza a Pinza con rotación 360°.',
+      'Soporte Clip para Parabrisas.',
+      'Efecto dron invisible, tomas POV y grabaciones desde parabrisas.',
+      'El pack con más posibilidades de grabación de la colección.'
     ],
     bestSeller: true,
     category: 'Promos Moto'
