@@ -74,7 +74,7 @@ export default function Home() {
             <span className="text-gradient">cámaras deportivas</span>
           </h1>
           <p className="max-w-2xl mx-auto text-white/80 md:text-xl leading-relaxed font-medium">
-            Bastones selfie, soportes de moto, trípodes y accesorios para grabar rutas, viajes y contenido con la mejor estabilidad.
+            Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
           </p>
           <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-[290px] mx-auto sm:max-w-none">
             <Button 
