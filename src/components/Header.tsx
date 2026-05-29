@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, User, ShoppingCart, Search, Zap } from 'lucide-react';
@@ -37,7 +36,7 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
         {/* Logo */}
-        <a href="#home" className="relative z-10 text-2xl font-headline font-bold tracking-tighter text-white group shrink-0">
+        <a href="#home" className="relative z-10 text-[28px] font-headline font-bold tracking-tighter text-white group shrink-0">
           clipea<span className="text-accent">.</span>
         </a>
 
@@ -98,7 +97,7 @@ export const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#050505]/98 backdrop-blur-3xl border-white/5 w-full p-0 flex flex-col">
               <div className="flex justify-between items-center px-8 py-8 border-b border-white/5">
-                <span className="text-2xl font-headline font-bold text-white tracking-tighter">clipea<span className="text-accent">.</span></span>
+                <span className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-accent">.</span></span>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" className="text-white/70 hover:text-white transition-all">
                     <X size={26} strokeWidth={1.5} />
