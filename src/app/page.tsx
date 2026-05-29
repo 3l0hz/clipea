@@ -75,17 +75,17 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-white/80 md:text-xl leading-relaxed font-medium">
             Bastones selfie, soportes de moto, trípodes y accesorios para grabar rutas, viajes y contenido con la mejor estabilidad.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+          <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-lg mx-auto sm:max-w-none">
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 w-full sm:w-auto" 
+              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-4 sm:px-14 h-14 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
               asChild
             >
               <a href="#catalog">Explorar Catálogo</a>
             </Button>
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-14 h-16 text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 w-full sm:w-auto"
+              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-4 sm:px-14 h-14 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
               onClick={() => {
                 const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
                 if (bulletProduct) handleViewDetails(bulletProduct);
