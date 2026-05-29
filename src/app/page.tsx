@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -218,7 +217,7 @@ export default function Home() {
                 clipea<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(142,255,127,0.5)] transition-all duration-500">.</span>
               </a>
               <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">
-                Accesorios para cámaras deportivas, creación POV y contenido en movimiento.
+                Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
               </p>
               <div className="flex gap-4">
                 <a 
