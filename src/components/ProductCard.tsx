@@ -76,7 +76,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "relative overflow-hidden bg-transparent flex items-center justify-center transition-all",
-          isMobile ? "m-1 rounded-[10px] h-[100px]" : "m-2 rounded-[12px] aspect-square"
+          isMobile ? "m-1 rounded-[10px] h-[125px]" : "m-2 rounded-[12px] aspect-square"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
           <Image
@@ -90,7 +90,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         </div>
 
         <div className={cn(
-          "flex flex-col gap-1",
+          "flex flex-col gap-0.5",
           isMobile ? "px-1 pb-2 pt-0" : "px-3 pb-4 pt-0"
         )}>
           <div className="space-y-0 text-center">
@@ -104,7 +104,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           
           <div className={cn(
             "flex flex-col items-center justify-center mt-auto",
-            isMobile ? "w-full gap-2" : "flex-row justify-between"
+            isMobile ? "w-full gap-1.5" : "flex-row justify-between"
           )}>
             {isMobile ? (
               <>
@@ -170,7 +170,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
       className={cn(
         "group promo-glass-card p-0 flex flex-col cursor-pointer transition-all duration-500 glass-reflective-edge",
         "rounded-[20px] overflow-hidden shadow-2xl border-none bg-black/40",
-        isMobile ? "h-[200px]" : "h-[420px]",
+        isMobile ? "h-[200px]" : "h-[420px] w-full",
         !isMobile ? "md:hover:-translate-y-1" : ""
       )}
       onClick={handleCardClick}
@@ -219,8 +219,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         isMobile ? "px-1 pb-2 pt-0.5 gap-1" : "px-4 pb-4 pt-2"
       )}>
         {!isMobile ? (
-          <div className="flex flex-col flex-1">
-            <div className="space-y-1.5 text-center mb-auto">
+          <div className="flex flex-col flex-1 justify-between">
+            <div className="space-y-1.5 text-center">
               <h3 className="font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-2 text-[14px]">
                 {product.name}
               </h3>
@@ -229,7 +229,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               </div>
             </div>
 
-            <div className="flex items-center justify-between w-full mt-4">
+            <div className="flex items-center justify-between w-full mt-4 pb-1">
               <button
                 onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
                 className="flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 hover:bg-white/15 hover:text-white hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] h-10 w-10"
