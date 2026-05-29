@@ -62,14 +62,6 @@ export default function Home() {
           </video>
           <div className="absolute inset-0 bg-black/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-          
-          {/* Light Streaks Ambient Effect */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-            <div className="hero-ambient-streak left-[10%]" style={{ animationDelay: '0s', animationDuration: '20s' }} />
-            <div className="hero-ambient-streak left-[40%] bg-gradient-to-t from-transparent via-[#8EFF7F]/30 to-transparent" style={{ animationDelay: '-5s', animationDuration: '25s' }} />
-            <div className="hero-ambient-streak left-[70%]" style={{ animationDelay: '-12s', animationDuration: '22s' }} />
-            <div className="hero-ambient-streak left-[90%] bg-gradient-to-t from-transparent via-[#8EFF7F]/20 to-transparent" style={{ animationDelay: '-8s', animationDuration: '18s' }} />
-          </div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
@@ -86,14 +78,14 @@ export default function Home() {
           <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-[290px] mx-auto sm:max-w-none">
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
+              className="glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
               asChild
             >
               <a href="#catalog">Explorar Catálogo</a>
             </Button>
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
+              className="glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
               onClick={() => {
                 const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
                 if (bulletProduct) handleViewDetails(bulletProduct);

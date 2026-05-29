@@ -262,62 +262,9 @@
   z-index: 15;
 }
 
-/* HERO BUTTON SPECIAL AURA EFFECT */
-.hero-button-aura {
-  @apply relative isolation-auto overflow-visible !important; /* Allow aura to be fully seen */
-}
-
-.hero-button-aura::before {
-  content: '';
-  position: absolute;
-  inset: -2.5px; /* Sutilmente fuera para envolver el borde real */
-  border-radius: inherit;
-  background: conic-gradient(
-    from var(--sweep-angle, 0deg),
-    rgba(255, 255, 255, 0.05) 0deg,
-    rgba(255, 255, 255, 0.45) 45deg,
-    rgba(180, 180, 180, 0.2) 90deg,
-    rgba(255, 255, 255, 0.05) 135deg,
-    rgba(255, 255, 255, 0.45) 225deg,
-    rgba(180, 180, 180, 0.2) 270deg,
-    rgba(255, 255, 255, 0.05) 315deg
-  );
-  animation: border-rotate 8s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 3px; /* Slightly thicker and uniform on all sides */
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.7;
-  transition: opacity 0.5s ease;
-}
-
-.hero-button-aura:hover::before {
-  opacity: 1; /* Intensify uniform glow on hover */
-}
-
 @keyframes glass-shine {
   0% { transform: translateX(-150%) skewX(-30deg); }
   20%, 100% { transform: translateX(150%) skewX(-30deg); }
-}
-
-/* AMBIENT LIGHT STREAKS EFFECT */
-@keyframes light-streak-ambient {
-  0% { transform: translate(-30%, 100%) rotate(-45deg); opacity: 0; }
-  20% { opacity: 0.12; }
-  80% { opacity: 0.12; }
-  100% { transform: translate(30%, -100%) rotate(-45deg); opacity: 0; }
-}
-
-.hero-ambient-streak {
-  @apply absolute pointer-events-none;
-  background: linear-gradient(to top, transparent, rgba(103, 232, 249, 0.5), transparent);
-  width: 1.5px;
-  height: 200%;
-  filter: blur(2px);
-  animation: light-streak-ambient 18s infinite linear;
 }
 
 /* SPECIAL CRYSTAL GLASS BUTTON FOR PRUEBA DESKTOP */
