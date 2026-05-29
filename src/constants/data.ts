@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
     highlights: [
       'Anclaje carenado de moto (Efecto Dron)',
       'Soporte Parabrisas de moto',
-      'anclaje manillar de moto'
+      'Anclaje manillar de moto'
     ],
     bestSeller: true,
     category: 'Promos Moto'
