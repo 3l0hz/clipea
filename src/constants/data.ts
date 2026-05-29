@@ -193,10 +193,10 @@ export const PRODUCTS: Product[] = [
     compatibility: 'DJI Osmo Action 5 Pro, Action 4, Action 3, Osmo 360',
     recommendedUse: 'Cambios rápidos de soporte, Moto y Acción',
     highlights: [
-      '⚡ Acople magnético rápido',
-      '🔒 Fijación firme y estable',
-      '🏍️ Perfecto para moto y deportes de acción',
-      '📸 Ideal para creadores de contenido'
+      'Acople magnético rápido',
+      'Fijación firme y estable',
+      'Perfecto para moto y deportes de acción',
+      'Ideal para creadores de contenido'
     ],
     category: 'Soportes Moto / Vehículo'
   },
