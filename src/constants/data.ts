@@ -86,7 +86,7 @@ export const PRODUCTS: Product[] = [
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
     description: 'Diseñado para quienes buscan llevar sus grabaciones al siguiente nivel sobre dos ruedas. El Pack Moto Pro combina estabilidad, seguridad y versatilidad. capturar contenido profesional desde múltiples ángulos.',
     compatibility: 'GoPro, Insta360 y DJI',
-    recommendedUse: 'Uso diario, carretera y ruta',
+    recommendedUse: 'Ruta / Enduro',
     highlights: [
       'Anclaje carenado de moto (Efecto Dron)',
       'Soporte Parabrisas de moto',
