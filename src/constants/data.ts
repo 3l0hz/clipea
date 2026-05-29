@@ -84,13 +84,12 @@ export const PRODUCTS: Product[] = [
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
     description: 'Diseñado para quienes buscan llevar sus grabaciones al siguiente nivel sobre dos ruedas. El Pack Moto Pro combina estabilidad, seguridad y versatilidad. Incluye tres sistemas de montaje (manillar, parabrisas y selfie stick para efecto dron invisible) para capturar contenido profesional sin accesorios adicionales.',
-    compatibility: 'Todas las marcas de cámaras deportivas',
+    compatibility: 'GoPro, Insta360 y DJI',
     recommendedUse: 'Uso diario, carretera y ruta',
     highlights: [
-      '3 sistemas de montaje (Múltiples ángulos)',
-      'Manillar + Parabrisas + Efecto Dron',
-      'Contenido dinámico y cinematográfico',
-      'Sin necesidad de accesorios adicionales'
+      'Anclaje carenado de moto (Efecto Dron)',
+      'Soporte Parabrisas de moto',
+      'anclaje manillar de moto'
     ],
     bestSeller: true,
     category: 'Promos Moto'
@@ -351,7 +350,6 @@ export const PRODUCTS: Product[] = [
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_57_21.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_51_38.png',
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/Bullet/ChatGPT%20Image%2026%20may%202026,%2022_51_27.png'
     ],
     description: 'Mango con mecanismo de rotación fluida para efecto Bullet Time.',
