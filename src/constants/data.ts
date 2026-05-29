@@ -176,7 +176,32 @@ export const PRODUCTS: Product[] = [
   },
   // CÁMARAS & CREACIÓN
   {
-    id: 'telesin-floating-grip-remote',
+    id: 'adaptador-magnetico-dji',
+    name: 'Adaptador magnético DJI Action',
+    mainCategory: 'CÁMARAS & CREACIÓN',
+    subcategory: 'Accesorios DJI',
+    price: '$13.990',
+    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2001_34_53%20p.m..png',
+    images: [
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2001_34_53%20p.m..png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2012_49_17.png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2003_20_50%20p.m..png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2002_40_11%20p.m..png',
+      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/hghu%20(1).png'
+    ],
+    description: 'Monta y desmonta tu cámara en segundos sin perder tiempo ajustando tornillos. Su sistema magnético permite cambios rápidos y seguros entre distintos soportes.',
+    compatibility: 'DJI Osmo Action 5 Pro, Action 4, Action 3, Osmo 360',
+    recommendedUse: 'Cambios rápidos de soporte, Moto y Acción',
+    highlights: [
+      '⚡ Acople magnético rápido',
+      '🔒 Fijación firme y estable',
+      '🏍️ Perfecto para moto y deportes de acción',
+      '📸 Ideal para creadores de contenido'
+    ],
+    category: 'Soportes Moto / Vehículo'
+  },
+  {
+    id: 'selfie-sumergible-telesin',
     name: 'Selfie sumergible Telesin',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
@@ -200,29 +225,6 @@ export const PRODUCTS: Product[] = [
       'Compatible con trípodes standard'
     ],
     category: 'Setup y Escritorio'
-  },
-  {
-    id: 'adaptador-magnetico-dji',
-    name: 'Adaptador magnético DJI Action',
-    mainCategory: 'CÁMARAS & CREACIÓN',
-    subcategory: 'Accesorios DJI',
-    price: '$13.990',
-    image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2001_34_53%20p.m..png',
-    images: [
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2001_34_53%20p.m..png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2012_49_17.png',
-      'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/adaptador%20dji/ChatGPT%20Image%2029%20may%202026,%2003_20_50%20p.m..png'
-    ],
-    description: 'Monta y desmonta tu cámara en segundos sin perder tiempo ajustando tornillos. Su sistema magnético permite cambios rápidos y seguros entre distintos soportes.',
-    compatibility: 'DJI Osmo Action 5 Pro, Action 4, Action 3, Osmo 360',
-    recommendedUse: 'Cambios rápidos de soporte, Moto y Acción',
-    highlights: [
-      '⚡ Acople magnético rápido',
-      '🔒 Fijación firme y estable',
-      '🏍️ Perfecto para moto y deportes de acción',
-      '📸 Ideal para creadores de contenido'
-    ],
-    category: 'Soportes Moto / Vehículo'
   },
   {
     id: 'telesin-floating-grip-remote-copy',
