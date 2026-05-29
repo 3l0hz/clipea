@@ -42,8 +42,8 @@ export const PRODUCTS: Product[] = [
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/ChatGPT%20Image%2027%20may%202026,%2014_36_56.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
     description: 'Su configuración permite obtener el popular “efecto dron” invisible gracias al selfie stick extensible, además de ofrecer la posibilidad de montar la cámara directamente en el manillar para capturar tomas POV estables y dinámicas desde la perspectiva del piloto.',
-    compatibility: 'Universal',
-    recommendedUse: 'Vlogs urbanos',
+    compatibility: 'Insta 360 / GoPro / DJI',
+    recommendedUse: 'urbano, ciudad',
     highlights: [
       'Compatible con Insta360 / Gopro / DJI',
       'Selfie stick extensible hasta 120 cm.',
