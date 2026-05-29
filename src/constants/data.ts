@@ -41,14 +41,14 @@ export const PRODUCTS: Product[] = [
     price: '$34.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/ChatGPT%20Image%2027%20may%202026,%2014_36_56.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/basico/3d%20-optimizado.glb',
-    description: 'Setup ideal para comenzar a grabar rutas y contenido POV con estabilidad y seguridad.',
+    description: 'Su configuración permite obtener el popular “efecto dron” invisible gracias al selfie stick extensible, además de ofrecer la posibilidad de montar la cámara directamente en el manillar para capturar tomas POV estables y dinámicas desde la perspectiva del piloto.',
     compatibility: 'Universal',
     recommendedUse: 'Vlogs urbanos',
     highlights: [
-      'Bastón selfie invisible 1.20 m',
-      'Soporte moto reforzado',
-      'Compatible Insta360 / GoPro / DJI',
-      'Ideal para viajes y rutas urbanas'
+      'Compatible con Insta360 / Gopro / DJI',
+      'Selfie stick extensible hasta 120 cm.',
+      'Soporte Pinza a Rosca (Rotación 360° para múltiples ángulos.)',
+      'Dos amarras plásticas para mayor seguridad.'
     ],
     bestSeller: true,
     category: 'Promos Moto'
