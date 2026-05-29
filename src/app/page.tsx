@@ -181,9 +181,9 @@ export default function Home() {
                   </div>
 
                   <div className={cn(
-                    "grid gap-4 md:gap-8",
+                    "grid gap-4 md:gap-6",
                     "grid-cols-3",
-                    "md:grid-cols-3 lg:grid-cols-4"
+                    "md:grid-cols-4 xl:grid-cols-5"
                   )}>
                     {filteredProducts.map((product) => (
                       <ProductCard
