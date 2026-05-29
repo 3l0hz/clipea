@@ -64,14 +64,15 @@ export const PRODUCTS: Product[] = [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/ChatGPT%20Image%2027%20may%202026,%2014_15_22.png'
     ],
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/medio/moto-optimizado(1).glb',
-    description: 'Configuración equilibrada para creadores que buscan estabilidad y tomas más profesionales.',
-    compatibility: 'Universal',
-    recommendedUse: 'Contenido dinámico',
+    description: 'Su combinación de selfie stick y doble sistema de soportes articulados permite instalar la cámara en distintos puntos de la motocicleta para conseguir tomas más creativas, estables y profesionales, manteniendo el espectacular efecto dron invisible que caracteriza a las cámaras 360. Además, el soporte Pinza a Rosca puede utilizarse en el manillar para añadir nuevas perspectivas de grabación cuando lo necesites.',
+    compatibility: 'Insta 360 / GoPro / DJI',
+    recommendedUse: 'Ruta / Enduro',
     highlights: [
-      'Sistema reforzado',
-      'POV más estable',
-      'Compatible Insta360 / GoPro / DJI',
-      'Ideal para contenido dinámico'
+      'Compatible con Insta360 / GoPro / DJI',
+      'Selfie stick extensible hasta 120 cm.',
+      'Doble sistema de fijación para múltiples configuraciones.',
+      'Rotación 360° en ambos soportes.',
+      'Ideal para carretera, enduro y creación de contenido.'
     ],
     category: 'Promos Moto'
   },
