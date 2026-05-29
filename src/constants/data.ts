@@ -83,14 +83,14 @@ export const PRODUCTS: Product[] = [
     price: '$69.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/ChatGPT%20Image%2027%20may%202026,%2014_30_03.png',
     modelUrl: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/0.PROMO/Full/moto-optimizado(1).glb',
-    description: 'Mayor estabilidad y resistencia para grabaciones cinematográficas en movimiento.',
+    description: 'Diseñado para llevar tus grabaciones al siguiente nivel. El Pack Moto Pro combina estabilidad y versatilidad con tres sistemas de montaje incluidos: manillar, parabrisas y selfie stick para efecto dron invisible.',
     compatibility: 'Universal',
     recommendedUse: 'Carretera y rutas largas',
     highlights: [
-      'Construcción CNC premium',
-      'Anti vibración',
-      'Mayor seguridad en conducción',
-      'Ideal para carretera y rutas largas'
+      '3 sistemas de montaje (Múltiples ángulos)',
+      'Manillar + Parabrisas + Efecto Dron',
+      'Contenido dinámico y cinematográfico',
+      'Sin necesidad de accesorios adicionales'
     ],
     bestSeller: true,
     category: 'Promos Moto'
