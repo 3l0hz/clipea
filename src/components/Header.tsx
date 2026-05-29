@@ -20,7 +20,7 @@ export const Header = () => {
   const { totalItems } = useCart();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,10 +28,10 @@ export const Header = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-500",
+        "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-[#050505]/90 backdrop-blur-2xl border-b border-white/5 py-3 shadow-xl" 
-          : "bg-transparent py-6"
+          ? "bg-[#050505]/95 backdrop-blur-2xl border-b border-white/5 py-2 shadow-xl" 
+          : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
@@ -40,7 +40,7 @@ export const Header = () => {
           clipea<span className="text-accent">.</span>
         </a>
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav - XL */}
         <nav className="hidden xl:flex gap-8 items-center justify-center flex-1">
           {NAV_LINKS.map((link) => (
             <a
@@ -56,14 +56,14 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Desktop Nav - Tablet */}
-        <nav className="hidden md:flex xl:hidden gap-4 items-center justify-center flex-1 overflow-x-auto no-scrollbar px-4">
+        {/* Desktop Nav - Tablet/MD */}
+        <nav className="hidden md:flex xl:hidden gap-5 items-center justify-center flex-1 overflow-x-auto no-scrollbar">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               className={cn(
-                "text-[9px] font-bold uppercase tracking-[0.1em] transition-colors duration-300 whitespace-nowrap",
+                "text-[9px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
                 link.label === 'PROMO' ? "text-accent" : "text-white/50 hover:text-white"
               )}
             >
@@ -134,18 +134,6 @@ export const Header = () => {
                     <p className="text-[12px] font-bold text-white/50 leading-relaxed uppercase tracking-[0.25em] max-w-[280px]">
                       CREADO PARA CREADORES, SETUPS, SMART HOME Y TECNOLOGÍA EN MOVIMIENTO.
                     </p>
-                    <div className="flex gap-8 border-l border-white/10 pl-6">
-                      <div className="flex flex-col gap-4">
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-accent uppercase">CREAR</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">EXPLORAR</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">CONECTAR</span>
-                      </div>
-                      <div className="flex flex-col gap-4">
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">SETUP</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">SMART</span>
-                        <span className="text-[9px] font-bold tracking-[0.3em] text-white/20 uppercase">MOVIMIENTO</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
