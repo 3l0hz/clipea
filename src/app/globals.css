@@ -83,11 +83,6 @@
   to { --sweep-angle: 360deg; }
 }
 
-@keyframes particles-drift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
 .premium-mobile-card {
   @apply relative overflow-hidden flex flex-col;
   background: radial-gradient(120% 120% at 50% 0%, #050810 0%, #03050a 60%, #020306 100%);
@@ -303,20 +298,26 @@
   opacity: 1; /* Intensify uniform glow on hover */
 }
 
-/* Subtle Particles Background for Hero Button */
-.hero-button-aura::after {
-  content: '';
-  @apply absolute inset-0 opacity-40 pointer-events-none;
-  background-image: radial-gradient(circle at center, white 1px, transparent 1px);
-  background-size: 14px 14px;
-  animation: particles-drift 20s linear infinite;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
-  z-index: 5;
-}
-
 @keyframes glass-shine {
   0% { transform: translateX(-150%) skewX(-30deg); }
   20%, 100% { transform: translateX(150%) skewX(-30deg); }
+}
+
+/* AMBIENT LIGHT STREAKS EFFECT */
+@keyframes light-streak-ambient {
+  0% { transform: translate(-30%, 100%) rotate(-45deg); opacity: 0; }
+  20% { opacity: 0.12; }
+  80% { opacity: 0.12; }
+  100% { transform: translate(30%, -100%) rotate(-45deg); opacity: 0; }
+}
+
+.hero-ambient-streak {
+  @apply absolute pointer-events-none;
+  background: linear-gradient(to top, transparent, rgba(103, 232, 249, 0.5), transparent);
+  width: 1.5px;
+  height: 200%;
+  filter: blur(2px);
+  animation: light-streak-ambient 18s infinite linear;
 }
 
 /* SPECIAL CRYSTAL GLASS BUTTON FOR PRUEBA DESKTOP */

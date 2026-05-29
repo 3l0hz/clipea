@@ -62,6 +62,14 @@ export default function Home() {
           </video>
           <div className="absolute inset-0 bg-black/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+          
+          {/* Light Streaks Ambient Effect */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+            <div className="hero-ambient-streak left-[10%]" style={{ animationDelay: '0s', animationDuration: '20s' }} />
+            <div className="hero-ambient-streak left-[40%] bg-gradient-to-t from-transparent via-[#8EFF7F]/30 to-transparent" style={{ animationDelay: '-5s', animationDuration: '25s' }} />
+            <div className="hero-ambient-streak left-[70%]" style={{ animationDelay: '-12s', animationDuration: '22s' }} />
+            <div className="hero-ambient-streak left-[90%] bg-gradient-to-t from-transparent via-[#8EFF7F]/20 to-transparent" style={{ animationDelay: '-8s', animationDuration: '18s' }} />
+          </div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
