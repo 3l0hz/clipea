@@ -79,14 +79,14 @@ export default function Home() {
           <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-[290px] mx-auto sm:max-w-none">
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-14 h-12 sm:h-16 text-[10px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
+              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[10px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
               asChild
             >
               <a href="#catalog">Explorar Catálogo</a>
             </Button>
             <Button 
               size="lg" 
-              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-14 h-12 sm:h-16 text-[10px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
+              className="glass-button hero-button-aura bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[10px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
               onClick={() => {
                 const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
                 if (bulletProduct) handleViewDetails(bulletProduct);
