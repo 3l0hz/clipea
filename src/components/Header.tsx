@@ -30,7 +30,7 @@ export const Header = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-[#050505]/95 backdrop-blur-2xl border-b border-white/5 py-2 shadow-xl" 
+          ? "bg-[#020817]/95 backdrop-blur-2xl border-b border-white/5 py-2 shadow-xl" 
           : "bg-transparent py-4"
       )}
     >
@@ -40,8 +40,8 @@ export const Header = () => {
           clipea<span className="text-accent">.</span>
         </a>
 
-        {/* Desktop Nav - XL */}
-        <nav className="hidden xl:flex gap-8 items-center justify-center flex-1">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-8 items-center justify-center flex-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
@@ -56,33 +56,13 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Desktop Nav - Tablet/MD */}
-        <nav className="hidden md:flex xl:hidden gap-5 items-center justify-center flex-1 overflow-x-auto no-scrollbar">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={cn(
-                "text-[9px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
-                link.label === 'PROMO' ? "text-accent" : "text-white/50 hover:text-white"
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Right Section: Icons */}
+        {/* Right Section */}
         <div className="flex items-center gap-4 md:gap-6 shrink-0 relative z-10">
-          <button className="hidden sm:flex text-white/40 hover:text-white transition-colors duration-300">
-            <Search size={20} strokeWidth={2} />
-          </button>
-
           <CartDrawer>
             <button className="relative text-white/80 hover:text-accent transition-colors duration-300 group">
               <ShoppingCart size={22} strokeWidth={2} />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-accent text-black text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(142,255,127,0.5)]">
+                <span className="absolute -top-2 -right-2 bg-accent text-black text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.5)]">
                   {totalItems}
                 </span>
               )}
@@ -95,7 +75,7 @@ export const Header = () => {
                 <Menu size={24} strokeWidth={2} />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-[#050505]/98 backdrop-blur-3xl border-white/5 w-full p-0 flex flex-col">
+            <SheetContent side="right" className="bg-[#020817]/98 backdrop-blur-3xl border-white/5 w-full p-0 flex flex-col">
               <div className="flex justify-between items-center px-8 py-8 border-b border-white/5">
                 <span className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-accent">.</span></span>
                 <SheetClose asChild>
@@ -123,30 +103,6 @@ export const Header = () => {
                       </SheetClose>
                     ))}
                   </div>
-                </div>
-
-                <div className="space-y-10">
-                  <div className="flex items-center gap-3">
-                    <Zap size={14} className="text-accent" strokeWidth={2.5} />
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">TECNOLOGÍA PARA CREAR EXPERIENCIAS</h3>
-                  </div>
-                  <div className="space-y-8">
-                    <p className="text-[12px] font-bold text-white/50 leading-relaxed uppercase tracking-[0.25em] max-w-[280px]">
-                      CREADO PARA CREADORES, SETUPS, SMART HOME Y TECNOLOGÍA EN MOVIMIENTO.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-8 border-t border-white/5 bg-white/[0.02]">
-                <div className="flex items-center justify-between text-white/80">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                      <User size={18} />
-                    </div>
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Mi Cuenta</span>
-                  </div>
-                  <ChevronRight size={18} className="text-white/20" />
                 </div>
               </div>
             </SheetContent>

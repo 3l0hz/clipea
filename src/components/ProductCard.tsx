@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -36,11 +35,8 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   };
 
   const getStrikethroughPrice = (price: string) => {
-    if (price === '$34.990') return '$49.990';
-    if (price === '$54.990') return '$69.990';
-    if (price === '$69.990') return '$89.990';
-    if (price === '$82.990') return '$112.990';
-    return '$149.990';
+    const val = parseInt(price.replace(/[^0-9]/g, ''));
+    return `$${(val * 1.4).toLocaleString('es-CL')}`;
   };
 
   const isPromo = isPremium || product.mainCategory === 'PROMO';
@@ -59,7 +55,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         <div className="absolute top-2 left-2 z-20 flex flex-col gap-1">
           {product.bestSeller && (
             <div className={cn(
-              "flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full",
+              "flex items-center gap-1 bg-[#020817]/60 backdrop-blur-md border border-accent/30 px-2 py-0.5 rounded-full",
               isMobile ? "px-1 py-0" : ""
             )}>
               <span className={cn("text-[8px]", isMobile && "text-[7px]")}>🔥</span>
@@ -78,12 +74,12 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           "relative overflow-hidden bg-transparent flex items-center justify-center transition-all",
           isMobile ? "m-1 rounded-[10px] h-[125px]" : "m-2 rounded-[12px] aspect-square"
         )}>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain transition-transform duration-700 group-hover:scale-110 p-0.5 filter brightness-[1.03] contrast-[1.01] saturate-[1.05]"
+            className="object-contain transition-transform duration-700 group-hover:scale-110 p-0.5 filter brightness-[1.03]"
             sizes="(max-width: 768px) 33vw, 33vw"
             priority={product.bestSeller}
           />
@@ -119,13 +115,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 <div className="flex items-center justify-center gap-6 w-full px-2">
                   <button
                     onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
-                    className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/80 transition-all duration-300 hover:border-cyan-400 hover:text-cyan-400 h-[20px] w-[20px]"
+                    className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-accent/30 text-accent transition-all h-[20px] w-[20px]"
                   >
                     <Search size={9} strokeWidth={2.5} />
                   </button>
                   <button
                     onClick={handleAddToCart}
-                    className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[24px] w-[24px]"
+                    className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all h-[24px] w-[24px]"
                   >
                     <ShoppingCart size={11} strokeWidth={2.5} />
                   </button>
@@ -145,13 +141,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 <div className="flex items-center gap-2">
                   <button
                     onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
-                    className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-500 hover:bg-cyan-400/10 hover:text-cyan-400 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] h-10 w-10"
+                    className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-accent/30 text-accent/70 transition-all hover:text-accent hover:border-accent/60 h-10 w-10"
                   >
                     <Search size={16} strokeWidth={2.5} />
                   </button>
                   <button
                     onClick={handleAddToCart}
-                    className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-500 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-105 active:scale-95 h-11 w-11"
+                    className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-11 w-11"
                   >
                     <ShoppingCart size={18} strokeWidth={2.5} />
                   </button>
@@ -164,48 +160,37 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     );
   }
 
-  // NORMAL STYLE
+  // NORMAL STYLE - BLUE GLASS
   return (
     <div 
       className={cn(
         "group promo-glass-card p-0 flex flex-col cursor-pointer transition-all duration-500 glass-reflective-edge",
-        "rounded-[20px] overflow-hidden shadow-2xl border-none bg-black/40",
+        "rounded-[20px] overflow-hidden shadow-2xl border-none",
         isMobile ? "h-[200px]" : "h-[420px] w-full",
         !isMobile ? "md:hover:-translate-y-1" : ""
       )}
       onClick={handleCardClick}
     >
-      <div className="shine-layer" />
-
       <div className={cn(
         "relative overflow-hidden flex items-center justify-center border border-white/5 bg-transparent shrink-0",
         isMobile ? "m-1 rounded-[10px] h-[100px]" : "m-2 rounded-[12px] h-[260px]"
       )}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,232,249,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_70%)]" />
         <Image
           src={product.image}
           alt={product.name}
           fill
           className={cn(
             "object-contain transition-transform duration-700",
-            isTall 
-              ? "scale-[1.03] group-hover:scale-[1.1] p-3"
-              : "scale-[1.12] group-hover:scale-[1.22] p-1.5"
+            isTall ? "p-3 scale-100 group-hover:scale-110" : "p-1.5 scale-110 group-hover:scale-120"
           )}
-          onLoad={(e) => {
-            const img = e.target as HTMLImageElement;
-            const ratio = img.naturalHeight / img.naturalWidth;
-            if (ratio > 1.1 || ratio < 0.7) {
-              setIsTall(true);
-            }
-          }}
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={product.bestSeller}
         />
         {product.bestSeller && (
           <div className="absolute top-2 left-2 z-20">
             <div className={cn(
-              "flex items-center gap-1 bg-black/60 backdrop-blur-md border border-premium-green/30 px-2 py-0.5 rounded-full",
+              "flex items-center gap-1 bg-[#020817]/60 backdrop-blur-md border border-accent/30 px-2 py-0.5 rounded-full",
               isMobile ? "px-1 py-0" : ""
             )}>
               <span className={cn("font-bold text-white tracking-widest uppercase", isMobile ? "text-[5px]" : "text-[8px]")}>TOP</span>
@@ -232,20 +217,19 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex items-center justify-between w-full mt-4 pb-1">
               <button
                 onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-300 hover:bg-cyan-400/10 hover:text-cyan-400 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)] h-10 w-10"
+                className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-accent/30 text-accent/70 transition-all hover:bg-accent/10 hover:text-accent h-10 w-10"
               >
                 <Search size={16} strokeWidth={2.5} />
               </button>
               <button
                 onClick={handleAddToCart}
-                className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-500 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(142,255,127,0.3)] hover:scale-105 active:scale-95 h-11 w-11"
+                className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-11 w-11"
               >
                 <ShoppingCart size={18} strokeWidth={2.5} />
               </button>
             </div>
           </div>
         ) : (
-          /* Mobile structure kept intact */
           <>
             <div className="space-y-0.5 text-center">
               <h3 className="font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-1 text-[8px]">
@@ -259,13 +243,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               <div className="flex items-center justify-center gap-6 w-full px-2">
                 <button
                   onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                  className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-300 h-[20px] w-[20px]"
+                  className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-accent/30 text-accent/70 h-[20px] w-[20px]"
                 >
                   <Search size={9} strokeWidth={2.5} />
                 </button>
                 <button
                   onClick={handleAddToCart}
-                  className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent transition-all duration-300 h-[24px] w-[24px]"
+                  className="flex items-center justify-center rounded-full bg-accent/5 backdrop-blur-md border border-accent/20 text-accent h-[24px] w-[24px]"
                 >
                   <ShoppingCart size={11} strokeWidth={2.5} />
                 </button>
