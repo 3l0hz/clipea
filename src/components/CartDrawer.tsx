@@ -137,12 +137,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (!email.includes('@')) return false;
     const parts = email.split('@');
     const domain = parts[1];
-    
-    // Si no hay texto después del @, no es email temporal aún
     if (!domain) return false;
-    
     const lowerDomain = domain.toLowerCase();
-    // Activo si el dominio actual coincide completa o parcialmente con uno bloqueado
     return BLOCKED_DOMAINS.some(d => d.startsWith(lowerDomain));
   }, [email]);
 
@@ -202,6 +198,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     console.log("- Dirección válida:", isAddressValid);
     console.log("- Método seleccionado:", deliveryMethod);
     console.log("- Total calculado:", finalTotal);
+    console.log("- Botón habilitado:", isFormValid);
 
     const errorOrder = ['fullName', 'phone', 'email', 'region', 'commune', 'address', 'deliveryMethod'];
     const firstError = errorOrder.find(key => newErrors[key]);
@@ -325,8 +322,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     setAddress(formatted);
     if (formatted.trim().length >= 5) setErrors(prev => ({ ...prev, address: false }));
   };
-
-  const isEmailMissingAt = email.length > 0 && !email.includes('@');
 
   return (
     <Sheet onOpenChange={(open) => {
@@ -489,14 +484,15 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               className={cn(
                                 "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
                                 "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                (isTempEmail || errors.email || isEmailMissingAt) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
-                                isEmailMissingAt && "animate-pulse-red"
+                                (isTempEmail || (errors.email && !isEmailValid)) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
+                                isTempEmail && "animate-pulse-red"
                               )} 
                               placeholder="juan@email.com"
                               value={email}
                               onChange={(e) => {
                                 setEmail(e.target.value);
                                 setShowEmailSuggestions(true);
+                                // Normal form validation error reset
                                 if (e.target.value.includes('@')) setErrors(prev => ({ ...prev, email: false }));
                               }}
                               onBlur={() => setTimeout(() => setShowEmailSuggestions(false), 200)}
@@ -526,7 +522,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </AlertDescription>
                               </Alert>
                             )}
-                            {(errors.email || isEmailMissingAt) && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                            {errors.email && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                         </div>
 
