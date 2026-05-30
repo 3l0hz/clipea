@@ -333,7 +333,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       <SheetContent className="bg-gradient-to-b from-[#041224] via-[#03101F] to-[#020817] backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
         {/* Botón de cierre Premium Flotante */}
         <SheetClose asChild>
-          <button className="absolute top-4 right-4 z-[70] h-10 w-10 rounded-full bg-[rgba(4,18,36,0.75)] backdrop-blur-md border border-[#00E5FF]/40 text-white shadow-[0_0_15px_rgba(0,229,255,0.25)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:border-[#00E5FF]/70 hover:scale-105 transition-all duration-300 flex items-center justify-center group focus:outline-none">
+          <button className="absolute top-4 right-4 z-[70] h-10 w-10 rounded-full bg-[rgba(4,18,36,0.75)] backdrop-blur-md border border-[#00E5FF] text-white shadow-[0_0_15px_rgba(0,229,255,0.25)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:brightness-110 hover:scale-105 transition-all duration-300 flex items-center justify-center group focus:outline-none">
             <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
           </button>
         </SheetClose>
@@ -432,7 +432,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
                           <Input 
                             className={cn(
-                              "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
+                              "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
+                              "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                               errors.fullName && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                             )} 
                             placeholder="Ej: Juan Pérez"
@@ -460,7 +461,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               </Select>
                               <Input 
                                 className={cn(
-                                  "flex-1 bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
+                                  "flex-1 bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
+                                  "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                   errors.phone && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                                 )} 
                                 placeholder="940628182"
@@ -478,7 +480,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
                             <Input 
                               className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
+                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
+                                "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                 (isTempEmail || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )} 
                               placeholder="juan@email.com"
@@ -567,7 +570,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Dirección completa</Label>
                           <Input 
                             className={cn(
-                              "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
+                              "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
+                              "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                               errors.address && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                             )} 
                             placeholder="Calle, número, depto o referencia"
