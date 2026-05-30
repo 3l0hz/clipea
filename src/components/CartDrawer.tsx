@@ -156,7 +156,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const isEmailValid = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isAddressValid = address.trim().length >= 5 && /\d/.test(address);
 
-  // Indicators Logic (Focused-based for Green, Error-based for Red)
+  // Asst. Escritura Green Indicator Logic: Only when focused AND currently typing/valid-so-far AND NOT complete-yet
   const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName) && !isNameValid;
   const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && phone.length < 9 && /^\d+$/.test(phone);
   const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email) && !isEmailValid;
@@ -458,7 +458,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             />
                             <ValidationIndicator isGreen={isNameGreen} isRed={isNameRed} />
                           </div>
-                          {errors.fullName && !isNameGreen && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                         
                         <div className="grid grid-cols-1 gap-4">
@@ -466,7 +465,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
                             <div className="flex gap-2">
                               <Select value={phonePrefix} onValueChange={setPhonePrefix}>
-                                <SelectTrigger className="w-[110px] bg-black/40 rounded-xl h-12 focus:ring-0 text-xs border-white/10 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)] transition-all">
+                                <SelectTrigger className="w-[110px] bg-black/40 rounded-xl h-12 focus:ring-0 text-xs border-white/10 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)] transition-all [&_svg]:text-cyan-400 [&_svg]:opacity-100">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
@@ -503,7 +502,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               </div>
                             </div>
                             {errors.phoneInput && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
-                            {errors.phone && !isPhoneGreen && !isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">El teléfono debe tener 9 dígitos</p>}
+                            {errors.phone && !isPhoneGreen && !isPhoneRed && phone.length > 0 && phone.length < 9 && focusedField !== 'phone' && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">El teléfono debe tener 9 dígitos</p>}
+                            {errors.phone && !isPhoneValid && (errors.fullName || errors.email || errors.phone) && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">El teléfono debe tener 9 dígitos</p>}
                           </div>
                           
                           <div ref={emailRef} className="space-y-2 relative">
@@ -513,8 +513,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 className={cn(
                                   "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                   "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                  isEmailRed && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
-                                  isTempEmail && "animate-pulse-red"
+                                  isEmailRed && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
+                                  isTempEmail && "animate-pulse-red border-red-500"
                                 )} 
                                 placeholder="juan@email.com"
                                 value={email}
@@ -533,7 +533,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             </div>
                             
                             {showEmailSuggestions && emailSuggestions.length > 0 && (
-                              <div className="absolute z-50 w-full mt-1 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                              <div className="absolute z-50 w-full mt-1 bg-[#041224]/95 backdrop-blur-xl border border-cyan-400/30 rounded-xl overflow-hidden shadow-2xl">
                                 {emailSuggestions.map((suggestion) => (
                                   <button
                                     key={suggestion}
@@ -556,7 +556,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </AlertDescription>
                               </Alert>
                             )}
-                            {errors.email && !isTempEmail && !isEmailGreen && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                         </div>
 
@@ -568,20 +567,20 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               setErrors(prev => ({ ...prev, region: false }));
                             }}>
                               <SelectTrigger className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm transition-all [&_svg]:text-cyan-400 [&_svg]:opacity-100",
+                                "focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                 errors.region && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
                                 <SelectValue placeholder="Metropolitana" />
                               </SelectTrigger>
-                              <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
+                              <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)] max-h-[300px]">
                                 {REGIONS.map(reg => (
-                                  <SelectItem key={reg} value={reg} className="text-sm">
+                                  <SelectItem key={reg} value={reg} className="text-sm focus:bg-cyan-400/10 focus:text-white data-[state=checked]:bg-cyan-400/5 data-[state=checked]:text-white [&_svg]:text-cyan-400 transition-colors cursor-pointer">
                                     {reg}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            {errors.region && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Faltante</p>}
                           </div>
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Comuna</Label>
@@ -590,20 +589,20 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               setErrors(prev => ({ ...prev, commune: false }));
                             }}>
                               <SelectTrigger className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm transition-all [&_svg]:text-cyan-400 [&_svg]:opacity-100",
+                                "focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                 errors.commune && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
                                 <SelectValue placeholder="Santiago" />
                               </SelectTrigger>
-                              <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
+                              <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)] max-h-[300px]">
                                 {COMMUNES.map(com => (
-                                  <SelectItem key={com} value={com} className="text-sm">
+                                  <SelectItem key={com} value={com} className="text-sm focus:bg-cyan-400/10 focus:text-white data-[state=checked]:bg-cyan-400/5 data-[state=checked]:text-white [&_svg]:text-cyan-400 transition-colors cursor-pointer">
                                     {com}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            {errors.commune && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Faltante</p>}
                           </div>
                         </div>
                         <div ref={addressRef} className="space-y-2">
@@ -623,8 +622,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             />
                             <ValidationIndicator isGreen={isAddressGreen} isRed={isAddressRed} />
                           </div>
-                          {isAddressRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
-                          {errors.address && !isAddressGreen && !isAddressRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                       </div>
                     </div>
