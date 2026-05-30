@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -35,12 +36,13 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (isCheckoutExpanded && checkoutSectionRef.current) {
+      // Use a slightly longer timeout to ensure content is fully rendered before scrolling
       const timer = setTimeout(() => {
         checkoutSectionRef.current?.scrollIntoView({ 
           behavior: 'smooth', 
           block: 'start' 
         });
-      }, 100);
+      }, 150);
       return () => clearTimeout(timer);
     }
   }, [isCheckoutExpanded]);
@@ -69,7 +71,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Sheet onOpenChange={(open) => !open && setIsCheckoutExpanded(false)}>
+    <Sheet onOpenChange={(open) => {
+      if (!open) {
+        setIsCheckoutExpanded(false);
+      }
+    }}>
       <SheetTrigger asChild>
         {children}
       </SheetTrigger>
@@ -100,9 +106,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
               </div>
             ) : (
               <div className="space-y-6">
+                {/* Product List with conditional blur/opacity for context */}
                 <div className={cn(
-                  "space-y-4 transition-all duration-500 ease-in-out origin-top", 
-                  isCheckoutExpanded ? "opacity-30 pointer-events-none scale-95 blur-sm" : "opacity-100"
+                  "space-y-4 transition-all duration-700 ease-in-out origin-top", 
+                  isCheckoutExpanded ? "opacity-30 pointer-events-none scale-95 blur-[2px]" : "opacity-100"
                 )}>
                   {cart.map((item) => (
                     <div key={item.id} className="group relative bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex gap-4 hover:bg-white/[0.05] transition-all hover:border-accent/20">
@@ -145,57 +152,63 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 {isCheckoutExpanded && (
                   <div 
                     ref={checkoutSectionRef}
-                    className="animate-in fade-in slide-in-from-bottom-8 duration-700 space-y-10 py-4 scroll-mt-4"
+                    className="animate-in fade-in slide-in-from-bottom-12 duration-1000 space-y-10 py-8 scroll-mt-4"
                   >
                     <button 
                       onClick={() => {
                         setIsCheckoutExpanded(false);
                         scrollAreaRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest hover:translate-x-[-4px] transition-transform"
+                      className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-[0.2em] hover:translate-x-[-4px] transition-all group"
                     >
-                      <ChevronDown className="rotate-90" size={14} /> Volver al listado
+                      <ChevronDown className="rotate-90 group-hover:scale-110" size={14} /> 
+                      <span className="border-b border-accent/20 pb-0.5">Volver al listado</span>
                     </button>
 
-                    <div className="space-y-6">
-                      <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" /> Datos de Entrega
-                      </h3>
-                      <div className="grid gap-4">
+                    <div className="space-y-8">
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-headline font-bold text-white uppercase tracking-tighter flex items-center gap-3">
+                          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" /> 
+                          Finalizar Pedido
+                        </h3>
+                        <p className="text-[10px] text-white/40 uppercase font-bold tracking-[0.2em]">Completa tus datos de envío</p>
+                      </div>
+
+                      <div className="grid gap-6">
                         <div className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
-                          <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="Ej: Juan Pérez" />
+                          <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Ej: Juan Pérez" />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="+56 9..." />
+                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="+56 9..." />
                           </div>
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="juan@email.com" />
+                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="juan@email.com" />
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Región</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="Metropolitana" />
+                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Metropolitana" />
                           </div>
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Comuna</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="Providencia" />
+                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Providencia" />
                           </div>
                         </div>
                         <div className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Dirección completa</Label>
-                          <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm" placeholder="Calle, número, depto o referencia" />
+                          <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Calle, número, depto o referencia" />
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-6">
-                      <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" /> Método de Entrega
+                      <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] flex items-center gap-3">
+                        Método de Entrega
                       </h3>
                       <RadioGroup value={deliveryMethod} onValueChange={(v: any) => setDeliveryMethod(v)} className="gap-3">
                         <Label
@@ -254,7 +267,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       </RadioGroup>
 
                       {deliveryMethod === 'home-rm' && (
-                        <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in duration-500">
+                        <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in zoom-in-95 duration-500">
                            <div className="flex items-start gap-3">
                             <Clock size={14} className="text-accent shrink-0 mt-0.5" />
                             <p className="text-[10px] font-bold text-white/60 uppercase leading-relaxed tracking-tight">
@@ -265,7 +278,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       )}
 
                       {deliveryMethod === 'home-region' && (
-                        <div className="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-2 animate-in fade-in duration-500">
+                        <div className="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-2 animate-in fade-in zoom-in-95 duration-500">
                           <p className="text-[11px] font-bold text-accent uppercase leading-relaxed tracking-widest text-center">
                             Envío a regiones por coordinar.
                           </p>
@@ -276,7 +289,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       )}
 
                       {deliveryMethod === 'pickup' && (
-                        <div className="p-5 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in duration-500">
+                        <div className="p-5 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in zoom-in-95 duration-500">
                           <p className="text-[11px] font-bold text-white/80 uppercase leading-relaxed tracking-widest text-center">
                             Podrás coordinar retiro y detalles directamente por WhatsApp después de confirmar tu pedido.
                           </p>
