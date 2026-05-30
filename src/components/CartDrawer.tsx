@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -108,9 +109,18 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const [address, setAddress] = useState('');
   
   const [showEmailSuggestions, setShowEmailSuggestions] = useState(false);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
   
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
+
+  // Refs for fields to scroll and focus
+  const nameRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const emailRef = useRef<HTMLDivElement>(null);
+  const regionRef = useRef<HTMLDivElement>(null);
+  const addressRef = useRef<HTMLDivElement>(null);
+  const methodRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isCheckoutExpanded && checkoutSectionRef.current) {
@@ -143,6 +153,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   // Validation Logic
   const isNameValid = fullName.trim().length >= 3;
   const isPhoneValid = phone.trim().length >= 7;
+  const isEmailValid = email.includes('@') && !isTempEmail;
   const isRegionValid = !!region;
   const isCommuneValid = !!commune;
   const isAddressValid = address.trim().length >= 5;
@@ -151,44 +162,66 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (cart.length === 0) return false;
     if (isTempEmail) return false;
 
-    const commonValid = isNameValid && isPhoneValid && isRegionValid;
+    const commonValid = isNameValid && isPhoneValid && isEmailValid && isRegionValid;
 
     if (deliveryMethod === 'home-rm') {
-      const valid = commonValid && isCommuneValid && isAddressValid;
-      console.log('Validación RM:', { commonValid, isCommuneValid, isAddressValid, final: valid });
-      return valid;
+      return commonValid && isCommuneValid && isAddressValid;
     }
     if (deliveryMethod === 'home-region') {
-      const valid = commonValid && isCommuneValid;
-      console.log('Validación Regiones:', { commonValid, isCommuneValid, final: valid });
-      return valid;
+      return commonValid && isCommuneValid;
     }
     if (deliveryMethod === 'pickup') {
-      const valid = commonValid;
-      console.log('Validación Retiro:', { commonValid, final: valid });
-      return valid;
+      return commonValid;
     }
     return false;
-  }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod]);
+  }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isEmailValid, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod]);
 
-  // Logs de depuración en tiempo real
-  useEffect(() => {
-    if (isCheckoutExpanded) {
-      console.log('--- ESTADO DE VALIDACIÓN ---');
-      console.log('Nombre:', isNameValid ? '✅' : '❌');
-      console.log('Teléfono:', isPhoneValid ? '✅' : '❌');
-      console.log('Email Temporal:', isTempEmail ? '❌ (Temporal detectado)' : '✅');
-      console.log('Región:', isRegionValid ? '✅ (' + region + ')' : '❌');
-      console.log('Comuna:', isCommuneValid ? '✅ (' + commune + ')' : '❌');
-      console.log('Dirección:', isAddressValid ? '✅' : '❌');
-      console.log('Método:', deliveryMethod);
-      console.log('Total:', finalTotal);
-      console.log('Botón Habilitado:', isFormValid ? '✅' : '❌');
+  const triggerValidation = () => {
+    const newErrors: Record<string, boolean> = {};
+    if (!isNameValid) newErrors.fullName = true;
+    if (!isPhoneValid) newErrors.phone = true;
+    if (!isEmailValid) newErrors.email = true;
+    if (!isRegionValid) newErrors.region = true;
+    if (!isCommuneValid && deliveryMethod !== 'pickup') newErrors.commune = true;
+    if (!isAddressValid && deliveryMethod === 'home-rm') newErrors.address = true;
+    if (!deliveryMethod) newErrors.deliveryMethod = true;
+
+    setErrors(newErrors);
+
+    // Scroll to first error
+    const errorOrder = ['fullName', 'phone', 'email', 'region', 'commune', 'address', 'deliveryMethod'];
+    const firstError = errorOrder.find(key => newErrors[key]);
+    
+    if (firstError) {
+      const refs: Record<string, React.RefObject<HTMLDivElement>> = {
+        fullName: nameRef,
+        phone: phoneRef,
+        email: emailRef,
+        region: regionRef,
+        commune: regionRef, // Commune is near Region
+        address: addressRef,
+        deliveryMethod: methodRef
+      };
+
+      const ref = refs[firstError];
+      if (ref?.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Focusing logic (Input elements only)
+        const input = ref.current.querySelector('input');
+        if (input) input.focus();
+      }
     }
-  }, [isCheckoutExpanded, isNameValid, isPhoneValid, isTempEmail, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod, finalTotal, isFormValid, region, commune]);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleWhatsAppCheckout = () => {
-    if (!isFormValid) return;
+    if (!isCheckoutExpanded) {
+      setIsCheckoutExpanded(true);
+      return;
+    }
+
+    if (!triggerValidation()) return;
 
     const shippingText = deliveryMethod === 'home-rm' 
       ? `\nEnvío: Región Metropolitana ($3.500)`
@@ -214,16 +247,12 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
-  const handleStartCheckout = () => {
-    setIsCheckoutExpanded(true);
-  };
-
   const handleSelectSuggestion = (suggestion: string) => {
     setEmail(suggestion);
     setShowEmailSuggestions(false);
+    setErrors(prev => ({ ...prev, email: false }));
   };
 
-  // Name formatting logic
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     const formatted = val
@@ -234,56 +263,37 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       })
       .join(' ');
     setFullName(formatted);
+    if (formatted.trim().length >= 3) setErrors(prev => ({ ...prev, fullName: false }));
   };
 
-  // Address formatting logic
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     const connectors = ['de', 'del', 'la', 'las', 'los', 'y'];
-    
-    // Split by comma to separate street from commune/city
     const parts = val.split(',');
-    
     const formattedParts = parts.map((part, partIndex) => {
       const isAfterComma = partIndex > 0;
       const words = part.split(' ');
-      
       const formattedWords = words.map((word, wordIndex) => {
         if (word.length === 0) return '';
         const lowerWord = word.toLowerCase();
-        
-        // Rule: After comma, everything is a proper name (Commune/City)
-        if (isAfterComma) {
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }
-        
-        // Rule: Before comma (Street), connectors are lowercase except at the start
+        if (isAfterComma) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         const firstNonEmptyIndex = words.findIndex(w => w.length > 0);
-        if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) {
-          return lowerWord;
-        }
-        
+        if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) return lowerWord;
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       });
-      
       return formattedWords.join(' ');
     });
-
     let formatted = formattedParts.join(',');
-
-    // Automatic comma after number: detection if user finished writing a number then a space
-    // and if there's no comma already.
-    if (/\d+ $/.test(formatted) && !formatted.includes(',')) {
-      formatted = formatted.trim() + ', ';
-    }
-
+    if (/\d+ $/.test(formatted) && !formatted.includes(',')) formatted = formatted.trim() + ', ';
     setAddress(formatted);
+    if (formatted.trim().length >= 5) setErrors(prev => ({ ...prev, address: false }));
   };
 
   return (
     <Sheet onOpenChange={(open) => {
       if (!open) {
         setIsCheckoutExpanded(false);
+        setErrors({});
       }
     }}>
       <SheetTrigger asChild>
@@ -366,6 +376,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                     <button 
                       onClick={() => {
                         setIsCheckoutExpanded(false);
+                        setErrors({});
                         scrollAreaRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                       className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-[0.2em] hover:translate-x-[-4px] transition-all group"
@@ -384,18 +395,22 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       </div>
 
                       <div className="grid gap-6">
-                        <div className="space-y-2">
+                        <div ref={nameRef} className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
                           <Input 
-                            className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
+                            className={cn(
+                              "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                              errors.fullName && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                            )} 
                             placeholder="Ej: Juan Pérez"
                             value={fullName}
                             onChange={handleFullNameChange}
                           />
+                          {errors.fullName && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                         
                         <div className="grid grid-cols-1 gap-4">
-                          <div className="space-y-2">
+                          <div ref={phoneRef} className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
                             <div className="flex gap-2">
                               <Select value={phonePrefix} onValueChange={setPhonePrefix}>
@@ -411,26 +426,34 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </SelectContent>
                               </Select>
                               <Input 
-                                className="flex-1 bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
+                                className={cn(
+                                  "flex-1 bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                                  errors.phone && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                )} 
                                 placeholder="9 1234 5678"
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
+                                onChange={(e) => {
+                                  setPhone(e.target.value);
+                                  if (e.target.value.trim().length >= 7) setErrors(prev => ({ ...prev, phone: false }));
+                                }}
                               />
                             </div>
+                            {errors.phone && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                           
-                          <div className="space-y-2 relative">
+                          <div ref={emailRef} className="space-y-2 relative">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
                             <Input 
                               className={cn(
                                 "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
-                                isTempEmail && "border-destructive/50 focus:border-destructive"
+                                (isTempEmail || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )} 
                               placeholder="juan@email.com"
                               value={email}
                               onChange={(e) => {
                                 setEmail(e.target.value);
                                 setShowEmailSuggestions(true);
+                                if (e.target.value.includes('@')) setErrors(prev => ({ ...prev, email: false }));
                               }}
                               onBlur={() => setTimeout(() => setShowEmailSuggestions(false), 200)}
                             />
@@ -457,14 +480,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </AlertDescription>
                               </Alert>
                             )}
+                            {errors.email && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div ref={regionRef} className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Región</Label>
-                            <Select value={region} onValueChange={setRegion}>
-                              <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm">
+                            <Select value={region} onValueChange={(v) => {
+                              setRegion(v);
+                              setErrors(prev => ({ ...prev, region: false }));
+                            }}>
+                              <SelectTrigger className={cn(
+                                "bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                errors.region && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                              )}>
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
@@ -475,11 +505,18 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 ))}
                               </SelectContent>
                             </Select>
+                            {errors.region && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Faltante</p>}
                           </div>
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Comuna</Label>
-                            <Select value={commune} onValueChange={setCommune}>
-                              <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm">
+                            <Select value={commune} onValueChange={(v) => {
+                              setCommune(v);
+                              setErrors(prev => ({ ...prev, commune: false }));
+                            }}>
+                              <SelectTrigger className={cn(
+                                "bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                errors.commune && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                              )}>
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
@@ -490,29 +527,42 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 ))}
                               </SelectContent>
                             </Select>
+                            {errors.commune && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Faltante</p>}
                           </div>
                         </div>
-                        <div className="space-y-2">
+                        <div ref={addressRef} className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Dirección completa</Label>
                           <Input 
-                            className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
+                            className={cn(
+                              "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                              errors.address && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                            )} 
                             placeholder="Calle, número, depto o referencia"
                             value={address}
                             onChange={handleAddressChange}
                           />
+                          {errors.address && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-6">
+                    <div ref={methodRef} className="space-y-6">
                       <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] flex items-center gap-3">
                         Método de Entrega
                       </h3>
-                      <RadioGroup value={deliveryMethod} onValueChange={(v: any) => setDeliveryMethod(v)} className="gap-3">
+                      <RadioGroup 
+                        value={deliveryMethod} 
+                        onValueChange={(v: any) => {
+                          setDeliveryMethod(v);
+                          setErrors(prev => ({ ...prev, deliveryMethod: false }));
+                        }} 
+                        className="gap-3"
+                      >
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home-rm' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                            deliveryMethod === 'home-rm' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
@@ -530,7 +580,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'pickup' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                            deliveryMethod === 'pickup' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
@@ -548,7 +599,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
@@ -563,6 +615,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <RadioGroupItem value="home-region" className="border-white/20" />
                         </Label>
                       </RadioGroup>
+                      {errors.deliveryMethod && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1 text-center">Selecciona un método</p>}
 
                       {deliveryMethod === 'home-rm' && (
                         <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in zoom-in-95 duration-500">
@@ -618,7 +671,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
             <div className="flex flex-col gap-3">
               {!isCheckoutExpanded && (
                 <Button 
-                  onClick={handleStartCheckout}
+                  onClick={() => setIsCheckoutExpanded(true)}
                   className="w-full h-14 rounded-2xl bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-white/90 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <CreditCard size={18} className="mr-2" /> Pagar Online
@@ -629,11 +682,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 onClick={handleWhatsAppCheckout}
                 className={cn(
                   "w-full h-14 rounded-2xl transition-all flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest",
-                  (!isFormValid && isCheckoutExpanded) 
-                    ? "bg-white/5 border border-white/10 text-white/40 cursor-not-allowed opacity-50" 
-                    : "bg-black/60 backdrop-blur-xl border border-premium-green/30 text-white hover:bg-black/80 hover:border-premium-green/50 shadow-[0_0_20px_rgba(142,255,127,0.15)] active:scale-95"
+                  "bg-black/60 backdrop-blur-xl border border-premium-green/30 text-white hover:bg-black/80 hover:border-premium-green/50 shadow-[0_0_20px_rgba(142,255,127,0.15)] active:scale-95",
+                  (!isFormValid && isCheckoutExpanded) && "opacity-80"
                 )}
-                disabled={!isFormValid && isCheckoutExpanded}
               >
                 <WhatsAppIcon className="w-5 h-5" /> {isCheckoutExpanded ? "Confirmar por WhatsApp" : "Comprar por WhatsApp"}
               </Button>
