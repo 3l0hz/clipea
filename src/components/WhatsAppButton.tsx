@@ -28,7 +28,6 @@ export const WhatsAppButton = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Calcular rotación máxima de 15 grados basada en posición del cursor
     const rotateX = ((y - centerY) / centerY) * -15;
     const rotateY = ((x - centerX) / centerX) * 15;
 
@@ -50,10 +49,10 @@ export const WhatsAppButton = () => {
       className={cn(
         "fixed bottom-6 right-6 z-50",
         "flex items-center justify-center p-4 rounded-full",
-        "bg-premium-green/20 backdrop-blur-xl border border-premium-green/30",
-        "shadow-[0_0_20px_rgba(142,255,127,0.2)]",
+        "bg-[#020817]/85 backdrop-blur-xl border-[1.5px] border-[#00D9FF]/40",
+        "shadow-[0_0_20px_rgba(0,217,255,0.35)]",
         "transition-all duration-300 ease-out",
-        "hover:scale-110 hover:bg-premium-green/30 hover:border-premium-green/50 hover:shadow-[0_0_40px_rgba(142,255,127,0.4)]",
+        "hover:border-[#00D9FF] hover:shadow-[0_0_35px_rgba(0,217,255,0.5)]",
         "active:scale-95 group"
       )}
       style={{
@@ -62,7 +61,7 @@ export const WhatsAppButton = () => {
       }}
       aria-label="Contactar por WhatsApp"
     >
-      <WhatsAppIcon className="w-6 h-6 text-premium-green transition-transform duration-500 group-hover:scale-110" />
+      <WhatsAppIcon className="w-6 h-6 text-white transition-transform duration-500" />
       
       {/* Sutil efecto de brillo tipo vidrio */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
