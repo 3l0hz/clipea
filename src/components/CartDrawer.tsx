@@ -64,7 +64,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "Región Metropolitana",
+  "Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
@@ -286,26 +286,32 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     const connectors = ['de', 'del', 'la', 'las', 'los', 'y'];
+    
     const parts = val.split(',');
     const formattedParts = parts.map((part, partIndex) => {
       const isAfterComma = partIndex > 0;
       const words = part.split(' ');
+      
       const formattedWords = words.map((word, wordIndex) => {
         if (word.length === 0) return '';
         const lowerWord = word.toLowerCase();
         
-        if (isAfterComma) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        if (isAfterComma) {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
         
         const firstNonEmptyIndex = words.findIndex(w => w.length > 0);
-        if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) return lowerWord;
+        if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) {
+          return lowerWord;
+        }
         
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       });
+      
       return formattedWords.join(' ');
     });
     
     let formatted = formattedParts.join(',');
-    
     if (/\d+ $/.test(formatted) && !formatted.includes(',')) {
       formatted = formatted.trim() + ', ';
     }
@@ -325,7 +331,14 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         {children}
       </SheetTrigger>
       <SheetContent className="bg-gradient-to-b from-[#041224] via-[#03101F] to-[#020817] backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
-        <SheetHeader className="p-8 border-b border-white/5 flex items-center justify-between shrink-0">
+        {/* Botón de cierre Premium Flotante */}
+        <SheetClose asChild>
+          <button className="absolute top-4 right-4 z-[70] h-10 w-10 rounded-full bg-[rgba(4,18,36,0.75)] backdrop-blur-md border border-[#00E5FF]/40 text-white shadow-[0_0_15px_rgba(0,229,255,0.25)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:border-[#00E5FF]/70 hover:scale-105 transition-all duration-300 flex items-center justify-center group focus:outline-none">
+            <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
+          </button>
+        </SheetClose>
+
+        <SheetHeader className="p-8 border-b border-white/5 flex items-center shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-black/40 border border-cyan-400/30 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
               <ShoppingCart size={24} strokeWidth={1.5} />
@@ -335,11 +348,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
               <p className="text-[10px] text-white/40 uppercase font-bold tracking-widest">{totalItems} {totalItems === 1 ? 'PRODUCTO' : 'PRODUCTOS'}</p>
             </div>
           </div>
-          <SheetClose asChild>
-            <button className="h-10 w-10 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-white hover:border-cyan-400/50 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all flex items-center justify-center group">
-              <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
-            </button>
-          </SheetClose>
         </SheetHeader>
 
         <div ref={scrollAreaRef} className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth">
