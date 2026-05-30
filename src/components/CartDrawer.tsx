@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -62,7 +61,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "RM Región Metropolitana",
+  "Región Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
