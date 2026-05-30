@@ -510,8 +510,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
                             {isTempEmail && (
                               <Alert variant="destructive" className="mt-2 bg-destructive/10 border-destructive/20 text-destructive rounded-xl animate-in fade-in slide-in-from-top-2 flex items-center gap-2.5 py-3 px-4">
-                                <AlertCircle size={14} className="static shrink-0" />
-                                <AlertDescription className="text-[10px] font-bold uppercase tracking-wider !pl-0 translate-y-0">
+                                <div className="flex items-center justify-center shrink-0 translate-y-[0.5px]">
+                                  <AlertCircle size={14} className="static" />
+                                </div>
+                                <AlertDescription className="text-[10px] font-bold uppercase tracking-wider !pl-0 !mt-0 leading-none flex items-center">
                                   No puedes comprar con una cuenta temporal.
                                 </AlertDescription>
                               </Alert>
