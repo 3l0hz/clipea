@@ -51,7 +51,7 @@ export default function Home() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-[75vh] md:h-[85vh] min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-[85vh] min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -71,11 +71,11 @@ export default function Home() {
             Equipamiento para Aventuras
           </Badge>
           <h1 className="text-4xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
-            Accesorios para <br/>
-            <span className="text-gradient">cámaras deportivas</span>
+            Captura <br/>
+            <span className="text-gradient">cada aventura</span>
           </h1>
           <p className="max-w-2xl mx-auto text-white/80 text-sm md:text-xl leading-relaxed font-medium px-4">
-            Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
+            Equipamiento seleccionado para creadores de contenido y aventureros.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 pt-6 mx-auto">
             {/* Botón Principal: Logra este efecto */}
