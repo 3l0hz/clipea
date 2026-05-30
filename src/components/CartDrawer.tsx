@@ -158,7 +158,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   // Indicators Logic (Focused-based for Green, Error-based for Red)
   const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName) && !isNameValid;
-  const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && /^\d+$/.test(phone) && !isPhoneValid;
+  const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && phone.length < 9 && /^\d+$/.test(phone);
   const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email) && !isEmailValid;
   const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address) && !isAddressValid;
 
@@ -466,12 +466,12 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
                             <div className="flex gap-2">
                               <Select value={phonePrefix} onValueChange={setPhonePrefix}>
-                                <SelectTrigger className="w-[110px] bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-xs">
+                                <SelectTrigger className="w-[110px] bg-black/40 rounded-xl h-12 focus:ring-0 text-xs border-white/10 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)] transition-all">
                                   <SelectValue />
                                 </SelectTrigger>
-                                <SelectContent className="bg-[#0a0a0a] border-white/10 text-white">
+                                <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
                                   {PREFIXES.map(p => (
-                                    <SelectItem key={p.value} value={p.value} className="text-xs">
+                                    <SelectItem key={p.value} value={p.value} className="text-xs focus:bg-cyan-400/10 focus:text-white data-[state=checked]:bg-cyan-400/5 data-[state=checked]:text-white [&_svg]:text-cyan-400 transition-colors cursor-pointer">
                                       {p.label}
                                     </SelectItem>
                                   ))}
@@ -484,7 +484,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                     "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                     isPhoneRed && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                                   )} 
-                                  placeholder="940628182"
+                                  placeholder="912345678"
                                   value={phone}
                                   onChange={(e) => {
                                     const val = e.target.value.replace(/\D/g, '').slice(0, 9);
