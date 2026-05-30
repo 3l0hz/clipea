@@ -152,22 +152,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   // Validation Logic
   const isNameValid = fullName.trim().length >= 3 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
-  const isPhoneValid = phone.length >= 7 && /^\d+$/.test(phone);
+  const isPhoneValid = phone.length === 9 && /^\d+$/.test(phone);
   const isEmailValid = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isAddressValid = address.trim().length >= 5 && /\d/.test(address);
 
   // Indicators Logic (Focused-based for Green, Error-based for Red)
-  // Green: Focused + Valid so far (interactive guide)
-  const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
-  const isPhoneGreen = focusedField === 'phone' && phone.length >= 1 && /^\d+$/.test(phone);
-  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
-  const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address);
+  const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName) && !isNameValid;
+  const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && /^\d+$/.test(phone) && !isPhoneValid;
+  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email) && !isEmailValid;
+  const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address) && !isAddressValid;
 
   // Red: (Focused + Clear Error) OR (Attempted submission + Invalid)
-  const isNameRed = (focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameValid) || (errors.fullName && !isNameGreen);
-  const isPhoneRed = (focusedField === 'phone' && phone.length > 0 && !/^\d+$/.test(phone)) || (errors.phone && !isPhoneGreen);
-  const isEmailRed = (focusedField === 'email' && email.length > 0 && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email))) || (errors.email && !isEmailGreen);
-  const isAddressRed = (focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressValid) || (errors.address && !isAddressGreen);
+  const isNameRed = (focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameValid) || (errors.fullName && !isNameGreen && !isNameValid);
+  const isPhoneRed = (focusedField === 'phone' && phone.length > 0 && !isPhoneGreen && !isPhoneValid) || (errors.phone && !isPhoneGreen && !isPhoneValid);
+  const isEmailRed = (focusedField === 'email' && email.length > 0 && !isEmailGreen && !isEmailValid && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email))) || (errors.email && !isEmailGreen && !isEmailValid);
+  const isAddressRed = (focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressValid) || (errors.address && !isAddressGreen && !isAddressValid);
 
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
@@ -488,9 +487,14 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                   placeholder="940628182"
                                   value={phone}
                                   onChange={(e) => {
-                                    const val = e.target.value.replace(/\D/g, '');
+                                    const val = e.target.value.replace(/\D/g, '').slice(0, 9);
+                                    if (e.target.value !== val && /\D/.test(e.target.value)) {
+                                      setErrors(prev => ({ ...prev, phoneInput: true }));
+                                    } else {
+                                      setErrors(prev => ({ ...prev, phoneInput: false }));
+                                    }
                                     setPhone(val);
-                                    if (val.trim().length >= 7) setErrors(prev => ({ ...prev, phone: false }));
+                                    if (val.length === 9) setErrors(prev => ({ ...prev, phone: false }));
                                   }}
                                   onFocus={() => setFocusedField('phone')}
                                   onBlur={() => setFocusedField(null)}
@@ -498,8 +502,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 <ValidationIndicator isGreen={isPhoneGreen} isRed={isPhoneRed} />
                               </div>
                             </div>
-                            {isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
-                            {errors.phone && !isPhoneGreen && !isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                            {errors.phoneInput && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
+                            {errors.phone && !isPhoneGreen && !isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">El teléfono debe tener 9 dígitos</p>}
                           </div>
                           
                           <div ref={emailRef} className="space-y-2 relative">
@@ -544,7 +548,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
                             {isTempEmail && (
                               <Alert variant="destructive" className="mt-2 bg-destructive/10 border-destructive/20 text-destructive rounded-xl animate-in fade-in slide-in-from-top-2 flex items-center gap-2.5 py-3 px-4">
-                                <div className="flex items-center justify-center shrink-0 line-height-1">
+                                <div className="flex items-center justify-center shrink-0" style={{ lineHeight: 1 }}>
                                   <AlertCircle size={14} className="static" />
                                 </div>
                                 <AlertDescription className="text-[10px] font-bold uppercase tracking-wider !pl-0 !mt-0 leading-none flex items-center">
