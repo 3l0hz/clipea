@@ -77,31 +77,31 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-white/80 text-sm md:text-xl leading-relaxed font-medium px-4">
             Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
           </p>
-          <div className="flex flex-row justify-center items-center gap-5 sm:gap-6 pt-6 max-w-[340px] mx-auto sm:max-w-none">
-            {/* Botón Principal: Descubre el efecto */}
-            <Button 
-              size="lg" 
-              className="relative group bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-none h-12 sm:h-14 px-5 sm:px-10 text-[11px] sm:text-lg font-bold rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_35px_rgba(34,211,238,0.5)] hover:scale-[1.03] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 flex-1 sm:w-auto"
+          <div className="flex flex-wrap justify-center items-center gap-4 pt-6 mx-auto">
+            {/* Botón Principal: Logra este efecto */}
+            <button 
+              className="h-[44px] px-6 text-sm font-bold rounded-[12px] bg-gradient-to-r from-[#00E5FF] to-[#1A73FF] text-white border-none shadow-[0_0_20px_rgba(0,229,255,0.35)] hover:brightness-110 hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-[10px] w-fit"
               onClick={() => {
                 const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
                 if (bulletProduct) handleViewDetails(bulletProduct);
               }}
             >
-              <Sparkles size={16} className="opacity-90 group-hover:scale-110 transition-transform text-white" />
-              <span>Descubre el efecto</span>
-            </Button>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                <path d="M9 1.5C9 5.64214 5.64214 9 1.5 9C5.64214 9 9 12.3579 9 16.5C9 12.3579 12.3579 9 16.5 9C12.3579 9 9 5.64214 9 1.5Z" fill="white"/>
+                <circle cx="4.5" cy="4.5" r="1.2" fill="white"/>
+                <circle cx="13.5" cy="13.5" r="0.8" fill="white"/>
+              </svg>
+              <span>Logra este efecto</span>
+            </button>
             
             {/* Botón Secundario: Explorar Catálogo */}
-            <Button 
-              size="lg" 
-              className="group bg-black/40 backdrop-blur-xl text-white border border-cyan-400/30 hover:border-cyan-400/60 hover:bg-black/60 h-12 sm:h-14 px-5 sm:px-10 text-[11px] sm:text-lg font-bold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 flex-1 sm:w-auto" 
-              asChild
+            <a 
+              href="#catalog"
+              className="h-[44px] px-6 text-sm font-bold rounded-[12px] bg-black/40 backdrop-blur-md border border-[#00E5FF] text-white hover:bg-black/60 hover:border-[#00E5FF] hover:shadow-[0_0_20px_rgba(0,229,255,0.25)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 w-fit group" 
             >
-              <a href="#catalog">
-                <span>Explorar Catálogo</span>
-                <ArrowRight size={16} className="text-cyan-400 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+              <span>Explorar Catálogo</span>
+              <ArrowRight size={16} className="text-[#00E5FF] group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </section>
