@@ -99,7 +99,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const [isCheckoutExpanded, setIsCheckoutExpanded] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState<'home-rm' | 'home-region' | 'pickup'>('home-rm');
   
-  // Form State
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -114,7 +113,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
 
-  // Refs for fields to scroll and focus
   const nameRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
   const emailRef = useRef<HTMLDivElement>(null);
@@ -150,7 +148,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
 
-  // Validation Logic
   const isNameValid = fullName.trim().length >= 3;
   const isPhoneValid = phone.trim().length >= 7;
   const isEmailValid = email.includes('@') && !isTempEmail;
@@ -188,7 +185,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
     setErrors(newErrors);
 
-    // Scroll to first error
     const errorOrder = ['fullName', 'phone', 'email', 'region', 'commune', 'address', 'deliveryMethod'];
     const firstError = errorOrder.find(key => newErrors[key]);
     
@@ -198,7 +194,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         phone: phoneRef,
         email: emailRef,
         region: regionRef,
-        commune: regionRef, // Commune is near Region
+        commune: regionRef,
         address: addressRef,
         deliveryMethod: methodRef
       };
@@ -206,7 +202,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       const ref = refs[firstError];
       if (ref?.current) {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Focusing logic (Input elements only)
         const input = ref.current.querySelector('input');
         if (input) input.focus();
       }
@@ -223,26 +218,35 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
     if (!triggerValidation()) return;
 
-    const shippingText = deliveryMethod === 'home-rm' 
-      ? `\nEnvío: Región Metropolitana ($3.500)`
+    const methodLabel = deliveryMethod === 'home-rm' 
+      ? "Despacho Región Metropolitana"
       : deliveryMethod === 'home-region'
-      ? `\nEnvío: Regiones (Por coordinar)`
-      : `\nEnvío: Retiro / Coordinación (Sin costo)`;
+      ? "Envío a regiones"
+      : "Retiro / Coordinación";
 
-    const addressText = deliveryMethod !== 'pickup' 
-      ? `\nDatos Envío:\n- Región: ${region}\n- Comuna: ${commune}${deliveryMethod === 'home-rm' ? `\n- Dirección: ${address}` : ''}`
-      : `\nRetiro: Coordinación vía WhatsApp`;
+    const shippingCostText = deliveryMethod === 'home-rm' 
+      ? "$3.500" 
+      : deliveryMethod === 'home-region' 
+      ? "Por coordinar" 
+      : "$0";
+
+    const addressLine = deliveryMethod !== 'pickup' ? address : "Coordinar retiro / N/A";
 
     const message = encodeURIComponent(
-      `Hola, quiero realizar el siguiente pedido:\n\n` +
-      `Cliente: ${fullName}\n` +
+      `Hola Clipea, quiero coordinar mi compra.\n\n` +
+      `Datos del cliente:\n` +
+      `Nombre: ${fullName}\n` +
       `Teléfono: ${phonePrefix} ${phone}\n` +
       `Email: ${email}\n\n` +
+      `Entrega:\n` +
+      `Región: ${region}\n` +
+      `Comuna: ${commune}\n` +
+      `Dirección: ${addressLine}\n` +
+      `Método: ${methodLabel}\n\n` +
       `Productos:\n` +
-      cart.map(item => `- ${item.name} (x${item.quantity}): ${item.price}`).join('\n') +
-      `\n${shippingText}` +
-      `${addressText}` +
-      `\n\n*Total a pagar: $${finalTotal.toLocaleString('es-CL')}*`
+      cart.map(item => `- ${item.name} x ${item.quantity}: ${item.price}`).join('\n') +
+      `\n\nEnvío: ${shippingCostText}\n` +
+      `*Total a pagar: $${finalTotal.toLocaleString('es-CL')}*`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
