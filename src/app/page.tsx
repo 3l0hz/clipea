@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -49,19 +50,19 @@ export default function Home() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover saturate-[1.1] contrast-[1.05] transform-gpu will-change-transform"
+            className="absolute inset-0 w-full h-full object-cover object-center saturate-[1.05] contrast-[1.02] transform-gpu"
           >
             <source src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/HeroSection/2%20slide/0506%20(2).mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
@@ -98,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Bar */}
-      <section className="relative z-20 md:bg-card md:border-y md:border-border md:py-8 py-4 -mt-6 md:mt-0">
+      <section className="relative z-20 md:bg-card md:border-y md:border-border md:py-8 py-4 -mt-12 md:mt-0">
         <div className="container mx-auto px-4">
           <div className="md:bg-transparent md:border-none md:p-0 md:rounded-none bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[24px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:shadow-none">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
