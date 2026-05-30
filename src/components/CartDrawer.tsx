@@ -16,7 +16,7 @@ import {
   CreditCard, 
   Truck, 
   MessageSquare, 
-  ChevronDown,
+  ChevronDown, 
   ChevronUp,
   MapPin,
   Clock,
@@ -68,7 +68,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
           <div className="p-8 space-y-6">
             {cart.length === 0 ? (
               <div className="h-full py-20 flex flex-col items-center justify-center gap-6 opacity-20">
-                <ShoppingBag size={80} strokeWidth={1} />
+                <ShoppingCart size={80} strokeWidth={1} />
                 <p className="text-sm font-bold uppercase tracking-widest">El carrito está vacío</p>
               </div>
             ) : (
