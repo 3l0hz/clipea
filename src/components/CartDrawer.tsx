@@ -1,12 +1,20 @@
 
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { useCart } from '@/context/CartContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { 
   Minus, 
   Plus, 
@@ -19,7 +27,8 @@ import {
   MapPin,
   Clock,
   ShieldCheck,
-  Globe
+  Globe,
+  AlertCircle
 } from 'lucide-react';
 import Image from 'next/image';
 import { WHATSAPP_NUMBER } from '@/constants/data';
@@ -36,10 +45,64 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const BLOCKED_DOMAINS = [
+  'tempmail.com', '10minutemail.com', 'mailinator.com', 
+  'guerrillamail.com', 'yopmail.com', 'throwawaymail.com', 
+  'disposablemail.com', 'getnada.com', 'fakeinbox.com'
+];
+
+const SUGGESTED_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'icloud.com'];
+
+const PREFIXES = [
+  { label: 'CHI +56 9', value: '+56 9' },
+  { label: 'PER +51', value: '+51' },
+  { label: 'VEN +58', value: '+58' },
+  { label: 'ARG +54', value: '+54' },
+  { label: 'COL +57', value: '+57' },
+];
+
+const REGIONS = [
+  "RM Región Metropolitana",
+  "Arica y Parinacota",
+  "Tarapacá",
+  "Antofagasta",
+  "Atacama",
+  "Coquimbo",
+  "Valparaíso",
+  "O'Higgins",
+  "Maule",
+  "Ñuble",
+  "Biobío",
+  "Araucanía",
+  "Los Ríos",
+  "Los Lagos",
+  "Aysén",
+  "Magallanes"
+];
+
+const COMMUNES = [
+  "Santiago",
+  "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", 
+  "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", 
+  "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", 
+  "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", 
+  "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", 
+  "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", 
+  "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", 
+  "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", 
+  "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", 
+  "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"
+];
+
 export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const { cart, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
   const [isCheckoutExpanded, setIsCheckoutExpanded] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState<'home-rm' | 'home-region' | 'pickup'>('home-rm');
+  
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [phonePrefix, setPhonePrefix] = useState(PREFIXES[0].value);
+  const [showEmailSuggestions, setShowEmailSuggestions] = useState(false);
   
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
@@ -56,10 +119,25 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isCheckoutExpanded]);
 
+  const isTempEmail = useMemo(() => {
+    if (!email.includes('@')) return false;
+    const domain = email.split('@')[1];
+    return BLOCKED_DOMAINS.includes(domain?.toLowerCase());
+  }, [email]);
+
+  const emailSuggestions = useMemo(() => {
+    if (!email.includes('@')) return [];
+    const [user, domain] = email.split('@');
+    if (domain.length > 0 && !SUGGESTED_DOMAINS.some(d => d.startsWith(domain))) return [];
+    return SUGGESTED_DOMAINS.filter(d => d.startsWith(domain)).map(d => `${user}@${d}`);
+  }, [email]);
+
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
 
   const handleWhatsAppCheckout = () => {
+    if (isTempEmail) return;
+
     const shippingText = deliveryMethod === 'home-rm' 
       ? `\nEnvío: Región Metropolitana ($3.500)`
       : deliveryMethod === 'home-region'
@@ -77,6 +155,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   const handleStartCheckout = () => {
     setIsCheckoutExpanded(true);
+  };
+
+  const handleSelectSuggestion = (suggestion: string) => {
+    setEmail(suggestion);
+    setShowEmailSuggestions(false);
   };
 
   return (
@@ -187,24 +270,103 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
                           <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Ej: Juan Pérez" />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        
+                        <div className="grid grid-cols-1 gap-4">
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="+56 9..." />
+                            <div className="flex gap-2">
+                              <Select value={phonePrefix} onValueChange={setPhonePrefix}>
+                                <SelectTrigger className="w-[120px] bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-xs">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="bg-[#0a0a0a] border-white/10 text-white">
+                                  {PREFIXES.map(p => (
+                                    <SelectItem key={p.value} value={p.value} className="text-xs">
+                                      {p.label}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <Input 
+                                className="flex-1 bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
+                                placeholder="9 1234 5678"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                              />
+                            </div>
                           </div>
-                          <div className="space-y-2">
+                          
+                          <div className="space-y-2 relative">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="juan@email.com" />
+                            <Input 
+                              className={cn(
+                                "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                                isTempEmail && "border-destructive/50 focus:border-destructive"
+                              )} 
+                              placeholder="juan@email.com"
+                              value={email}
+                              onChange={(e) => {
+                                setEmail(e.target.value);
+                                setShowEmailSuggestions(true);
+                              }}
+                              onBlur={() => setTimeout(() => setShowEmailSuggestions(false), 200)}
+                            />
+                            
+                            {showEmailSuggestions && emailSuggestions.length > 0 && (
+                              <div className="absolute z-50 w-full mt-1 bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                {emailSuggestions.map((suggestion) => (
+                                  <button
+                                    key={suggestion}
+                                    className="w-full px-4 py-3 text-left text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5 last:border-0"
+                                    onClick={() => handleSelectSuggestion(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+
+                            {isTempEmail && (
+                              <Alert variant="destructive" className="mt-2 bg-destructive/10 border-destructive/20 text-destructive rounded-xl animate-in fade-in slide-in-from-top-2">
+                                <AlertCircle size={14} className="mr-2" />
+                                <AlertDescription className="text-[10px] font-bold uppercase tracking-wider">
+                                  No puedes comprar con una cuenta temporal.
+                                </AlertDescription>
+                              </Alert>
+                            )}
                           </div>
                         </div>
+
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Región</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Metropolitana" />
+                            <Select defaultValue={REGIONS[0]}>
+                              <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
+                                {REGIONS.map(region => (
+                                  <SelectItem key={region} value={region} className="text-sm">
+                                    {region}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                           </div>
                           <div className="space-y-2">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Comuna</Label>
-                            <Input className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" placeholder="Providencia" />
+                            <Select defaultValue={COMMUNES[0]}>
+                              <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
+                                {COMMUNES.map(commune => (
+                                  <SelectItem key={commune} value={commune} className="text-sm">
+                                    {commune}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                           </div>
                         </div>
                         <div className="space-y-2">
@@ -362,17 +524,17 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 onClick={handleWhatsAppCheckout}
                 className={cn(
                   "w-full h-14 rounded-2xl transition-all flex items-center justify-center gap-3",
-                  isCheckoutExpanded && deliveryMethod === 'home-rm' 
+                  (isCheckoutExpanded && (deliveryMethod === 'home-rm' || isTempEmail)) 
                     ? "bg-white/5 border border-white/10 text-white/40 cursor-not-allowed opacity-50" 
                     : "bg-black/60 backdrop-blur-xl border border-premium-green/30 text-white hover:bg-black/80 hover:border-premium-green/50 shadow-[0_0_20px_rgba(142,255,127,0.15)] font-bold text-sm uppercase tracking-widest active:scale-95"
                 )}
-                disabled={isCheckoutExpanded && deliveryMethod === 'home-rm'}
+                disabled={(isCheckoutExpanded && deliveryMethod === 'home-rm') || isTempEmail}
               >
                 <WhatsAppIcon className="w-5 h-5" /> {isCheckoutExpanded ? "Confirmar por WhatsApp" : "Comprar por WhatsApp"}
               </Button>
             </div>
             <p className="text-[9px] text-center text-white/20 uppercase font-bold tracking-[0.3em]">
-              {isCheckoutExpanded ? "Valida tus datos antes de confirmar" : "Serás redirigido para coordinar pago y envío"}
+              {isCheckoutExpanded ? (isTempEmail ? "Corrige tu email para continuar" : "Valida tus datos antes de confirmar") : "Serás redirigido para coordinar pago y envío"}
             </p>
           </div>
         )}
