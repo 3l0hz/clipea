@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -320,6 +319,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (formatted.trim().length >= 5) setErrors(prev => ({ ...prev, address: false }));
   };
 
+  const isEmailMissingAt = email.length > 0 && !email.includes('@');
+
   return (
     <Sheet onOpenChange={(open) => {
       if (!open) {
@@ -331,7 +332,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         {children}
       </SheetTrigger>
       <SheetContent className="bg-gradient-to-b from-[#041224] via-[#03101F] to-[#020817] backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
-        {/* Botón de cierre Premium Flotante */}
         <SheetClose asChild>
           <button className="absolute top-4 right-4 z-[70] h-10 w-10 rounded-full bg-[rgba(4,18,36,0.75)] backdrop-blur-md border border-[#00E5FF] text-white shadow-[0_0_15px_rgba(0,229,255,0.25)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:brightness-110 hover:scale-105 transition-all duration-300 flex items-center justify-center group focus:outline-none">
             <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
@@ -482,7 +482,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               className={cn(
                                 "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
                                 "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                (isTempEmail || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                (isTempEmail || errors.email || isEmailMissingAt) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
+                                isEmailMissingAt && "animate-pulse-red"
                               )} 
                               placeholder="juan@email.com"
                               value={email}
@@ -518,7 +519,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </AlertDescription>
                               </Alert>
                             )}
-                            {errors.email && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                            {(errors.email || isEmailMissingAt) && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                         </div>
 

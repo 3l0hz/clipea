@@ -77,13 +77,19 @@ export default {
             transform: 'translateY(-6px) scale(1.05)',
             filter: 'drop-shadow(0 0 25px rgba(142, 255, 127, 0.5))'
           },
-        }
+        },
+        'pulse-red': {
+          '0%': { 'box-shadow': '0 0 0 0 rgba(239, 68, 68, 0.7)' },
+          '70%': { 'box-shadow': '0 0 0 10px rgba(239, 68, 68, 0)' },
+          '100%': { 'box-shadow': '0 0 0 0 rgba(239, 68, 68, 0)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
         'float-breathing': 'float-breathing 12s ease-in-out infinite',
+        'pulse-red': 'pulse-red 1.5s infinite',
       },
     },
   },
