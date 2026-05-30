@@ -119,7 +119,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 <div className="flex items-center justify-center gap-6 w-full px-2">
                   <button
                     onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
-                    className="flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-300 h-[20px] w-[20px]"
+                    className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/80 transition-all duration-300 hover:border-cyan-400 hover:text-cyan-400 h-[20px] w-[20px]"
                   >
                     <Search size={9} strokeWidth={2.5} />
                   </button>
@@ -145,7 +145,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
                 <div className="flex items-center gap-2">
                   <button
                     onClick={(e) => { e.stopPropagation(); onViewDetails(product); }}
-                    className="flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-cyan-400/30 text-cyan-400 transition-all duration-500 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] h-10 w-10"
+                    className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-500 hover:bg-cyan-400/10 hover:text-cyan-400 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] h-10 w-10"
                   >
                     <Search size={16} strokeWidth={2.5} />
                   </button>
@@ -232,7 +232,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             <div className="flex items-center justify-between w-full mt-4 pb-1">
               <button
                 onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 hover:bg-white/15 hover:text-white hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] h-10 w-10"
+                className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-300 hover:bg-cyan-400/10 hover:text-cyan-400 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)] h-10 w-10"
               >
                 <Search size={16} strokeWidth={2.5} />
               </button>
@@ -259,7 +259,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               <div className="flex items-center justify-center gap-6 w-full px-2">
                 <button
                   onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                  className="flex items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 text-white/60 transition-all duration-300 h-[20px] w-[20px]"
+                  className="flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-cyan-400/30 text-cyan-400/70 transition-all duration-300 h-[20px] w-[20px]"
                 >
                   <Search size={9} strokeWidth={2.5} />
                 </button>
