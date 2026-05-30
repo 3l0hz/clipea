@@ -14,7 +14,9 @@ import {
   ArrowUpRight,
   ShieldCheck,
   Headset,
-  Clock
+  Clock,
+  Play,
+  ArrowRight
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -76,23 +78,30 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-white/80 text-sm md:text-xl leading-relaxed font-medium px-4">
             Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
           </p>
-          <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-[290px] mx-auto sm:max-w-none">
+          <div className="flex flex-row justify-center items-center gap-5 sm:gap-6 pt-6 max-w-[340px] mx-auto sm:max-w-none">
+            {/* Botón Principal: Logra este efecto */}
             <Button 
               size="lg" 
-              className="glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto" 
-              asChild
-            >
-              <a href="#catalog">Explorar Catálogo</a>
-            </Button>
-            <Button 
-              size="lg" 
-              className="glass-button bg-black/20 text-white border-white/20 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] px-3 sm:px-8 h-12 sm:h-16 text-[11px] sm:text-lg md:text-xl font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-500 flex-1 sm:w-auto"
+              className="relative group bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-none h-12 sm:h-14 px-5 sm:px-10 text-[11px] sm:text-lg font-bold rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_35px_rgba(34,211,238,0.5)] hover:scale-[1.03] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 flex-1 sm:w-auto"
               onClick={() => {
                 const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
                 if (bulletProduct) handleViewDetails(bulletProduct);
               }}
             >
-              Logra este efecto
+              <Play size={16} fill="currentColor" className="opacity-90 group-hover:scale-110 transition-transform" />
+              <span>Logra este efecto</span>
+            </Button>
+            
+            {/* Botón Secundario: Explorar Catálogo */}
+            <Button 
+              size="lg" 
+              className="group bg-black/40 backdrop-blur-xl text-white border border-cyan-400/30 hover:border-cyan-400/60 hover:bg-black/60 h-12 sm:h-14 px-5 sm:px-10 text-[11px] sm:text-lg font-bold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 flex-1 sm:w-auto" 
+              asChild
+            >
+              <a href="#catalog">
+                <span>Explorar Catálogo</span>
+                <ArrowRight size={16} className="text-cyan-400 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
         </div>
