@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { useCart } from '@/context/CartContext';
 import { Button } from '@/components/ui/button';
@@ -31,6 +31,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const [isCheckoutExpanded, setIsCheckoutExpanded] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState<'home' | 'whatsapp'>('home');
   const [shippingCalculated, setShippingCalculated] = useState(false);
+  
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const checkoutSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isCheckoutExpanded && checkoutSectionRef.current) {
+      const timer = setTimeout(() => {
+        checkoutSectionRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isCheckoutExpanded]);
 
   const handleWhatsAppCheckout = () => {
     const message = encodeURIComponent(
@@ -41,8 +56,12 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
+  const handleStartCheckout = () => {
+    setIsCheckoutExpanded(true);
+  };
+
   return (
-    <Sheet>
+    <Sheet onOpenChange={(open) => !open && setIsCheckoutExpanded(false)}>
       <SheetTrigger asChild>
         {children}
       </SheetTrigger>
@@ -64,7 +83,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
           </SheetClose>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto custom-scrollbar">
+        <div ref={scrollAreaRef} className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth">
           <div className="p-8 space-y-6">
             {cart.length === 0 ? (
               <div className="h-full py-20 flex flex-col items-center justify-center gap-6 opacity-20">
@@ -74,7 +93,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
             ) : (
               <div className="space-y-6">
                 {/* Product List */}
-                <div className={cn("space-y-4 transition-all duration-500", isCheckoutExpanded ? "opacity-30 pointer-events-none scale-95 blur-sm" : "opacity-100")}>
+                <div className={cn(
+                  "space-y-4 transition-all duration-500 ease-in-out origin-top", 
+                  isCheckoutExpanded ? "opacity-30 pointer-events-none scale-95 blur-sm" : "opacity-100"
+                )}>
                   {cart.map((item) => (
                     <div key={item.id} className="group relative bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex gap-4 hover:bg-white/[0.05] transition-all hover:border-accent/20">
                       <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-transparent border border-white/5 shrink-0">
@@ -115,9 +137,15 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
                 {/* Advanced Checkout Section */}
                 {isCheckoutExpanded && (
-                  <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-10 py-4">
+                  <div 
+                    ref={checkoutSectionRef}
+                    className="animate-in fade-in slide-in-from-bottom-8 duration-700 space-y-10 py-4 scroll-mt-4"
+                  >
                     <button 
-                      onClick={() => setIsCheckoutExpanded(false)}
+                      onClick={() => {
+                        setIsCheckoutExpanded(false);
+                        scrollAreaRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                       className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest hover:translate-x-[-4px] transition-transform"
                     >
                       <ChevronDown className="rotate-90" size={14} /> Volver al listado
@@ -286,7 +314,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
             <div className="flex flex-col gap-3">
               {!isCheckoutExpanded && (
                 <Button 
-                  onClick={() => setIsCheckoutExpanded(true)}
+                  onClick={handleStartCheckout}
                   className="w-full h-14 rounded-2xl bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-white/90 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <CreditCard size={18} className="mr-2" /> Pagar Online
