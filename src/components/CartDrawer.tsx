@@ -150,18 +150,25 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     return SUGGESTED_DOMAINS.filter(d => d.startsWith(domain)).map(d => `${user}@${d}`);
   }, [email]);
 
+  // Thresholds for "Complete and Valid" state
+  const isNameComplete = fullName.trim().length >= 3 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
+  const isPhoneComplete = phone.length >= 7 && /^\d+$/.test(phone);
+  const isEmailComplete = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
+  const isAddressComplete = address.trim().length >= 5 && /\d/.test(address);
+
   // Validation States for Indicators
-  const isNameGreen = fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
-  const isNameRed = focusedField === 'fullName' && fullName.length > 0 && !isNameGreen;
+  // Green pulses while writing + valid so far + NOT yet complete
+  const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !isNameComplete && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
+  const isNameRed = focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameComplete;
 
-  const isPhoneGreen = phone.length >= 7 && /^\d+$/.test(phone);
-  const isPhoneRed = focusedField === 'phone' && phone.length > 0 && !isPhoneGreen;
+  const isPhoneGreen = focusedField === 'phone' && phone.length >= 1 && !isPhoneComplete && /^\d+$/.test(phone);
+  const isPhoneRed = focusedField === 'phone' && phone.length > 0 && !/^\d+$/.test(phone);
 
-  const isEmailGreen = email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
+  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isEmailComplete && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isEmailRed = (focusedField === 'email' && email.length > 0 && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email)));
 
-  const isAddressGreen = address.trim().length >= 5 && /\d/.test(address);
-  const isAddressRed = focusedField === 'address' && address.length > 0 && !isAddressGreen;
+  const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !isAddressComplete && !/[^a-zA-Z0-9\s,]/.test(address);
+  const isAddressRed = focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressComplete;
 
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
@@ -329,7 +336,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (!isGreen && !isRed) return null;
     return (
       <div className={cn(
-        "absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-indicator-breathing transition-all duration-300",
+        "absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-indicator-breathing transition-all duration-[1.8s] ease-in-out",
         isGreen ? "bg-accent shadow-[0_0_8px_rgba(142,255,127,0.6)]" : "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"
       )} />
     );
