@@ -135,8 +135,15 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   const isTempEmail = useMemo(() => {
     if (!email.includes('@')) return false;
-    const domain = email.split('@')[1];
-    return BLOCKED_DOMAINS.includes(domain?.toLowerCase());
+    const parts = email.split('@');
+    const domain = parts[1];
+    
+    // Si no hay texto después del @, no es email temporal aún
+    if (!domain) return false;
+    
+    const lowerDomain = domain.toLowerCase();
+    // Activo si el dominio actual coincide completa o parcialmente con uno bloqueado
+    return BLOCKED_DOMAINS.some(d => d.startsWith(lowerDomain));
   }, [email]);
 
   const emailSuggestions = useMemo(() => {
