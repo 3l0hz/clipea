@@ -61,7 +61,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "RM Región Metropolitana",
+  "Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
@@ -154,16 +154,38 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     const commonValid = isNameValid && isPhoneValid && isRegionValid;
 
     if (deliveryMethod === 'home-rm') {
-      return commonValid && isCommuneValid && isAddressValid;
+      const valid = commonValid && isCommuneValid && isAddressValid;
+      console.log('Validación RM:', { commonValid, isCommuneValid, isAddressValid, final: valid });
+      return valid;
     }
     if (deliveryMethod === 'home-region') {
-      return commonValid && isCommuneValid;
+      const valid = commonValid && isCommuneValid;
+      console.log('Validación Regiones:', { commonValid, isCommuneValid, final: valid });
+      return valid;
     }
     if (deliveryMethod === 'pickup') {
-      return commonValid;
+      const valid = commonValid;
+      console.log('Validación Retiro:', { commonValid, final: valid });
+      return valid;
     }
     return false;
   }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod]);
+
+  // Logs de depuración en tiempo real
+  useEffect(() => {
+    if (isCheckoutExpanded) {
+      console.log('--- ESTADO DE VALIDACIÓN ---');
+      console.log('Nombre:', isNameValid ? '✅' : '❌');
+      console.log('Teléfono:', isPhoneValid ? '✅' : '❌');
+      console.log('Email Temporal:', isTempEmail ? '❌ (Temporal detectado)' : '✅');
+      console.log('Región:', isRegionValid ? '✅ (' + region + ')' : '❌');
+      console.log('Comuna:', isCommuneValid ? '✅ (' + commune + ')' : '❌');
+      console.log('Dirección:', isAddressValid ? '✅' : '❌');
+      console.log('Método:', deliveryMethod);
+      console.log('Total:', finalTotal);
+      console.log('Botón Habilitado:', isFormValid ? '✅' : '❌');
+    }
+  }, [isCheckoutExpanded, isNameValid, isPhoneValid, isTempEmail, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod, finalTotal, isFormValid, region, commune]);
 
   const handleWhatsAppCheckout = () => {
     if (!isFormValid) return;
@@ -219,16 +241,35 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     const val = e.target.value;
     const connectors = ['de', 'del', 'la', 'las', 'los', 'y'];
     
-    // Capitalize each word respecting connectors
-    let formatted = val.split(' ').map((word, index) => {
-      if (word.length === 0) return '';
-      const lowerWord = word.toLowerCase();
-      // If it's a connector and not the first word, keep it lowercase
-      if (connectors.includes(lowerWord) && index !== 0) {
-        return lowerWord;
-      }
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join(' ');
+    // Split by comma to separate street from commune/city
+    const parts = val.split(',');
+    
+    const formattedParts = parts.map((part, partIndex) => {
+      const isAfterComma = partIndex > 0;
+      const words = part.split(' ');
+      
+      const formattedWords = words.map((word, wordIndex) => {
+        if (word.length === 0) return '';
+        const lowerWord = word.toLowerCase();
+        
+        // Rule: After comma, everything is a proper name (Commune/City)
+        if (isAfterComma) {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        
+        // Rule: Before comma (Street), connectors are lowercase except at the start
+        const firstNonEmptyIndex = words.findIndex(w => w.length > 0);
+        if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) {
+          return lowerWord;
+        }
+        
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+      
+      return formattedWords.join(' ');
+    });
+
+    let formatted = formattedParts.join(',');
 
     // Automatic comma after number: detection if user finished writing a number then a space
     // and if there's no comma already.
