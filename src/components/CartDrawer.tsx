@@ -223,6 +223,19 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     setShowEmailSuggestions(false);
   };
 
+  // Name formatting logic
+  const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    const formatted = val
+      .split(' ')
+      .map(word => {
+        if (word.length === 0) return '';
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+    setFullName(formatted);
+  };
+
   return (
     <Sheet onOpenChange={(open) => {
       if (!open) {
@@ -333,7 +346,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
                             placeholder="Ej: Juan Pérez"
                             value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
+                            onChange={handleFullNameChange}
                           />
                         </div>
                         
