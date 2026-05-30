@@ -150,61 +150,53 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     return SUGGESTED_DOMAINS.filter(d => d.startsWith(domain)).map(d => `${user}@${d}`);
   }, [email]);
 
-  // Thresholds for "Complete and Valid" state
-  const isNameComplete = fullName.trim().length >= 3 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
-  const isPhoneComplete = phone.length >= 7 && /^\d+$/.test(phone);
-  const isEmailComplete = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
-  const isAddressComplete = address.trim().length >= 5 && /\d/.test(address);
+  // Validation Logic
+  const isNameValid = fullName.trim().length >= 3 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
+  const isPhoneValid = phone.length >= 7 && /^\d+$/.test(phone);
+  const isEmailValid = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
+  const isAddressValid = address.trim().length >= 5 && /\d/.test(address);
 
-  // Validation States for Indicators
-  // Green pulses while writing + valid so far + NOT yet complete
-  const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !isNameComplete && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
-  const isNameRed = focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameComplete;
+  // Indicators Logic (Focused-based for Green, Error-based for Red)
+  // Green: Focused + Valid so far (interactive guide)
+  const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
+  const isPhoneGreen = focusedField === 'phone' && phone.length >= 1 && /^\d+$/.test(phone);
+  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
+  const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address);
 
-  const isPhoneGreen = focusedField === 'phone' && phone.length >= 1 && !isPhoneComplete && /^\d+$/.test(phone);
-  const isPhoneRed = focusedField === 'phone' && phone.length > 0 && !/^\d+$/.test(phone);
-
-  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isEmailComplete && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
-  const isEmailRed = (focusedField === 'email' && email.length > 0 && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email)));
-
-  const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !isAddressComplete && !/[^a-zA-Z0-9\s,]/.test(address);
-  const isAddressRed = focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressComplete;
+  // Red: (Focused + Clear Error) OR (Attempted submission + Invalid)
+  const isNameRed = (focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameValid) || (errors.fullName && !isNameGreen);
+  const isPhoneRed = (focusedField === 'phone' && phone.length > 0 && !/^\d+$/.test(phone)) || (errors.phone && !isPhoneGreen);
+  const isEmailRed = (focusedField === 'email' && email.length > 0 && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email))) || (errors.email && !isEmailGreen);
+  const isAddressRed = (focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressValid) || (errors.address && !isAddressGreen);
 
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
-
-  const isNameValid = fullName.trim().length >= 3;
-  const isPhoneValid = phone.trim().length >= 7;
-  const isEmailValid = email.includes('@') && !isTempEmail;
-  const isRegionValid = !!region;
-  const isCommuneValid = !!commune;
-  const isAddressValid = address.trim().length >= 5;
 
   const isFormValid = useMemo(() => {
     if (cart.length === 0) return false;
     if (isTempEmail) return false;
 
-    const commonValid = isNameValid && isPhoneValid && isEmailValid && isRegionValid;
+    const commonValid = isNameValid && isPhoneValid && isEmailValid && !!region;
 
     if (deliveryMethod === 'home-rm') {
-      return commonValid && isCommuneValid && isAddressValid;
+      return commonValid && !!commune && isAddressValid;
     }
     if (deliveryMethod === 'home-region') {
-      return commonValid && isCommuneValid;
+      return commonValid && !!commune;
     }
     if (deliveryMethod === 'pickup') {
       return commonValid;
     }
     return false;
-  }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isEmailValid, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod]);
+  }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isEmailValid, region, commune, isAddressValid, deliveryMethod]);
 
   const triggerValidation = () => {
     const newErrors: Record<string, boolean> = {};
     if (!isNameValid) newErrors.fullName = true;
     if (!isPhoneValid) newErrors.phone = true;
     if (!isEmailValid) newErrors.email = true;
-    if (!isRegionValid) newErrors.region = true;
-    if (!isCommuneValid && deliveryMethod !== 'pickup') newErrors.commune = true;
+    if (!region) newErrors.region = true;
+    if (!commune && deliveryMethod !== 'pickup') newErrors.commune = true;
     if (!isAddressValid && deliveryMethod === 'home-rm') newErrors.address = true;
     if (!deliveryMethod) newErrors.deliveryMethod = true;
 
@@ -455,9 +447,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <div className="relative">
                             <Input 
                               className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                 "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                (errors.fullName || isNameRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                isNameRed && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )} 
                               placeholder="Ej: Juan Pérez"
                               value={fullName}
@@ -465,9 +457,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               onFocus={() => setFocusedField('fullName')}
                               onBlur={() => setFocusedField(null)}
                             />
-                            <ValidationIndicator isGreen={isNameGreen} isRed={isNameRed || !!errors.fullName} />
+                            <ValidationIndicator isGreen={isNameGreen} isRed={isNameRed} />
                           </div>
-                          {errors.fullName && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                          {errors.fullName && !isNameGreen && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                         
                         <div className="grid grid-cols-1 gap-4">
@@ -489,9 +481,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               <div className="flex-1 relative">
                                 <Input 
                                   className={cn(
-                                    "w-full bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                    "w-full bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                     "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                    (errors.phone || isPhoneRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                    isPhoneRed && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                                   )} 
                                   placeholder="940628182"
                                   value={phone}
@@ -503,10 +495,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                   onFocus={() => setFocusedField('phone')}
                                   onBlur={() => setFocusedField(null)}
                                 />
-                                <ValidationIndicator isGreen={isPhoneGreen} isRed={isPhoneRed || !!errors.phone} />
+                                <ValidationIndicator isGreen={isPhoneGreen} isRed={isPhoneRed} />
                               </div>
                             </div>
-                            {(errors.phone || isPhoneRed) && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
+                            {isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
+                            {errors.phone && !isPhoneGreen && !isPhoneRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                           
                           <div ref={emailRef} className="space-y-2 relative">
@@ -514,9 +507,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <div className="relative">
                               <Input 
                                 className={cn(
-                                  "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                  "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                   "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                  (isTempEmail || isEmailRed || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
+                                  isEmailRed && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
                                   isTempEmail && "animate-pulse-red"
                                 )} 
                                 placeholder="juan@email.com"
@@ -532,7 +525,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 }}
                                 onFocus={() => setFocusedField('email')}
                               />
-                              <ValidationIndicator isGreen={isEmailGreen} isRed={isEmailRed || !!errors.email} />
+                              <ValidationIndicator isGreen={isEmailGreen} isRed={isEmailRed} />
                             </div>
                             
                             {showEmailSuggestions && emailSuggestions.length > 0 && (
@@ -551,7 +544,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
                             {isTempEmail && (
                               <Alert variant="destructive" className="mt-2 bg-destructive/10 border-destructive/20 text-destructive rounded-xl animate-in fade-in slide-in-from-top-2 flex items-center gap-2.5 py-3 px-4">
-                                <div className="flex items-center justify-center shrink-0 translate-y-[0.5px] line-height-1">
+                                <div className="flex items-center justify-center shrink-0 line-height-1">
                                   <AlertCircle size={14} className="static" />
                                 </div>
                                 <AlertDescription className="text-[10px] font-bold uppercase tracking-wider !pl-0 !mt-0 leading-none flex items-center">
@@ -559,7 +552,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 </AlertDescription>
                               </Alert>
                             )}
-                            {errors.email && !isTempEmail && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                            {errors.email && !isTempEmail && !isEmailGreen && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                           </div>
                         </div>
 
@@ -614,9 +607,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <div className="relative">
                             <Input 
                               className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                 "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                (errors.address || isAddressRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                isAddressRed && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )} 
                               placeholder="Calle, número, depto o referencia"
                               value={address}
@@ -624,9 +617,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               onFocus={() => setFocusedField('address')}
                               onBlur={() => setFocusedField(null)}
                             />
-                            <ValidationIndicator isGreen={isAddressGreen} isRed={isAddressRed || !!errors.address} />
+                            <ValidationIndicator isGreen={isAddressGreen} isRed={isAddressRed} />
                           </div>
-                          {(errors.address || isAddressRed) && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                          {isAddressRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                          {errors.address && !isAddressGreen && !isAddressRed && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                       </div>
                     </div>
