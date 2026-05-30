@@ -110,6 +110,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   
   const [showEmailSuggestions, setShowEmailSuggestions] = useState(false);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [focusedField, setFocusedField] = useState<string | null>(null);
   
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
@@ -148,6 +149,19 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (domain.length > 0 && !SUGGESTED_DOMAINS.some(d => d.startsWith(domain))) return [];
     return SUGGESTED_DOMAINS.filter(d => d.startsWith(domain)).map(d => `${user}@${d}`);
   }, [email]);
+
+  // Validation States for Indicators
+  const isNameGreen = fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
+  const isNameRed = focusedField === 'fullName' && fullName.length > 0 && !isNameGreen;
+
+  const isPhoneGreen = phone.length >= 7 && /^\d+$/.test(phone);
+  const isPhoneRed = focusedField === 'phone' && phone.length > 0 && !isPhoneGreen;
+
+  const isEmailGreen = email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
+  const isEmailRed = (focusedField === 'email' && email.length > 0 && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email)));
+
+  const isAddressGreen = address.trim().length >= 5 && /\d/.test(address);
+  const isAddressRed = focusedField === 'address' && address.length > 0 && !isAddressGreen;
 
   const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
   const finalTotal = subtotal + shippingCost;
@@ -189,22 +203,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
     setErrors(newErrors);
 
-    console.log("Validación de Formulario:");
-    console.log("- Nombre válido:", isNameValid);
-    console.log("- Teléfono válido:", isPhoneValid);
-    console.log("- Email válido:", isEmailValid);
-    console.log("- Región seleccionada:", region);
-    console.log("- Comuna válida:", isCommuneValid);
-    console.log("- Dirección válida:", isAddressValid);
-    console.log("- Método seleccionado:", deliveryMethod);
-    console.log("- Total calculado:", finalTotal);
-    console.log("- Botón habilitado:", isFormValid);
-
     const errorOrder = ['fullName', 'phone', 'email', 'region', 'commune', 'address', 'deliveryMethod'];
     const firstError = errorOrder.find(key => newErrors[key]);
     
     if (firstError) {
-      console.log("Error en campo:", firstError);
       const refs: Record<string, React.RefObject<HTMLDivElement>> = {
         fullName: nameRef,
         phone: phoneRef,
@@ -323,11 +325,22 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (formatted.trim().length >= 5) setErrors(prev => ({ ...prev, address: false }));
   };
 
+  const ValidationIndicator = ({ isGreen, isRed }: { isGreen: boolean; isRed: boolean }) => {
+    if (!isGreen && !isRed) return null;
+    return (
+      <div className={cn(
+        "absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-pulse transition-all duration-300",
+        isGreen ? "bg-accent shadow-[0_0_8px_rgba(142,255,127,0.6)]" : "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"
+      )} />
+    );
+  };
+
   return (
     <Sheet onOpenChange={(open) => {
       if (!open) {
         setIsCheckoutExpanded(false);
         setErrors({});
+        setFocusedField(null);
       }
     }}>
       <SheetTrigger asChild>
@@ -432,16 +445,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       <div className="grid gap-6">
                         <div ref={nameRef} className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
-                          <Input 
-                            className={cn(
-                              "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
-                              "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                              errors.fullName && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
-                            )} 
-                            placeholder="Ej: Juan Pérez"
-                            value={fullName}
-                            onChange={handleFullNameChange}
-                          />
+                          <div className="relative">
+                            <Input 
+                              className={cn(
+                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
+                                (errors.fullName || isNameRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                              )} 
+                              placeholder="Ej: Juan Pérez"
+                              value={fullName}
+                              onChange={handleFullNameChange}
+                              onFocus={() => setFocusedField('fullName')}
+                              onBlur={() => setFocusedField(null)}
+                            />
+                            <ValidationIndicator isGreen={isNameGreen} isRed={isNameRed || !!errors.fullName} />
+                          </div>
                           {errors.fullName && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                         
@@ -461,42 +479,54 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                   ))}
                                 </SelectContent>
                               </Select>
-                              <Input 
-                                className={cn(
-                                  "flex-1 bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
-                                  "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                  errors.phone && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
-                                )} 
-                                placeholder="940628182"
-                                value={phone}
-                                onChange={(e) => {
-                                  setPhone(e.target.value);
-                                  if (e.target.value.trim().length >= 7) setErrors(prev => ({ ...prev, phone: false }));
-                                }}
-                              />
+                              <div className="flex-1 relative">
+                                <Input 
+                                  className={cn(
+                                    "w-full bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                    "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
+                                    (errors.phone || isPhoneRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                                  )} 
+                                  placeholder="940628182"
+                                  value={phone}
+                                  onChange={(e) => {
+                                    const val = e.target.value.replace(/\D/g, '');
+                                    setPhone(val);
+                                    if (val.trim().length >= 7) setErrors(prev => ({ ...prev, phone: false }));
+                                  }}
+                                  onFocus={() => setFocusedField('phone')}
+                                  onBlur={() => setFocusedField(null)}
+                                />
+                                <ValidationIndicator isGreen={isPhoneGreen} isRed={isPhoneRed || !!errors.phone} />
+                              </div>
                             </div>
-                            {errors.phone && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                            {(errors.phone || isPhoneRed) && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Solo puedes ingresar números</p>}
                           </div>
                           
                           <div ref={emailRef} className="space-y-2 relative">
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
-                            <Input 
-                              className={cn(
-                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
-                                "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                                (isTempEmail || (errors.email && !isEmailValid)) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
-                                isTempEmail && "animate-pulse-red"
-                              )} 
-                              placeholder="juan@email.com"
-                              value={email}
-                              onChange={(e) => {
-                                setEmail(e.target.value);
-                                setShowEmailSuggestions(true);
-                                // Normal form validation error reset
-                                if (e.target.value.includes('@')) setErrors(prev => ({ ...prev, email: false }));
-                              }}
-                              onBlur={() => setTimeout(() => setShowEmailSuggestions(false), 200)}
-                            />
+                            <div className="relative">
+                              <Input 
+                                className={cn(
+                                  "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                  "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
+                                  (isTempEmail || isEmailRed || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]",
+                                  isTempEmail && "animate-pulse-red"
+                                )} 
+                                placeholder="juan@email.com"
+                                value={email}
+                                onChange={(e) => {
+                                  setEmail(e.target.value);
+                                  setShowEmailSuggestions(true);
+                                  if (e.target.value.includes('@')) setErrors(prev => ({ ...prev, email: false }));
+                                }}
+                                onBlur={() => {
+                                  setTimeout(() => setShowEmailSuggestions(false), 200);
+                                  setFocusedField(null);
+                                }}
+                                onFocus={() => setFocusedField('email')}
+                              />
+                              <ValidationIndicator isGreen={isEmailGreen} isRed={isEmailRed || !!errors.email} />
+                            </div>
                             
                             {showEmailSuggestions && emailSuggestions.length > 0 && (
                               <div className="absolute z-50 w-full mt-1 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
@@ -514,7 +544,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
                             {isTempEmail && (
                               <Alert variant="destructive" className="mt-2 bg-destructive/10 border-destructive/20 text-destructive rounded-xl animate-in fade-in slide-in-from-top-2 flex items-center gap-2.5 py-3 px-4">
-                                <div className="flex items-center justify-center shrink-0 translate-y-[0.5px]">
+                                <div className="flex items-center justify-center shrink-0 translate-y-[0.5px] line-height-1">
                                   <AlertCircle size={14} className="static" />
                                 </div>
                                 <AlertDescription className="text-[10px] font-bold uppercase tracking-wider !pl-0 !mt-0 leading-none flex items-center">
@@ -574,17 +604,22 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         </div>
                         <div ref={addressRef} className="space-y-2">
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Dirección completa</Label>
-                          <Input 
-                            className={cn(
-                              "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300",
-                              "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
-                              errors.address && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
-                            )} 
-                            placeholder="Calle, número, depto o referencia"
-                            value={address}
-                            onChange={handleAddressChange}
-                          />
-                          {errors.address && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
+                          <div className="relative">
+                            <Input 
+                              className={cn(
+                                "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-300 pr-10",
+                                "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
+                                (errors.address || isAddressRed) && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
+                              )} 
+                              placeholder="Calle, número, depto o referencia"
+                              value={address}
+                              onChange={handleAddressChange}
+                              onFocus={() => setFocusedField('address')}
+                              onBlur={() => setFocusedField(null)}
+                            />
+                            <ValidationIndicator isGreen={isAddressGreen} isRed={isAddressRed || !!errors.address} />
+                          </div>
+                          {(errors.address || isAddressRed) && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1">Información faltante</p>}
                         </div>
                       </div>
                     </div>
