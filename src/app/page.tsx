@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -15,7 +14,7 @@ import {
   ShieldCheck,
   Headset,
   Clock,
-  Play,
+  Sparkles,
   ArrowRight
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -79,7 +78,7 @@ export default function Home() {
             Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
           </p>
           <div className="flex flex-row justify-center items-center gap-5 sm:gap-6 pt-6 max-w-[340px] mx-auto sm:max-w-none">
-            {/* Botón Principal: Logra este efecto */}
+            {/* Botón Principal: Descubre el efecto */}
             <Button 
               size="lg" 
               className="relative group bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-none h-12 sm:h-14 px-5 sm:px-10 text-[11px] sm:text-lg font-bold rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_35px_rgba(34,211,238,0.5)] hover:scale-[1.03] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 flex-1 sm:w-auto"
@@ -88,8 +87,8 @@ export default function Home() {
                 if (bulletProduct) handleViewDetails(bulletProduct);
               }}
             >
-              <Play size={16} fill="currentColor" className="opacity-90 group-hover:scale-110 transition-transform" />
-              <span>Logra este efecto</span>
+              <Sparkles size={16} className="opacity-90 group-hover:scale-110 transition-transform text-white" />
+              <span>Descubre el efecto</span>
             </Button>
             
             {/* Botón Secundario: Explorar Catálogo */}
