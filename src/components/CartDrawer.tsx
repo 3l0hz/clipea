@@ -329,7 +329,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (!isGreen && !isRed) return null;
     return (
       <div className={cn(
-        "absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-pulse transition-all duration-300",
+        "absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-indicator-breathing transition-all duration-300",
         isGreen ? "bg-accent shadow-[0_0_8px_rgba(142,255,127,0.6)]" : "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"
       )} />
     );
@@ -436,7 +436,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                     <div className="space-y-8">
                       <div className="space-y-2">
                         <h3 className="text-lg font-headline font-bold text-white uppercase tracking-tighter flex items-center gap-3">
-                          <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(142,255,127,0.5)]" /> 
+                          <div className="w-2.5 h-2.5 rounded-full bg-accent animate-indicator-breathing shadow-[0_0_10px_rgba(142,255,127,0.5)]" /> 
                           Finalizar Pedido
                         </h3>
                         <p className="text-[10px] text-white/40 uppercase font-bold tracking-[0.2em]">Completa tus datos de envío</p>
