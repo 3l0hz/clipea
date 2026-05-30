@@ -28,7 +28,9 @@ import {
   Clock,
   ShieldCheck,
   Globe,
-  AlertCircle
+  AlertCircle,
+  Lock,
+  ChevronLeft
 } from 'lucide-react';
 import Image from 'next/image';
 import { WHATSAPP_NUMBER } from '@/constants/data';
@@ -315,18 +317,18 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         {children}
       </SheetTrigger>
       <SheetContent className="bg-[#050505]/95 backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
-        <SheetHeader className="p-8 border-b border-white/5 flex flex-row items-center justify-between shrink-0">
+        <SheetHeader className="p-8 border-b border-white/5 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+            <div className="w-12 h-12 rounded-2xl bg-black/40 border border-cyan-400/30 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
               <ShoppingCart size={24} strokeWidth={1.5} />
             </div>
             <div>
               <SheetTitle className="text-2xl font-headline font-bold text-white tracking-tighter">Mi Carrito</SheetTitle>
-              <p className="text-[10px] text-white/40 uppercase font-bold tracking-widest">{totalItems} productos</p>
+              <p className="text-[10px] text-white/40 uppercase font-bold tracking-widest">{totalItems} {totalItems === 1 ? 'PRODUCTO' : 'PRODUCTOS'}</p>
             </div>
           </div>
           <SheetClose asChild>
-            <button className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all flex items-center justify-center group">
+            <button className="h-10 w-10 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-white hover:border-cyan-400/50 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all flex items-center justify-center group">
               <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
             </button>
           </SheetClose>
@@ -394,16 +396,16 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         setErrors({});
                         scrollAreaRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-[0.2em] hover:translate-x-[-4px] transition-all group"
+                      className="flex items-center gap-2 h-10 px-6 rounded-xl bg-black/40 border border-cyan-400/30 text-[10px] font-bold text-accent uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:bg-black/60 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(0,229,255,0.25)] transition-all group"
                     >
-                      <ChevronDown className="rotate-90 group-hover:scale-110" size={14} /> 
-                      <span className="border-b border-accent/20 pb-0.5">Volver al listado</span>
+                      <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> 
+                      <span>Volver al listado</span>
                     </button>
 
                     <div className="space-y-8">
                       <div className="space-y-2">
                         <h3 className="text-lg font-headline font-bold text-white uppercase tracking-tighter flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" /> 
+                          <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(142,255,127,0.5)]" /> 
                           Finalizar Pedido
                         </h3>
                         <p className="text-[10px] text-white/40 uppercase font-bold tracking-[0.2em]">Completa tus datos de envío</p>
@@ -414,7 +416,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Nombre Completo</Label>
                           <Input 
                             className={cn(
-                              "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                              "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
                               errors.fullName && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                             )} 
                             placeholder="Ej: Juan Pérez"
@@ -429,7 +431,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Teléfono</Label>
                             <div className="flex gap-2">
                               <Select value={phonePrefix} onValueChange={setPhonePrefix}>
-                                <SelectTrigger className="w-[120px] bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-xs">
+                                <SelectTrigger className="w-[110px] bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-xs">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent className="bg-[#0a0a0a] border-white/10 text-white">
@@ -442,10 +444,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               </Select>
                               <Input 
                                 className={cn(
-                                  "flex-1 bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                                  "flex-1 bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
                                   errors.phone && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                                 )} 
-                                placeholder="9 1234 5678"
+                                placeholder="940628182"
                                 value={phone}
                                 onChange={(e) => {
                                   setPhone(e.target.value);
@@ -460,7 +462,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
                             <Input 
                               className={cn(
-                                "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                                "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
                                 (isTempEmail || errors.email) && "border-red-500/50 focus:border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )} 
                               placeholder="juan@email.com"
@@ -474,11 +476,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             />
                             
                             {showEmailSuggestions && emailSuggestions.length > 0 && (
-                              <div className="absolute z-50 w-full mt-1 bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                              <div className="absolute z-50 w-full mt-1 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
                                 {emailSuggestions.map((suggestion) => (
                                   <button
                                     key={suggestion}
-                                    className="w-full px-4 py-3 text-left text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5 last:border-0"
+                                    className="w-full px-4 py-3 text-left text-sm text-white/70 hover:bg-cyan-400/10 hover:text-white transition-colors border-b border-white/5 last:border-0"
                                     onClick={() => handleSelectSuggestion(suggestion)}
                                   >
                                     {suggestion}
@@ -507,10 +509,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               setErrors(prev => ({ ...prev, region: false }));
                             }}>
                               <SelectTrigger className={cn(
-                                "bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
                                 errors.region && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
-                                <SelectValue />
+                                <SelectValue placeholder="Región..." />
                               </SelectTrigger>
                               <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
                                 {REGIONS.map(reg => (
@@ -529,10 +531,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               setErrors(prev => ({ ...prev, commune: false }));
                             }}>
                               <SelectTrigger className={cn(
-                                "bg-white/5 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
+                                "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
                                 errors.commune && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
-                                <SelectValue />
+                                <SelectValue placeholder="Santiago" />
                               </SelectTrigger>
                               <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
                                 {COMMUNES.map(com => (
@@ -549,7 +551,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                           <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Dirección completa</Label>
                           <Input 
                             className={cn(
-                              "bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0",
+                              "bg-black/40 border-white/10 rounded-xl h-12 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.15)] text-sm focus:ring-0 transition-all",
                               errors.address && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                             )} 
                             placeholder="Calle, número, depto o referencia"
@@ -576,91 +578,67 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home-rm' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            deliveryMethod === 'home-rm' 
+                              ? "bg-cyan-400/5 border-cyan-400 shadow-[0_0_20px_rgba(0,229,255,0.15)]" 
+                              : "bg-black/40 border-white/5 hover:border-white/10",
                             errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-rm' && "text-accent")}>
-                              <Truck size={18} />
+                            <div className={cn("p-2.5 rounded-xl bg-white/5", deliveryMethod === 'home-rm' && "text-cyan-400 bg-cyan-400/10")}>
+                              <Truck size={20} />
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white uppercase tracking-tight">Despacho Región Metropolitana</p>
                               <p className="text-[10px] text-white/40">Valor fijo: $3.500</p>
                             </div>
                           </div>
-                          <RadioGroupItem value="home-rm" className="border-white/20" />
+                          <RadioGroupItem value="home-rm" className={cn("border-white/20", deliveryMethod === 'home-rm' && "border-cyan-400 text-cyan-400")} />
                         </Label>
 
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'pickup' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            deliveryMethod === 'pickup' 
+                              ? "bg-cyan-400/5 border-cyan-400 shadow-[0_0_20px_rgba(0,229,255,0.15)]" 
+                              : "bg-black/40 border-white/5 hover:border-white/10",
                             errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'pickup' && "text-accent")}>
-                              <MapPin size={18} />
+                            <div className={cn("p-2.5 rounded-xl bg-white/5", deliveryMethod === 'pickup' && "text-cyan-400 bg-cyan-400/10")}>
+                              <MapPin size={20} />
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white uppercase tracking-tight">Retiro / Coordinación</p>
                               <p className="text-[10px] text-white/40">Sin costo</p>
                             </div>
                           </div>
-                          <RadioGroupItem value="pickup" className="border-white/20" />
+                          <RadioGroupItem value="pickup" className={cn("border-white/20", deliveryMethod === 'pickup' && "border-cyan-400 text-cyan-400")} />
                         </Label>
 
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5",
+                            deliveryMethod === 'home-region' 
+                              ? "bg-cyan-400/5 border-cyan-400 shadow-[0_0_20px_rgba(0,229,255,0.15)]" 
+                              : "bg-black/40 border-white/5 hover:border-white/10",
                             errors.deliveryMethod && "border-red-500/30"
                           )}
                         >
                           <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-region' && "text-accent")}>
-                              <Globe size={18} />
+                            <div className={cn("p-2.5 rounded-xl bg-white/5", deliveryMethod === 'home-region' && "text-cyan-400 bg-cyan-400/10")}>
+                              <Globe size={20} />
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white uppercase tracking-tight">Envío a regiones</p>
                               <p className="text-[10px] text-white/40">Valor por coordinar</p>
                             </div>
                           </div>
-                          <RadioGroupItem value="home-region" className="border-white/20" />
+                          <RadioGroupItem value="home-region" className={cn("border-white/20", deliveryMethod === 'home-region' && "border-cyan-400 text-cyan-400")} />
                         </Label>
                       </RadioGroup>
                       {errors.deliveryMethod && <p className="text-[10px] font-bold text-red-500 uppercase tracking-widest pl-1 text-center">Selecciona un método</p>}
-
-                      {deliveryMethod === 'home-rm' && (
-                        <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in zoom-in-95 duration-500">
-                           <div className="flex items-start gap-3">
-                            <Clock size={14} className="text-accent shrink-0 mt-0.5" />
-                            <p className="text-[10px] font-bold text-white/60 uppercase leading-relaxed tracking-tight">
-                              Despachos en RM se realizan al día siguiente hábil.
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {deliveryMethod === 'home-region' && (
-                        <div className="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-2 animate-in fade-in zoom-in-95 duration-500">
-                          <p className="text-[11px] font-bold text-accent uppercase leading-relaxed tracking-widest text-center">
-                            Envío a regiones por coordinar.
-                          </p>
-                          <p className="text-[9px] font-bold text-white/40 uppercase leading-relaxed tracking-widest text-center">
-                            Cotizamos el despacho según tu ubicación.
-                          </p>
-                        </div>
-                      )}
-
-                      {deliveryMethod === 'pickup' && (
-                        <div className="p-5 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in zoom-in-95 duration-500">
-                          <p className="text-[11px] font-bold text-white/80 uppercase leading-relaxed tracking-widest text-center">
-                            Podrás coordinar retiro y detalles directamente por WhatsApp después de confirmar tu pedido.
-                          </p>
-                        </div>
-                      )}
                     </div>
                   </div>
                 )}
@@ -670,7 +648,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         {cart.length > 0 && (
-          <div className="p-8 border-t border-white/5 bg-[#080808] space-y-5 shrink-0">
+          <div className="p-8 border-t border-white/5 bg-[#080808] space-y-6 shrink-0">
             <div className="flex justify-between items-end mb-2">
               <div>
                 <p className="text-[10px] text-white/30 uppercase font-bold tracking-widest mb-1">Total a pagar</p>
@@ -678,35 +656,31 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                   ${finalTotal.toLocaleString('es-CL')}
                 </p>
               </div>
-              <p className="text-[10px] text-accent/60 font-bold uppercase tracking-widest pb-1">
-                {deliveryMethod === 'home-rm' ? "Despacho RM incluido" : deliveryMethod === 'home-region' ? "Región por coordinar" : "Retiro coordinado"}
+              <p className="text-[10px] text-accent font-bold uppercase tracking-widest pb-1.5">
+                {deliveryMethod === 'home-rm' ? "DESPACHO RM INCLUIDO" : deliveryMethod === 'home-region' ? "REGIÓN POR COORDINAR" : "RETIRO COORDINADO"}
               </p>
             </div>
 
-            <div className="flex flex-col gap-3">
-              {!isCheckoutExpanded && (
-                <Button 
-                  onClick={() => setIsCheckoutExpanded(true)}
-                  className="w-full h-14 rounded-2xl bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-white/90 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-                >
-                  <CreditCard size={18} className="mr-2" /> Pagar Online
-                </Button>
-              )}
-
+            <div className="flex flex-col gap-4">
               <Button 
                 onClick={handleWhatsAppCheckout}
                 className={cn(
                   "w-full h-14 rounded-2xl transition-all flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest",
-                  "bg-black/60 backdrop-blur-xl border border-premium-green/30 text-white hover:bg-black/80 hover:border-premium-green/50 shadow-[0_0_20px_rgba(142,255,127,0.15)] active:scale-95",
-                  (!isFormValid && isCheckoutExpanded) && "opacity-80"
+                  "bg-gradient-to-r from-blue-600 to-cyan-400 text-white shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:brightness-110 active:scale-95",
+                  (!isFormValid && isCheckoutExpanded) && "opacity-80 saturate-50"
                 )}
               >
-                <WhatsAppIcon className="w-5 h-5" /> {isCheckoutExpanded ? "Confirmar por WhatsApp" : "Comprar por WhatsApp"}
+                <WhatsAppIcon className="w-5 h-5" /> 
+                <span>Confirmar por WhatsApp</span>
               </Button>
+              
+              <div className="flex items-center justify-center gap-2">
+                <Lock size={12} className="text-white/20" />
+                <p className="text-[9px] text-white/20 uppercase font-bold tracking-[0.2em]">
+                  {isFormValid ? "Listo para confirmar tu pedido" : "Completa tus datos para habilitar el botón"}
+                </p>
+              </div>
             </div>
-            <p className="text-[9px] text-center text-white/20 uppercase font-bold tracking-[0.3em]">
-              {!isCheckoutExpanded ? "Serás redirigido para coordinar pago y envío" : isFormValid ? "Listo para confirmar tu pedido" : "Completa tus datos para habilitar el botón"}
-            </p>
           </div>
         )}
       </SheetContent>
