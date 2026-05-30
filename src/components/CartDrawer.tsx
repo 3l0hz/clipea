@@ -51,7 +51,7 @@ const BLOCKED_DOMAINS = [
   'disposablemail.com', 'getnada.com', 'fakeinbox.com'
 ];
 
-const SUGGESTED_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'icloud.com'];
+const SUGGESTED_DOMAINS = ['gmail.com', 'icloud.com', 'hotmail.com', 'outlook.com', 'yahoo.com'];
 
 const PREFIXES = [
   { label: 'CHI +56', value: '+56' },
@@ -62,7 +62,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "Metropolitana",
+  "Región Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
@@ -280,15 +280,26 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       const formattedWords = words.map((word, wordIndex) => {
         if (word.length === 0) return '';
         const lowerWord = word.toLowerCase();
+        
+        // Excepción: Después de la coma (Comuna/Ciudad), capitalizar siempre como nombre propio
         if (isAfterComma) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        
+        // En la dirección, mantener conectores en minúscula
         const firstNonEmptyIndex = words.findIndex(w => w.length > 0);
         if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) return lowerWord;
+        
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       });
       return formattedWords.join(' ');
     });
+    
     let formatted = formattedParts.join(',');
-    if (/\d+ $/.test(formatted) && !formatted.includes(',')) formatted = formatted.trim() + ', ';
+    
+    // Coma automática tras detectar numeración (ej: Calle 1234 -> Calle 1234, )
+    if (/\d+ $/.test(formatted) && !formatted.includes(',')) {
+      formatted = formatted.trim() + ', ';
+    }
+    
     setAddress(formatted);
     if (formatted.trim().length >= 5) setErrors(prev => ({ ...prev, address: false }));
   };
