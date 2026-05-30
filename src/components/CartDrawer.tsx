@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -114,6 +115,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
   const nameRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
@@ -150,19 +152,17 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     return SUGGESTED_DOMAINS.filter(d => d.startsWith(domain)).map(d => `${user}@${d}`);
   }, [email]);
 
-  // Validation Logic
   const isNameValid = fullName.trim().length >= 3 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName);
   const isPhoneValid = phone.length === 9 && /^\d+$/.test(phone);
   const isEmailValid = email.includes('@') && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isAddressValid = address.trim().length >= 5 && /\d/.test(address);
 
-  // Asst. Escritura Green Indicator Logic: Only when focused AND currently typing/valid-so-far AND NOT complete-yet
   const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName) && !isNameValid;
   const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && phone.length < 9 && /^\d+$/.test(phone);
-  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email) && !isEmailValid;
+  // Email green indicator: stays visible while focused and correct (even if complete) as a writing assistant
+  const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address) && !isAddressValid;
 
-  // Red: (Focused + Clear Error) OR (Attempted submission + Invalid)
   const isNameRed = (focusedField === 'fullName' && fullName.length > 0 && !isNameGreen && !isNameValid) || (errors.fullName && !isNameGreen && !isNameValid);
   const isPhoneRed = (focusedField === 'phone' && phone.length > 0 && !isPhoneGreen && !isPhoneValid) || (errors.phone && !isPhoneGreen && !isPhoneValid);
   const isEmailRed = (focusedField === 'email' && email.length > 0 && !isEmailGreen && !isEmailValid && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email))) || (errors.email && !isEmailGreen && !isEmailValid);
@@ -271,6 +271,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     setEmail(suggestion);
     setShowEmailSuggestions(false);
     setErrors(prev => ({ ...prev, email: false }));
+    // Keep focus in the email field and maintain the assistant indicator
+    emailInputRef.current?.focus();
+    setFocusedField('email');
   };
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -454,7 +457,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               value={fullName}
                               onChange={handleFullNameChange}
                               onFocus={() => setFocusedField('fullName')}
-                              onBlur={() => setFocusedField(null)}
+                              onBlur={() => {
+                                setTimeout(() => setFocusedField(prev => prev === 'fullName' ? null : prev), 200);
+                              }}
                             />
                             <ValidationIndicator isGreen={isNameGreen} isRed={isNameRed} />
                           </div>
@@ -496,7 +501,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                     if (val.length === 9) setErrors(prev => ({ ...prev, phone: false }));
                                   }}
                                   onFocus={() => setFocusedField('phone')}
-                                  onBlur={() => setFocusedField(null)}
+                                  onBlur={() => {
+                                    setTimeout(() => setFocusedField(prev => prev === 'phone' ? null : prev), 200);
+                                  }}
                                 />
                                 <ValidationIndicator isGreen={isPhoneGreen} isRed={isPhoneRed} />
                               </div>
@@ -510,6 +517,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</Label>
                             <div className="relative">
                               <Input 
+                                ref={emailInputRef}
                                 className={cn(
                                   "bg-black/40 border-white/10 rounded-xl h-12 text-sm transition-all duration-[300ms] pr-10",
                                   "focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
@@ -524,8 +532,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                   if (e.target.value.includes('@')) setErrors(prev => ({ ...prev, email: false }));
                                 }}
                                 onBlur={() => {
-                                  setTimeout(() => setShowEmailSuggestions(false), 200);
-                                  setFocusedField(null);
+                                  setTimeout(() => {
+                                    setShowEmailSuggestions(false);
+                                    setFocusedField(prev => prev === 'email' ? null : prev);
+                                  }, 200);
                                 }}
                                 onFocus={() => setFocusedField('email')}
                               />
@@ -618,7 +628,9 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               value={address}
                               onChange={handleAddressChange}
                               onFocus={() => setFocusedField('address')}
-                              onBlur={() => setFocusedField(null)}
+                              onBlur={() => {
+                                setTimeout(() => setFocusedField(prev => prev === 'address' ? null : prev), 200);
+                              }}
                             />
                             <ValidationIndicator isGreen={isAddressGreen} isRed={isAddressRed} />
                           </div>
