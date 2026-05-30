@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -80,7 +79,7 @@ export default function Home() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-fade-in-up">
-          <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase">
+          <Badge className="bg-[#00FF88]/10 text-[#00FF88] border-[#00FF88]/20 px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase">
             Equipamiento Premium
           </Badge>
           <h1 className="text-4xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
@@ -123,8 +122,8 @@ export default function Home() {
           <div className="md:bg-card/40 md:border md:border-white/5 md:backdrop-blur-xl md:rounded-[24px] bg-[#031225]/80 backdrop-blur-xl border border-white/5 rounded-[24px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
               <div className="flex items-center gap-4 md:justify-start">
-                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
-                  <Truck className="text-accent" size={isMobile ? 18 : 24} />
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-[#00FF88]/5 flex items-center justify-center shrink-0 border border-[#00FF88]/10 md:border-none">
+                  <Truck className="text-[#00FF88]" size={isMobile ? 18 : 24} />
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em]">Envíos a todo Chile</h3>
@@ -133,8 +132,8 @@ export default function Home() {
               </div>
               
               <div className="flex items-center gap-4 md:justify-center border-y border-white/5 py-4 md:py-0 md:border-none">
-                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
-                  <ShieldCheck className="text-accent" size={isMobile ? 18 : 24} />
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-[#00FF88]/5 flex items-center justify-center shrink-0 border border-[#00FF88]/10 md:border-none">
+                  <ShieldCheck className="text-[#00FF88]" size={isMobile ? 18 : 24} />
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em]">Garantía Asegurada</h3>
@@ -143,8 +142,8 @@ export default function Home() {
               </div>
 
               <div className="flex items-center gap-4 md:justify-end">
-                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-accent/5 flex items-center justify-center shrink-0 border border-accent/10 md:border-none">
-                  <Zap className="text-accent" size={isMobile ? 18 : 24} />
+                <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-[#00FF88]/5 flex items-center justify-center shrink-0 border border-[#00FF88]/10 md:border-none">
+                  <Zap className="text-[#00FF88]" size={isMobile ? 18 : 24} />
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-[11px] md:text-sm uppercase tracking-[0.1em]">Atención Personalizada</h3>
@@ -179,7 +178,7 @@ export default function Home() {
                 <div key={cat.label} id={categoryId} className="space-y-12 md:space-y-16 scroll-mt-32">
                   <div className="space-y-8 max-w-5xl">
                     <div className="flex items-center gap-4">
-                      <div className="h-[2px] w-12 bg-accent shadow-[0_0_10px_rgba(0,217,255,0.5)]" />
+                      <div className="h-[2px] w-12 bg-[#00D9FF] shadow-[0_0_10px_rgba(0,217,255,0.5)]" />
                       <h3 className="text-3xl md:text-5xl font-headline font-bold text-white uppercase tracking-tight">
                         {cat.label}
                       </h3>
@@ -198,8 +197,8 @@ export default function Home() {
                             className={cn(
                               "px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap border",
                               isActive 
-                                ? "bg-accent text-black border-accent shadow-[0_0_20px_rgba(0,217,255,0.4)]" 
-                                : "bg-white/5 text-white/40 border-white/10 hover:border-white/30 hover:text-white"
+                                ? "bg-[#00D9FF] text-black border-[#00D9FF] shadow-[0_0_20px_rgba(0,217,255,0.4)]" 
+                                : "bg-white/5 text-white/40 border-white/10 hover:border-[#00D9FF] hover:text-white"
                             )}
                           >
                             {sub}
@@ -230,7 +229,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-24 bg-[#020817] border-t border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#00D9FF]/10 blur-[120px] pointer-events-none rounded-full" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 mb-24">
@@ -238,7 +237,7 @@ export default function Home() {
             {/* Columna 1: Marca y Redes */}
             <div className="space-y-10">
               <a href="#home" className="text-4xl font-headline font-bold tracking-tighter text-white group w-fit">
-                clipea<span className="text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,217,255,0.5)] transition-all duration-500">.</span>
+                clipea<span className="text-[#00D9FF] group-hover:drop-shadow-[0_0_8px_rgba(0,217,255,0.5)] transition-all duration-500">.</span>
               </a>
               <p className="text-muted-foreground text-[12px] md:text-[13px] leading-[1.8] max-w-[320px] uppercase font-bold tracking-[0.2em] opacity-70">
                 Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
@@ -247,14 +246,14 @@ export default function Home() {
                 <a 
                   href="https://instagram.com/clipea.cl" 
                   target="_blank"
-                  className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social"
+                  className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-[#00FF88] hover:border-[#00FF88]/30 hover:bg-[#00FF88]/5 group/social"
                 >
                   <Instagram className="w-5 h-5 group-hover/social:scale-110 transition-transform" />
                 </a>
                 <a 
                   href="https://tiktok.com/@clipea.cl" 
                   target="_blank"
-                  className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 group/social"
+                  className="relative w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center text-muted-foreground transition-all duration-500 hover:text-[#00FF88] hover:border-[#00FF88]/30 hover:bg-[#00FF88]/5 group/social"
                 >
                   <svg className="w-5 h-5 group-hover/social:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1 .05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
@@ -274,7 +273,7 @@ export default function Home() {
                   { icon: Clock, text: "Atención postventa" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-5 group cursor-default">
-                    <div className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center text-accent bg-accent/5 group-hover:border-accent/40 transition-all duration-700">
+                    <div className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center text-[#00FF88] bg-[#00FF88]/5 group-hover:border-[#00FF88]/40 transition-all duration-700">
                       <item.icon size={18} strokeWidth={1.5} />
                     </div>
                     <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/60 group-hover:text-white transition-colors">{item.text}</span>
@@ -296,7 +295,7 @@ export default function Home() {
                   <button 
                     key={link.type}
                     onClick={() => openLegalModal(link.type)}
-                    className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-accent transition-all text-left w-fit flex items-center gap-2 group"
+                    className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-[#00FF88] transition-all text-left w-fit flex items-center gap-2 group"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                     {link.label}
@@ -312,8 +311,8 @@ export default function Home() {
                 © 2026 CLIPEA CHILE. TODOS LOS DERECHOS RESERVADOS.
               </p>
               <div className="flex items-center gap-6">
-                <button onClick={() => openLegalModal('privacidad')} className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-accent transition-colors">Privacidad</button>
-                <button onClick={() => openLegalModal('terminos')} className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-accent transition-colors">Términos</button>
+                <button onClick={() => openLegalModal('privacidad')} className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-[#00D9FF] transition-colors">Privacidad</button>
+                <button onClick={() => openLegalModal('terminos')} className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-[#00D9FF] transition-colors">Términos</button>
               </div>
             </div>
             <div className="flex items-center gap-8">
@@ -353,7 +352,7 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
         <div className="space-y-6">
           <p>En Clipea, nos esforzamos por ofrecer productos de la más alta calidad para tus aventuras. Si no estás satisfecho con tu compra, aquí tienes nuestra política de devoluciones:</p>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Condiciones para Devolución</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Condiciones para Devolución</h5>
             <ul className="list-disc pl-5 space-y-2 text-sm text-white/70">
               <li>El plazo para solicitar una devolución o cambio es de 10 días corridos desde la recepción del producto.</li>
               <li>El producto debe estar sin uso, en perfectas condiciones y con todos sus accesorios originales.</li>
@@ -361,7 +360,7 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
             </ul>
           </div>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Proceso</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Proceso</h5>
             <p className="text-sm text-white/70">Para iniciar el proceso, debes contactarnos vía WhatsApp adjuntando tu boleta o comprobante de compra. Una vez recibido el producto en nuestras instalaciones, realizaremos una revisión técnica antes de aprobar el reembolso o cambio.</p>
           </div>
           <p className="text-[10px] italic text-white/40">Exclusiones: Daños por mal uso, productos incompletos o manipulados fuera de los estándares de fábrica.</p>
@@ -374,11 +373,11 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
         <div className="space-y-6">
           <p>Al acceder y utilizar el sitio web de Clipea, aceptas cumplir con los siguientes términos y condiciones de uso:</p>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Uso del Sitio</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Uso del Sitio</h5>
             <p className="text-sm text-white/70">El uso de este sitio web es exclusivo para la visualización de catálogo y coordinación de compras de accesorios para cámaras deportivas. La propiedad intelectual de los diseños y contenidos pertenece a Clipea Chile.</p>
           </div>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Proceso de Compra</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Proceso de Compra</h5>
             <ul className="list-disc pl-5 space-y-2 text-sm text-white/70">
               <li>Los precios están expresados en pesos chilenos (CLP).</li>
               <li>La disponibilidad de stock se confirma al momento de la coordinación vía WhatsApp.</li>
@@ -395,7 +394,7 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
         <div className="space-y-6">
           <p>Realizamos despachos a todo el territorio nacional con los mejores estándares de seguridad para tus accesorios.</p>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Métodos de Despacho</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Métodos de Despacho</h5>
             <ul className="list-disc pl-5 space-y-2 text-sm text-white/70">
               <li><strong>Región Metropolitana:</strong> Contamos con una tarifa plana de $3.500 para la mayoría de las comunas, entregando en plazos de 24 a 48 horas hábiles.</li>
               <li><strong>Regiones:</strong> Envíos por pagar a través de Starken, BlueExpress o Chilexpress. El costo se coordina según el peso y dimensiones del pedido.</li>
@@ -413,12 +412,12 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
           <p>¿Tienes dudas sobre compatibilidad o tu pedido? Estamos para ayudarte.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h5 className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2">WhatsApp Directo</h5>
+              <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-[10px] mb-2">WhatsApp Directo</h5>
               <p className="text-lg font-headline font-bold text-white">+56 9 4062 8182</p>
               <p className="text-[10px] text-white/40 mt-1">Atención personalizada de Lunes a Sábado.</p>
             </div>
             <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h5 className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2">Redes Sociales</h5>
+              <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-[10px] mb-2">Redes Sociales</h5>
               <p className="text-sm text-white/70">@clipea.cl en Instagram y TikTok.</p>
             </div>
           </div>
@@ -432,11 +431,11 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
         <div className="space-y-6">
           <p>En Clipea, valoramos y protegemos la privacidad de nuestros clientes.</p>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Uso de Datos</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Uso de Datos</h5>
             <p className="text-sm text-white/70">Los datos recolectados (Nombre, Teléfono, Correo, Dirección) son utilizados exclusivamente para gestionar tu compra, coordinar el despacho y ofrecerte soporte postventa.</p>
           </div>
           <div className="space-y-4">
-            <h5 className="text-accent font-bold uppercase tracking-widest text-xs">Seguridad</h5>
+            <h5 className="text-[#00D9FF] font-bold uppercase tracking-widest text-xs">Seguridad</h5>
             <p className="text-sm text-white/70">No vendemos ni compartimos tus datos personales con terceros para fines publicitarios. Puedes solicitar la rectificación o eliminación de tus datos en cualquier momento a través de nuestros canales de contacto.</p>
           </div>
         </div>
@@ -461,7 +460,7 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl bg-[#031225] border border-accent/20 text-white backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.8)] p-0 rounded-[32px] overflow-hidden">
+      <DialogContent className="max-w-2xl bg-[#031225] border border-[#00D9FF]/20 text-white backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.8)] p-0 rounded-[32px] overflow-hidden">
         <DialogHeader className="p-8 border-b border-white/5 flex flex-row items-center justify-between">
           <DialogTitle className="text-2xl font-headline font-bold uppercase tracking-tighter text-white">
             {activeContent?.title}
@@ -480,7 +479,7 @@ function LegalModals({ isOpen, onClose, type }: { isOpen: boolean, onClose: () =
         <div className="p-6 bg-black/20 border-t border-white/5 flex justify-end">
           <Button 
             onClick={onClose}
-            className="rounded-xl bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-black transition-all font-bold uppercase tracking-widest text-[10px] px-6"
+            className="rounded-xl bg-[#00D9FF]/10 border border-[#00D9FF]/30 text-[#00D9FF] hover:bg-[#00D9FF] hover:text-black transition-all font-bold uppercase tracking-widest text-[10px] px-6"
           >
             Entendido
           </Button>

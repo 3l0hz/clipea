@@ -27,6 +27,8 @@
 
     /* Clipea Cian Accent */
     --premium-cian: 189 100% 50%;
+    /* Clipea Green Support */
+    --accent-green: 153 100% 50%; /* #00FF88 */
   }
 
   html {
@@ -227,4 +229,23 @@
 .premium-led-button:hover {
   background-image: linear-gradient(rgba(2, 8, 23, 0.7), rgba(2, 8, 23, 0.7)), linear-gradient(135deg, #2563EB, #67E8F9) !important;
   box-shadow: 0 0 30px rgba(0, 217, 255, 0.35), 0 0 15px rgba(26, 115, 255, 0.25) !important;
+}
+
+/* Validation Indicator Breathing */
+@keyframes indicator-breathing {
+  0%, 100% { opacity: 0.4; }
+  40%, 60% { opacity: 1; }
+}
+.animate-indicator-breathing {
+  animation: indicator-breathing 1.8s ease-in-out infinite;
+}
+
+/* Pulse Red for Errors */
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.animate-pulse-red {
+  animation: pulse-red 1.5s infinite;
 }

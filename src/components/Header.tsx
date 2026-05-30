@@ -37,7 +37,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
         {/* Logo */}
         <a href="#home" className="relative z-10 text-[28px] font-headline font-bold tracking-tighter text-white group shrink-0">
-          clipea<span className="text-accent">.</span>
+          clipea<span className="text-[#00D9FF]">.</span>
         </a>
 
         {/* Desktop Nav */}
@@ -48,7 +48,7 @@ export const Header = () => {
               href={link.href}
               className={cn(
                 "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 whitespace-nowrap",
-                link.label === 'PROMO' ? "text-accent" : "text-white/50 hover:text-white"
+                link.label === 'PROMO' ? "text-[#00FF88]" : "text-white/50 hover:text-[#00FF88]"
               )}
             >
               {link.label}
@@ -59,10 +59,10 @@ export const Header = () => {
         {/* Right Section */}
         <div className="flex items-center gap-4 md:gap-6 shrink-0 relative z-10">
           <CartDrawer>
-            <button className="relative text-white/80 hover:text-accent transition-colors duration-300 group">
+            <button className="relative text-white/80 hover:text-[#00D9FF] transition-colors duration-300 group">
               <ShoppingCart size={22} strokeWidth={2} />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-accent text-black text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.5)]">
+                <span className="absolute -top-2 -right-2 bg-[#00D9FF] text-black text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.5)]">
                   {totalItems}
                 </span>
               )}
@@ -71,13 +71,13 @@ export const Header = () => {
 
           <Sheet>
             <SheetTrigger asChild>
-              <button className="text-white/80 hover:text-accent transition-colors duration-300">
+              <button className="text-white/80 hover:text-[#00D9FF] transition-colors duration-300">
                 <Menu size={24} strokeWidth={2} />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#020817]/98 backdrop-blur-3xl border-white/5 w-full p-0 flex flex-col">
               <div className="flex justify-between items-center px-8 py-8 border-b border-white/5">
-                <span className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-accent">.</span></span>
+                <span className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-[#00D9FF]">.</span></span>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" className="text-white/70 hover:text-white transition-all">
                     <X size={26} strokeWidth={1.5} />
@@ -95,7 +95,7 @@ export const Header = () => {
                           href={link.href} 
                           className={cn(
                             "text-3xl font-headline font-bold transition-all duration-500 hover:translate-x-2",
-                            link.label === 'PROMO' ? "text-accent" : "text-white/60 hover:text-white"
+                            link.label === 'PROMO' ? "text-[#00FF88]" : "text-white/60 hover:text-[#00FF88]"
                           )}
                         >
                           {link.label}
