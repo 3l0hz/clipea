@@ -50,7 +50,7 @@ export default function Home() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-[75vh] md:h-[85vh] min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -69,11 +69,11 @@ export default function Home() {
           <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
             Equipamiento para Aventuras
           </Badge>
-          <h1 className="text-5xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
+          <h1 className="text-4xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
             Accesorios para <br/>
             <span className="text-gradient">cámaras deportivas</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-white/80 md:text-xl leading-relaxed font-medium">
+          <p className="max-w-2xl mx-auto text-white/80 text-sm md:text-xl leading-relaxed font-medium px-4">
             Accesorios para cámaras deportivas, creación de contenido y gadgets de uso diario.
           </p>
           <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 pt-4 max-w-[290px] mx-auto sm:max-w-none">
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Bar */}
-      <section className="relative z-20 md:bg-card md:border-y md:border-border md:py-8 py-4 -mt-12 md:mt-0">
+      <section className="relative z-20 md:bg-card md:border-y md:border-border md:py-8 py-4 -mt-16 md:mt-0">
         <div className="container mx-auto px-4">
           <div className="md:bg-transparent md:border-none md:p-0 md:rounded-none bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[24px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:shadow-none">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
