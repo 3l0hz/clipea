@@ -61,7 +61,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "Región Metropolitana",
+  "Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
