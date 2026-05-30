@@ -11,16 +11,15 @@ import {
   Plus, 
   Trash2, 
   X, 
-  ShoppingBag, 
   ShoppingCart, 
   CreditCard, 
   Truck, 
   MessageSquare, 
   ChevronDown, 
-  ChevronUp,
   MapPin,
   Clock,
-  ShieldCheck
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
 import Image from 'next/image';
 import { WHATSAPP_NUMBER } from '@/constants/data';
@@ -29,8 +28,7 @@ import { cn } from '@/lib/utils';
 export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const { cart, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
   const [isCheckoutExpanded, setIsCheckoutExpanded] = useState(false);
-  const [deliveryMethod, setDeliveryMethod] = useState<'home' | 'whatsapp'>('home');
-  const [shippingCalculated, setShippingCalculated] = useState(false);
+  const [deliveryMethod, setDeliveryMethod] = useState<'home-rm' | 'home-region' | 'pickup'>('home-rm');
   
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
@@ -47,11 +45,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isCheckoutExpanded]);
 
+  const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
+  const finalTotal = subtotal + shippingCost;
+
   const handleWhatsAppCheckout = () => {
+    const shippingText = deliveryMethod === 'home-rm' 
+      ? `\nEnvío: Región Metropolitana ($3.500)`
+      : deliveryMethod === 'home-region'
+      ? `\nEnvío: Regiones (Por coordinar)`
+      : `\nEnvío: Retiro / Coordinación (Sin costo)`;
+
     const message = encodeURIComponent(
       `Hola, quiero realizar el siguiente pedido:\n\n` +
       cart.map(item => `- ${item.name} (x${item.quantity}): ${item.price}`).join('\n') +
-      `\n\n*Total a pagar: $${subtotal.toLocaleString('es-CL')}*`
+      shippingText +
+      `\n\n*Total a pagar: $${finalTotal.toLocaleString('es-CL')}*`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
@@ -92,7 +100,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
               </div>
             ) : (
               <div className="space-y-6">
-                {/* Product List */}
                 <div className={cn(
                   "space-y-4 transition-all duration-500 ease-in-out origin-top", 
                   isCheckoutExpanded ? "opacity-30 pointer-events-none scale-95 blur-sm" : "opacity-100"
@@ -135,7 +142,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                   ))}
                 </div>
 
-                {/* Advanced Checkout Section */}
                 {isCheckoutExpanded && (
                   <div 
                     ref={checkoutSectionRef}
@@ -151,7 +157,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       <ChevronDown className="rotate-90" size={14} /> Volver al listado
                     </button>
 
-                    {/* Delivery Data */}
                     <div className="space-y-6">
                       <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent" /> Datos de Entrega
@@ -188,7 +193,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       </div>
                     </div>
 
-                    {/* Delivery Method */}
                     <div className="space-y-6">
                       <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent" /> Método de Entrega
@@ -197,68 +201,81 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                            deliveryMethod === 'home-rm' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
                           )}
                         >
                           <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home' && "text-accent")}>
+                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-rm' && "text-accent")}>
                               <Truck size={18} />
                             </div>
                             <div>
-                              <p className="text-xs font-bold text-white uppercase tracking-tight">Envío a domicilio</p>
-                              <p className="text-[10px] text-white/40">Despacho vía Starken o BlueExpress</p>
+                              <p className="text-xs font-bold text-white uppercase tracking-tight">Despacho Región Metropolitana</p>
+                              <p className="text-[10px] text-white/40">Valor fijo $3.500</p>
                             </div>
                           </div>
-                          <RadioGroupItem value="home" className="border-white/20" />
+                          <RadioGroupItem value="home-rm" className="border-white/20" />
                         </Label>
 
                         <Label
                           className={cn(
                             "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'whatsapp' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
                           )}
                         >
                           <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'whatsapp' && "text-accent")}>
+                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-region' && "text-accent")}>
+                              <Globe size={18} />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white uppercase tracking-tight">Envío a regiones</p>
+                              <p className="text-[10px] text-white/40">Valor por coordinar</p>
+                            </div>
+                          </div>
+                          <RadioGroupItem value="home-region" className="border-white/20" />
+                        </Label>
+
+                        <Label
+                          className={cn(
+                            "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
+                            deliveryMethod === 'pickup' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                          )}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'pickup' && "text-accent")}>
                               <MapPin size={18} />
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white uppercase tracking-tight">Retiro / Coordinación</p>
-                              <p className="text-[10px] text-white/40">Acuerda retiro o envío directo</p>
+                              <p className="text-[10px] text-white/40">Sin costo</p>
                             </div>
                           </div>
-                          <RadioGroupItem value="whatsapp" className="border-white/20" />
+                          <RadioGroupItem value="pickup" className="border-white/20" />
                         </Label>
                       </RadioGroup>
 
-                      {deliveryMethod === 'home' ? (
-                        <div className="space-y-4 animate-in fade-in duration-500">
-                          <div className="p-4 bg-white/5 rounded-2xl border border-white/5 space-y-3">
-                            <div className="flex justify-between items-center">
-                              <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Costo de envío</span>
-                              <Button 
-                                variant="ghost" 
-                                size="sm" 
-                                onClick={() => setShippingCalculated(true)}
-                                className="h-7 text-[9px] font-bold text-accent border border-accent/20 hover:bg-accent/10 px-3 rounded-lg"
-                              >
-                                {shippingCalculated ? "RECALCULAR" : "CALCULAR ENVÍO"}
-                              </Button>
-                            </div>
-                            {shippingCalculated && (
-                              <p className="text-lg font-headline font-bold text-white tracking-tighter">
-                                $4.500 <span className="text-[10px] text-white/20 uppercase font-medium ml-2 tracking-tight">(Valor estimado)</span>
-                              </p>
-                            )}
-                          </div>
-                          <div className="flex items-start gap-3 opacity-60">
+                      {deliveryMethod === 'home-rm' && (
+                        <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in duration-500">
+                           <div className="flex items-start gap-3">
                             <Clock size={14} className="text-accent shrink-0 mt-0.5" />
                             <p className="text-[10px] font-bold text-white/60 uppercase leading-relaxed tracking-tight">
-                              Los envíos se realizan al día siguiente hábil luego de confirmada la compra.
+                              Despachos en RM se realizan al día siguiente hábil.
                             </p>
                           </div>
                         </div>
-                      ) : (
+                      )}
+
+                      {deliveryMethod === 'home-region' && (
+                        <div className="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-2 animate-in fade-in duration-500">
+                          <p className="text-[11px] font-bold text-accent uppercase leading-relaxed tracking-widest text-center">
+                            Envío a regiones por coordinar.
+                          </p>
+                          <p className="text-[9px] font-bold text-white/40 uppercase leading-relaxed tracking-widest text-center">
+                            Cotizamos el despacho según tu ubicación.
+                          </p>
+                        </div>
+                      )}
+
+                      {deliveryMethod === 'pickup' && (
                         <div className="p-5 bg-accent/5 rounded-2xl border border-accent/20 animate-in fade-in duration-500">
                           <p className="text-[11px] font-bold text-white/80 uppercase leading-relaxed tracking-widest text-center">
                             Podrás coordinar retiro y detalles directamente por WhatsApp después de confirmar tu pedido.
@@ -267,8 +284,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                       )}
                     </div>
 
-                    {/* Payment Gateway Placeholder */}
-                    {deliveryMethod === 'home' && (
+                    {(deliveryMethod === 'home-rm') && (
                       <div className="space-y-6 pt-4 animate-in slide-in-from-bottom-4 duration-700">
                         <div className="relative group overflow-hidden bg-white/[0.03] border border-white/10 rounded-[24px] p-6 space-y-4">
                           <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent opacity-50" />
@@ -303,11 +319,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
               <div>
                 <p className="text-[10px] text-white/30 uppercase font-bold tracking-widest mb-1">Total a pagar</p>
                 <p className="text-3xl font-headline font-bold text-white tracking-tighter">
-                  ${(subtotal + (shippingCalculated && deliveryMethod === 'home' ? 4500 : 0)).toLocaleString('es-CL')}
+                  ${finalTotal.toLocaleString('es-CL')}
                 </p>
               </div>
               <p className="text-[10px] text-accent/60 uppercase font-bold tracking-widest pb-1">
-                {deliveryMethod === 'home' ? "Envío por pagar" : "Retiro coordinado"}
+                {deliveryMethod === 'home-rm' ? "Envío RM incluido" : deliveryMethod === 'home-region' ? "Región por coordinar" : "Retiro coordinado"}
               </p>
             </div>
 
@@ -325,11 +341,11 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 onClick={handleWhatsAppCheckout}
                 className={cn(
                   "w-full h-14 rounded-2xl transition-all flex items-center justify-center gap-3",
-                  isCheckoutExpanded && deliveryMethod === 'home' 
+                  isCheckoutExpanded && deliveryMethod === 'home-rm' 
                     ? "bg-white/5 border border-white/10 text-white/40 cursor-not-allowed opacity-50" 
                     : "glass-button bg-accent text-black font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-95 glass-reflective-button-edge shadow-[0_0_30px_rgba(142,255,127,0.3)]"
                 )}
-                disabled={isCheckoutExpanded && deliveryMethod === 'home'}
+                disabled={isCheckoutExpanded && deliveryMethod === 'home-rm'}
               >
                 <MessageSquare size={18} /> {isCheckoutExpanded ? "Confirmar por WhatsApp" : "Comprar por WhatsApp"}
               </Button>
