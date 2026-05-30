@@ -1,4 +1,3 @@
-
 'use client';
 import { Product } from '@/types/store';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogClose } from '@/components/ui/dialog';
@@ -256,7 +255,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
             <div className="mt-auto p-6 md:p-10 bg-black/20 backdrop-blur-3xl border-t border-white/5 space-y-4">
               <Button 
                 onClick={handleAddToCart}
-                className="w-full h-14 md:h-16 rounded-2xl text-base font-bold flex items-center justify-center gap-4 transition-all duration-500 premium-liquid-glass-button bg-gradient-to-r from-cyan-400/10 to-accent/10 border border-cyan-400/30 hover:border-cyan-400/60 shadow-[0_0_20px_rgba(103,232,249,0.15)] group"
+                className="w-full h-14 md:h-16 rounded-2xl text-base font-bold flex items-center justify-center gap-4 transition-all duration-500 premium-led-button group"
               >
                 <ShoppingCart size={20} strokeWidth={2.5} className="text-cyan-400 group-hover:scale-110 transition-transform" />
                 <span className="tracking-[0.15em] uppercase font-black text-white">Añadir al Carrito</span>

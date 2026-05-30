@@ -437,6 +437,21 @@
   z-index: 5;
 }
 
+/* PREMIUM LED BUTTON - BLUE TO CYAN GRADIENT BORDER */
+.premium-led-button {
+  @apply relative overflow-hidden bg-black/40 backdrop-blur-2xl text-white transition-all duration-500 ease-out;
+  border: 1.5px solid transparent !important;
+  background-image: linear-gradient(rgba(5, 8, 16, 0.8), rgba(5, 8, 16, 0.8)), linear-gradient(135deg, #2563eb, #22d3ee) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.2), 0 0 10px rgba(34, 211, 238, 0.1) !important;
+}
+
+.premium-led-button:hover {
+  background-image: linear-gradient(rgba(5, 8, 16, 0.7), rgba(5, 8, 16, 0.7)), linear-gradient(135deg, #3b82f6, #67e8f9) !important;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.35), 0 0 15px rgba(34, 211, 238, 0.25) !important;
+}
+
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent/80 to-gray-500;
 }
