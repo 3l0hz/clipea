@@ -53,7 +53,7 @@ const BLOCKED_DOMAINS = [
 const SUGGESTED_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'icloud.com'];
 
 const PREFIXES = [
-  { label: 'CHI +56 9', value: '+56 9' },
+  { label: 'CHI +56', value: '+56' },
   { label: 'PER +51', value: '+51' },
   { label: 'VEN +58', value: '+58' },
   { label: 'ARG +54', value: '+54' },
@@ -61,7 +61,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "Metropolitana",
+  "RM Región Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
@@ -165,28 +165,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     return false;
   }, [cart.length, isTempEmail, isNameValid, isPhoneValid, isRegionValid, isCommuneValid, isAddressValid, deliveryMethod]);
 
-  // Debug Logs
-  useEffect(() => {
-    if (isCheckoutExpanded) {
-      console.log('--- Validación Checkout ---');
-      console.log('Nombre válido:', isNameValid);
-      console.log('Teléfono válido:', isPhoneValid);
-      console.log('Email temporal:', isTempEmail);
-      console.log('Región:', region);
-      console.log('Comuna válida:', isCommuneValid);
-      console.log('Dirección válida:', isAddressValid);
-      console.log('Método:', deliveryMethod);
-      console.log('Total:', finalTotal);
-      console.log('Botón habilitado:', isFormValid);
-      if (!isFormValid) {
-        if (!isNameValid) console.log('Falla: Nombre demasiado corto');
-        if (!isPhoneValid) console.log('Falla: Teléfono inválido');
-        if (deliveryMethod === 'home-rm' && !isAddressValid) console.log('Falla: Dirección requerida para RM');
-        if (deliveryMethod !== 'pickup' && !isCommuneValid) console.log('Falla: Comuna requerida');
-      }
-    }
-  }, [isCheckoutExpanded, isNameValid, isPhoneValid, isTempEmail, region, isCommuneValid, isAddressValid, deliveryMethod, isFormValid, finalTotal]);
-
   const handleWhatsAppCheckout = () => {
     if (!isFormValid) return;
 
@@ -234,6 +212,31 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       })
       .join(' ');
     setFullName(formatted);
+  };
+
+  // Address formatting logic
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    const connectors = ['de', 'del', 'la', 'las', 'los', 'y'];
+    
+    // Capitalize each word respecting connectors
+    let formatted = val.split(' ').map((word, index) => {
+      if (word.length === 0) return '';
+      const lowerWord = word.toLowerCase();
+      // If it's a connector and not the first word, keep it lowercase
+      if (connectors.includes(lowerWord) && index !== 0) {
+        return lowerWord;
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
+
+    // Automatic comma after number: detection if user finished writing a number then a space
+    // and if there's no comma already.
+    if (/\d+ $/.test(formatted) && !formatted.includes(',')) {
+      formatted = formatted.trim() + ', ';
+    }
+
+    setAddress(formatted);
   };
 
   return (
@@ -454,7 +457,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             className="bg-white/5 border-white/10 rounded-xl h-12 focus:border-accent/50 text-sm focus:ring-0" 
                             placeholder="Calle, número, depto o referencia"
                             value={address}
-                            onChange={(e) => setAddress(e.target.value)}
+                            onChange={handleAddressChange}
                           />
                         </div>
                       </div>
