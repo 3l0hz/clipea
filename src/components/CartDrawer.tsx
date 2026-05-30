@@ -61,7 +61,7 @@ const PREFIXES = [
 ];
 
 const REGIONS = [
-  "Metropolitana",
+  "Región Metropolitana",
   "Arica y Parinacota",
   "Tarapacá",
   "Antofagasta",
@@ -392,28 +392,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white uppercase tracking-tight">Despacho Región Metropolitana</p>
-                              <p className="text-[10px] text-white/40">Valor fijo $3.500</p>
+                              <p className="text-[10px] text-white/40">Valor fijo: $3.500</p>
                             </div>
                           </div>
                           <RadioGroupItem value="home-rm" className="border-white/20" />
-                        </Label>
-
-                        <Label
-                          className={cn(
-                            "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
-                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
-                          )}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-region' && "text-accent")}>
-                              <Globe size={18} />
-                            </div>
-                            <div>
-                              <p className="text-xs font-bold text-white uppercase tracking-tight">Envío a regiones</p>
-                              <p className="text-[10px] text-white/40">Valor por coordinar</p>
-                            </div>
-                          </div>
-                          <RadioGroupItem value="home-region" className="border-white/20" />
                         </Label>
 
                         <Label
@@ -432,6 +414,24 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             </div>
                           </div>
                           <RadioGroupItem value="pickup" className="border-white/20" />
+                        </Label>
+
+                        <Label
+                          className={cn(
+                            "flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer",
+                            deliveryMethod === 'home-region' ? "bg-accent/5 border-accent/40" : "bg-white/5 border-white/5"
+                          )}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className={cn("p-2 rounded-lg bg-white/5", deliveryMethod === 'home-region' && "text-accent")}>
+                              <Globe size={18} />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white uppercase tracking-tight">Envío a regiones</p>
+                              <p className="text-[10px] text-white/40">Valor por coordinar</p>
+                            </div>
+                          </div>
+                          <RadioGroupItem value="home-region" className="border-white/20" />
                         </Label>
                       </RadioGroup>
 
@@ -504,8 +504,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                   ${finalTotal.toLocaleString('es-CL')}
                 </p>
               </div>
-              <p className="text-[10px] text-accent/60 uppercase font-bold tracking-widest pb-1">
-                {deliveryMethod === 'home-rm' ? "Envío RM incluido" : deliveryMethod === 'home-region' ? "Región por coordinar" : "Retiro coordinado"}
+              <p className="text-[10px] text-accent/60 font-bold uppercase tracking-widest pb-1">
+                {deliveryMethod === 'home-rm' ? "Despacho RM incluido" : deliveryMethod === 'home-region' ? "Región por coordinar" : "Retiro coordinado"}
               </p>
             </div>
 
