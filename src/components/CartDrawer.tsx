@@ -187,10 +187,21 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
     setErrors(newErrors);
 
+    console.log("Validación de Formulario:");
+    console.log("- Nombre válido:", isNameValid);
+    console.log("- Teléfono válido:", isPhoneValid);
+    console.log("- Email válido:", isEmailValid);
+    console.log("- Región seleccionada:", region);
+    console.log("- Comuna válida:", isCommuneValid);
+    console.log("- Dirección válida:", isAddressValid);
+    console.log("- Método seleccionado:", deliveryMethod);
+    console.log("- Total calculado:", finalTotal);
+
     const errorOrder = ['fullName', 'phone', 'email', 'region', 'commune', 'address', 'deliveryMethod'];
     const firstError = errorOrder.find(key => newErrors[key]);
     
     if (firstError) {
+      console.log("Error en campo:", firstError);
       const refs: Record<string, React.RefObject<HTMLDivElement>> = {
         fullName: nameRef,
         phone: phoneRef,
@@ -283,10 +294,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         if (word.length === 0) return '';
         const lowerWord = word.toLowerCase();
         
-        // Excepción: Después de la coma (Comuna/Ciudad), capitalizar siempre como nombre propio
         if (isAfterComma) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         
-        // En la dirección, mantener conectores en minúscula
         const firstNonEmptyIndex = words.findIndex(w => w.length > 0);
         if (connectors.includes(lowerWord) && wordIndex !== firstNonEmptyIndex) return lowerWord;
         
@@ -297,7 +306,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     
     let formatted = formattedParts.join(',');
     
-    // Coma automática tras detectar numeración (ej: Calle 1234 -> Calle 1234, )
     if (/\d+ $/.test(formatted) && !formatted.includes(',')) {
       formatted = formatted.trim() + ', ';
     }
@@ -316,7 +324,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
       <SheetTrigger asChild>
         {children}
       </SheetTrigger>
-      <SheetContent className="bg-[#050505]/95 backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
+      <SheetContent className="bg-gradient-to-b from-[#041224] via-[#03101F] to-[#020817] backdrop-blur-2xl border-white/5 w-full sm:max-w-md p-0 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.8)] border-none">
         <SheetHeader className="p-8 border-b border-white/5 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-black/40 border border-cyan-400/30 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
@@ -512,7 +520,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 "bg-black/40 border-white/10 rounded-xl h-12 focus:ring-0 text-sm",
                                 errors.region && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
-                                <SelectValue placeholder="Región..." />
+                                <SelectValue placeholder="Metropolitana" />
                               </SelectTrigger>
                               <SelectContent className="bg-[#0a0a0a] border-white/10 text-white max-h-[300px]">
                                 {REGIONS.map(reg => (
@@ -648,7 +656,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         {cart.length > 0 && (
-          <div className="p-8 border-t border-white/5 bg-[#080808] space-y-6 shrink-0">
+          <div className="p-8 border-t border-white/5 bg-black/20 backdrop-blur-md space-y-6 shrink-0">
             <div className="flex justify-between items-end mb-2">
               <div>
                 <p className="text-[10px] text-white/30 uppercase font-bold tracking-widest mb-1">Total a pagar</p>
@@ -657,7 +665,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 </p>
               </div>
               <p className="text-[10px] text-accent font-bold uppercase tracking-widest pb-1.5">
-                {deliveryMethod === 'home-rm' ? "DESPACHO RM INCLUIDO" : deliveryMethod === 'home-region' ? "REGIÓN POR COORDINAR" : "RETIRO COORDINADO"}
+                {deliveryMethod === 'home-rm' ? "Despacho RM incluido" : deliveryMethod === 'home-region' ? "REGIÓN POR COORDINAR" : "RETIRO COORDINADO"}
               </p>
             </div>
 
