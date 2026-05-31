@@ -83,7 +83,7 @@ export default function Home() {
             Equipamiento Premium
           </Badge>
           <h1 className="text-4xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9]">
-            Captura <br/>
+            Captura ahora <br/>
             <span className="text-gradient">cada aventura</span>
           </h1>
           <p className="max-w-2xl mx-auto text-white/80 text-sm md:text-xl leading-relaxed font-medium px-4">
