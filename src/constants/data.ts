@@ -179,7 +179,7 @@ export const PRODUCTS: Product[] = [
   // CÁMARAS & CREACIÓN
   {
     id: 'adaptador-magnetico-dji',
-    name: 'Adaptador magnético DJI Action',
+    name: 'Adaptador DJI',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Accesorios DJI',
     price: '$13.990',
