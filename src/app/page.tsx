@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { PromoHero } from '@/components/PromoHero';
 import { PRODUCTS, CATEGORY_STRUCTURE, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
@@ -183,6 +184,12 @@ export default function Home() {
                         {cat.label}
                       </h3>
                     </div>
+
+                    {cat.label === 'PROMO' && (
+                      <div className="pt-4">
+                        <PromoHero />
+                      </div>
+                    )}
                     
                     <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 px-1">
                       {cat.subcategories.map((sub) => {
@@ -208,10 +215,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className={cn(
-                    "grid gap-4 md:gap-6",
-                    "grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
-                  )}>
+                  <div 
+                    id={cat.label === 'PROMO' ? 'promo-packs-grid' : undefined}
+                    className={cn(
+                      "grid gap-4 md:gap-6",
+                      "grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
+                    )}
+                  >
                     {filteredProducts.map((product) => (
                       <ProductCard
                         key={product.id}

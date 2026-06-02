@@ -8,6 +8,12 @@
       "imageHint": "action camera mountain"
     },
     {
+      "id": "promo-banner-moto",
+      "description": "Cinematic motorcycle action shot for promo banner",
+      "imageUrl": "https://picsum.photos/seed/moto-action-1/1200/800",
+      "imageHint": "motorcycle action"
+    },
+    {
       "id": "selfie1.20",
       "description": "Baston Selfie Alta Calidad 1.2m",
       "imageUrl": "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie1.20/ChatGPT%20Image%2026%20may%202026,%2001_31_16.png",
