@@ -21,7 +21,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   const isMobile = useIsMobile();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const [isTall, setIsTall] = useState(false);
   
   const handleCardClick = () => {
     onViewDetails(product);
@@ -183,7 +182,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           fill
           className={cn(
             "object-contain transition-transform duration-700",
-            isMobile ? (isTall ? "p-3 scale-100 group-hover:scale-110" : "p-1.5 scale-110 group-hover:scale-120") : "p-1 scale-100 group-hover:scale-105"
+            isMobile ? "p-1.5 scale-110 group-hover:scale-120" : "p-1.5 scale-100 group-hover:scale-105"
           )}
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={product.bestSeller}
@@ -205,29 +204,32 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         isMobile ? "px-1 pb-2 pt-0.5 gap-1" : "px-4 pb-6 pt-2"
       )}>
         {!isMobile ? (
-          <div className="flex flex-col flex-1 items-center space-y-3">
-            <div className="space-y-2 text-center">
+          <div className="flex flex-col flex-1">
+            <div className="space-y-1 text-center mb-4">
               <h3 className="font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-2 text-[17px] px-2">
                 {product.name}
               </h3>
+            </div>
+
+            <div className="flex items-center justify-between mt-auto w-full pt-4 border-t border-white/5">
               <div className="font-headline font-black text-white tracking-tighter leading-none text-[22px]">
                 {product.price}
               </div>
-            </div>
 
-            <div className="flex items-center justify-center gap-4 w-full mt-auto">
-              <button
-                onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-cyan-500/30 text-cyan-400/70 transition-all hover:bg-cyan-500/10 hover:text-cyan-400 h-10 w-10 shadow-[0_0_15px_rgba(0,217,255,0.1)]"
-              >
-                <Search size={16} strokeWidth={2.5} />
-              </button>
-              <button
-                onClick={handleAddToCart}
-                className="flex items-center justify-center rounded-full bg-cyan-500/5 backdrop-blur-md border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-11 w-11"
-              >
-                <ShoppingCart size={18} strokeWidth={2.5} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
+                  className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-cyan-500/30 text-cyan-400/70 transition-all hover:bg-cyan-500/10 hover:text-cyan-400 h-10 w-10 shadow-[0_0_15px_rgba(0,217,255,0.1)]"
+                >
+                  <Search size={16} strokeWidth={2.5} />
+                </button>
+                <button
+                  onClick={handleAddToCart}
+                  className="flex items-center justify-center rounded-full bg-cyan-500/5 backdrop-blur-md border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-11 w-11"
+                >
+                  <ShoppingCart size={18} strokeWidth={2.5} />
+                </button>
+              </div>
             </div>
           </div>
         ) : (
