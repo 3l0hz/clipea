@@ -4,7 +4,6 @@ import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PromoHero } from '@/components/PromoHero';
 import { PRODUCTS, CATEGORY_STRUCTURE, WHATSAPP_NUMBER } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
@@ -161,6 +160,8 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-32 md:gap-48 pb-20">
             {CATEGORY_STRUCTURE.map((cat) => {
+              if (cat.label === 'PROMO') return null;
+
               const categoryProducts = PRODUCTS.filter(p => p.mainCategory === cat.label);
               
               const filteredProducts = activeSubcategory[cat.label]
@@ -184,12 +185,6 @@ export default function Home() {
                         {cat.label}
                       </h3>
                     </div>
-
-                    {cat.label === 'PROMO' && (
-                      <div className="pt-4">
-                        <PromoHero />
-                      </div>
-                    )}
                     
                     <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 px-1">
                       {cat.subcategories.map((sub) => {
@@ -216,7 +211,6 @@ export default function Home() {
                   </div>
 
                   <div 
-                    id={cat.label === 'PROMO' ? 'promo-packs-grid' : undefined}
                     className={cn(
                       "grid gap-4 md:gap-6",
                       "grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
