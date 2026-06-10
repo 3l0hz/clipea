@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/store';
-import { ShoppingCart, Search } from 'lucide-react';
+import { ShoppingCart, Search, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useCart } from '@/context/CartContext';
@@ -160,104 +160,86 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
     );
   }
 
-  // NORMAL STYLE
+  // NORMAL STYLE: Compact, Square & Premium
   return (
     <div 
       className={cn(
-        "group promo-glass-card p-0 flex flex-col cursor-pointer transition-all duration-500 glass-reflective-edge",
-        "rounded-[20px] overflow-hidden shadow-2xl border-none",
-        isMobile ? "h-[200px]" : "h-auto w-full border border-cyan-500/10 shadow-[0_0_30px_rgba(0,229,255,0.05)] rounded-[24px]",
-        !isMobile ? "md:hover:-translate-y-1 md:hover:border-cyan-500/30" : ""
+        "group bg-[#030d1b] flex flex-col cursor-pointer transition-all duration-500 border border-cyan-500/20 shadow-[0_0_20px_rgba(0,217,255,0.05)]",
+        "rounded-[24px] overflow-hidden",
+        isMobile ? "h-auto" : "h-auto w-full",
+        !isMobile ? "md:hover:-translate-y-1 md:hover:border-cyan-500/40" : ""
       )}
       onClick={handleCardClick}
     >
+      {/* Image Container: ~65% height, Dominant */}
       <div className={cn(
         "relative overflow-hidden flex items-center justify-center bg-transparent shrink-0",
-        isMobile ? "m-1 rounded-[10px] h-[100px]" : "m-0 rounded-t-[24px] h-[280px] w-full"
+        isMobile ? "aspect-square m-1.5 rounded-[18px]" : "aspect-square m-2 rounded-[20px]"
       )}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_70%)]" />
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className={cn(
-            "object-contain transition-transform duration-700",
-            isMobile ? "p-1.5 scale-110 group-hover:scale-120" : "p-0 scale-100 group-hover:scale-105"
-          )}
+          className="object-contain p-1.5 transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={product.bestSeller}
         />
         {product.bestSeller && (
-          <div className={cn("absolute z-20", isMobile ? "top-2 left-2" : "top-3 left-3")}>
-            <div className={cn(
-              "flex items-center gap-1 bg-[#020817]/60 backdrop-blur-md border border-[#00FF88]/30 px-2 py-0.5 rounded-full",
-              isMobile ? "px-1 py-0" : ""
-            )}>
-              <span className={cn("font-bold text-[#00FF88] tracking-widest uppercase", isMobile ? "text-[5px]" : "text-[8px]")}>TOP</span>
+          <div className="absolute top-2 left-2 z-20">
+            <div className="bg-[#020817]/60 backdrop-blur-md border border-[#00FF88]/30 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+              <Zap size={8} className="text-[#00FF88] fill-current" />
+              <span className="font-bold text-[#00FF88] tracking-widest uppercase text-[8px]">TOP</span>
             </div>
           </div>
         )}
       </div>
 
+      {/* Info Container: Title, Price & Buttons */}
       <div className={cn(
-        "flex flex-col flex-1",
-        isMobile ? "px-1 pb-2 pt-0.5 gap-1" : "px-4 py-6 gap-3 items-center"
+        "flex flex-col px-4 pb-4 pt-1 gap-2 flex-1 justify-between",
+        isMobile ? "px-3 pb-3 pt-0.5 gap-1.5" : ""
       )}>
-        {!isMobile ? (
-          <>
-            <div className="space-y-1 text-center w-full">
-              <h3 className="font-headline font-extrabold text-white uppercase leading-tight tracking-tight line-clamp-2 text-[18px]">
-                {product.name}
-              </h3>
-            </div>
+        {/* Title: Centered, max 2 lines */}
+        <div className="flex-1 flex flex-col justify-center">
+          <h3 className={cn(
+            "font-headline font-bold text-white uppercase leading-tight tracking-tight text-center line-clamp-2",
+            isMobile ? "text-[10px]" : "text-[15px]"
+          )}>
+            {product.name}
+          </h3>
+        </div>
 
-            <div className="font-headline font-black text-white tracking-tighter leading-none text-[24px]">
-              {product.price}
-            </div>
+        {/* Bottom Section: Price (Left) + Buttons (Right) */}
+        <div className="flex items-end justify-between w-full pt-1">
+          <div className={cn(
+            "font-headline font-black text-white tracking-tighter leading-none",
+            isMobile ? "text-[14px]" : "text-[20px]"
+          )}>
+            {product.price}
+          </div>
 
-            <div className="flex items-center justify-center gap-3 pt-1">
-              <button
-                onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-cyan-500/30 text-cyan-400/70 transition-all hover:bg-cyan-500/10 hover:text-cyan-400 h-10 w-10 shadow-[0_0_15px_rgba(0,217,255,0.1)]"
-              >
-                <Search size={16} strokeWidth={2.5} />
-              </button>
-              <button
-                onClick={handleAddToCart}
-                className="flex items-center justify-center rounded-full bg-cyan-500/5 backdrop-blur-md border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-11 w-11"
-              >
-                <ShoppingCart size={18} strokeWidth={2.5} />
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="space-y-0.5 text-center">
-              <h3 className="font-headline font-bold text-white uppercase leading-tight tracking-tight line-clamp-1 text-[8px]">
-                {product.name}
-              </h3>
-            </div>
-            <div className="flex flex-col items-center justify-center mt-auto w-full gap-2">
-              <div className="font-headline font-extrabold text-white tracking-tighter text-[10px] mb-0.5">
-                {product.price}
-              </div>
-              <div className="flex items-center justify-center gap-6 w-full px-2">
-                <button
-                  onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                  className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-[#00D9FF]/30 text-[#00D9FF]/70 h-[20px] w-[20px]"
-                >
-                  <Search size={9} strokeWidth={2.5} />
-                </button>
-                <button
-                  onClick={handleAddToCart}
-                  className="flex items-center justify-center rounded-full bg-[#00D9FF]/5 backdrop-blur-md border border-[#00D9FF]/20 text-[#00D9FF] h-[24px] w-[24px]"
-                >
-                  <ShoppingCart size={11} strokeWidth={2.5} />
-                </button>
-              </div>
-            </div>
-          </>
-        )}
+          <div className="flex items-center gap-1.5 md:gap-2">
+            <button
+              onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
+              className={cn(
+                "flex items-center justify-center rounded-full bg-cyan-500/5 border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/10",
+                isMobile ? "h-7 w-7" : "h-9 w-9"
+              )}
+            >
+              <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={handleAddToCart}
+              className={cn(
+                "flex items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 transition-all hover:bg-cyan-500/20 hover:shadow-[0_0_15px_rgba(0,217,255,0.3)]",
+                isMobile ? "h-8 w-8" : "h-10 w-10"
+              )}
+            >
+              <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
