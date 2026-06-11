@@ -36,7 +36,7 @@ export const PromoMotoSection = () => {
           </div>
 
           {/* Lado Izquierdo: Contenido */}
-          <div className="relative z-10 w-full md:w-[45%] p-8 md:p-16 flex flex-col justify-center space-y-8 md:space-y-10">
+          <div className="relative z-10 w-full md:w-[45%] p-8 md:p-14 flex flex-col justify-center space-y-6 md:space-y-8">
             <div className="inline-block px-4 py-1.5 rounded-full border border-[#00D9FF]/40 bg-[#00D9FF]/10 text-[#00D9FF] text-[10px] font-bold tracking-[0.4em] uppercase w-fit animate-fade-in-up">
               PACKS MOTO CLIPEA
             </div>
@@ -46,12 +46,12 @@ export const PromoMotoSection = () => {
               DRON <span className="text-[#00D9FF]">EN TU MOTO</span>
             </h2>
 
-            <div className="space-y-4 animate-fade-in-up delay-150">
+            <div className="space-y-3 animate-fade-in-up delay-150">
               <p className="text-white text-lg md:text-xl font-bold leading-tight">
-                Graba tomas cinematográficas con Insta360 sin usar dron.
+                Consigue tomas tipo dron con tu cámara 360.
               </p>
               <p className="text-white/60 text-sm md:text-base max-w-sm leading-relaxed">
-                La forma más simple de conseguir tomas espectaculares usando nuestros packs moto.
+                Monta, graba y crea tomas aéreas imposibles sin drones.
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export const PromoMotoSection = () => {
                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#00D9FF] group-hover/icon:border-[#00D9FF]/60 transition-all duration-500 group-hover/icon:shadow-[0_0_15px_rgba(0,217,255,0.3)]">
                   <Video size={20} />
                 </div>
-                <span className="text-[9px] font-bold text-white/40 uppercase tracking-[0.2em] group-hover/icon:text-white transition-colors">CINEMATOGRÁFICO</span>
+                <span className="text-[9px] font-bold text-white/40 uppercase tracking-[0.2em] group-hover/icon:text-white transition-colors">AÉREO</span>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ export const PromoMotoSection = () => {
         </div>
 
         {/* BLOQUE INFERIOR INTEGRADO: ¿CÓMO SE LOGRA? */}
-        <div className="border-t border-white/10 p-8 md:p-20 space-y-16 bg-black/40 backdrop-blur-md">
+        <div className="border-t border-white/10 p-8 md:py-12 md:px-20 space-y-12 md:space-y-16 bg-black/40 backdrop-blur-md">
           <div className="space-y-4 text-center">
             <h3 className="text-2xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
               ¿CÓMO SE LOGRA <span className="text-[#00D9FF]">ESTE EFECTO?</span>
