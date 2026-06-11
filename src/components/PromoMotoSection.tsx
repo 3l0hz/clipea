@@ -127,18 +127,18 @@ export const PromoMotoSection = () => {
             <Equal className="text-[#00D9FF] w-8 h-8 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
 
             {/* Tarjeta 3: Resultado (Efecto Dron) */}
-            <div className="flex flex-col items-center gap-4 w-[320px] md:w-full md:max-w-[360px] shrink-0 animate-fade-in-up delay-300">
-              <div className="relative aspect-video w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+            <div className="flex flex-col items-center gap-4 w-[280px] md:w-full md:max-w-[300px] shrink-0 animate-fade-in-up delay-300">
+              <div className="relative aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
                 <div className="absolute top-4 left-4 md:top-6 md:left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_15px_rgba(0,217,255,0.5)] z-20">3</div>
                 <div className="absolute top-4 right-6 md:top-6 md:right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-20">EFECTO DRON</div>
-                <div className="relative w-full h-full rounded-[18px] overflow-hidden group-hover:shadow-[0_0_30px_rgba(0,217,255,0.2)] transition-all duration-700">
+                <div className="relative w-full h-full mt-4 flex items-center justify-center">
                    <Image 
                     src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%202%20jun%202026,%2003_55_38%20p.m..png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyIGp1biAyMDI2LCAwM181NV8zOCBwLm0uLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc3MzUsImV4cCI6MTgxMjY4MzczNX0.eCfo4PSl8hmy2CpN8Mflp-4C2Pigz8FkA6Jg4_cmpmQ" 
                     alt="Resultado Efecto Dron" 
                     fill 
-                    className="object-cover transition-transform duration-[3s] group-hover:scale-110" 
+                    className="object-cover rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[18px]" />
                 </div>
               </div>
             </div>
