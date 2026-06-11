@@ -1,15 +1,26 @@
 
 'use client';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { MapPin, Zap, Video, ArrowRight, Plus, Equal } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
+import { PRODUCTS } from '@/constants/data';
+import { ProductCard } from '@/components/ProductCard';
 
 export const PromoMotoSection = () => {
+  const packsRef = useRef<HTMLDivElement>(null);
   const promoImage = PlaceHolderImages.find(img => img.id === 'promo-banner-moto');
   
-  // Nueva imagen oficial de resultado
+  // Imagen oficial de resultado
   const NEW_PROMO_IMAGE_URL = "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2011%20jun%202026,%2012_00_59%20a.m.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAxMSBqdW4gMjAyNiwgMTJfMDBfNTkgYS5tLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNTA5MDIsImV4cCI6MTgxMjY4NjkwMn0.tv-y-SZAOCXU1M-dHVN5iEIiyrwGFjlmy1FqAREXL0s";
+
+  const scrollToPacks = () => {
+    packsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // Filtrar productos de la categoría PROMO
+  const promoProducts = PRODUCTS.filter(p => p.mainCategory === 'PROMO');
 
   return (
     <section className="container mx-auto px-4 py-16 scroll-mt-24" id="promo-moto">
@@ -73,7 +84,10 @@ export const PromoMotoSection = () => {
               </div>
             </div>
 
-            <button className="h-14 px-10 rounded-2xl border border-[#00D9FF]/50 bg-[#00D9FF]/10 text-white font-bold uppercase tracking-[0.3em] text-[10px] flex items-center justify-center gap-4 hover:bg-[#00D9FF]/20 hover:border-[#00D9FF] hover:shadow-[0_0_30px_rgba(0,217,255,0.4)] transition-all duration-500 group w-fit animate-fade-in-up delay-300">
+            <button 
+              onClick={scrollToPacks}
+              className="h-14 px-10 rounded-2xl border border-[#00D9FF]/50 bg-[#00D9FF]/10 text-white font-bold uppercase tracking-[0.3em] text-[10px] flex items-center justify-center gap-4 hover:bg-[#00D9FF]/20 hover:border-[#00D9FF] hover:shadow-[0_0_30px_rgba(0,217,255,0.4)] transition-all duration-500 group w-fit animate-fade-in-up delay-300"
+            >
               <span>VER PACKS MOTO</span>
               <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-500" />
             </button>
@@ -90,7 +104,7 @@ export const PromoMotoSection = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 w-full">
             
-            <div className="flex flex-row items-center justify-center gap-2 md:gap-12 w-full md:w-auto">
+            <div className="flex flex-row flex-nowrap md:flex-row items-center justify-center gap-2 md:gap-12 w-full md:w-auto overflow-x-auto no-scrollbar pb-2 md:pb-0">
               {/* Tarjeta 1: Cámara */}
               <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-100">
                 <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
@@ -155,10 +169,37 @@ export const PromoMotoSection = () => {
             </div>
           </div>
 
-          <div className="pt-2 md:pt-8 text-center animate-fade-in-up delay-500">
+          <div className="pt-2 md:pt-8 text-center animate-fade-in-up delay-500 pb-12">
             <p className="text-white/70 text-[11px] md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
               La cámara se oculta con nuestros accesorios y se obtiene una <span className="text-[#00D9FF] font-bold underline underline-offset-8 decoration-[#00D9FF]/30">toma aérea</span> imposible con un selfie stick.
             </p>
+          </div>
+        </div>
+
+        {/* SECCIÓN RESTAURADA: PACKS MOTO CLIPEA */}
+        <div ref={packsRef} id="promo-moto-packs" className="border-t border-white/10 p-8 md:p-14 space-y-12 bg-black/20 scroll-mt-24">
+          <div className="flex items-center gap-4">
+            <div className="h-[2px] w-12 bg-[#00D9FF] shadow-[0_0_10px_rgba(0,217,255,0.5)]" />
+            <h3 className="text-2xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
+              PACKS MOTO CLIPEA
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            {promoProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onViewDetails={() => {
+                  // Esta función se pasa para abrir el modal, 
+                  // pero como ProductCard ya maneja su propio estado o se hereda del Home, 
+                  // aquí simplemente pasamos la prop necesaria si el componente la requiere.
+                  // En este caso, Home maneja el modal, pero para esta sección restaurada, 
+                  // las tarjetas funcionarán con su comportamiento base.
+                }}
+                isPremium
+              />
+            ))}
           </div>
         </div>
       </div>
