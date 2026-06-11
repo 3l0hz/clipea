@@ -136,7 +136,7 @@ export const PromoMotoSection = () => {
                     src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%202%20jun%202026,%2003_55_38%20p.m..png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyIGp1biAyMDI2LCAwM181NV8zOCBwLm0uLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc3MzUsImV4cCI6MTgxMjY4MzczNX0.eCfo4PSl8hmy2CpN8Mflp-4C2Pigz8FkA6Jg4_cmpmQ" 
                     alt="Resultado Efecto Dron" 
                     fill 
-                    className="object-cover rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
+                    className="object-contain md:object-cover rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
                   />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[18px]" />
                 </div>
