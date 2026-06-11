@@ -7,6 +7,9 @@ import { cn } from '@/lib/utils';
 
 export const PromoMotoSection = () => {
   const promoImage = PlaceHolderImages.find(img => img.id === 'promo-banner-moto');
+  
+  // Nueva imagen oficial de resultado
+  const NEW_PROMO_IMAGE_URL = "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2011%20jun%202026,%2012_00_59%20a.m.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAxMSBqdW4gMjAyNiwgMTJfMDBfNTkgYS5tLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNTA5MDIsImV4cCI6MTgxMjY4NjkwMn0.tv-y-SZAOCXU1M-dHVN5iEIiyrwGFjlmy1FqAREXL0s";
 
   return (
     <section className="container mx-auto px-4 py-16 scroll-mt-24" id="promo-moto">
@@ -17,16 +20,13 @@ export const PromoMotoSection = () => {
           
           {/* Lado Derecho: Imagen Principal con Overlay Gradiente */}
           <div className="absolute inset-0 md:left-[40%] overflow-hidden">
-            {promoImage && (
-              <Image
-                src={promoImage.imageUrl}
-                alt="Promo Moto Clipea"
-                fill
-                className="object-cover object-center saturate-[1.1] contrast-[1.1] transition-transform duration-[4s] group-hover:scale-105"
-                priority
-                data-ai-hint={promoImage.imageHint}
-              />
-            )}
+            <Image
+              src={NEW_PROMO_IMAGE_URL}
+              alt="Promo Moto Clipea"
+              fill
+              className="object-cover object-center saturate-[1.1] contrast-[1.1] transition-transform duration-[4s] group-hover:scale-105"
+              priority
+            />
             {/* Overlay Gradiente Dinámico para legibilidad de texto */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220] via-[#0B1220]/85 to-transparent md:block hidden" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0B1220] via-[#0B1220]/60 to-transparent md:hidden" />
@@ -88,66 +88,68 @@ export const PromoMotoSection = () => {
             </h3>
           </div>
 
-          <div className="flex flex-row items-center justify-center gap-1.5 md:gap-12 w-full">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 w-full">
             
-            {/* Tarjeta 1: Cámara */}
-            <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-100">
-              <div className="relative aspect-square w-[88px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                <div className="absolute top-1 left-1.5 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">1</div>
-                <div className="absolute top-1.5 right-2 md:top-6 md:right-8 text-[6px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
-                  <span className="hidden md:inline">CÁMARA 360</span>
-                  <span className="md:hidden">360</span>
-                </div>
-                <div className="relative w-full h-full mt-0.5 md:mt-1 flex items-center justify-center">
-                  <Image 
-                    src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" 
-                    alt="Cámara 360" 
-                    fill 
-                    className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
-                  />
-                </div>
-              </div>
-            </div>
-
-            <Plus className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
-
-            {/* Tarjeta 2: Accesorios */}
-            <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-200">
-              <div className="relative aspect-square w-[88px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                <div className="absolute top-1 left-1.5 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">2</div>
-                <div className="absolute top-1.5 right-2 md:top-6 md:right-8 text-[6px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
-                  <span className="hidden md:inline">ACCESORIOS CLIPEA</span>
-                  <span className="md:hidden">ACCESORIOS</span>
-                </div>
-                <div className="relative w-full h-full mt-0.5 md:mt-1 flex items-center justify-center">
-                  <Image 
-                    src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" 
-                    alt="Accesorios Clipea" 
-                    fill 
-                    className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
-                  />
+            <div className="flex flex-row items-center justify-center gap-2 md:gap-12 w-full md:w-auto">
+              {/* Tarjeta 1: Cámara */}
+              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-100">
+                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">1</div>
+                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
+                    <span className="md:hidden">360</span>
+                    <span className="hidden md:inline">CÁMARA 360</span>
+                  </div>
+                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                    <Image 
+                      src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" 
+                      alt="Cámara 360" 
+                      fill 
+                      className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <Equal className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
+              <Plus className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
 
-            {/* Tarjeta 3: Resultado (Efecto Dron) */}
-            <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-300">
-              <div className="relative aspect-square w-[88px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                <div className="absolute top-1 left-1.5 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">3</div>
-                <div className="absolute top-1.5 right-2 md:top-6 md:right-8 text-[6px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-20 text-right">
-                  <span className="hidden md:inline">EFECTO DRON</span>
-                  <span className="md:hidden">DRON</span>
+              {/* Tarjeta 2: Accesorios */}
+              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-200">
+                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">2</div>
+                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
+                    <span className="md:hidden">ACCESORIOS</span>
+                    <span className="hidden md:inline">ACCESORIOS CLIPEA</span>
+                  </div>
+                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                    <Image 
+                      src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" 
+                      alt="Accesorios Clipea" 
+                      fill 
+                      className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
+                    />
+                  </div>
                 </div>
-                <div className="relative w-full h-full mt-0.5 md:mt-1 flex items-center justify-center">
-                   <Image 
-                    src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%202%20jun%202026,%2003_55_38%20p.m..png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyIGp1biAyMDI2LCAwM181NV8zOCBwLm0uLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc3MzUsImV4cCI6MTgxMjY4MzczNX0.eCfo4PSl8hmy2CpN8Mflp-4C2Pigz8FkA6Jg4_cmpmQ" 
-                    alt="Resultado Efecto Dron" 
-                    fill 
-                    className="object-contain md:object-cover rounded-[10px] md:rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
-                  />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[10px] md:rounded-[18px]" />
+              </div>
+
+              <Equal className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
+
+              {/* Tarjeta 3: Resultado (Efecto Dron) */}
+              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-300">
+                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">3</div>
+                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-20 text-right">
+                    <span className="md:hidden">DRON</span>
+                    <span className="hidden md:inline">EFECTO DRON</span>
+                  </div>
+                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                    <Image 
+                      src={NEW_PROMO_IMAGE_URL} 
+                      alt="Resultado Efecto Dron" 
+                      fill 
+                      className="object-contain md:object-cover rounded-[10px] md:rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[10px] md:rounded-[18px]" />
+                  </div>
                 </div>
               </div>
             </div>
