@@ -88,14 +88,14 @@ export const PromoMotoSection = () => {
             </h3>
           </div>
 
-          <div className="flex flex-row flex-nowrap items-center justify-start md:justify-center gap-4 md:gap-12 overflow-x-auto no-scrollbar pb-4 md:pb-0">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
             
             {/* Tarjeta 1: Cámara */}
-            <div className="flex flex-col items-center gap-4 w-[280px] md:w-full md:max-w-[300px] shrink-0 animate-fade-in-up delay-100">
-              <div className="relative aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+            <div className="flex flex-col items-center gap-4 w-full max-w-[340px] md:max-w-[300px] shrink-0 animate-fade-in-up delay-100">
+              <div className="relative aspect-[16/10] md:aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
                 <div className="absolute top-4 left-4 md:top-6 md:left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_15px_rgba(0,217,255,0.5)] z-10">1</div>
                 <div className="absolute top-4 right-6 md:top-6 md:right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-10">CÁMARA 360</div>
-                <div className="relative w-full h-full mt-4 flex items-center justify-center">
+                <div className="relative w-full h-full mt-2 flex items-center justify-center">
                   <Image 
                     src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" 
                     alt="Cámara 360" 
@@ -109,11 +109,11 @@ export const PromoMotoSection = () => {
             <Plus className="text-[#00D9FF] w-8 h-8 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
 
             {/* Tarjeta 2: Accesorios */}
-            <div className="flex flex-col items-center gap-4 w-[280px] md:w-full md:max-w-[300px] shrink-0 animate-fade-in-up delay-200">
-              <div className="relative aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+            <div className="flex flex-col items-center gap-4 w-full max-w-[340px] md:max-w-[300px] shrink-0 animate-fade-in-up delay-200">
+              <div className="relative aspect-[16/10] md:aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
                 <div className="absolute top-4 left-4 md:top-6 md:left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_15px_rgba(0,217,255,0.5)] z-10">2</div>
                 <div className="absolute top-4 right-6 md:top-6 md:right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-10">ACCESORIOS CLIPEA</div>
-                <div className="relative w-full h-full mt-4 flex items-center justify-center">
+                <div className="relative w-full h-full mt-2 flex items-center justify-center">
                   <Image 
                     src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" 
                     alt="Accesorios Clipea" 
@@ -127,11 +127,11 @@ export const PromoMotoSection = () => {
             <Equal className="text-[#00D9FF] w-8 h-8 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
 
             {/* Tarjeta 3: Resultado (Efecto Dron) */}
-            <div className="flex flex-col items-center gap-4 w-[280px] md:w-full md:max-w-[300px] shrink-0 animate-fade-in-up delay-300">
-              <div className="relative aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+            <div className="flex flex-col items-center gap-4 w-full max-w-[340px] md:max-w-[300px] shrink-0 animate-fade-in-up delay-300">
+              <div className="relative aspect-[16/10] md:aspect-square w-full rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-6 md:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
                 <div className="absolute top-4 left-4 md:top-6 md:left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_15px_rgba(0,217,255,0.5)] z-20">3</div>
                 <div className="absolute top-4 right-6 md:top-6 md:right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-20">EFECTO DRON</div>
-                <div className="relative w-full h-full mt-4 flex items-center justify-center">
+                <div className="relative w-full h-full mt-2 flex items-center justify-center">
                    <Image 
                     src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%202%20jun%202026,%2003_55_38%20p.m..png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyIGp1biAyMDI2LCAwM181NV8zOCBwLm0uLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc3MzUsImV4cCI6MTgxMjY4MzczNX0.eCfo4PSl8hmy2CpN8Mflp-4C2Pigz8FkA6Jg4_cmpmQ" 
                     alt="Resultado Efecto Dron" 
