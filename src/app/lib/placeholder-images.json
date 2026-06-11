@@ -96,6 +96,24 @@
       "description": "Smart Remote Hub BestCon RM4C Mini",
       "imageUrl": "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/2.HOGAR%20INTELIGENTE/control%20wifi/ChatGPT%20Image%2025%20may%202026,%2015_51_40.png",
       "imageHint": "smart hub"
+    },
+    {
+      "id": "formula-camera",
+      "description": "Cámara Insta360 X3 para formula moto",
+      "imageUrl": "https://picsum.photos/seed/formula-camera/400/400",
+      "imageHint": "insta360 camera"
+    },
+    {
+      "id": "formula-accessories",
+      "description": "Accesorios Clipea para moto formula",
+      "imageUrl": "https://picsum.photos/seed/formula-acc/400/400",
+      "imageHint": "motorcycle mount"
+    },
+    {
+      "id": "formula-result",
+      "description": "Efecto Dron final en moto",
+      "imageUrl": "https://picsum.photos/seed/formula-res/600/400",
+      "imageHint": "motorcycle view"
     }
   ]
 }

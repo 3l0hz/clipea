@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -33,6 +34,7 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { PromoMotoSection } from '@/components/PromoMotoSection';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -154,6 +156,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SECCIÓN PROMO MOTO RECONSTRUIDA */}
+      <PromoMotoSection />
 
       {/* Catalog Section */}
       <section id="catalog" className="py-20 md:py-32 bg-transparent">
