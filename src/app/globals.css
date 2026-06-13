@@ -111,6 +111,45 @@
   animation: lightSweepBlue 8s linear infinite;
 }
 
+@media (max-width: 639px) {
+  .premium-mobile-card {
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 217, 255, 0.06), 0 0 14px rgba(0, 217, 255, 0.04);
+  }
+
+  .premium-mobile-card::before,
+  .premium-mobile-card::after {
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .premium-mobile-card {
+    border-radius: 20px;
+  }
+
+  .premium-mobile-card::before,
+  .premium-mobile-card::after {
+    border-radius: 20px;
+  }
+}
+.clipea-product-card {
+  @apply relative overflow-hidden bg-[#031225]/50 backdrop-blur-xl;
+  border: 1px solid rgba(0, 217, 255, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(0, 217, 255, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(0, 217, 255, 0.04);
+}
+
+.clipea-product-card:hover {
+  border-color: rgba(0, 217, 255, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(0, 217, 255, 0.12),
+    0 16px 36px rgba(0, 0, 0, 0.45),
+    0 0 22px rgba(0, 217, 255, 0.1);
+}
+
 /* PROMO GLASS CARD - BLUE THEME */
 .promo-glass-card {
   @apply relative overflow-hidden bg-[#031225]/40 backdrop-blur-2xl border border-white/5 rounded-[32px] transition-all duration-700;
