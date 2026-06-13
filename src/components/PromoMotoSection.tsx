@@ -107,7 +107,10 @@ export const PromoMotoSection = () => {
               {/* Tarjeta 1: Cámara */}
               <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-100">
                 <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">1</div>
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">
+                    <span className="hidden md:inline">1</span>
+                    <span className="md:hidden">1</span>
+                  </div>
                   <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
                     <span className="md:hidden">360</span>
                     <span className="hidden md:inline">CÁMARA 360</span>
@@ -129,9 +132,12 @@ export const PromoMotoSection = () => {
               {/* Tarjeta 2: Stick + Soporte */}
               <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-200">
                 <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">2</div>
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">
+                    <span className="hidden md:inline">2</span>
+                    <span className="md:hidden">2</span>
+                  </div>
                   <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right leading-none">
-                    <span className="md:hidden">STICK + SOPORTE</span>
+                    <span className="md:hidden">ACCESORIOS</span>
                     <span className="hidden md:inline">STICK INVISIBLE + SOPORTE MOTO</span>
                   </div>
                   <div className="relative w-full h-full mt-1 flex items-center justify-center">
@@ -151,9 +157,12 @@ export const PromoMotoSection = () => {
               {/* Tarjeta 3: Resultado */}
               <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-300">
                 <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-1 md:p-2 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700 overflow-hidden">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">3</div>
+                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">
+                    <span className="hidden md:inline">3</span>
+                    <span className="md:hidden">3</span>
+                  </div>
                   <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-20 text-right leading-none">
-                    <span className="md:hidden">RESULTADO</span>
+                    <span className="md:hidden">DRON</span>
                     <span className="hidden md:inline">RESULTADO EFECTO DRON</span>
                   </div>
                   <div className="relative w-full h-full mt-1 flex items-center justify-center">
@@ -161,7 +170,7 @@ export const PromoMotoSection = () => {
                       src={NEW_PROMO_IMAGE_URL} 
                       alt="Resultado Efecto Dron en Moto" 
                       fill 
-                      className="object-cover md:object-cover rounded-[10px] md:rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
+                      className="object-contain md:object-cover rounded-[10px] md:rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
                       sizes="(max-width: 768px) 90px, 300px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[10px] md:rounded-[18px]" />
@@ -187,7 +196,7 @@ export const PromoMotoSection = () => {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {promoProducts.map((product) => (
               <ProductCard
                 key={product.id}
