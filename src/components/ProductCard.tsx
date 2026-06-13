@@ -64,28 +64,43 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
         </div>
 
-        <div className="relative overflow-hidden bg-transparent flex items-center justify-center transition-all m-2 rounded-[15px] aspect-square">
+        <div className={cn(
+          "relative overflow-hidden bg-transparent flex items-center justify-center transition-all rounded-[15px] aspect-square",
+          isMobile ? "m-1.5" : "m-2"
+        )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain transition-transform duration-700 group-hover:scale-110 p-2 filter brightness-[1.03]"
+            className={cn(
+              "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]",
+              isMobile ? "p-1.5" : "p-2"
+            )}
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={product.bestSeller}
           />
         </div>
 
-        <div className="flex flex-col flex-1 px-4 pb-5 pt-1 gap-3">
+        <div className={cn(
+          "flex flex-col flex-1",
+          isMobile ? "px-3 pb-3 pt-0 gap-1.5" : "px-4 pb-5 pt-1 gap-3"
+        )}>
           <div className="space-y-0 text-center">
-            <h3 className="font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-2 text-[14px] sm:text-[16px]">
+            <h3 className={cn(
+              "font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-2",
+              isMobile ? "text-[12px]" : "text-[14px] sm:text-[16px]"
+            )}>
               {product.name}
             </h3>
           </div>
           
           <div className="flex items-end justify-between mt-auto w-full">
             <div className="flex flex-col leading-none">
-              <span className="font-headline font-black text-white tracking-tighter text-[18px] sm:text-[22px]">
+              <span className={cn(
+                "font-headline font-black text-white tracking-tighter",
+                isMobile ? "text-[16px]" : "text-[18px] sm:text-[22px]"
+              )}>
                 {product.price}
               </span>
               <span className="text-[10px] font-bold text-white/20 uppercase line-through mt-0.5">
@@ -93,18 +108,24 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
               </span>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 md:gap-2">
               <button
                 onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
-                className="flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-[#00D9FF]/30 text-[#00D9FF]/70 transition-all hover:text-[#00D9FF] hover:border-[#00D9FF]/60 h-9 w-9 sm:h-10 sm:w-10"
+                className={cn(
+                  "flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-[#00D9FF]/30 text-[#00D9FF]/70 transition-all hover:text-[#00D9FF] hover:border-[#00D9FF]/60",
+                  isMobile ? "h-7 w-7" : "h-9 w-9 sm:h-10 sm:w-10"
+                )}
               >
-                <Search size={isMobile ? 14 : 16} strokeWidth={2.5} />
+                <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
               </button>
               <button
                 onClick={handleAddToCart}
-                className="flex items-center justify-center rounded-full bg-[#00D9FF]/5 backdrop-blur-md border border-[#00D9FF]/20 text-[#00D9FF] transition-all hover:bg-[#00D9FF]/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)] h-10 w-10 sm:h-11 sm:w-11"
+                className={cn(
+                  "flex items-center justify-center rounded-full bg-[#00D9FF]/5 backdrop-blur-md border border-[#00D9FF]/20 text-[#00D9FF] transition-all hover:bg-[#00D9FF]/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)]",
+                  isMobile ? "h-8 w-8" : "h-10 w-10 sm:h-11 sm:w-11"
+                )}
               >
-                <ShoppingCart size={isMobile ? 16 : 18} strokeWidth={2.5} />
+                <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
               </button>
             </div>
           </div>
