@@ -8,11 +8,11 @@ import { CartDrawer } from './CartDrawer';
 import { useCart } from '@/context/CartContext';
 
 const NAV_LINKS = [
-  { label: 'PROMO', href: '#promo' },
-  { label: 'Moto & Aventura', href: '#moto-aventura' },
-  { label: 'Cámaras & Creación', href: '#camaras-creacion' },
-  { label: 'Setup & Escritorio', href: '#setup-escritorio' },
-  { label: 'Hogar inteligente', href: '#hogar-inteligente' },
+  { label: 'PROMO', href: '/#promo-moto' },
+  { label: 'Moto & Aventura', href: '/#moto-aventura' },
+  { label: 'Cámaras & Creación', href: '/#camaras-creacion' },
+  { label: 'Setup & Escritorio', href: '/#setup-escritorio' },
+  { label: 'Hogar inteligente', href: '/#hogar-inteligente' },
 ];
 
 export const Header = () => {
@@ -36,7 +36,7 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center gap-4">
         {/* Logo */}
-        <a href="#home" className="relative z-10 text-[28px] font-headline font-bold tracking-tighter text-white group shrink-0">
+        <a href="/" className="relative z-10 text-[28px] font-headline font-bold tracking-tighter text-white group shrink-0">
           clipea<span className="text-[#00D9FF]">.</span>
         </a>
 
@@ -77,7 +77,7 @@ export const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#020817]/98 backdrop-blur-3xl border-white/5 w-full p-0 flex flex-col">
               <div className="flex justify-between items-center px-8 py-8 border-b border-white/5">
-                <span className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-[#00D9FF]">.</span></span>
+                <a href="/" className="text-[28px] font-headline font-bold text-white tracking-tighter">clipea<span className="text-[#00D9FF]">.</span></a>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" className="text-white/70 hover:text-white transition-all">
                     <X size={26} strokeWidth={1.5} />

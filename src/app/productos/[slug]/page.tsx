@@ -6,14 +6,14 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { 
   ShoppingCart, Box, Info, CheckCircle2, ShieldCheck, Zap, 
-  ChevronLeft, ChevronRight 
+  ChevronLeft, ChevronRight, X, ArrowLeft
 } from 'lucide-react';
 import Image from 'next/image';
 import { ModelViewer } from '@/components/ModelViewer';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -28,6 +28,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
+  const router = useRouter();
   const product = PRODUCTS.find(p => p.slug === slug);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showModel, setShowModel] = useState(false);
@@ -50,6 +51,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const handleBack = () => {
+    // Si hay historial, vuelve. Si no (ej: entró directo por link), va a la home.
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/');
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#03050a]">
       <Header />
@@ -57,8 +67,16 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       
       <div className="pt-24 md:pt-32 pb-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row bg-[#03050a] border border-white/5 rounded-[32px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] min-h-[80vh]">
+          <div className="flex flex-col md:flex-row bg-[#03050a] border border-white/5 rounded-[32px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] min-h-[80vh] relative">
             
+            {/* Close Button (Icono X) */}
+            <button 
+              onClick={handleBack}
+              className="absolute top-4 right-4 md:top-8 md:right-8 z-[100] w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-xl text-white/80 hover:text-white border border-white/10 flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group focus:outline-none focus:ring-0"
+            >
+              <X size={20} className="group-hover:rotate-90 transition-transform duration-500" />
+            </button>
+
             {/* LEFT COLUMN: Visuals (55%) */}
             <div className="w-full md:w-[55%] flex flex-col relative bg-[#050810] shrink-0 border-b md:border-b-0 md:border-r border-white/5">
               <div className="relative aspect-square md:h-full w-full flex items-center justify-center overflow-hidden">
@@ -130,6 +148,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             <div className="w-full md:w-[45%] flex flex-col bg-[#03050a]">
               <div className="flex-1 px-6 py-8 md:px-10 md:py-12 space-y-8">
                 
+                {/* Botón Volver Discreto */}
+                <button 
+                  onClick={handleBack}
+                  className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-[#00D9FF] transition-colors group"
+                >
+                  <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                  <span>Volver a productos</span>
+                </button>
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400">
