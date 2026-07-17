@@ -47,12 +47,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const relatedProducts = useMemo(() => {
     if (!product) return [];
     
-    // 1. Productos de la misma categoría (excluyendo el actual)
     const sameCategory = PRODUCTS.filter(p => 
       p.mainCategory === product.mainCategory && p.id !== product.id
     );
     
-    // 2. Si faltan para llegar a 4, completar con destacados de otras categorías
     let finalSelection = [...sameCategory];
     
     if (finalSelection.length < 4) {
@@ -66,6 +64,19 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     }
     
     return finalSelection.slice(0, 4);
+  }, [product]);
+
+  const backLabel = useMemo(() => {
+    if (!product || !product.mainCategory) return 'productos';
+    // Formatear la categoría a Title Case para estética superior
+    return product.mainCategory
+      .toLowerCase()
+      .split(' ')
+      .map(word => {
+        if (word === '&' || word === 'y' || word === 'e') return word;
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(' ');
   }, [product]);
 
   if (!product) {
@@ -176,13 +187,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             {/* COLUMNA DERECHA: Información */}
             <div className="w-full lg:w-[45%] flex flex-col space-y-10">
               <div className="space-y-8">
-                {/* Botón Volver */}
+                {/* Botón Volver Mejorado */}
                 <button 
                   onClick={handleBack}
-                  className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-[#00D9FF] transition-colors group w-fit"
+                  className="flex items-center gap-3 text-[11.5px] font-semibold uppercase tracking-[0.25em] text-[#00D9FF] hover:brightness-125 transition-all duration-200 group w-fit cursor-pointer"
                 >
-                  <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                  <span>Volver a productos</span>
+                  <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform duration-200" />
+                  <span>Volver a {backLabel}</span>
                 </button>
 
                 {/* Cabecera de Producto */}
