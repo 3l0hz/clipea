@@ -63,34 +63,46 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
         </div>
 
-        <div className={cn(
-          "relative overflow-hidden bg-transparent flex items-center justify-center transition-all rounded-[15px] aspect-square",
-          isMobile ? "m-1 p-1" : "m-2 p-2"
-        )}>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className={cn(
-              "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]"
-            )}
-            sizes="(max-width: 768px) 50vw, 33vw"
-            priority={product.bestSeller}
-          />
-        </div>
+        <Link 
+          href={`/productos/${product.slug}/`} 
+          onClick={(e) => e.stopPropagation()}
+          className="block"
+        >
+          <div className={cn(
+            "relative overflow-hidden bg-transparent flex items-center justify-center transition-all rounded-[15px] aspect-square",
+            isMobile ? "m-1 p-1" : "m-2 p-2"
+          )}>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className={cn(
+                "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]"
+              )}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              priority={product.bestSeller}
+            />
+          </div>
+        </Link>
 
         <div className={cn(
           "flex flex-col flex-1",
           isMobile ? "px-3 pb-3 pt-0 gap-1.5" : "px-4 pb-5 pt-1 gap-3"
         )}>
           <div className="space-y-0 text-center">
-            <h3 className={cn(
-              "font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-2",
-              isMobile ? "text-[12px]" : "text-[14px] sm:text-[16px]"
-            )}>
-              {product.name}
-            </h3>
+            <Link 
+              href={`/productos/${product.slug}/`} 
+              onClick={(e) => e.stopPropagation()}
+              className="block"
+            >
+              <h3 className={cn(
+                "font-headline font-bold text-white leading-tight tracking-tight uppercase line-clamp-2",
+                isMobile ? "text-[12px]" : "text-[14px] sm:text-[16px]"
+              )}>
+                {product.name}
+              </h3>
+            </Link>
           </div>
           
           <div className="flex items-end justify-between mt-auto w-full">
@@ -144,40 +156,52 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         !isMobile ? "md:hover:-translate-y-1 md:hover:border-cyan-500/40" : ""
       )}
     >
-      <div className={cn(
-        "relative overflow-hidden flex items-center justify-center bg-transparent shrink-0",
-        isMobile ? "aspect-square m-1.5 rounded-[18px]" : "aspect-square m-2 rounded-[20px]"
-      )}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_70%)]" />
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-contain p-1.5 transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 50vw, 25vw"
-          priority={product.bestSeller}
-        />
-        {product.bestSeller && (
-          <div className="absolute top-2 left-2 z-20">
-            <div className="bg-[#020817]/60 backdrop-blur-md border border-[#00FF88]/30 px-1.5 py-0.5 rounded-full flex items-center gap-1">
-              <Zap size={8} className="text-[#00FF88] fill-current" />
-              <span className="font-bold text-[#00FF88] tracking-widest uppercase text-[8px]">TOP</span>
+      <Link 
+        href={`/productos/${product.slug}/`} 
+        onClick={(e) => e.stopPropagation()}
+        className="block"
+      >
+        <div className={cn(
+          "relative overflow-hidden flex items-center justify-center bg-transparent shrink-0",
+          isMobile ? "aspect-square m-1.5 rounded-[18px]" : "aspect-square m-2 rounded-[20px]"
+        )}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_70%)]" />
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain p-1.5 transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            priority={product.bestSeller}
+          />
+          {product.bestSeller && (
+            <div className="absolute top-2 left-2 z-20">
+              <div className="bg-[#020817]/60 backdrop-blur-md border border-[#00FF88]/30 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                <Zap size={8} className="text-[#00FF88] fill-current" />
+                <span className="font-bold text-[#00FF88] tracking-widest uppercase text-[8px]">TOP</span>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </Link>
 
       <div className={cn(
         "flex flex-col px-4 pb-4 pt-1 gap-2 flex-1 justify-between",
         isMobile ? "px-3 pb-3 pt-0.5 gap-1.5" : ""
       )}>
         <div className="flex-1 flex flex-col justify-center">
-          <h3 className={cn(
-            "font-headline font-bold text-white uppercase leading-tight tracking-tight text-center line-clamp-2",
-            isMobile ? "text-[10px]" : "text-[15px]"
-          )}>
-            {product.name}
-          </h3>
+          <Link 
+            href={`/productos/${product.slug}/`} 
+            onClick={(e) => e.stopPropagation()}
+            className="block"
+          >
+            <h3 className={cn(
+              "font-headline font-bold text-white uppercase leading-tight tracking-tight text-center line-clamp-2",
+              isMobile ? "text-[10px]" : "text-[15px]"
+            )}>
+              {product.name}
+            </h3>
+          </Link>
         </div>
 
         <div className="flex items-end justify-between w-full pt-1">
