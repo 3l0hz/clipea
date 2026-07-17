@@ -35,6 +35,7 @@ export const PRODUCTS: Product[] = [
   // PROMO
   {
     id: 'pack-moto-basico',
+    slug: 'pack-moto-urbano',
     name: 'MOTO URBANO',
     mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
@@ -55,6 +56,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-medio',
+    slug: 'pack-moto-ruta',
     name: 'MOTO RUTA',
     mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
@@ -78,6 +80,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pack-moto-avanzado',
+    slug: 'pack-moto-pro',
     name: 'MOTO PRO',
     mainCategory: 'PROMO',
     subcategory: 'Packs Especiales',
@@ -101,6 +104,7 @@ export const PRODUCTS: Product[] = [
   // MOTO & AVENTURA
   {
     id: 'soportemotomanillar',
+    slug: 'soporte-moto-manillar-cnc',
     name: 'Soporte Moto Manillar CNC',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
@@ -119,6 +123,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'sunnylife-clip-moto',
+    slug: 'clip-parabrisas-moto',
     name: 'Clip Parabrisas Moto',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
@@ -143,6 +148,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'soporteparab',
+    slug: 'soporte-ventosa-parabrisas',
     name: 'Soporte Ventosa Parabrisas',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Monturas',
@@ -160,6 +166,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'PecheraTelesin',
+    slug: 'pechera-ajustable-telesin',
     name: 'Pechera Ajustable Telesin',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Grabación POV',
@@ -179,6 +186,7 @@ export const PRODUCTS: Product[] = [
   // CÁMARAS & CREACIÓN
   {
     id: 'adaptador-magnetico-dji',
+    slug: 'adaptador-magnetico-dji',
     name: 'Adaptador DJI',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Accesorios DJI',
@@ -204,6 +212,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'selfie-sumergible-telesin',
+    slug: 'selfie-sumergible-telesin',
     name: 'Selfie sumergible Telesin',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
@@ -230,6 +239,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'telesin-floating-grip-remote-copy',
+    slug: 'baston-selfie-telesin-90',
     name: 'Baston Selfie Telesin',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
@@ -254,6 +264,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'selfie1.20',
+    slug: 'baston-selfie-aluminio-1-20',
     name: 'Baston selfie Alumino 1.2m',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
@@ -273,6 +284,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'Selfie2m',
+    slug: 'baston-selfie-carbono-2m',
     name: 'Bastón Selfie Carbono 2m',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
@@ -291,6 +303,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'selfie3m',
+    slug: 'baston-selfie-carbono-3m',
     name: 'Bastón Selfie Carbono 3m',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Bastones Selfie',
@@ -310,6 +323,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'MinitripodeGoPro',
+    slug: 'minitripode-gopro',
     name: 'Mini Tripode Gopro',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
@@ -328,6 +342,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'Minitripodeinsta',
+    slug: 'minitripode-insta360',
     name: 'Minitrípode Insta360',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
@@ -346,6 +361,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'Bullet',
+    slug: 'mango-bullet-time-insta360',
     name: 'Mango Bullet',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Trípodes',
@@ -363,6 +379,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'lente-rep-gopro9.13',
+    slug: 'lente-repuesto-gopro-9-13',
     name: 'Lente Repuesto GoPro 9-13',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Accesorios GoPro',
@@ -380,6 +397,7 @@ export const PRODUCTS: Product[] = [
   // SETUP & ESCRITORIO
   {
     id: 'divoom-timebox-evo',
+    slug: 'divoom-timebox-evo-pixel-art',
     name: 'Divoom Timebox Evo',
     mainCategory: 'SETUP & ESCRITORIO',
     subcategory: 'Pixel Art',
@@ -401,6 +419,7 @@ export const PRODUCTS: Product[] = [
   // HOGAR INTELIGENTE
   {
     id: 'bestcon-rm4c-mini',
+    slug: 'control-remoto-wifi-bestcon',
     name: 'Control Remoto Wifi',
     mainCategory: 'Hogar inteligente',
     subcategory: 'Hogar Inteligente',

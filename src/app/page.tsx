@@ -3,22 +3,17 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { ProductCard } from '@/components/ProductCard';
-import { ProductModal } from '@/components/ProductModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { PRODUCTS, CATEGORY_STRUCTURE, WHATSAPP_NUMBER } from '@/constants/data';
+import { PRODUCTS, CATEGORY_STRUCTURE } from '@/constants/data';
 import { Button } from '@/components/ui/button';
 import { 
-  Shield, 
+  ShieldCheck, 
   Truck, 
   Zap, 
-  ArrowUpRight,
-  ShieldCheck,
+  ArrowRight,
   Headset,
   Clock,
-  Sparkles,
-  ArrowRight,
   X,
-  Info,
   ChevronRight,
   Instagram
 } from 'lucide-react';
@@ -37,16 +32,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { PromoMotoSection } from '@/components/PromoMotoSection';
 
 export default function Home() {
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSubcategory, setActiveSubcategory] = useState<Record<string, string>>({});
   const [legalModal, setLegalModal] = useState<{ open: boolean, type: string | null }>({ open: false, type: null });
   const isMobile = useIsMobile();
-
-  const handleViewDetails = (product: any) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
 
   const handleSubcategoryChange = (mainCategory: string, sub: string) => {
     setActiveSubcategory(prev => ({
@@ -92,12 +80,9 @@ export default function Home() {
             Equipamiento de alta gama para creadores y aventureros.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 pt-6 mx-auto">
-            <button 
+            <a 
+              href="/productos/mango-bullet-time-insta360"
               className="h-[44px] px-6 text-sm font-bold rounded-[12px] bg-gradient-to-r from-[#00D9FF] to-[#1A73FF] text-white border-none shadow-[0_0_20px_rgba(0,217,255,0.35)] hover:brightness-110 hover:shadow-[0_0_30px_rgba(0,217,255,0.5)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-[10px] w-fit"
-              onClick={() => {
-                const bulletProduct = PRODUCTS.find(p => p.id === 'Bullet');
-                if (bulletProduct) handleViewDetails(bulletProduct);
-              }}
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
                 <path d="M9 1.5C9 5.64214 5.64214 9 1.5 9C5.64214 9 9 12.3579 9 16.5C9 12.3579 12.3579 9 16.5 9C12.3579 9 9 5.64214 9 1.5Z" fill="white"/>
@@ -105,7 +90,7 @@ export default function Home() {
                 <circle cx="13.5" cy="13.5" r="0.8" fill="white"/>
               </svg>
               <span>Logra este efecto</span>
-            </button>
+            </a>
             
             <a 
               href="#catalog"
@@ -157,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN PROMO MOTO RECONSTRUIDA */}
+      {/* SECCIÓN PROMO MOTO */}
       <PromoMotoSection />
 
       {/* Catalog Section */}
@@ -225,7 +210,6 @@ export default function Home() {
                       <ProductCard
                         key={product.id}
                         product={product}
-                        onViewDetails={handleViewDetails}
                       />
                     ))}
                   </div>
@@ -338,12 +322,6 @@ export default function Home() {
         isOpen={legalModal.open} 
         onClose={() => setLegalModal({ open: false, type: null })} 
         type={legalModal.type} 
-      />
-
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
       />
     </main>
   );

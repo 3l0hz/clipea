@@ -1,8 +1,7 @@
 
 'use client';
-import { useState } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { Product } from '@/types/store';
 import { ShoppingCart, Search, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -12,21 +11,18 @@ import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
   product: Product;
-  onViewDetails: (product: Product) => void;
+  onViewDetails?: (product: Product) => void;
   isExperimental?: boolean;
   isPremium?: boolean;
 }
 
-export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium }: ProductCardProps) => {
+export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardProps) => {
   const isMobile = useIsMobile();
   const { addToCart } = useCart();
   const { toast } = useToast();
   
-  const handleCardClick = () => {
-    onViewDetails(product);
-  };
-
   const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     addToCart(product);
     toast({
@@ -44,13 +40,13 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
   // PROMO STYLE
   if (isPromo) {
     return (
-      <div 
+      <Link 
+        href={`/productos/${product.slug}`}
         className={cn(
           "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl transition-all duration-300",
           "h-full w-full",
           !isMobile ? "md:hover:-translate-y-1" : ""
         )}
-        onClick={handleCardClick}
       >
         <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
           {product.bestSeller && (
@@ -66,7 +62,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "relative overflow-hidden bg-transparent flex items-center justify-center transition-all rounded-[15px] aspect-square",
-          isMobile ? "m-1.5" : "m-2"
+          isMobile ? "m-1" : "m-2"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
           <Image
@@ -75,7 +71,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             fill
             className={cn(
               "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]",
-              isMobile ? "p-1.5" : "p-2"
+              isMobile ? "p-1" : "p-2"
             )}
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={product.bestSeller}
@@ -109,15 +105,14 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             </div>
             
             <div className="flex items-center gap-1.5 md:gap-2">
-              <button
-                onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
+              <div
                 className={cn(
                   "flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-[#00D9FF]/30 text-[#00D9FF]/70 transition-all hover:text-[#00D9FF] hover:border-[#00D9FF]/60",
                   isMobile ? "h-7 w-7" : "h-9 w-9 sm:h-10 sm:w-10"
                 )}
               >
                 <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
-              </button>
+              </div>
               <button
                 onClick={handleAddToCart}
                 className={cn(
@@ -130,22 +125,21 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
-  // NORMAL STYLE: Compact, Square & Premium
+  // NORMAL STYLE
   return (
-    <div 
+    <Link 
+      href={`/productos/${product.slug}`}
       className={cn(
         "group bg-[#030d1b] flex flex-col cursor-pointer transition-all duration-500 border border-cyan-500/20 shadow-[0_0_20px_rgba(0,217,255,0.05)]",
         "rounded-[24px] overflow-hidden",
         isMobile ? "h-auto" : "h-auto w-full",
         !isMobile ? "md:hover:-translate-y-1 md:hover:border-cyan-500/40" : ""
       )}
-      onClick={handleCardClick}
     >
-      {/* Image Container: ~65% height, Dominant */}
       <div className={cn(
         "relative overflow-hidden flex items-center justify-center bg-transparent shrink-0",
         isMobile ? "aspect-square m-1.5 rounded-[18px]" : "aspect-square m-2 rounded-[20px]"
@@ -169,12 +163,10 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
         )}
       </div>
 
-      {/* Info Container: Title, Price & Buttons */}
       <div className={cn(
         "flex flex-col px-4 pb-4 pt-1 gap-2 flex-1 justify-between",
         isMobile ? "px-3 pb-3 pt-0.5 gap-1.5" : ""
       )}>
-        {/* Title: Centered, max 2 lines */}
         <div className="flex-1 flex flex-col justify-center">
           <h3 className={cn(
             "font-headline font-bold text-white uppercase leading-tight tracking-tight text-center line-clamp-2",
@@ -184,7 +176,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </h3>
         </div>
 
-        {/* Bottom Section: Price (Left) + Buttons (Right) */}
         <div className="flex items-end justify-between w-full pt-1">
           <div className={cn(
             "font-headline font-black text-white tracking-tighter leading-none",
@@ -194,15 +185,14 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
 
           <div className="flex items-center gap-1.5 md:gap-2">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleCardClick(); }}
+            <div
               className={cn(
                 "flex items-center justify-center rounded-full bg-cyan-500/5 border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/10",
                 isMobile ? "h-7 w-7" : "h-9 w-9"
               )}
             >
               <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
-            </button>
+            </div>
             <button
               onClick={handleAddToCart}
               className={cn(
@@ -215,6 +205,6 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

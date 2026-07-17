@@ -3,8 +3,11 @@ export type Category = 'Promos Moto' | 'Trípodes' | 'Bastones Selfie' | 'Soport
 
 export interface Product {
   id: string;
+  slug: string;
   name: string;
   category: Category;
+  mainCategory: string;
+  subcategory: string;
   price: string;
   image: string;
   images?: string[];
