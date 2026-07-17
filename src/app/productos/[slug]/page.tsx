@@ -15,6 +15,8 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { notFound, useRouter } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
+import { Footer } from '@/components/Footer';
+import { LegalModals } from '@/components/LegalModals';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -33,6 +35,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const product = PRODUCTS.find(p => p.slug === slug);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showModel, setShowModel] = useState(false);
+  const [legalModal, setLegalModal] = useState<{ open: boolean, type: string | null }>({ open: false, type: null });
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -87,6 +90,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     } else {
       router.push('/');
     }
+  };
+
+  const openLegalModal = (type: string) => {
+    setLegalModal({ open: true, type });
   };
 
   return (
@@ -291,7 +298,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           </div>
 
           {/* SECCIÓN PRODUCTOS RELACIONADOS */}
-          <section className="pt-20 border-t border-white/5">
+          <section className="pt-20 border-t border-white/5 mb-20">
             <div className="space-y-12">
               <div className="space-y-4">
                 <h3 className="text-2xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
@@ -312,6 +319,14 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           </section>
         </div>
       </div>
+
+      {/* Footer y Modales Legales */}
+      <Footer onOpenLegalModal={openLegalModal} />
+      <LegalModals 
+        isOpen={legalModal.open} 
+        onClose={() => setLegalModal({ open: false, type: null })} 
+        type={legalModal.type} 
+      />
     </main>
   );
 }
