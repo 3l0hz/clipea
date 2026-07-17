@@ -16,6 +16,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const WhatsAppButton = () => {
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -36,6 +37,7 @@ export const WhatsAppButton = () => {
 
   const handleMouseLeave = () => {
     setRotate({ x: 0, y: 0 });
+    setIsHovered(false);
   };
 
   return (
@@ -45,26 +47,27 @@ export const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       className={cn(
         "fixed bottom-6 right-6 z-50",
         "flex items-center justify-center p-4 rounded-full",
         "bg-[#020817]/85 backdrop-blur-xl border-[1.5px] border-[#00D9FF]/40",
-        "shadow-[0_0_20px_rgba(0,217,255,0.35)]",
-        "transition-all duration-300 ease-out",
-        "hover:border-[#00D9FF] hover:shadow-[0_0_35px_rgba(0,217,255,0.5)]",
+        "shadow-[0_0_20px_rgba(0,217,255,0.25)]",
+        "transition-all duration-200 ease-out",
+        "hover:border-[#00D9FF] hover:shadow-[0_0_35px_rgba(0,217,255,0.45)] hover:scale-[1.06]",
         "active:scale-95 group"
       )}
       style={{
         perspective: '1000px',
-        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) ${isHovered ? 'scale(1.06)' : 'scale(1)'}`,
       }}
       aria-label="Contactar por WhatsApp"
     >
-      <WhatsAppIcon className="w-6 h-6 text-white transition-transform duration-500" />
+      <WhatsAppIcon className="w-6 h-6 text-[#25D366] transition-all duration-300 group-hover:brightness-110 group-hover:drop-shadow-[0_0_8px_rgba(37,211,102,0.4)]" />
       
       {/* Sutil efecto de brillo tipo vidrio */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </a>
   );
 };
