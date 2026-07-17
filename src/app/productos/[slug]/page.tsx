@@ -1,5 +1,5 @@
 'use client';
-import { use, useState, useEffect } from 'react';
+import { use, useState, useEffect, useMemo } from 'react';
 import { PRODUCTS, WHATSAPP_NUMBER } from '@/constants/data';
 import { Header } from '@/components/Header';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -14,6 +14,7 @@ import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { notFound, useRouter } from 'next/navigation';
+import { ProductCard } from '@/components/ProductCard';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -38,7 +39,31 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   // Asegurar que la página comience arriba al cargar
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [slug]);
+
+  const relatedProducts = useMemo(() => {
+    if (!product) return [];
+    
+    // 1. Productos de la misma categoría (excluyendo el actual)
+    const sameCategory = PRODUCTS.filter(p => 
+      p.mainCategory === product.mainCategory && p.id !== product.id
+    );
+    
+    // 2. Si faltan para llegar a 4, completar con destacados de otras categorías
+    let finalSelection = [...sameCategory];
+    
+    if (finalSelection.length < 4) {
+      const featured = PRODUCTS.filter(p => 
+        p.mainCategory !== product.mainCategory && 
+        p.id !== product.id &&
+        !finalSelection.some(sel => sel.id === p.id)
+      ).sort((a, b) => (b.bestSeller ? 1 : 0) - (a.bestSeller ? 1 : 0));
+      
+      finalSelection = [...finalSelection, ...featured];
+    }
+    
+    return finalSelection.slice(0, 4);
+  }, [product]);
 
   if (!product) {
     notFound();
@@ -71,7 +96,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       
       <div className="pt-28 md:pt-40 pb-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row gap-12 xl:gap-24">
+          <div className="flex flex-col lg:flex-row gap-12 xl:gap-24 mb-32">
             
             {/* COLUMNA IZQUIERDA: Visuales (Galería/3D) */}
             <div className="w-full lg:w-[55%] flex flex-col gap-6">
@@ -264,6 +289,27 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               </div>
             </div>
           </div>
+
+          {/* SECCIÓN PRODUCTOS RELACIONADOS */}
+          <section className="pt-20 border-t border-white/5">
+            <div className="space-y-12">
+              <div className="space-y-4">
+                <h3 className="text-2xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
+                  También te <span className="text-cyan-400">puede interesar</span>
+                </h3>
+                <div className="h-1 w-20 bg-cyan-400 rounded-full" />
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                {relatedProducts.map((relProduct) => (
+                  <ProductCard
+                    key={relProduct.id}
+                    product={relProduct}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </main>
