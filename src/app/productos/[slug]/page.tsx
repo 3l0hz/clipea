@@ -1,14 +1,12 @@
-
 'use client';
-import { use, useState, useEffect } from 'react';
+import { use, useState } from 'react';
 import { PRODUCTS, WHATSAPP_NUMBER } from '@/constants/data';
 import { Header } from '@/components/Header';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { ProductCard } from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
 import { 
-  X, ShoppingCart, Box, Info, CheckCircle2, ShieldCheck, Zap, 
-  ChevronLeft, ChevronRight, Share2 
+  ShoppingCart, Box, Info, CheckCircle2, ShieldCheck, Zap, 
+  ChevronLeft, ChevronRight 
 } from 'lucide-react';
 import Image from 'next/image';
 import { ModelViewer } from '@/components/ModelViewer';
@@ -43,15 +41,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const images = product.images || [product.image];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola, quiero consultar por ${product.name} de clipea.`;
 
-  const relatedProducts = PRODUCTS
-    .filter(p => p.category === product.category && p.id !== product.id)
-    .slice(0, 4);
-
-  // Fallback for related products
-  const finalRelated = relatedProducts.length > 0 
-    ? relatedProducts 
-    : PRODUCTS.filter(p => p.id !== product.id).slice(0, 4);
-
   const nextImage = () => {
     setShowModel(false);
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -59,23 +48,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const prevImage = () => {
     setShowModel(false);
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const handleShare = () => {
-    const shareData = {
-      title: `${product.name} | Clipea Chile`,
-      text: product.description,
-      url: window.location.href,
-    };
-
-    if (navigator.share) {
-      navigator.share(shareData);
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast({
-        description: "Enlace copiado al portapapeles",
-      });
-    }
   };
 
   return (
@@ -159,23 +131,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               <div className="flex-1 px-6 py-8 md:px-10 md:py-12 space-y-8">
                 
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400">
-                        {product.category}
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400">
+                      {product.category}
+                    </span>
+                    {product.bestSeller && (
+                      <span className="bg-accent/10 text-accent text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase flex items-center gap-1">
+                        <Zap size={8} className="fill-current" /> MÁS VENDIDO
                       </span>
-                      {product.bestSeller && (
-                        <span className="bg-accent/10 text-accent text-[9px] font-bold px-2 py-0.5 rounded-full border border-accent/20 tracking-widest uppercase flex items-center gap-1">
-                          <Zap size={8} className="fill-current" /> MÁS VENDIDO
-                        </span>
-                      )}
-                    </div>
-                    <button 
-                      onClick={handleShare}
-                      className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-cyan-400 transition-all group"
-                    >
-                      <Share2 size={18} className="group-hover:scale-110 transition-transform" />
-                    </button>
+                    )}
                   </div>
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-headline font-bold leading-tight uppercase tracking-tighter text-white">
                     {product.name}
@@ -185,14 +149,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                     <span className="text-3xl md:text-4xl lg:text-5xl font-headline font-extrabold tracking-tighter text-accent">
                       {product.price}
                     </span>
-                    {product.mainCategory === 'PROMO' && (
-                      <span className="text-lg text-white/20 line-through font-bold">
-                        {product.price === '$34.990' ? '$49.990' : 
-                         product.price === '$54.990' ? '$74.990' : 
-                         product.price === '$69.990' ? '$89.990' :
-                         '$149.990'}
-                      </span>
-                    )}
                   </div>
                 </div>
 
@@ -280,26 +236,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               </div>
             </div>
           </div>
-
-          {/* Recommended Section */}
-          <section className="mt-24 space-y-12">
-            <div className="flex items-center gap-4">
-              <div className="h-[2px] w-12 bg-[#00D9FF] shadow-[0_0_10px_rgba(0,217,255,0.5)]" />
-              <h3 className="text-2xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
-                También te puede interesar
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {finalRelated.map((relProduct) => (
-                <ProductCard
-                  key={relProduct.id}
-                  product={relProduct}
-                  isPremium={relProduct.mainCategory === 'PROMO'}
-                />
-              ))}
-            </div>
-          </section>
         </div>
       </div>
     </main>
