@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -30,10 +29,14 @@ import {
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PromoMotoSection } from '@/components/PromoMotoSection';
+import { ProductModal } from '@/components/ProductModal';
+import { Product } from '@/types/store';
 
 export default function Home() {
   const [activeSubcategory, setActiveSubcategory] = useState<Record<string, string>>({});
   const [legalModal, setLegalModal] = useState<{ open: boolean, type: string | null }>({ open: false, type: null });
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleSubcategoryChange = (mainCategory: string, sub: string) => {
@@ -41,6 +44,11 @@ export default function Home() {
       ...prev,
       [mainCategory]: prev[mainCategory] === sub ? '' : sub
     }));
+  };
+
+  const handleViewDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setIsProductModalOpen(true);
   };
 
   const openLegalModal = (type: string) => {
@@ -81,7 +89,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 pt-6 mx-auto">
             <a 
-              href="/productos/mango-bullet-time-insta360"
+              href="#promo-moto"
               className="h-[44px] px-6 text-sm font-bold rounded-[12px] bg-gradient-to-r from-[#00D9FF] to-[#1A73FF] text-white border-none shadow-[0_0_20px_rgba(0,217,255,0.35)] hover:brightness-110 hover:shadow-[0_0_30px_rgba(0,217,255,0.5)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-[10px] w-fit"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
@@ -143,7 +151,7 @@ export default function Home() {
       </section>
 
       {/* SECCIÓN PROMO MOTO */}
-      <PromoMotoSection />
+      <PromoMotoSection onViewDetails={handleViewDetails} />
 
       {/* Catalog Section */}
       <section id="catalog" className="py-20 md:py-32 bg-transparent">
@@ -200,16 +208,15 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div 
-                    className={cn(
-                      "grid gap-4 md:gap-6",
-                      "grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
-                    )}
-                  >
+                  <div className={cn(
+                    "grid grid-cols-2 gap-2.5 sm:gap-4",
+                    "md:grid-cols-4 md:gap-6 lg:grid-cols-5"
+                  )}>
                     {filteredProducts.map((product) => (
                       <ProductCard
                         key={product.id}
                         product={product}
+                        onViewDetails={handleViewDetails}
                       />
                     ))}
                   </div>
@@ -299,7 +306,7 @@ export default function Home() {
           </div>
 
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex items-center gap-6">
               <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/20">
                 © 2026 CLIPEA CHILE. TODOS LOS DERECHOS RESERVADOS.
               </p>
@@ -322,6 +329,12 @@ export default function Home() {
         isOpen={legalModal.open} 
         onClose={() => setLegalModal({ open: false, type: null })} 
         type={legalModal.type} 
+      />
+
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isProductModalOpen}
+        onClose={() => setIsProductModalOpen(false)}
       />
     </main>
   );

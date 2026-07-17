@@ -1,4 +1,3 @@
-
 'use client';
 import { useRef } from 'react';
 import Image from 'next/image';
@@ -7,10 +6,14 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import { PRODUCTS } from '@/constants/data';
 import { ProductCard } from '@/components/ProductCard';
+import { Product } from '@/types/store';
 
-export const PromoMotoSection = () => {
+interface PromoMotoSectionProps {
+  onViewDetails?: (product: Product) => void;
+}
+
+export const PromoMotoSection = ({ onViewDetails }: PromoMotoSectionProps) => {
   const packsRef = useRef<HTMLDivElement>(null);
-  const promoImage = PlaceHolderImages.find(img => img.id === 'promo-banner-moto');
   
   // Imagen oficial de resultado
   const NEW_PROMO_IMAGE_URL = "https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2011%20jun%202026,%2012_00_59%20a.m.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAxMSBqdW4gMjAyNiwgMTJfMDBfNTkgYS5tLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNTA5MDIsImV4cCI6MTgxMjY4NjkwMn0.tv-y-SZAOCXU1M-dHVN5iEIiyrwGFjlmy1FqAREXL0s";
@@ -94,93 +97,86 @@ export const PromoMotoSection = () => {
           </div>
         </div>
 
-        {/* BLOQUE INFERIOR INTEGRADO: ¿CÓMO SE LOGRA? */}
-        <div className="border-t border-white/10 p-6 md:py-12 md:px-20 space-y-4 md:space-y-12 bg-black/40 backdrop-blur-md">
+        {/* BLOQUE INFERIOR: ¿CÓMO SE LOGRA ESTE EFECTO? */}
+        <div className="border-t border-white/10 p-4 md:py-12 md:px-20 space-y-4 md:space-y-12 bg-black/40 backdrop-blur-md">
           <div className="space-y-2 text-center">
             <h3 className="text-xl md:text-4xl font-headline font-bold text-white uppercase tracking-tight">
               ¿CÓMO SE LOGRA <span className="text-[#00D9FF]">ESTE EFECTO?</span>
             </h3>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 w-full">
-            <div className="flex flex-row flex-nowrap md:flex-row items-center justify-center gap-2 md:gap-12 w-full md:w-auto overflow-x-auto no-scrollbar pb-2 md:pb-0">
-              {/* Tarjeta 1: Cámara */}
-              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-100">
-                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">
-                    <span className="hidden md:inline">1</span>
-                    <span className="md:hidden">1</span>
-                  </div>
-                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right">
-                    <span className="md:hidden">360</span>
-                    <span className="hidden md:inline">CÁMARA 360</span>
-                  </div>
-                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
-                    <Image 
-                      src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" 
-                      alt="Cámara 360" 
-                      fill 
-                      className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
-                      sizes="(max-width: 768px) 90px, 300px"
-                    />
-                  </div>
+          {/* Versión Desktop: Fórmula Horizontal */}
+          <div className="hidden md:flex flex-row items-center justify-center gap-12 w-full">
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[300px] rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+                <div className="absolute top-6 left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">1</div>
+                <div className="absolute top-6 right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-10 text-right">CÁMARA 360</div>
+                <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                  <Image src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" alt="Cámara 360" fill className="object-contain group-hover:scale-110 transition-transform duration-700 p-2" />
                 </div>
               </div>
+            </div>
 
-              <Plus className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
+            <Plus className="text-[#00D9FF] w-10 h-10 shrink-0 opacity-50" strokeWidth={3} />
 
-              {/* Tarjeta 2: Stick + Soporte */}
-              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-200">
-                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-2 md:p-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">
-                    <span className="hidden md:inline">2</span>
-                    <span className="md:hidden">2</span>
-                  </div>
-                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-10 text-right leading-none">
-                    <span className="md:hidden">ACCESORIOS</span>
-                    <span className="hidden md:inline">STICK INVISIBLE + SOPORTE MOTO</span>
-                  </div>
-                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
-                    <Image 
-                      src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" 
-                      alt="Selfie Stick + Soporte Moto" 
-                      fill 
-                      className="object-contain group-hover:scale-110 transition-transform duration-700 p-1 md:p-2" 
-                      sizes="(max-width: 768px) 90px, 300px"
-                    />
-                  </div>
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[300px] rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700">
+                <div className="absolute top-6 left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-10">2</div>
+                <div className="absolute top-6 right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-10 text-right leading-none">STICK INVISIBLE + SOPORTE MOTO</div>
+                <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                  <Image src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" alt="Selfie Stick + Soporte Moto" fill className="object-contain group-hover:scale-110 transition-transform duration-700 p-2" />
                 </div>
               </div>
+            </div>
 
-              <Equal className="text-[#00D9FF] w-4 h-4 md:w-10 md:h-10 shrink-0 opacity-50" strokeWidth={3} />
+            <Equal className="text-[#00D9FF] w-10 h-10 shrink-0 opacity-50" strokeWidth={3} />
 
-              {/* Tarjeta 3: Resultado */}
-              <div className="flex flex-col items-center shrink-0 animate-fade-in-up delay-300">
-                <div className="relative aspect-square w-[90px] md:w-[300px] rounded-[14px] md:rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-1 md:p-2 shadow-[0_10px_20px_rgba(0,0,0,0.5)] md:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700 overflow-hidden">
-                  <div className="absolute top-1 left-1 md:top-6 md:left-6 w-5 h-5 md:w-7 md:h-7 rounded-full bg-[#00D9FF] text-black text-[9px] md:text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">
-                    <span className="hidden md:inline">3</span>
-                    <span className="md:hidden">3</span>
-                  </div>
-                  <div className="absolute top-1 right-2 md:top-6 md:right-8 text-[7px] md:text-[9px] font-bold text-white/30 uppercase tracking-[0.1em] md:tracking-[0.3em] z-20 text-right leading-none">
-                    <span className="md:hidden">DRON</span>
-                    <span className="hidden md:inline">RESULTADO EFECTO DRON</span>
-                  </div>
-                  <div className="relative w-full h-full mt-1 flex items-center justify-center">
-                    <Image 
-                      src={NEW_PROMO_IMAGE_URL} 
-                      alt="Resultado Efecto Dron en Moto" 
-                      fill 
-                      className="object-contain md:object-cover rounded-[10px] md:rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" 
-                      sizes="(max-width: 768px) 90px, 300px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[10px] md:rounded-[18px]" />
-                  </div>
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[300px] rounded-[24px] border border-[#00D9FF]/20 bg-[#031225]/60 p-1 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group hover:border-[#00D9FF]/50 transition-all duration-700 overflow-hidden">
+                <div className="absolute top-6 left-6 w-7 h-7 rounded-full bg-[#00D9FF] text-black text-[11px] font-black flex items-center justify-center shadow-[0_0_10px_rgba(0,217,255,0.4)] z-20">3</div>
+                <div className="absolute top-6 right-8 text-[9px] font-bold text-white/30 uppercase tracking-[0.3em] z-20 text-right leading-none">RESULTADO EFECTO DRON</div>
+                <div className="relative w-full h-full mt-1 flex items-center justify-center">
+                  <Image src={NEW_PROMO_IMAGE_URL} alt="Resultado Efecto Dron en Moto" fill className="object-cover rounded-[18px] transition-transform duration-[3s] group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-40 rounded-[18px]" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="pt-2 md:pt-4 text-center animate-fade-in-up delay-500 pb-8">
+          {/* Versión Mobile: Fórmula Horizontal Compacta */}
+          <div className="flex md:hidden flex-row items-center justify-center gap-1.5 w-full">
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[90px] rounded-xl border border-[#00D9FF]/20 bg-[#031225]/60 p-2 shadow-lg">
+                <div className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-[#00D9FF] text-black text-[9px] font-black flex items-center justify-center z-10">1</div>
+                <div className="absolute top-1 right-2 text-[6px] font-bold text-white/40 uppercase tracking-widest z-10">360</div>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/360%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vMzYwICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgxMTQ3NDc3LCJleHAiOjE4MTI2ODM0Nzd9.flZNq29wAtW7hOOGRE7CCDtrTI_SeawKFbT-KOxZ1hQ" alt="360" fill className="object-contain p-1" />
+                </div>
+              </div>
+            </div>
+            <Plus className="text-[#00D9FF] w-4 h-4 opacity-50" strokeWidth={3} />
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[90px] rounded-xl border border-[#00D9FF]/20 bg-[#031225]/60 p-2 shadow-lg">
+                <div className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-[#00D9FF] text-black text-[9px] font-black flex items-center justify-center z-10">2</div>
+                <div className="absolute top-1 right-2 text-[5px] font-bold text-white/40 uppercase tracking-widest z-10">STICK + SOPORTE</div>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image src="https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/sign/banner%20promo/ChatGPT%20Image%2027%20may%202026,%2014_28_09%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iMzAwODRhZS1lYTgzLTQ3NmEtYjQwOS0yY2I1MzY4YmVhMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiYW5uZXIgcHJvbW8vQ2hhdEdQVCBJbWFnZSAyNyBtYXkgMjAyNiwgMTRfMjhfMDkgKDEpLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODExNDc2OTYsImV4cCI6MTgxMjY4MzY5Nn0.oyGbeZYw1mTAnmBE5lTyX0XdPZoxGPEyiHoHo_Wi_bw" alt="Accesorios" fill className="object-contain p-1" />
+                </div>
+              </div>
+            </div>
+            <Equal className="text-[#00D9FF] w-4 h-4 opacity-50" strokeWidth={3} />
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative aspect-square w-[90px] rounded-xl border border-[#00D9FF]/20 bg-[#031225]/60 p-0.5 shadow-lg overflow-hidden">
+                <div className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-[#00D9FF] text-black text-[9px] font-black flex items-center justify-center z-20">3</div>
+                <div className="absolute top-1 right-2 text-[6px] font-bold text-white/40 uppercase tracking-widest z-20">RESULTADO</div>
+                <div className="relative w-full h-full">
+                  <Image src={NEW_PROMO_IMAGE_URL} alt="Resultado" fill className="object-contain" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2 md:pt-4 text-center animate-fade-in-up delay-500">
             <p className="text-white/70 text-[11px] md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
               La cámara se oculta con nuestros accesorios y se obtiene una <span className="text-[#00D9FF] font-bold underline underline-offset-8 decoration-[#00D9FF]/30">toma aérea</span> imposible con un selfie stick.
             </p>
@@ -201,7 +197,7 @@ export const PromoMotoSection = () => {
               <ProductCard
                 key={product.id}
                 product={product}
-                onViewDetails={() => {}}
+                onViewDetails={onViewDetails}
                 isPremium
               />
             ))}

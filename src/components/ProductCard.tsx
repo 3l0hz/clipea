@@ -1,7 +1,5 @@
-
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Product } from '@/types/store';
 import { ShoppingCart, Search, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -16,7 +14,7 @@ interface ProductCardProps {
   isPremium?: boolean;
 }
 
-export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardProps) => {
+export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium }: ProductCardProps) => {
   const isMobile = useIsMobile();
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -30,6 +28,10 @@ export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardP
     });
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    onViewDetails?.(product);
+  };
+
   const getStrikethroughPrice = (price: string) => {
     const val = parseInt(price.replace(/[^0-9]/g, ''));
     return `$${(val * 1.4).toLocaleString('es-CL')}`;
@@ -37,11 +39,11 @@ export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardP
 
   const isPromo = isPremium || product.mainCategory === 'PROMO';
 
-  // PROMO STYLE
+  // PROMO STYLE (Packs Moto)
   if (isPromo) {
     return (
-      <Link 
-        href={`/productos/${product.slug}`}
+      <div 
+        onClick={handleClick}
         className={cn(
           "group relative overflow-hidden flex flex-col cursor-pointer premium-mobile-card border-none rounded-[20px] shadow-2xl transition-all duration-300",
           "h-full w-full",
@@ -73,7 +75,7 @@ export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardP
               "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]",
               isMobile ? "p-1" : "p-2"
             )}
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 768px) 50vw, 33vw"
             priority={product.bestSeller}
           />
         </div>
@@ -125,14 +127,14 @@ export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardP
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 
   // NORMAL STYLE
   return (
-    <Link 
-      href={`/productos/${product.slug}`}
+    <div 
+      onClick={handleClick}
       className={cn(
         "group bg-[#030d1b] flex flex-col cursor-pointer transition-all duration-500 border border-cyan-500/20 shadow-[0_0_20px_rgba(0,217,255,0.05)]",
         "rounded-[24px] overflow-hidden",
@@ -205,6 +207,6 @@ export const ProductCard = ({ product, isExperimental, isPremium }: ProductCardP
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
