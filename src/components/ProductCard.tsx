@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Product } from '@/types/store';
 import { ShoppingCart, Search, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -64,7 +65,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
 
         <div className={cn(
           "relative overflow-hidden bg-transparent flex items-center justify-center transition-all rounded-[15px] aspect-square",
-          isMobile ? "m-1" : "m-2"
+          isMobile ? "m-1 p-1" : "m-2 p-2"
         )}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.1),transparent_70%)]" />
           <Image
@@ -72,8 +73,7 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             alt={product.name}
             fill
             className={cn(
-              "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]",
-              isMobile ? "p-1" : "p-2"
+              "object-contain transition-transform duration-700 group-hover:scale-110 filter brightness-[1.03]"
             )}
             sizes="(max-width: 768px) 50vw, 33vw"
             priority={product.bestSeller}
@@ -107,19 +107,21 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
             </div>
             
             <div className="flex items-center gap-1.5 md:gap-2">
-              <div
+              <Link
+                href={`/productos/${product.slug}/`}
+                onClick={(e) => e.stopPropagation()}
                 className={cn(
                   "flex items-center justify-center rounded-full bg-[#020817]/60 backdrop-blur-md border border-[#00D9FF]/30 text-[#00D9FF]/70 transition-all hover:text-[#00D9FF] hover:border-[#00D9FF]/60",
-                  isMobile ? "h-7 w-7" : "h-9 w-9 sm:h-10 sm:w-10"
+                  isMobile ? "h-7 w-7" : "h-8 w-8 sm:h-9 sm:w-9"
                 )}
               >
                 <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
-              </div>
+              </Link>
               <button
                 onClick={handleAddToCart}
                 className={cn(
                   "flex items-center justify-center rounded-full bg-[#00D9FF]/5 backdrop-blur-md border border-[#00D9FF]/20 text-[#00D9FF] transition-all hover:bg-[#00D9FF]/15 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)]",
-                  isMobile ? "h-8 w-8" : "h-10 w-10 sm:h-11 sm:w-11"
+                  isMobile ? "h-8 w-8" : "h-9 w-9 sm:h-10 sm:w-10"
                 )}
               >
                 <ShoppingCart size={isMobile ? 14 : 18} strokeWidth={2.5} />
@@ -187,14 +189,16 @@ export const ProductCard = ({ product, onViewDetails, isExperimental, isPremium 
           </div>
 
           <div className="flex items-center gap-1.5 md:gap-2">
-            <div
+            <Link
+              href={`/productos/${product.slug}/`}
+              onClick={(e) => e.stopPropagation()}
               className={cn(
                 "flex items-center justify-center rounded-full bg-cyan-500/5 border border-cyan-500/20 text-cyan-400 transition-all hover:bg-cyan-500/10",
                 isMobile ? "h-7 w-7" : "h-9 w-9"
               )}
             >
               <Search size={isMobile ? 12 : 16} strokeWidth={2.5} />
-            </div>
+            </Link>
             <button
               onClick={handleAddToCart}
               className={cn(
