@@ -127,7 +127,7 @@ export const PRODUCTS: Product[] = [
     name: 'Clip Parabrisas Moto',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Soportes Moto',
-    price: '$18.990',
+    price: '$15.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_10_01.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/parabrisa%20moto/ChatGPT%20Image%2026%20may%202026,%2000_10_01.png',
@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
     name: 'Soporte Ventosa Parabrisas',
     mainCategory: 'MOTO & AVENTURA',
     subcategory: 'Monturas',
-    price: '$17.990',
+    price: '$16.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/ChatGPT%20Image%2026%20may%202026,%2000_01_41.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/ventosa/ChatGPT%20Image%2026%20may%202026,%2000_01_41.png',
@@ -243,7 +243,7 @@ export const PRODUCTS: Product[] = [
     name: 'Baston Selfie Telesin',
     mainCategory: 'CÁMARAS & CREACIÓN',
     subcategory: 'Soportes Cámara',
-    price: '$29.990',
+    price: '$19.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
     images: [
       'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/selfie%20telesin%2090/ChatGPT%20Image%2025%20may%202026,%2023_24_03.png',
