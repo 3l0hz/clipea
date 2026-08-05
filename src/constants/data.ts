@@ -401,7 +401,7 @@ export const PRODUCTS: Product[] = [
     name: 'Divoom Timebox Evo',
     mainCategory: 'SETUP & ESCRITORIO',
     subcategory: 'Pixel Art',
-    price: '$54.990',
+    price: '$49.990',
     image: 'https://bwdvsbxwqlnlzfwfsoid.supabase.co/storage/v1/object/public/Products/1.SETUP%20Y%20ESCRITORIO/ChatGPT%20Image%2027%20may%202026,%2015_06_33.png',
     description: 'La pieza central definitiva para tu setup. El Timebox Evo trasciende la función de un altavoz convencional para convertirse en un lienzo digital de 16x16 píxeles. Diseñado para quienes ven la tecnología como una forma de arte y decoración funcional.',
     compatibility: 'iOS / Android (Divoom App)',
