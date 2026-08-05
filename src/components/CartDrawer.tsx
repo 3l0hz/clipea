@@ -81,19 +81,24 @@ const REGIONS = [
   "Magallanes"
 ];
 
-const COMMUNES = [
-  "Santiago",
-  "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", 
-  "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", 
-  "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", 
-  "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", 
-  "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", 
-  "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", 
-  "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", 
-  "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", 
-  "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", 
-  "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"
-];
+const COMMUNES_BY_REGION: Record<string, string[]> = {
+  "Metropolitana": ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"],
+  "Arica y Parinacota": ["Arica", "Camarones", "Putre", "General Lagos"],
+  "Tarapacá": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"],
+  "Antofagasta": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+  "Atacama": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+  "Coquimbo": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paiguano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+  "Valparaíso": ["Valparaíso", "Casablanca", "Concón", "Juan Fernández", "Puchuncaví", "Quintero", "Viña del Mar", "Isla de Pascua", "Los Andes", "Calle Larga", "Rinconada", "San Esteban", "La Ligua", "Cabildo", "Papudo", "Petorca", "Zapallar", "Quillota", "Calera", "Hijuelas", "La Cruz", "Nogales", "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo", "San Felipe", "Catemu", "Llaillay", "Panquehue", "Putaendo", "Santa María", "Quilpué", "Limache", "Olmué", "Villa Alemana"],
+  "O'Higgins": ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"],
+  "Maule": ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Cauquenes", "Chanco", "Pelluhue", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre", "Yerbas Buenas"],
+  "Ñuble": ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "Chillán Viejo", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"],
+  "Biobío": ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualpén", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Álamos", "Tirúa", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Alto Biobío"],
+  "Araucanía": ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre Las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautín", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Purén", "Renaico", "Traiguén", "Victoria"],
+  "Los Ríos": ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"],
+  "Los Lagos": ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao", "Osorno", "Puerto Octay", "Purranque", "Puyehue", "Río Negro", "San Juan de la Costa", "San Pablo", "Chaitén", "Futaleufú", "Hualaihué", "Palena"],
+  "Aysén": ["Coyhaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel", "Chile Chico", "Río Ibáñez"],
+  "Magallanes": ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]
+};
 
 export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const { cart, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
@@ -105,7 +110,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const [phone, setPhone] = useState('');
   const [phonePrefix, setPhonePrefix] = useState(PREFIXES[0].value);
   const [region, setRegion] = useState(REGIONS[0]);
-  const [commune, setCommune] = useState(COMMUNES[0]);
+  const [commune, setCommune] = useState(COMMUNES_BY_REGION[REGIONS[0]][0]);
+  
   const [address, setAddress] = useState('');
   
   const [showEmailSuggestions, setShowEmailSuggestions] = useState(false);
@@ -570,6 +576,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                             <Label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Región</Label>
                             <Select value={region} onValueChange={(v) => {
                               setRegion(v);
+                              setCommune(""); // Reiniciar comuna al cambiar región
                               setErrors(prev => ({ ...prev, region: false }));
                             }}>
                               <SelectTrigger className={cn(
@@ -577,7 +584,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 "focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                 errors.region && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
-                                <SelectValue placeholder="Metropolitana" />
+                                <SelectValue placeholder="Selecciona región" />
                               </SelectTrigger>
                               <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)] max-h-[300px]">
                                 {REGIONS.map(reg => (
@@ -599,10 +606,10 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                                 "focus:border-[#00E5FF] focus:shadow-[0_0_15px_rgba(0,229,255,0.18)]",
                                 errors.commune && "border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)]"
                               )}>
-                                <SelectValue placeholder="Santiago" />
+                                <SelectValue placeholder="Selecciona comuna" />
                               </SelectTrigger>
                               <SelectContent className="bg-[#041224]/95 backdrop-blur-2xl border-cyan-400/30 text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-cyan-400/20 shadow-[0_0_20px_rgba(0,229,255,0.15)] max-h-[300px]">
-                                {COMMUNES.map(com => (
+                                {(COMMUNES_BY_REGION[region] || []).map(com => (
                                   <SelectItem key={com} value={com} className="text-sm focus:bg-cyan-400/10 focus:text-white data-[state=checked]:bg-cyan-400/5 data-[state=checked]:text-white [&_svg]:text-cyan-400 transition-colors cursor-pointer">
                                     {com}
                                   </SelectItem>
