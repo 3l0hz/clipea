@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
@@ -159,7 +158,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
 
   const isNameGreen = focusedField === 'fullName' && fullName.trim().length >= 2 && !/[0-9@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(fullName) && !isNameValid;
   const isPhoneGreen = focusedField === 'phone' && phone.length > 0 && phone.length < 9 && /^\d+$/.test(phone);
-  // Email green indicator: stays visible while focused and correct (even if complete) as a writing assistant
   const isEmailGreen = focusedField === 'email' && email.length > 0 && !isTempEmail && !/^@/.test(email) && !/@@/.test(email) && !/\.\./.test(email);
   const isAddressGreen = focusedField === 'address' && address.trim().length >= 1 && !/[^a-zA-Z0-9\s,]/.test(address) && !isAddressValid;
 
@@ -168,8 +166,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const isEmailRed = (focusedField === 'email' && email.length > 0 && !isEmailGreen && !isEmailValid && (isTempEmail || /^@/.test(email) || /@@/.test(email) || /\.\./.test(email))) || (errors.email && !isEmailGreen && !isEmailValid);
   const isAddressRed = (focusedField === 'address' && address.length > 0 && !isAddressGreen && !isAddressValid) || (errors.address && !isAddressGreen && !isAddressValid);
 
-  const shippingCost = deliveryMethod === 'home-rm' ? 3500 : 0;
-  const finalTotal = subtotal + shippingCost;
+  const finalTotal = subtotal;
 
   const isFormValid = useMemo(() => {
     if (cart.length === 0) return false;
@@ -235,13 +232,13 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     if (!triggerValidation()) return;
 
     const methodLabel = deliveryMethod === 'home-rm' 
-      ? "Despacho Región Metropolitana"
+      ? "Envíos Región Metropolitana"
       : deliveryMethod === 'home-region'
       ? "Envío a regiones"
       : "Retiro / Coordinación";
 
     const shippingCostText = deliveryMethod === 'home-rm' 
-      ? "$3.500" 
+      ? "Valor a coordinar por BlueExpress" 
       : deliveryMethod === 'home-region' 
       ? "Por coordinar" 
       : "$0";
@@ -271,7 +268,6 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
     setEmail(suggestion);
     setShowEmailSuggestions(false);
     setErrors(prev => ({ ...prev, email: false }));
-    // Keep focus in the email field and maintain the assistant indicator
     emailInputRef.current?.focus();
     setFocusedField('email');
   };
@@ -664,8 +660,8 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                               <Truck size={20} />
                             </div>
                             <div>
-                              <p className="text-xs font-bold text-white uppercase tracking-tight">Despacho Región Metropolitana</p>
-                              <p className="text-[10px] text-white/40">Valor fijo: $3.500</p>
+                              <p className="text-xs font-bold text-white uppercase tracking-tight">Envíos Región Metropolitana</p>
+                              <p className="text-[10px] text-white/40">Valor a coordinar por BlueExpress</p>
                             </div>
                           </div>
                           <RadioGroupItem value="home-rm" className={cn("border-white/20", deliveryMethod === 'home-rm' && "border-cyan-400 text-cyan-400")} />
@@ -732,7 +728,7 @@ export const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 </p>
               </div>
               <p className="text-[10px] text-accent font-bold uppercase tracking-widest pb-1.5">
-                {deliveryMethod === 'home-rm' ? "Despacho RM incluido" : deliveryMethod === 'home-region' ? "REGIÓN POR COORDINAR" : "RETIRO COORDINADO"}
+                {deliveryMethod === 'home-rm' ? "VALOR RM POR COORDINAR" : deliveryMethod === 'home-region' ? "REGIÓN POR COORDINAR" : "RETIRO COORDINADO"}
               </p>
             </div>
 
